@@ -1,0 +1,72 @@
+<template lang="html">
+ <StackLayout>
+  <StackLayout>
+   <Tabs style="border-bottom-width: 0;" >
+    <TabStrip style="background-color: lightgray;border-width: 0;" >
+     <TabStripItem class="special">
+       <label text="매장" color="black" ></label>
+      <Image src="res://#"></Image>
+     </TabStripItem>
+     <TabStripItem>
+      <label text="유튜브" color="black"></label>
+      <Image src="res://#"></Image>
+     </TabStripItem>
+     <TabStripItem>
+      <label text="네이버" color="black"></label>
+      <Image src="res://#"></Image>
+     </TabStripItem>
+     <TabStripItem>
+      <label text="티스토리" color="black"></label>
+      <Image src="res://#"></Image>
+     </TabStripItem>
+    </TabStrip>
+    <TabContentItem style="border-top-width: 0">
+    <PlaceBookmark/>
+    </TabContentItem>
+    <TabContentItem>
+    <YoutubeBookmark/>
+    </TabContentItem>
+    <TabContentItem>
+     <NaverBookmark/>
+    </TabContentItem>
+    <TabContentItem>
+     <TistoryBookmark/>
+    </TabContentItem>
+   </Tabs>
+  </StackLayout>
+ </StackLayout>
+</template>
+
+<script>
+
+ import PlaceBookmark from "./bookmarkList/PlaceBookmark";
+ import YoutubeBookmark from "./bookmarkList/YoutubeBookmark";
+ import NaverBookmark from "./bookmarkList/NaverBookmark";
+ import TistoryBookmark from "./bookmarkList/TistoryBookmark";
+    export default {
+        name:"BookmarkWrap",
+        components: {
+         PlaceBookmark,YoutubeBookmark,NaverBookmark,TistoryBookmark
+        }
+    };
+</script>
+
+<style lang="scss">
+ Tabs {
+  font-family: nanumgothiccoding-bold;
+  font-size: 18;
+  tab-text-color: #03CF5D;
+ }
+ Tabs.bottom-nav {
+  background-color: lightgray;
+  color: gold;
+  font-size: 24;
+ }
+
+ /* 탭 언더라인 색상변경 */
+ Tabs TabStrip{
+  highlight-color: slategray;
+  ;
+ }
+
+</style>
