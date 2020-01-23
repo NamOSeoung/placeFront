@@ -1,10 +1,15 @@
 <template lang="html">
  <StackLayout backgroundColor="#d3d3d3">
-  <FlexboxLayout flexDirection="row-reverse">
-   <Button text="Button" width="30%" @tap="placeSearch" />
-   <SearchBar hint="키워드를 입력 해 주세요." width="70%" v-model="keyword"/>
-  </FlexboxLayout>
-  <StackLayout width="95%" marginTop="10"height="96%" backgroundColor="white">
+  <StackLayout  orientation="horizontal" marginTop="9" >
+   <FIcon name="fa-map"  color="white" width="20%" size="30" paddingTop="9"  @tap="$navigateTo(mapSearch)"/>
+   <TextView width="60%" maxLength="50" v-model="keyword" @textChange="aaaaaaaaaa" borderColor="#DEDEDE" borderWidth="1" borderRadius="15" hint="키워드를 입력 해 주세요."  returnKeyType="send" class="input input-border"></TextView>
+   <!--<TextField hint="키워드를 입력 해 주세요." width="60%" v-model="keyword" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/> -->
+   <FIcon name="fa-search"  color="white" @tap="placeSearch" width="20%" size="30" paddingTop="9"/>
+  </StackLayout>
+  <StackLayout :style="{color:'red'}" id="view2" ref="pagewebviewmap">
+   <label text="1111"  />
+  </StackLayout>
+  <StackLayout width="95%" style="z-index: 10" marginTop="10"height="87%" backgroundColor="white">
    <ListView for="item in items"
              style="height:100%" @itemTap="goPlaceDetail">
     <v-template>
@@ -33,12 +38,13 @@
 
  import axios from "axios";
  import PlaceDetail from "./placeDetail/PlaceDetail";
-
+ import MapSearch from "./placeSearchDetail/MapSearch";
 export default {
   name:"PlaceSearch",
   data(){
    return {
     keyword:'강남 맛집',
+    mapSearch: MapSearch,
     items: []
    }
   },
@@ -73,6 +79,7 @@ export default {
    this.$navigateTo(PlaceDetail, {
     props: {
      context: tappedItem}});
+  },aaaaaaaaaa(args){
   }
  }
 };
