@@ -1,15 +1,18 @@
 import Vue from 'nativescript-vue';
 import RadListView from 'nativescript-ui-listview/vue';
 import Login from './components/member/Login';
+import FontIcon from 'nativescript-vue-fonticon';
+import './app.css';
+import Pager from 'nativescript-accordion/vue'
 
-import { TNSFontIcon, fonticon } from 'nativescript-fonticon';
-
-TNSFontIcon.paths = {
-    fa: './font-awesome.css',
-};
-TNSFontIcon.loadCss();
-
-Vue.filter('fonticon', fonticon)
+Vue.use(Pager)
+Vue.use(FontIcon, {
+    componentName: 'FIcon', // <-- Optional. Will be the name for component icon.
+    debug: true, // <-- Optional. Will output the css mapping to console.
+    paths: {
+        fa: './assets/font-awesome.css',
+    }
+});
 
 Vue.use(RadListView);
 Vue.config.silent = false

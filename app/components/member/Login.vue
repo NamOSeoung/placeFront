@@ -3,14 +3,10 @@
        <Page actionBarHidden="true" backgroundImage="~/Resources/img/place/food.jpg" style="background-repeat: no-repeat;background-size : cover;" >
            <StackLayout>
                <StackLayout>
-                   <Button text="건너뛰기" @tap="$navigateTo(detailPage)" color="white" style="font-weight:bold;border-width : 0;z-index: 0; background-color: transparent;font-family: nanumgothiccoding-bold;font-size: 17" width="20%" marginLeft="75%"/>
+                   <Button text="건너뛰기" @tap="$navigateTo(detailPage)" color="white" style="font-weight:bold;border-width : 0;z-index: 0; background-color: transparent;font-family: nanumgothiccoding-bold;font-size: 17" width="25%" marginLeft="75%"/>
                </StackLayout>
                <StackLayout style="text-align: center" marginTop="20%">
-
                    <label text="MAT" color="white" style="font-family: nanumgothiccoding-bold;font-size: 50;"/>
-                   <Label class="fa" :text="'fa-eye' | fonticon" />
-                   <Label class="fa" :text="'fa-heart' | fonticon" />
-                   <Label class="fa" :text="'fa-user' | fonticon" />
                    <label text="EAT JUNG" color="white" style="font-family: nanumgothiccoding-bold;font-size: 50;"/>
                </StackLayout>
                <StackLayout style="text-align: center">
@@ -59,6 +55,8 @@
 <script>
     import MenuWrap from "../menu/MenuWrap";
     export default {
+        components : {
+        },
         data: () => {
             return {
                 detailPage: MenuWrap
@@ -68,19 +66,10 @@
 </script>
 
 <style scoped lang="scss">
-    @import '../../../node_modules/@nativescript/theme/scss/variables/blue';
-
-    // Custom styles
-    .fas {
-        @include colorize($color: accent);
-    }
 
     .info {
         font-size: 20;
         horizontal-align: center;
         vertical-align: center;
-    }
-    .fa {
-        font-family: FontAwesome, fontawesome-webfont;
     }
 </style>
