@@ -1,0 +1,11 @@
+<!-- app/App_Resources/Android/values/appStyles.xml -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="SpecialTextInputLayout" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#F9D02A</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+    <style name="SpecialErrorTextInputLayout" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#FF0000</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+</resources>

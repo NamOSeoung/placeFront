@@ -1,32 +1,23 @@
 <template lang="html">
-    <StackLayout backgroundColor="#d3d3d3">
-        <StackLayout width="95%" marginTop="10"height="96%" backgroundColor="white">
-            <ListView for="placeBookmark in placeBookmarkList"
-                      style="height:100%" >
-                <v-template>
-                    <StackLayout width="100%" padding="0" orientation="horizontal" >
-                        <StackLayout paddingRight="-15">
-                            <Image :src="placeBookmark.thumbnail" class="thumb img-thumbnail" width="40%" height="100" />
-                        </StackLayout>
-                        <StackLayout width="60%" paddingLeft="0">
-                            <StackLayout orientation="horizontal" style="text-align: center">
-                                <Label text="영업중" row="0" col="0" fontSize="14" backgroundColor="#d3d3d3" style="border-radius: 50px;font-family: nanumgothiccoding-bold;"  width="30%" />
-                                <Label :text="placeBookmark.place_name" row="0" col="1" fontSize="14" width="70%" style="text-align: left;font-family: nanumgothiccoding" />
-                            </StackLayout>
-                            <StackLayout orientation="horizontal"  style="text-align: center" >
-                                <Label text="고기떡볶이" row="1" col="0" fontSize="14" width="20%"/>
-                                <Image src="res://star"  width="10%"></Image>
-                                <Label text="1.5" width="15%" fontSize="17" style="text-align: left;" />
-                                <Label text="Y" fontSize="18"  style="font-family: nanumgothiccoding-bold;border-radius: 100px;color:white;font-weight: 900;background-color: #FF0B00;padding: 0"  width="10%" />
-                                <Label text="N" fontSize="18"  style="font-family: nanumgothiccoding-bold;border-radius: 100px;color:white;font-weight: 900;background-color: #03CF5D;padding: 0"  width="10%" />
-                                <Label text="T" fontSize="18"  style="font-family: nanumgothiccoding-bold;border-radius: 100px;color:white;font-weight: 900;background-color: #EC4F01;padding: 0"  width="10%" />
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
-                </v-template>
-            </ListView>
-        </StackLayout>
-    </StackLayout>
+    <GridLayout orientation="vertical" rows="auto, *">
+        <RadListView for="item in itemList">
+            <v-template name="red" if="item.type === 'red'">
+                <StackLayout class="red" orientation="vertical">
+                    <Label :text="item.name"></Label>
+                </StackLayout>
+            </v-template>
+            <v-template name="green" if="item.type === 'green'">
+                <StackLayout class="green" orientation="vertical">
+                    <Label :text="item.name"></Label>
+                </StackLayout>
+            </v-template>
+            <v-template name="blue" if="item.type === 'blue'">
+                <StackLayout class="blue" orientation="vertical">
+                    <Label :text="item.name"></Label>
+                </StackLayout>
+            </v-template>
+        </RadListView>
+    </GridLayout>
 </template>
 <script>
  import axios from 'axios';
@@ -35,7 +26,14 @@
        data(){
         return {
          placeBookmarkList:[],
-            calList:[{"cal":"0"},{"cal":"1"}]
+            itemList: [
+                {name: 'Item 1', type: 'red'},
+                {name: 'Item 2', type: 'green'},
+                {name: 'Item 3', type: 'blue'},
+                {name: 'Item 4', type: 'red'},
+                {name: 'Item 5', type: 'green'},
+                {name: 'Item 6', type: 'blue'},
+            ]
         }
        },
         components: {
