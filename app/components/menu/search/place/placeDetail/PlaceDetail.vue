@@ -1,104 +1,99 @@
 <template>
- <Page>
-  <ActionBar>
-   <Label text="매장정보"></Label>
-  </ActionBar>
-  <ScrollView orientation="vertical" style="z-index: 1">
-  <FlexboxLayout flexDirection="column" width="100%" backgroundColor="lightgray">
-   <FlexboxLayout flexDirection="column" width="100%" backgroundColor="lightgray" height="500">
-   <StackLayout orientation="horizontal" backgroundColor="white" height="7%">
-    <label :text="placeInfo.category_name" width="30%" />
-    <label :text="item.place_name" width="70%"/>
-   </StackLayout>
-   <StackLayout orientation="horizontal" backgroundColor="white" height="7%" style="z-index: 10000">
-    <label :text="opening_flag" width="33.3%" backgroundColor="#7fffd4" />
-    <label :text="placeInfo.rating" width="33.3%"/>
-    <label text="메뉴" width="33.3%" />
-   </StackLayout>
-   <AbsoluteLayout orientation="horizontal" height="71%">
-    <WebView height="100%" width="100%" :src="'http://192.168.1.86:8080/?latitude='+item.latitude+'&longitude='+item.longitude" @tap="mapClick" @doubletap="aa"/>
-   </AbsoluteLayout>
-    <StackLayout orientation="horizontal" backgroundColor="white" height="5%">
-     <label :text="placeInfo.road_place_address" width="70%" backgroundColor="#7fffd4" />
-     <label text="복사" width="30" @tap="addressCopy(placeInfo.road_place_address)"/>
-    </StackLayout>
-    <StackLayout orientation="horizontal" backgroundColor="white" height="5%">
-     <label :text="placeInfo.place_address" width="70%" backgroundColor="#7fffd4" />
-    </StackLayout>
-    <StackLayout orientation="horizontal" backgroundColor="white" height="5%" >
-     <label :text="placeInfo.tel_no" width="70%" backgroundColor="#7fffd4" />
-     <label text="전화걸기" width="30" @tap="callStore(placeInfo.tel_no)"/>
-    </StackLayout>
-   </FlexboxLayout>
-   <StackLayout orientation="horizontal" height="130">
-    <image src="res://kakaomap" height="130"/>
-    <image src="res://instagram" height="130"/>
-   </StackLayout>
-   <FlexboxLayout flexDirection="column" width="100%" backgroundColor="#2e8b57" height="500">
-    <StackLayout orientation="horizontal" height="130">
-     <label text="유튜브" />
-    </StackLayout>
-   <ScrollView orientation="horizontal">
-   <StackLayout orientation="horizontal" backgroundColor="blue" style="text-align: left;">
-    <WrapLayout orientation="horizontal"
-                backgroundColor="white" v-for="y_reviews in youTubeReview" height="300" paddingBottom="20">
-       <StackLayout paddingRight="7" >
-
-         <image :src="y_reviews.y_thumbnail_url" height="120" />
-        <TextView :text="y_reviews.y_description" height="50" width="120" backgroundColor="aqua" editable="false" style="border-bottom-width: 0;"/>
-      </StackLayout>
-    </WrapLayout>
-     <!-- <label :text="y_reviews.y_description" /> -->
-   </StackLayout>
-   </ScrollView>
-    <StackLayout orientation="horizontal" height="130" marginTop="0">
-     <label text="네이버" />
-    </StackLayout>
-    <ScrollView orientation="horizontal">
-     <StackLayout orientation="horizontal" backgroundColor="#3c495e" height="200">
-      <WrapLayout orientation="horizontal"
-                  backgroundColor="yellow" v-for="n_reviews in naverReviews">
-       <StackLayout>
-        <label :text="n_reviews.description" width="200" height=""/>
-        <label :text="n_reviews.author" width="200" height=""/>
-       </StackLayout>
-      </WrapLayout>
-      <!-- <label :text="y_reviews.y_description" /> -->
+ <Page actionBarHidden="true">
+  <ScrollView orientation="vertical" backgroundColor="#eff2f7">
+   <StackLayout>
+    <StackLayout orientation="horizontal" marginTop="23" backgroundColor="white" paddingBottom="19">
+     <StackLayout @tap="$navigateBack">
+      <FIcon name="fa-angle-left" size="28" color="#333333" width="28" height="28" />
      </StackLayout>
-   </ScrollView>
-   <StackLayout orientation="horizontal" height="130" marginTop="0">
-   <label text="티스토리" />
-  </StackLayout>
-   <ScrollView orientation="horizontal">
-    <StackLayout orientation="horizontal" backgroundColor="#3c495e" height="200">
-     <WrapLayout orientation="horizontal"
-                 backgroundColor="yellow" v-for="d_reviews in daumReviews">
-      <StackLayout>
-       <label :text="d_reviews.description" width="200" height=""/>
-       <label :text="d_reviews.author" width="200" height=""/>
-      </StackLayout>
-     </WrapLayout>
-     <!-- <label :text="y_reviews.y_description" /> -->
+     <StackLayout marginTop="7" width="44" @tap="$navigateBack">
+      <label text="검색결과" fontSize="12" color="#494949"  style="font-family: nanumsquareroundeb"/>
+     </StackLayout>
+     <StackLayout marginTop="8" marginLeft="216" >
+        <FIcon name="fa-bookmark"  color="#ffe074" width="14" height="18" size="18" />
+        <FIcon name="fa-bookmark"  width="14" height="18"size="18" visibility="collapsed"/>
+     </StackLayout>
+     <StackLayout marginTop="8" marginLeft="17">
+       <FIcon name="fa-share-alt" width="20" height="20" size="20" color="#555555"/>
+     </StackLayout>
     </StackLayout>
-   </ScrollView>
-   <StackLayout orientation="horizontal" height="130" marginTop="0">
-    <label text="잇정리뷰" />
+    <StackLayout >
+     <StackLayout marginTop="16" paddingLeft="16">
+       <label :text="placeInfo.category_name" fontSize="11" color="#555555" style="font-family: nanumsquareroundeb" />
+     </StackLayout>
+     <StackLayout marginTop="8" paddingLeft="16">
+      <label :text="item.place_name" fontSize="16" color="#555555" style="font-family: nanumsquareroundeb" />
+     </StackLayout>
+     <StackLayout width="90%" marginTop="13">
+      <WebView height="100%" width="100%" :src="'http://192.168.35.57:8080/?latitude='+item.latitude+'&longitude='+item.longitude" @tap="mapClick" @doubletap="aa"/>
+     </StackLayout>
+     <StackLayout marginLeft="20" marginTop="13">
+       <label :text="placeInfo.tel_no" color="#555555" fontSize="11"style="font-family: nanumsquareroundeb" />
+     </StackLayout>
+     <StackLayout marginLeft="20" marginTop="8">
+      <label :text="placeInfo.road_place_address" color="#555555" fontSize="11"style="font-family: nanumsquareroundeb" />
+     </StackLayout>
+     <StackLayout orientation="horizontal">
+      <StackLayout marginLeft="25">
+      <StackLayout width="34" height="34" backgroundColor="#ffe074" :borderRadius="50" marginTop="25">
+       <FIcon name="fa-clock" width="24" size="24" height="24" color="white" marginTop="6" />
+      </StackLayout>
+     </StackLayout>
+      <StackLayout marginLeft="53">
+      <StackLayout width="34" height="34" backgroundColor="#ffe074" :borderRadius="50" marginTop="25">
+       <FIcon name="fa-star" width="24" size="24" height="24" color="white" marginTop="6" />
+      </StackLayout>
+     </StackLayout>
+      <StackLayout marginLeft="58" @tap="callStore(placeInfo.tel_no)">
+       <StackLayout width="34" height="34" backgroundColor="#ffe074" :borderRadius="50" marginTop="25">
+        <FIcon name="fa-phone-alt" width="24" size="24" height="24" color="white" marginTop="6" />
+       </StackLayout>
+      </StackLayout>
+      <StackLayout marginLeft="63"  @tap="addressCopy(placeInfo.road_place_address)">>
+       <StackLayout width="34" height="34" backgroundColor="#ffe074" :borderRadius="50" marginTop="25">
+        <FIcon name="fa-map-marked-alt" width="24" size="24" height="24" color="white" marginTop="6" />
+       </StackLayout>
+      </StackLayout>
+     </StackLayout>
+     <StackLayout orientation="horizontal">
+      <StackLayout marginTop="7" marginLeft="26">
+      <label text="영업중" fontSize="12" color="#555555" style="font-family: nanumsquareroundeb"  />
+     </StackLayout>
+      <StackLayout marginTop="7" marginLeft="65">
+       <label text="2.5" fontSize="12" color="#555555" style="font-family: nanumsquareroundeb"  />
+      </StackLayout>
+      <StackLayout marginTop="7" marginLeft="65" @tap="callStore(placeInfo.tel_no)">
+       <label text="전화걸기" fontSize="12" color="#555555" style="font-family: nanumsquareroundeb"  />
+      </StackLayout>
+      <StackLayout marginTop="7" marginLeft="58" @tap="addressCopy(placeInfo.road_place_address)">
+       <label text="주소복사" fontSize="12" color="#555555" style="font-family: nanumsquareroundeb"  />
+      </StackLayout>
+     </StackLayout>
+     <StackLayout>
+     <YoutubeList />
+    </StackLayout>
+     <StackLayout>
+      <NaverList />
+     </StackLayout>
+     <StackLayout>
+      <TistoryList />
+     </StackLayout>
+     <StackLayout>
+      <GoogleList />
+     </StackLayout>
+     <StackLayout>
+      <AppReviewList />
+     </StackLayout>
+    </StackLayout>
+<!--   <StackLayout orientation="horizontal" backgroundColor="white" height="7%" style="z-index: 10000">-->
+<!--    <label :text="opening_flag" width="33.3%" backgroundColor="#7fffd4" />-->
+<!--    <label :text="placeInfo.rating" width="33.3%"/>-->
+<!--    <label text="메뉴" width="33.3%" />-->
+<!--   </StackLayout>-->
+    <StackLayout  @tap="$navigateTo(reviewWritePage)" width="100" height="30" borderRadius="15" backgroundColor="#ffe074" marginBottom="22">
+      <label text="리뷰쓰기" color="#555555" fontSize="13"  style="font-family: nanumsquareroundeb" marginLeft="26" marginTop="8" />
+    </StackLayout>
    </StackLayout>
-   <ScrollView orientation="horizontal">
-    <StackLayout orientation="horizontal" backgroundColor="#3c495e" height="200">
-     <WrapLayout orientation="horizontal"
-                 backgroundColor="yellow" v-for="a_reviews in appReviews">
-      <StackLayout>
-       <label :text="a_reviews.review_contents" width="200" height=""/>
-       <label :text="a_reviews.review_id" width="200" height=""/>
-      </StackLayout>
-     </WrapLayout>
-     <!-- <label :text="y_reviews.y_description" /> -->
-    </StackLayout>
-   </ScrollView>
-   </FlexboxLayout>
-   <Button text="리뷰작성" @tap="$navigateTo(reviewWritePage)"></Button>
-  </FlexboxLayout>
   </ScrollView>
  </Page>
 </template>
@@ -106,6 +101,13 @@
 <script>
 import axios from 'axios';
 import ReviewWrite from "../../../../review/ReviewWrite";
+import YoutubeList from './reviewComponents/YoutubeList';
+import NaverList from './reviewComponents/NaverList';
+import TistoryList from './reviewComponents/TistoryList';
+import GoogleList from './reviewComponents/GoogleList';
+import AppReviewList from './reviewComponents/AppReviewList';
+
+import Tistory from "../../../home/homeComponents/TistoryList";
 //import DetailMap from "./DetailMaps/DetailMap";
 
 var clipboard = require("nativescript-clipboard");
@@ -125,16 +127,19 @@ var dialogs = require("tns-core-modules/ui/dialogs");
     daumReviews:[],
     appReviews:[],
     opening_flag:'',
+    setPlace_id:'',
    // mapDetail:DetailMap,
     reviewWritePage:ReviewWrite
    }
+  },components: {
+   Tistory,
+    YoutubeList,NaverList,TistoryList,GoogleList,AppReviewList
   }, computed: {
    item() {
     return this.context || {};
    }
   },mounted() {
    this.$data.place_detail_q = this.item.place_id + '?latitude=' + this.item.latitude + '&longitude=' + this.item.longitude;
-
    console.log(this.place_detail_q)
    axios({
     method: 'get',
@@ -150,57 +155,8 @@ var dialogs = require("tns-core-modules/ui/dialogs");
    }, (error) => {
     console.log(error);
    });
-
-   console.log(this.item.place_id)
-   axios({
-    method: 'get',
-   // url: 'http://192.168.1.85:9090/v1/places/'+this.item.place_id+'/portalreviews',
-    url: 'http://api.matitzung.shop/v1/places/'+this.item.place_id+'/portalreviews',
-    params: {
-     page : '1',
-     portal : 'youtube'
-    },
-   }).then((response) => {
-    //console.log(response.data);
-    console.log("유튜브" + response.data.dataList.YOUTUBE)
-    this.$data.youTubeReview = response.data.dataList.YOUTUBE;
-    //this.$data.place_detail = response.data.dataList;
-    //console.log(response.data);
-   }, (error) => {
-    console.log(error);
-   });
-
-   axios({
-    method: 'get',
-    url: 'http://api.matitzung.shop/v1/places/'+this.item.place_id + '/portalblogs',
-    //url: 'http://192.168.1.85:8080/v1/places/'+this.place_id + '/portalblogs',
-    params: {
-    },
-   }).then((response) => {
-    console.log(response.data);
-    this.$data.naverReviews = response.data.dataList.NAVER;
-    this.$data.daumReviews = response.data.dataList.DAUM;
-    //this.$data.youtubeReviews = response.data.dataList.DAUM;
-   }, (error) => {
-    console.log(error);
-   });
-
-   axios({
-    method: 'get',
-    url: 'http://api.matitzung.shop/v1/places/'+'24766059K' + '/reviews',
-    //url: 'http://api.matitzung.shop/v1/places/'+this.item.place_id + '/reviews',
-    //url: 'http://192.168.1.85:8080/v1/places/'+this.place_id + '/portalblogs',
-    params: {
-    },
-   }).then((response) => {
-    console.log(response.data);
-    this.$data.appReviews = response.data.dataList;
-    console.log(this.$data.appReviews)
-    //this.$data.youtubeReviews = response.data.dataList.DAUM;
-   }, (error) => {
-    console.log(error);
-   });
-
+  },created() {
+   this.$data.setPlace_id = this.item.place_id
   },methods: {
    mapClick(){
     console.log(this.item.place_id)
@@ -208,6 +164,9 @@ var dialogs = require("tns-core-modules/ui/dialogs");
     // props: {
     //  }});
 
+   },youtubeReview(){
+      console.log(this.$data.setPlace_id + "2222222222222222222222")
+      return this.$data.setPlace_id
    },aa(){
     console.log('??')
     return;

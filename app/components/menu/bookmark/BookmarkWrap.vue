@@ -1,6 +1,32 @@
 <template lang="html">
  <StackLayout>
-  <TabView :selectedIndex="0" style="background-color: lightgray">
+  <Tabs style="width: 100%">
+   <TabStrip>
+    <TabStripItem >
+     <Label text="Home2" fontSize="30"></Label>
+     <Image src="res://home"></Image>
+    </TabStripItem>
+    <TabStripItem>
+     <Label text="Settings"></Label>
+     <Image src="res://settings"></Image>
+    </TabStripItem>
+    <TabStripItem>
+     <Label text="Search"></Label>
+     <Image src="res://search"></Image>
+    </TabStripItem>
+   </TabStrip>
+   <TabContentItem>
+    <PlaceBookmark />
+   </TabContentItem>
+   <TabContentItem>
+    <YoutubeBookmark />
+   </TabContentItem>
+   <TabContentItem>
+    <NaverBookmark />
+   </TabContentItem>
+  </Tabs>
+
+ <!-- <TabView :selectedIndex="0" style="background-color: lightgray">
    <TabViewItem title="매장">
     <PlaceBookmark/>
    </TabViewItem>
@@ -16,7 +42,7 @@
    <TabViewItem title="티스토리">
     <TistoryBookmark/>
    </TabViewItem>
-  </TabView>
+  </TabView>-->
  </StackLayout>
 </template>
 
@@ -29,7 +55,7 @@
     export default {
         name:"BookmarkWrap",
         components: {
-         PlaceBookmark,YoutubeBookmark,NaverBookmark,TistoryBookmark
+         PlaceBookmark,YoutubeBookmark,NaverBookmark//,TistoryBookmark
         }
     };
 </script>

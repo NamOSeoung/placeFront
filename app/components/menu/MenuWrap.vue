@@ -1,30 +1,23 @@
 <template lang="html">
  <Page actionBarHidden="true" marginTop="24">
   <StackLayout>
-   <BottomNavigation>
+   <BottomNavigation :selectedIndex="data.tab" @selectedIndexChanged="tabChangedEvent" >
     <TabStrip>
-     <TabStripItem  >
-      <Label text="Home" ></Label>
-      <Image src="res://home"></Image>
+     <TabStripItem >
+      <FIcon name="fa-home" color="#A4A4A4"  fontSize="26" paddingTop="12"  />
      </TabStripItem>
      <TabStripItem>
-      <Label text="Search"></Label>
-      <Image src="res://search"></Image>
+      <FIcon name="fa-search" color="#A4A4A4"  fontSize="26" paddingTop="12"  />
      </TabStripItem>
      <TabStripItem>
-      <Label text="Bookmark"></Label>
-      <Image src="res://settings"></Image>
+      <FIcon name="fa-bookmark" color="#A4A4A4"  fontSize="26" paddingTop="12"  />
      </TabStripItem>
      <TabStripItem>
-      <Label text="Settings"></Label>
-      <Image src="res://settings"></Image>
+      <FIcon name="fa-user" color="#A4A4A4"  fontSize="26" paddingTop="12"  />
      </TabStripItem>
     </TabStrip>
     <TabContentItem>
-     <GridLayout>
-      <Label text="Home Page" class="h2 text-center">
-      </Label>
-     </GridLayout>
+     <HomeWrap/>
     </TabContentItem>
     <TabContentItem>
      <PlaceSearch/> <!-- 장소관련 탭 -->
@@ -46,10 +39,29 @@
 <script>
     import PlaceSearch from './search/place/PlaceSearch'
     import BookmarkWrap from "./bookmark/BookmarkWrap";
+    import HomeWrap from './home/HomeWrap';
+
+    var data = {tab : 0}
+
     export default {
         name:"MenuWrap",
+       data(){
+        return {
+         data
+         }
+        },
         components: {
-         PlaceSearch,BookmarkWrap
+         HomeWrap,PlaceSearch,BookmarkWrap
+        },methods:{
+            tabChange(tab){
+               data.tab = tab;
+            },tabChangedEvent(args){
+               console.log(args.oldIndex)
+               console.log(args.newIndex)
+               if(args.newIndex == 0){
+                data.tab = 0;
+               }
+            }
         }
     };
 </script>

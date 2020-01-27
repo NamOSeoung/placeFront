@@ -3,6 +3,7 @@
        <Page actionBarHidden="true" backgroundImage="~/Resources/img/place/food.jpg" style="background-repeat: no-repeat;background-size : cover;" >
            <StackLayout>
                <StackLayout>
+<!--                   <Button text="건너뛰기" @tap="$navigateTo(detailPage)" color="white" style="font-weight:bold;border-width : 0;z-index: 0; background-color: transparent;font-family: nanumgothiccoding-bold;font-size: 17" width="25%" marginLeft="75%"/>-->
                    <Button text="건너뛰기" @tap="$navigateTo(detailPage)" color="white" style="font-weight:bold;border-width : 0;z-index: 0; background-color: transparent;font-family: nanumgothiccoding-bold;font-size: 17" width="25%" marginLeft="75%"/>
                </StackLayout>
                <StackLayout style="text-align: center" marginTop="20%">
