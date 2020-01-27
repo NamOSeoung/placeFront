@@ -4,6 +4,8 @@ import Login from './components/member/Login';
 import FontIcon from 'nativescript-vue-fonticon';
 import './app.css';
 import Pager from 'nativescript-accordion/vue'
+import NSVueShadow from 'nativescript-vue-shadow'
+Vue.use(NSVueShadow)
 
 Vue.use(Pager)
 Vue.use(FontIcon, {
