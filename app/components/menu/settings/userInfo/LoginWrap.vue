@@ -74,6 +74,7 @@
     import '~/Resources/css/menu/settings/userInfo/loginWrap_360.scss';
     import '~/Resources/css/menu/settings/userInfo/loginWrap_320.scss';
     import '~/Resources/css/menu/settings/userInfo/loginWrap_420.scss';
+    import '~/Resources/css/menu/settings/userInfo/loginWrap_480.scss';
 
 
     export default {
