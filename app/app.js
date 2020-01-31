@@ -5,8 +5,10 @@ import FontIcon from 'nativescript-vue-fonticon';
 import './app.css';
 import Pager from 'nativescript-accordion/vue'
 import NSVueShadow from 'nativescript-vue-shadow'
-Vue.use(NSVueShadow)
+require( "nativescript-platform-css" );
 
+Vue.registerElement("DropDown", () => require("nativescript-drop-down/drop-down").DropDown)
+Vue.use(NSVueShadow)
 Vue.use(Pager)
 Vue.use(FontIcon, {
     componentName: 'FIcon', // <-- Optional. Will be the name for component icon.
