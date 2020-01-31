@@ -1,0 +1,98 @@
+$small : 0.9;
+
+.android320 .faqWrap{
+  background-color: #ffffff;
+  width: 360*$small;
+  height: 650*$small;
+}
+.android320 .faqHeaderWrap{
+  background-color: #ffffff;
+  width: 360*$small;
+  height: 55*$small;
+  border-bottom-width: 1*$small;
+  border-bottom-color: #dddddd;
+  padding-bottom: 18*$small;
+}
+
+.android320 .leftWrap{
+  width: 14*$small;
+  height: 14*$small;
+  margin-left: 6*$small;
+  margin-top: 17*$small;
+}
+.android320 .leftIcon{
+  width:14*$small;
+  height: 14*$small;
+}
+.android320 .myInfoBackWrap{
+  margin-left: 2*$small;
+  width: 33*$small;
+  height: 14*$small;
+  margin-top: 20*$small;
+}
+.android320 .myInfoBack{
+  width: 33*$small;
+  height: 14*$small;
+  color: #494949;
+  font-size: 12*$small;
+  font-family: nanumsquareroundeb;
+}
+.android320 .faqTitleWrap{
+  width: 80*$small;
+  height: 18*$small;
+  margin-top: 21*$small;
+  margin-left: 88*$small;
+}
+.android320 .faqTitle{
+  width: 80*$small;
+  height: 16*$small;
+  color: #494949;
+  font-family: nanumsquareroundeb;
+  font-size: 14*$small;
+}
+
+.android320 .faqListWrap{
+  text-align: left;
+}
+
+.android320 .faqList{
+  border-bottom-width: 1*$small;
+  border-bottom-color: #dddddd;
+}
+
+.android320 .faqHeaderTitleWrap{
+  width:311*$small;
+}
+.android320 .faqHeaderTitle{
+  font-family: nanumsquareroundeb;
+  font-size: 12*$small;
+  color: #494949;
+  height: 13*$small;
+  margin-top: 23*$small;
+  margin-bottom: 21*$small;
+  margin-left:15*$small;
+}
+.android320 .faqDownIconWrap{
+  width: 28*$small;
+  height: 28*$small;
+}
+.android320 .faqDownIcon{
+  margin-top: 10*$small;
+  width: 15*$small;
+  height: 15*$small;
+}
+.android320 .faqDetailWrap{
+  background-color: #eff2f7;
+  width: 360*$small;
+  padding-top: 14*$small;
+  padding-right: 15*$small;
+  padding-bottom: 18*$small;
+  padding-left: 15*$small;
+}
+.android320 .faqDetail{
+  font-size: 11*$small;
+  color: #494949;
+  font-family: nanumsquareroundr;
+  line-height:22*$small;
+  background-color: #eff2f7;
+}
