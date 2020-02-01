@@ -1,12 +1,12 @@
 $large : 1.5;
 
-.android320 .loginTitleWrap{
+.android480 .loginTitleWrap{
   width: 360*$large;
   height:100*$large;
   background-color: #ffe074;
   text-align: center;
 }
-.android320 .loginTitleContents{
+.android480 .loginTitleContents{
   margin-top: 26*$large;
   width: 159*$large;
   height: 20*$large;
@@ -14,7 +14,7 @@ $large : 1.5;
   color: #b99000;
   font-family: nanumsquareroundeb;
 }
-.android320 .loginInfoWrap{
+.android480 .loginInfoWrap{
   width: 280*$large;
   height: 140*$large;
   background-color: #ffffff;
@@ -22,18 +22,18 @@ $large : 1.5;
   border-radius: 9*$large;
   text-align: center;
 }
-.android320 .infoTextWrap{
+.android480 .infoTextWrap{
   text-align: center;
   width: 280*$large;
   margin-top: 32*$large;
 }
-.android320 .infoText{
+.android480 .infoText{
   font: 14*$large;
   color: #555555;
   font-family: nanumsquareroundeb;
 
 }
-.android320 .loginTextWrap{
+.android480 .loginTextWrap{
   width: 231*$large;
   height: 40*$large;
   margin-top: 22*$large;
@@ -43,7 +43,7 @@ $large : 1.5;
   border-radius: 6*$large;
   text-align: center;
 }
-.android320 .loginText{
+.android480 .loginText{
   font-family: nanumsquareroundeb;
   font-size: 14*$large;
   margin-top: 12*$large;
