@@ -1,0 +1,59 @@
+$large : 1.5;
+
+
+
+
+.android480 .youtubeMarkHeaderWrap{
+  width: 360*$large;
+  height:100%;
+  background-color: #eff2f7;
+}
+.android480 .youtubeMarkWrap{
+  width: 340*$large;
+  height: 100*$large;
+  background-color: #ffffff;
+  border-radius: 8*$large;
+}
+.android480 .youtubeImageWrap{
+  width: 140*$large;
+  height: 78*$large;
+  margin-left: 15*$large;
+}
+.android480 .youtubeTitleWrap{
+  width: 185*$large;
+  height: 60*$large;
+  padding-right: 15*$large;
+}
+.android480 .youtubeTitle{
+  width: 185*$large;
+  font-size: 12*$large;
+  height: 60*$large;
+  font-family: nanumsquareroundeb;
+  color: #494949;
+  line-height:5*$large;
+  margin-top: 21*$large;
+  margin-left: 10*$large;
+}
+
+.android480 .youtubeDateWrap{
+  width: 155*$large;
+  height: 20*$large;
+  margin-top: 15*$large;
+}
+.android480 .youtubeMarkMain{
+  margin-left: 15*$large;
+}
+.android480 .youtubeDate{
+  width: 150*$large;
+  height: 20*$large;
+  font-size: 10*$large;
+  font-family: nanumsquareroundr;
+  color: #888888;
+}
+
+.android480 .markUnderline{
+  width:360*$large;
+  height: 15*$large;
+  background-color: #eff2f7;
+}
+
