@@ -26,10 +26,7 @@
       <BookmarkWrap/> <!-- 북마크 관련 탭 -->
     </TabContentItem>
     <TabContentItem>
-     <GridLayout>
-      <Label text="Settings Page" class="h2 text-center">
-      </Label>
-     </GridLayout>
+     <SettingsWrap/>
     </TabContentItem>
    </BottomNavigation>
   </StackLayout>
@@ -40,6 +37,7 @@
     import PlaceSearch from './search/place/PlaceSearch'
     import BookmarkWrap from "./bookmark/BookmarkWrap";
     import HomeWrap from './home/HomeWrap';
+    import SettingsWrap from './settings/SettingsWrap';
 
     var data = {tab : 0}
 
@@ -51,7 +49,7 @@
          }
         },
         components: {
-         HomeWrap,PlaceSearch,BookmarkWrap
+         HomeWrap,PlaceSearch,BookmarkWrap,SettingsWrap
         },methods:{
             tabChange(tab){
                data.tab = tab;

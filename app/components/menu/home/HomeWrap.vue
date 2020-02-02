@@ -1,22 +1,26 @@
 <template lang="html">
 <ScrollView>
-    <StackLayout backgroundColor="#eff2f7">
-         <StackLayout backgroundColor="#ffe074" height="110dp" width="100%">
-             <StackLayout orientation="horizontal" marginLeft="35dp" marginTop="23dp">
-                 <label text="잇정" width="37" height="22" fontSize="20" style="font-family: nanumsquareroundeb"/>
-                 <label text="어떤 맛집을 찾아볼까요?" width="142" height="16" fontSize="14" marginLeft="13" style="font-family: nanumsquareroundeb"/>
+    <StackLayout>
+         <StackLayout class="homeHeaderWrap">
+             <StackLayout orientation="horizontal" class="homeTitleWrap">
+                 <label text="잇정" class="homeAppName" />
+                 <label text="어떤 맛집을 찾아볼까요?" class="homeTitle"/>
              </StackLayout>
-             <StackLayout orientation="horizontal" marginLeft="35dp" marginRight="35dp" backgroundColor="#ffffff" height="34" marginTop="15dp" borderRadius="8dp">
-                 <FIcon name="fa-map-marker-alt" width="22" height="22" size="22"  color="#333333" marginLeft="13dp" marginTop="6" marginBottom="6"/>
-<!--                 <label :text="this.address" marginLeft="10dp" height="51dp" fontSize="13sp"/>-->
-                 <label text="서울 맛집" marginLeft="10dp"  width="215" fontSize="13" marginTop="10" marginBottom="10" style="font-family: nanumsquareroundeb"/>
-                 <FIcon name="fa-search" width="20" height="20" size="20" color="#333333" marginRight="15" marginTop="7" marginBottom="7" @tap="goSearchTab(1)" />
+             <StackLayout orientation="horizontal" class="homeSearchWrap">
+                 <image src="~/Resources/img/home/maker.png" class="homeMakerIcon"/>
+                 <label text="서울 맛집" class="homeSearchTitle"/>
+                 <image src="~/Resources/img/home/search.png" class="homeSearchIcon" />
              </StackLayout>
          </StackLayout>
+         <StackLayout class="headerLine"/>
          <StoreList />
+         <StackLayout class="headerLine"/>
          <YoutubeList/>
-        <NaverList />
-        <TistoryList />
+         <StackLayout class="headerLine"/>
+         <NaverList />
+         <StackLayout class="headerLine"/>
+         <TistoryList />
+         <StackLayout class="headerLine"/>
 <!--        <StackLayout>-->
 <!--            <Button text="Show location" @tap="enableLocationServices"-->
 <!--                    :visibility="currentGeoLocation.latitude ? 'collapsed' : 'visible'" />-->
@@ -45,6 +49,11 @@
     import axios from 'axios';
 
     var cache = require("nativescript-cache");
+
+    import '~/Resources/css/menu/home/homeWrap/homeWrap_320.scss';
+    import '~/Resources/css/menu/home/homeWrap/homeWrap_360.scss';
+    import '~/Resources/css/menu/home/homeWrap/homeWrap_420.scss';
+    import '~/Resources/css/menu/home/homeWrap/homeWrap_480.scss';
 
     export default {
         name:"HomeWrap",
@@ -121,7 +130,7 @@
 </script>
 
 <style lang="scss">
-    StackLayout{
-        color:black;
-    }
+
+
+
 </style>
