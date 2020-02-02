@@ -1,8 +1,5 @@
 $large : 1.5;
 
-
-
-
 .android480 .youtubeMarkHeaderWrap{
   width: 360*$large;
   height:100%;
@@ -14,17 +11,17 @@ $large : 1.5;
   background-color: #ffffff;
   border-radius: 8*$large;
 }
-.android480 .youtubeImageWrap{
+.android480 .youtubeMarkImageWrap{
   width: 140*$large;
   height: 78*$large;
   margin-left: 15*$large;
 }
-.android480 .youtubeTitleWrap{
+.android480 .youtubeMarkTitleWrap{
   width: 185*$large;
   height: 60*$large;
   padding-right: 15*$large;
 }
-.android480 .youtubeTitle{
+.android480 .youtubeMarkTitle{
   width: 185*$large;
   font-size: 12*$large;
   height: 60*$large;
@@ -35,7 +32,7 @@ $large : 1.5;
   margin-left: 10*$large;
 }
 
-.android480 .youtubeDateWrap{
+.android480 .youtubeMarkDateWrap{
   width: 155*$large;
   height: 20*$large;
   margin-top: 15*$large;
@@ -43,7 +40,7 @@ $large : 1.5;
 .android480 .youtubeMarkMain{
   margin-left: 15*$large;
 }
-.android480 .youtubeDate{
+.android480 .youtubeMarkDate{
   width: 150*$large;
   height: 20*$large;
   font-size: 10*$large;

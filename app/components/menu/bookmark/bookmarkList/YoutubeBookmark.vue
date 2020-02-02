@@ -4,15 +4,15 @@
     <v-template>
      <StackLayout class="youtubeMarkMain" >
       <StackLayout orientation="horizontal" class="youtubeMarkWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
-       <StackLayout class="youtubeImageWrap">
-        <Image :src="youtubeBookmark.thumbnail" class="youtubeImage"/>
+       <StackLayout class="youtubeMarkImageWrap">
+        <Image :src="youtubeBookmark.thumbnail" class="youtubeMarkImage"/>
        </StackLayout>
        <StackLayout class="youtubeRightWrap">
-        <StackLayout orientation="horizontal" class="youtubeTitleWrap">
-         <Label :text="youtubeBookmark.title" class="youtubeTitle" textWrap="true"/>
+        <StackLayout orientation="horizontal" class="youtubeMarkTitleWrap">
+         <Label :text="youtubeBookmark.title" class="youtubeMarkTitle" textWrap="true"/>
         </StackLayout>
-        <StackLayout orientation="horizontal" class="youtubeDateWrap">
-         <Label :text="youtubeBookmark.date" class="youtubeDate"  />
+        <StackLayout orientation="horizontal" class="youtubeMarkDateWrap">
+         <Label :text="youtubeBookmark.date" class="youtubeMarkDate"  />
         </StackLayout>
        </StackLayout>
       </StackLayout>

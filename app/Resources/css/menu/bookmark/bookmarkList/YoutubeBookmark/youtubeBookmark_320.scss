@@ -12,17 +12,17 @@ $small : 0.9;
   background-color: #ffffff;
   border-radius: 8*$small;
 }
-.android360 .youtubeImageWrap{
+.android360 .youtubeMarkImageWrap{
   width: 140*$small;
   height: 78*$small;
   margin-left: 15*$small;
 }
-.android360 .youtubeTitleWrap{
+.android360 .youtubeMarkTitleWrap{
   width: 185*$small;
   height: 60*$small;
   padding-right: 15*$small;
 }
-.android360 .youtubeTitle{
+.android360 .youtubeMarkTitle{
   width: 185*$small;
   font-size: 12*$small;
   height: 60*$small;
@@ -33,7 +33,7 @@ $small : 0.9;
   margin-left: 10*$small;
 }
 
-.android360 .youtubeDateWrap{
+.android360 .youtubeMarkDateWrap{
   width: 155*$small;
   height: 20*$small;
   margin-top: 15*$small;
@@ -41,7 +41,7 @@ $small : 0.9;
 .android360 .youtubeMarkMain{
   margin-left: 15*$small;
 }
-.android360 .youtubeDate{
+.android360 .youtubeMarkDate{
   width: 150*$small;
   height: 20*$small;
   font-size: 10*$small;
