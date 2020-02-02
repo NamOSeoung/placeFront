@@ -1,44 +1,97 @@
 <template lang="html">
-    <GridLayout orientation="vertical" rows="auto, *">
-        <RadListView for="item in itemList">
-            <v-template name="red" if="item.type === 'red'">
-                <StackLayout class="red" orientation="vertical">
-                    <Label :text="item.name"></Label>
+    <ListView for="placeBookmark in placeBookmarkList" separatorColor="transparent"
+              style="height:100%" @itemTap="gotistory" >
+        <v-template>
+    <StackLayout class="storeMarkDetailSubWrap">
+        <StackLayout orientation="horizontal" class="storeMarkDetailWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
+            <StackLayout class="storeLeftWrap">
+                <image class="storeImage" stretch="aspectFill" :src="placeBookmark.thumbnail"/>
+            </StackLayout>
+            <StackLayout class="storeMarkRightWrap">
+                <StackLayout orientation="horizontal" class="storeMarkTopWrap">
+                    <StackLayout class="storeMarkTimeWrap">
+                        <label :text="placeBookmark.opening" class="storeTime" />
+                    </StackLayout>
+                    <StackLayout class="storeStarIconWrap">
+                        <Image src="~/Resources/img/home/star.png" class="storeStarIcon" />
+                    </StackLayout>
+                    <StackLayout class="storeRatingWrap">
+                        <label :text="placeBookmark.rating" class="storeRating"/>
+                    </StackLayout>
                 </StackLayout>
-            </v-template>
-            <v-template name="green" if="item.type === 'green'">
-                <StackLayout class="green" orientation="vertical">
-                    <Label :text="item.name"></Label>
+                <StackLayout class="storeMarkMiddleWrap">
+                    <label :text="placeBookmark.place_name" class="storeMarkName"/>
                 </StackLayout>
-            </v-template>
-            <v-template name="blue" if="item.type === 'blue'">
-                <StackLayout class="blue" orientation="vertical">
-                    <Label :text="item.name"></Label>
+                <StackLayout orientation="horizontal" class="storeMarkBottomWrap">
+                    <StackLayout class="storeMarkCategoryWrap">
+                        <label :text="placeBookmark.category" class="storeMarkCategory"/>
+                    </StackLayout>
+                    <StackLayout class="storeMarkYIconWrap">
+                        <image class="storeMarkYIcon" stretch="aspectFill" src="~/Resources/img/bookmark/youtube-circle.png"/>
+                    </StackLayout>
+                    <StackLayout class="storeMarkNIconWrap">
+                        <image class="storeMarkNIcon"stretch="aspectFill"  src="~/Resources/img/bookmark/naver-circle.png"/>
+                    </StackLayout>
+                    <StackLayout class="storeMarkTIconWrap">
+                        <image class="storeMarkTIcon" stretch="aspectFill" src="~/Resources/img/bookmark/tistory-circle.png"/>
+                    </StackLayout>
+                    <StackLayout class="storeMarkGIconWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 50 }">
+                        <image class="storeMarkGIcon"stretch="aspectFill" src="~/Resources/img/bookmark/google-circle.png" />
+                    </StackLayout>
+                    <StackLayout class="storeMarkAIconWrap" >
+                        <image class="storeMarkAIcon" stretch="aspectFill"  src="~/Resources/img/bookmark/tistory-circle.png" />
+                    </StackLayout>
                 </StackLayout>
-            </v-template>
-        </RadListView>
-    </GridLayout>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout class="markUnderline">
+        </StackLayout>
+    </StackLayout>
+        </v-template>
+    </ListView>
 </template>
 <script>
  import axios from 'axios';
+
+ import '~/Resources/css/menu/bookmark/bookmarkList/PlaceBookmark/placeBookmark_320.scss';
+ import '~/Resources/css/menu/bookmark/bookmarkList/PlaceBookmark/placeBookmark_360.scss';
+ import '~/Resources/css/menu/bookmark/bookmarkList/PlaceBookmark/placeBookmark_420.scss';
+ import '~/Resources/css/menu/bookmark/bookmarkList/PlaceBookmark/placeBookmark_480.scss';
+
     export default {
         name:"PlaceBookmark",
-       data(){
-        return {
-         placeBookmarkList:[],
-            itemList: [
-                {name: 'Item 1', type: 'red'},
-                {name: 'Item 2', type: 'green'},
-                {name: 'Item 3', type: 'blue'},
-                {name: 'Item 4', type: 'red'},
-                {name: 'Item 5', type: 'green'},
-                {name: 'Item 6', type: 'blue'},
-            ]
-        }
-       },
+        data(){
+            return {
+                placeBookmarkList:[
+                    {
+                        'thumbnail' : 'https://i.ytimg.com/vi/9f-bB4_SJkI/maxresdefault.jpg',
+                        'place_name':'사리곰탕 참좋아',
+                        'category' : '곰탕전문점 ',
+                        'rating':'4.5',
+                        'opening' : '영업중',
+                        'y_review' : 'true',
+                        'n_review' : 'true',
+                        't_review' : 'true',
+                        'g_review' : 'false',
+                        'a_review' : 'true',
+                    }, {
+                        'thumbnail' : 'https://i.ytimg.com/vi/9f-bB4_SJkI/maxresdefault.jpg',
+                        'place_name':'중화장',
+                        'category' : '중식 ',
+                        'rating':'4.1',
+                        'opening' : '휴무',
+                        'y_review' : 'true',
+                        'n_review' : 'true',
+                        't_review' : 'true',
+                        'g_review' : 'false',
+                        'a_review' : 'true',
+                    }
+                ]
+            }
+        },
         components: {
         },mounted() {
-      axios({
+     /* axios({
        method: 'get',
        url: 'http://api.matitzung.shop/v1/bookmarks?',
        //  url: 'http://192.168.1.85:9090/v1/places?',
@@ -51,73 +104,13 @@
        this.$data.placeBookmarkList = response.data.dataList;
       }, (error) => {
        console.log(error);
-      });
+      });*/
      }
     };
 </script>
 
 <style lang="scss">
-    // Start custom common variables
-    //@import "~@nativescript/theme/scss/variables/blue";
-    // End custom common variables
 
-    // Custom styles
-    .action-bar {
-     background-color: #0E4375;
-     color: #F5C851;
-    }
 
-    .list-group, .list-item {
-     background-color: #FFFFFF;
-    }
-
-    .header-linear {
-     background-color: #5BBC93;
-    }
-
-    .list-item-linear {
-     border-bottom-width: 1;
-     border-color: #0E4375;
-    }
-
-    .title-linear {
-     color: #0E4375;
-     padding: 0 0 0 10;
-    }
-
-    .price-linear {
-     color: #EF823F;
-     padding: 0 0 0 10;
-    }
-
-    .swipe-linear {
-     background-color: #EF823F;
-    }
-
-    .fav-linear {
-     margin: 30;
-    }
-
-    .list-item-grid {
-     margin: 1;
-    }
-
-    .list-item-grid-background {
-     background-color: #000000;
-     opacity: 0.6;
-    }
-
-    .title-grid {
-     color: #FFFFFF;
-     padding: 0 0 0 10;
-    }
-
-    .price-grid {
-     color: #EF823F;
-     padding: 0 0 5 10;
-    }
-
-    .fav-grid {
-     margin: 0 10 5 0;
-    }
 </style>
+
