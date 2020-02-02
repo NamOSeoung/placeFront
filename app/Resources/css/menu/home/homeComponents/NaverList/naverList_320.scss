@@ -1,0 +1,115 @@
+$small : 0.9;
+
+.android320 .naverWrap{
+  width: 360*$small;
+  height: 150*$small;
+
+  border-bottom-width: 2*$small;
+  border-bottom-color: #33000000;
+}
+
+.android320 .naverHeaderWrap{
+  width: 360*$small;
+  height:27*$small;
+}
+.android320 .naverIcon{
+  margin-top: 13*$small;
+  width: 16*$small;
+  height: 16*$small;
+  margin-left: 16*$small;
+}
+.android320 .naverTitle{
+  font-size: 13*$small;
+  margin-top: 13*$small;
+  font-family: nanumsquareroundeb;
+  color: #555555;
+  height: 14*$small;
+  width: 250*$small;
+  margin-left: 6*$small;
+}
+.android320 .naverMore{
+  margin-top: 13*$small;
+  width: 36*$small;
+  height: 13*$small;
+  color: #888888;
+  font-size: 12*$small;
+  font-family: nanumsquareroundeb;
+}
+.android320 .naverRightIcon{
+  margin-top: 13*$small;
+  width: 18*$small;
+  height: 18*$small;
+  margin-left: -6*$small;
+}
+.android320 .naverSubWrap{
+  margin-top: 11*$small;
+  margin-left: 10*$small;
+  margin-right: 10*$small;
+}
+
+.android320 .naverMainWrap{
+  width: 260*$small;
+  height: 90*$small;
+  margin-left: 5*$small;
+  padding-left: 9*$small;
+  margin-right: 5*$small;
+  margin-top: 5*$small;
+  margin-bottom: 5*$small;
+}
+.android320 .naverImageWrap{
+  width: 70*$small;
+  height: 70*$small;
+}
+.android320 .naverImage{
+  width: 70*$small;
+  height: 70*$small;
+  border-radius: 8*$small;
+}
+.android320 .naverSubjectWrap{
+  width: 150*$small;
+  height: 36*$small;
+  margin-top: 7*$small;
+}
+.android320 .naverRightWrap{
+
+}
+.android360 .naverRightTop{
+
+}
+.android320 .naverSubject {
+  font-size: 13*$small;
+  font-family: nanumsquareroundeb;
+  color: #333333;
+  margin-top: 10*$small;
+  margin-left: 12*$small;
+  width:150*$small;
+  height: 18*$small;
+}
+
+.android320 .naverContents{
+  color: #333333;
+  font-family: nanumsquareroundr;
+  font-size: 12*$small;
+  width: 150*$small;
+  margin-top: 6*$small;
+  margin-left: 12*$small;
+  height: 18*$small;
+}
+
+.android320 .naverWriteDate{
+  color: #888888;
+  font-size: 11*$small;
+  font-family: nanumsquareroundr;
+  margin-top: 3*$small;
+  margin-left: 12*$small;
+  height: 18*$small;
+}
+.android320 .naverWriter{
+  color: #888888;
+  font-size: 11*$small;
+  font-family: nanumsquareroundr;
+  margin-left: 7*$small;
+  margin-top: 3*$small;
+  width: 84*$small;
+  height: 18*$small;
+}

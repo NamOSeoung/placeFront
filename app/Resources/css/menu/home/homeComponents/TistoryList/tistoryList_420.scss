@@ -1,0 +1,100 @@
+$medium : 1.142;
+
+.android400 .tistoryWrap{
+  width: 360*$medium;
+  height: 150*$medium;
+  border-bottom-width: 2*$medium;
+  border-bottom-color: #33000000;
+}
+
+.android400 .tistoryHeaderWrap{
+  width: 360*$medium;
+  height:27*$medium;
+}
+.android400 .tistoryIcon{
+  margin-top: 13*$medium;
+  width: 16*$medium;
+  height: 16*$medium;
+  margin-left: 16*$medium;
+}
+.android400 .tistoryTitle{
+  font-size: 13*$medium;
+  margin-top: 13*$medium;
+  font-family: nanumsquareroundeb;
+  color: #555555;
+  height: 14*$medium;
+  width: 250*$medium;
+  margin-left: 6*$medium;
+}
+.android400 .tistoryMore{
+  margin-top: 13*$medium;
+  width: 36*$medium;
+  height: 13*$medium;
+  color: #888888;
+  font-size: 12*$medium;
+  font-family: nanumsquareroundeb;
+}
+.android400 .tistoryRightIcon{
+  margin-top: 13*$medium;
+  width: 18*$medium;
+  height: 18*$medium;
+  margin-left: -6*$medium;
+}
+.android400 .tistorySubWrap{
+  margin-top: 11*$medium;
+  margin-left: 10*$medium;
+  margin-right: 10*$medium;
+}
+
+.android400 .tistoryMainWrap{
+  width: 260*$medium;
+  height: 90*$medium;
+  margin-left: 5*$medium;
+  padding-left: 9*$medium;
+  margin-right: 5*$medium;
+  margin-top: 5*$medium;
+  margin-bottom: 5*$medium;
+}
+.android400 .tistoryImageWrap{
+  width: 70*$medium;
+  height: 70*$medium;
+}
+.android400 .tistoryImage{
+  width: 70*$medium;
+  height: 70*$medium;
+  border-radius: 8*$medium;
+}
+.android400 .tistorySubjectWrap{
+  width: 150*$medium;
+  height: 33*$medium;
+  margin-top: 7*$medium;
+
+}
+.android400 .tistorySubject {
+  font-size: 13*$medium;
+  font-family: nanumsquareroundeb;
+  color: #333333;
+  margin-top: 10*$medium;
+  margin-left: 12*$medium;
+  height: 33*$medium;
+  width:150*$medium;
+  line-height:6*$medium;
+}
+.android400 .tistoryWriteDate{
+  color: #888888;
+  font-size: 11*$medium;
+  font-family: nanumsquareroundr;
+  margin-top: 7*$medium;
+  margin-left: 12*$medium;
+  height: 18*$medium;
+}
+.android400 .tistoryWriter{
+  color: #888888;
+  font-size: 11*$medium;
+  font-family: nanumsquareroundr;
+  margin-left: 7*$medium;
+  margin-top: 7*$medium;
+  width: 84*$medium;
+  height: 18*$medium;
+}
+
