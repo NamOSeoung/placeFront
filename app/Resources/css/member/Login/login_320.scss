@@ -1,0 +1,209 @@
+$small : 0.9;
+
+.android320 .loginPageWrap{
+  width: 360*$small;
+  height: 704*$small;
+  background-color: #333333;
+}
+.android320 .loginScreenTopWrap{
+  width: 360*$small;
+  height: 294*$small;
+}
+.android320 .loginTitleMessageWrap{
+  width: 360*$small;
+  margin-top: 48*$small;
+
+}
+.android320 .loginTitleMessageMain{
+  color: #ffe074;
+  font-size: 25*$small;
+  font-family: nanumsquareroundb;
+  margin-left: 15*$small;
+}
+.android320 .loginTitleMessageMain2{
+  color: #ffffff;
+  font-size: 22*$small;
+  margin-top: 3*$small;
+  font-family: nanumsquareroundb;
+}
+.android320 .loginTitleMessageSubWrap{
+  width: 360*$small;
+}
+.android320 .loginTitleMessageSub{
+  color: #ffffff;
+  font-size: 24*$small;
+  font-family: nanumsquareroundb;
+  margin-left: 15*$small;
+}
+.android320 .loginBrandLogoWrap{
+  width: 360*$small;
+  margin-top: 20*$small;
+}
+.android320 .loginBrandLogo{
+  font-size: 34*$small;
+  color: #ffe074;
+  font-family: nanumsquareroundeb;
+  margin-left: 15*$small;
+}
+.android320 .loginBarogoMainWrap{
+  width: 360*$small;
+}
+.android320 .loginBarogoWrap{
+  margin-top: 59*$small;
+}
+.android320 .loginBarogo{
+  font-size: 20*$small;
+  color: #ffe074;
+  font-family: nanumsquareroundeb;
+  margin-left: 15*$small;
+}
+.android320 .loginBarogoRightWrap{
+  width: 40*$small;
+  height: 40*$small;
+  background-color: #ffe074;
+  border-radius: 25*$small;
+  margin-left: 13*$small;
+  margin-top: 49*$small;
+}
+.android320 .loginBarogoRight{
+  margin-top: 7*$small;
+  width: 25*$small;
+  height: 25*$small;
+}
+.android320 .loginScreenBottomWrap{
+  width: 360*$small;
+  height: 500*$small;
+  background-color: #333333;
+}
+.android320 .loginEmailWrap{
+  width: 301*$small;
+  margin-top: 52*$small;
+  border-bottom-width: 1*$small;
+}
+.android320 .loginEmail{
+  font-family: nanumsquareroundr;
+  font-size: 12*$small;
+  placeholder-color: #aaaaaa;
+  text-align: left;
+  background-color: #333333;
+}
+.android320 .loginPasswordWrap {
+  width:301*$small;
+  margin-top: 32.5*$small;
+  border-bottom-width: 1*$small;
+}
+.android320 .loginPassword{
+  font-family: nanumsquareroundr;
+  font-size: 12*$small;
+  placeholder-color: #aaaaaa;
+  text-align: left;
+  background-color: #333333;
+}
+.android320 .loginFindWrap{
+  margin-left: 31*$small;
+}
+.android320 .loginIdFindWrapWrap{
+  width: 200*$small;
+}
+.android320 .loginIdFindWrap{
+  margin-top: 23.5*$small;
+}
+.android320 .loginIdFind{
+  color: #dddddd;
+  font-size: 12*$small;
+  font-family: nanumsquareroundb;
+}
+.android320 .loginPasswordFindWrap{
+  margin-top: 23.5*$small;
+}
+.android320 .loginPasswordFind{
+  color: #dddddd;
+  font-size: 12*$small;
+  font-family: nanumsquareroundb;
+}
+.android320 .loginButtonWrap{
+  background-color: #ffe074;
+  width: 100*$small;
+  height: 36*$small;
+  border-radius: 18*$small;
+  text-align: center;
+  margin-top: 11.5*$small;
+}
+.android320 .loginButton{
+  margin-top: 11*$small;
+  height: 17*$small;
+  color: #333333;
+  font-size: 12*$small;
+  font-family: nanumsquareroundb;
+}
+.android320 .loginSocialWrap{
+  width: 360*$small;
+  margin-top: 52*$small;
+}
+.android320 .loginEmailJoinWrap{
+  width: 180*$small;
+  height: 36*$small;
+  background-color: #eeeeee;
+  border-radius: 18*$small;
+  text-align: center;
+}
+.android320 .loginEmailJoin{
+  margin-top: 12*$small;
+  font-size: 12*$small;
+  color: #666666;
+  font-family: nanumsquareroundb;
+}
+.android320 .loginKakaoJoinWrap{
+  width: 180*$small;
+  height: 36*$small;
+  background-color: #eeeeee;
+  border-radius: 18*$small;
+  text-align: center;
+  margin-top: 16*$small;
+}
+.android320 .loginKakaoIconWrap {
+  width: 20*$small;
+  height: 20*$small;
+  margin-left: 41*$small;
+}
+.android320 .loginKakaoIcon{
+  width: 20*$small;
+  height: 20*$small;
+}
+.android320 .loginKakaoLoginWrap{
+  margin-left: 10*$small;
+}
+.android320 .loginKakaoLogin{
+  margin-top: 12*$small;
+  font-size: 12*$small;
+  color: #666666;
+  font-family: nanumsquareroundeb;
+}
+.android320 .loginNaverJoinWrap{
+  width: 180*$small;
+  height: 36*$small;
+  background-color: #eeeeee;
+  border-radius: 18*$small;
+  text-align: center;
+  margin-top:16*$small;
+}
+.android320 .loginNaverIconWrap{
+  width: 20*$small;
+  height: 20*$small;
+  margin-left: 41*$small;
+}
+.android320 .loginNaverIcon{
+  width: 20*$small;
+  height: 20*$small;
+}
+.android320 .loginNaverLoginWrap{
+  margin-left: 10*$small;
+}
+.android320 .loginNaverLogin{
+  margin-top: 12*$small;
+  font-size: 12*$small;
+  color: #666666;
+  font-family: nanumsquareroundb;
+}
+
+
