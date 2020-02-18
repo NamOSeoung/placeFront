@@ -112,7 +112,7 @@
 
 <script>
 import axios from 'axios';
-import ReviewWrite from "../../../../review/ReviewWrite";
+import ReviewWrite from "./review/ReviewWrite";
 //import DetailMap from "./DetailMaps/DetailMap";
 
 var clipboard = require("nativescript-clipboard");

@@ -13,7 +13,7 @@
           </StackLayout>
         </StackLayout>
         <StackLayout class="termsListWrap" height="594">
-             <ListView for="item in area_category" @itemTap="listPlaceSelect"  class="termsList">
+             <ListView for="item in area_category" @itemTap="listPlaceSelect"  class="termsList" height="100%">
                  <v-template>
                      <StackLayout orientation="horizontal" class="termsListWrap">
                          <StackLayout class="termsListTitleWrap">

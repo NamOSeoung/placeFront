@@ -1,112 +1,106 @@
 <template lang="html">
-    <ListView for="naverBookmark in naverBookmarkList" separatorColor="transparent"
-              style="height:100%" @itemTap="goNaver" >
-        <v-template>
-            <StackLayout class="naverMarkMain" >
-                <StackLayout class="naverMarkMainWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
-                    <StackLayout class="naverMarkTitleWrap" >
-                        <label :text="naverBookmark.title" class="naverMarkTitle"/>
+    <StackLayout v-if="naverBookmarkList!=null">
+        <ListView for="naverBookmark in naverBookmarkList" separatorColor="transparent"
+                  style="height:100%" @itemTap="goWebview" >
+            <v-template>
+                <StackLayout class="naverMarkMain" >
+                    <StackLayout class="naverMarkMainWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
+                        <StackLayout class="naverMarkTitleWrap" >
+                            <label :text="naverBookmark.title" class="naverMarkTitle"/>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal" class="naverMarkSubWrap" v-if="naverBookmark.thumbnail_url != null" >
+                            <StackLayout class="naverMarkImageWrap">
+                                <Image :src="naverBookmark.thumbnail_url" stretch="aspectFill" class="naverMarkImage"/>
+                            </StackLayout>
+                            <StackLayout class="naverMarkRightWrap" >
+                                <StackLayout orientation="horizontal" class="naverMarkContentsWrap">
+                                    <Label :text="naverBookmark.description" class="naverMarkContents" textWrap="true"/>
+                                </StackLayout>
+                                <StackLayout orientation="horizontal" class="naverMarkDateWriterWrap" >
+                                    <StackLayout class="naverMarkDateWrap">
+                                        <Label :text="naverBookmark.write_date" class="naverMarkDate"  />
+                                    </StackLayout>
+                                    <StackLayout class="naverMarkWriterWrap">
+                                        <label :text="naverBookmark.author" class="naverMarkWriter" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout orientation="horizontal" class="naverMarkSubWrap" v-else >
+                            <StackLayout class="naverMarkNoImageWrap" >
+                                <StackLayout orientation="horizontal" class="naverMarkNoImgContentsWrap">
+                                    <Label :text="naverBookmark.description" class="naverMarkNoImgContents" textWrap="true" />
+                                </StackLayout>
+                                <StackLayout orientation="horizontal" class="naverMarkNoImgDateWriterWrap"  >
+                                    <StackLayout class="naverMarkDateWrap">
+                                        <Label :text="naverBookmark.write_date" class="naverMarkNoImgDate"  />
+                                    </StackLayout>
+                                    <StackLayout class="naverMarkNoImgWriterWrap" width="230">
+                                        <label :text="naverBookmark.author" width="230" class="naverMarkNoImgWriter" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
                     </StackLayout>
-                    <StackLayout orientation="horizontal" class="naverMarkSubWrap" v-if="naverBookmark.thumbnail != ''" >
-                        <StackLayout class="naverMarkImageWrap">
-                            <Image :src="naverBookmark.thumbnail" stretch="aspectFill" class="naverMarkImage"/>
-                        </StackLayout>
-                        <StackLayout class="naverMarkRightWrap" >
-                            <StackLayout orientation="horizontal" class="naverMarkContentsWrap">
-                                <Label :text="naverBookmark.contents" class="naverMarkContents" textWrap="true"/>
-                            </StackLayout>
-                            <StackLayout orientation="horizontal" class="naverMarkDateWriterWrap" >
-                                <StackLayout class="naverMarkDateWrap">
-                                    <Label :text="naverBookmark.date" class="naverMarkDate"  />
-                                </StackLayout>
-                                <StackLayout class="naverMarkWriterWrap">
-                                    <label :text="naverBookmark.writer" class="naverMarkWriter" />
-                                </StackLayout>
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
-                    <StackLayout orientation="horizontal" class="naverMarkSubWrap" v-if="naverBookmark.thumbnail == ''" >
-                        <StackLayout class="naverMarkNoImageWrap" >
-                            <StackLayout orientation="horizontal" class="naverMarkNoImgContentsWrap">
-                                <Label :text="naverBookmark.contents" class="naverMarkNoImgContents" textWrap="true" />
-                            </StackLayout>
-                            <StackLayout orientation="horizontal" class="naverMarkNoImgDateWriterWrap"  >
-                                <StackLayout class="naverMarkDateWrap">
-                                    <Label :text="naverBookmark.date" class="naverMarkNoImgDate"  />
-                                </StackLayout>
-                                <StackLayout class="naverMarkNoImgWriterWrap">
-                                    <label :text="naverBookmark.writer" class="naverMarkNoImgWriter" />
-                                </StackLayout>
-                            </StackLayout>
-                        </StackLayout>
+                    <StackLayout class="markUnderline">
                     </StackLayout>
                 </StackLayout>
-
-                <StackLayout class="markUnderline">
-                </StackLayout>
-            </StackLayout>
-        </v-template>
-    </ListView>
+            </v-template>
+        </ListView>
+    </StackLayout>
+   <StackLayout v-else>
+       <label text="데이터없음 "/>
+   </StackLayout>
 </template>
 
 <script>
     import axios from 'axios';
-    import YBookmarkDetil from "./bookmarkDetail/NBookmarkDetil";
+
+    var cache = require("nativescript-cache");
+
+    import NaverWebview from '../../search/place/placeDetail/reviewMore/reviewMoreWebview/NaverWebview'
 
     import '~/Resources/css/menu/bookmark/bookmarkList/NaverBookmark/naverBookmark_320.scss';
     import '~/Resources/css/menu/bookmark/bookmarkList/NaverBookmark/naverBookmark_360.scss';
     import '~/Resources/css/menu/bookmark/bookmarkList/NaverBookmark/naverBookmark_420.scss';
     import '~/Resources/css/menu/bookmark/bookmarkList/NaverBookmark/naverBookmark_480.scss';
-
+    const appSettings = require("tns-core-modules/application-settings");
     export default {
         name:"NaverBookmark",
         data(){
             return {
-                naverBookmarkList:[
-                    {
-                        'thumbnail' : 'https://i.ytimg.com/vi/9f-bB4_SJkI/maxresdefault.jpg',
-                        'title':'영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지',
-                        'contents' : '내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 ' +
-                            '내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 ',
-                        'date':'2020.01.03',
-                        'writer' : '홍길동'
-                    },
-                    {
-                        'thumbnail' : '',
-                        'title':'영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지',
-                        'contents' : '내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 ' +
-                            '내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 ',
-                        'date':'2020.01.05',
-                        'writer' : '아무개'
-                    }
-                ]
+                naverBookmarkList:[]
             }
         },
         components: {
         },mounted() {
-            /* axios({
-              method: 'get',
-              url: 'http://api.matitzung.shop/v1/bookmarks?',
-              //  url: 'http://192.168.1.85:9090/v1/places?',
-              params: {
-               gubun: 'youtube',
-               user_id : 'jeetkn@naver.com'
-              },
-             }).then((response) => {
-              console.log(response.data);
-              this.$data.youtubeBookmarkList = response.data.dataList;
-             }, (error) => {
-              console.log(error);
-             });*/
+            this.getNaverReview();
         },methods:{
-            goNaver(args){
-                console.log("여기 타니?");
+            goWebview(args){
                 const view = args.view;
-                const page = view.page;
                 const tappedItem = view.bindingContext;
-                this.$navigateTo(YBookmarkDetil, {
+
+                console.log(tappedItem.url)
+                cache.set('place_name',tappedItem.place_name);
+                this.$navigateTo(NaverWebview, {
                     props: {
-                        context: tappedItem}});
+                        itemList: tappedItem}
+                })
+            }, getNaverReview(){
+                 axios({
+                    method: 'get',
+                    url: 'http://api.eatjeong.com/v1/bookmarks',
+                    params: {
+                     gubun: 'naver',
+                     user_id : appSettings.getString("user_id"),
+                     sns_division:appSettings.getString("sns_division")
+                    },
+                   }).then((response) => {
+                    console.log(response.data);
+                    this.$data.naverBookmarkList = response.data.dataList;
+                   }, (error) => {
+                    console.log(error);
+                   });
             }
         }
     };

@@ -1,0 +1,75 @@
+$large : 1.5;
+
+.android480 .naverListHeaderWrap{
+  margin-bottom: 10*$large;
+}
+.android480 .naverListTopWrap{
+  background-color: #ffffff;
+  width: 260*$large;
+  margin-top: 16*$large;
+  margin-left: 15*$large;
+  border-color: #eeeeee;
+  margin-bottom: 15*$large;
+}
+.android480 .naverListThumbnailWrap{
+  width: 70*$large;
+  height: 70*$large;
+  margin-left: 9*$large;
+  margin-top: 10*$large;
+  margin-bottom: 10*$large;
+}
+.android480 .naverListThumbnail{
+  width: 100%;
+  height: 100%;
+  border-radius: 8*$large;
+}
+.android480 .naverListTitle{
+  width:150*$large;
+  height: 18*$large;
+  margin-left: 12*$large;
+  margin-top: 12*$large;
+  font-family: nanumsquareroundb;
+  color: #333333;
+  font-size: 13*$large;
+}
+.android480 .naverListDescription{
+  margin-top: 6*$large;
+  margin-left: 12*$large;
+  width: 150*$large;
+  height: 18*$large;
+  font-family: nanumsquareroundr;
+  color: #333333;
+  font-size: 12*$large;
+}
+.android480 .naverListDateInfoWrap{
+  margin-top: 7*$large;
+  margin-left: 12*$large;
+  width: 150*$large;
+}
+.android480 .naverListDate{
+  width: 80*$large;
+  height: 18*$large;
+  color: #888888;
+  font-family: nanumsquareroundr;
+  font-size: 11*$large;
+}
+.android480 .naverListWriter{
+  height: 18*$large;
+  color: #888888;
+  font-family: nanumsquareroundr;
+  font-size: 11*$large;
+}
+.android480 .naverListBottomWrap{
+  height: 106*$large;
+}
+.android480 .naverListNonContentsWrap{
+  margin-left: 140*$large;
+  margin-top: 41*$large;
+  width: 90*$large;
+}
+.android480 .naverListNonContents{
+  color: #cccccc;
+  font-size: 12*$large;
+  font-family: nanumsquareroundb;
+}
+

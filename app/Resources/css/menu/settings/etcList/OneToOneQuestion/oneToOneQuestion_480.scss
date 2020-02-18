@@ -1,0 +1,129 @@
+$large : 1.5;
+
+.android480 .oneToOneBarWrap{
+  height: 56*$large;
+  width: 360*$large;
+  border-bottom-width: 1*$large;
+  border-bottom-color: #dddddd;
+}
+.android480 .oneToOneBackIconWrap{
+  width: 28*$large;
+  height: 28*$large;
+  margin-left: 6*$large;
+  margin-top: 25*$large;
+}
+.android480 .oneToOneBackIcon{
+  width: 16*$large;
+  height: 16*$large;
+}
+.android480 .oneToOneBackWrap{
+  width: 33*$large;
+  height:13*$large;
+  margin-top: 15*$large;
+}
+.android480 .oneToOneBack {
+  font-size: 12*$large;
+  font-family: nanumsquareroundeb;
+  width: 33*$large;
+  height: 13*$large;
+}
+.android480 .oneToOneBarTitleWrap{
+  margin-left: 84*$large;
+  height: 14*$large;
+  width: 55*$large;
+  margin-top: 21*$large;
+}
+.android480 .oneToOneBarTitle{
+  width: 55*$large;
+  height:14*$large;
+  font-family: nanumsquareroundeb;
+  font-size: 14*$large;
+  color: #333333;
+}
+.android480 .oneToOneButtonWrap{
+  width: 140*$large;
+  height: 32*$large;
+  background-color: #ffe074;
+  border-radius: 16*$large;
+  margin-top: 20*$large;
+  text-align: center;
+  margin-bottom: 20*$large;
+}
+.android480 .oneToOneButton{
+  color: #555555;
+  font-family: nanumsquareroundeb;
+  margin-top: 10*$large;
+  height: 13*$large;
+  margin-bottom: 10*$large;
+  font-size: 12*$large;
+}
+.android480 .answerListWrap{
+  margin-top: 20*$large;
+  width: 360*$large;
+  height: 100%;
+}
+.android480 .answerWrap{
+  width: 330*$large;
+  height: 80*$large;
+  background-color: #ffffff;
+  border-radius: 8*$large;
+}
+.android480 .answerWaitWrap{
+  text-align: center;
+  background-color: #dddddd;
+  border-radius: 4*$large;
+  width: 55*$large;
+  height: 20*$large;
+  margin-top: 15*$large;
+  margin-left: 15*$large;
+}
+.android480 .answerCompleteWrap{
+  text-align: center;
+  background-color: #555555;
+  border-radius: 4*$large;
+  width: 55*$large;
+  height: 20*$large;
+  margin-top: 15*$large;
+  margin-left: 15*$large;
+}
+.android480 .answerWait{
+  color: #ffffff;
+  font-family: nanumsquareroundeb;
+  width: 55*$large;
+  height: 20*$large;
+  margin-top: 4*$large;
+  margin-bottom: 4*$large;
+  font-size: 10*$large;
+}
+.android480 .answerComplete{
+  color: #ffffff;
+  font-family: nanumsquareroundeb;
+  width: 55*$large;
+  height: 20*$large;
+  margin-top: 4*$large;
+  margin-bottom: 4*$large;
+  font-size: 10*$large;
+}
+.android480 .answerDateWrap{
+  width: 64*$large;
+  height: 11*$large;
+  margin-top:15*$large;
+  margin-left: 10*$large;
+}
+.android480 .answerDate {
+  font: 12*$large;
+  font-family: nanumsquareroundr;
+  color: #888888;
+}
+.android480 .questionWrap{
+  width: 305*$large;
+  height: 20*$large;
+  margin-left: 8*$large;
+  margin-top: 12*$large;
+}
+.android480 .question{
+  font-size: 12*$large;
+  font-family: nanumsquareroundr;
+  color: #333333;
+}
+

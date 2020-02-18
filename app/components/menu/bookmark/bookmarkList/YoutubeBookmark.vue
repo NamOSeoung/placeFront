@@ -1,32 +1,38 @@
 <template lang="html">
-   <ListView for="youtubeBookmark in youtubeBookmarkList" separatorColor="transparent"
-             style="height:100%" @itemTap="goYoutube" >
-    <v-template>
-     <StackLayout class="youtubeMarkMain" >
-      <StackLayout orientation="horizontal" class="youtubeMarkWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
-       <StackLayout class="youtubeMarkImageWrap">
-        <Image :src="youtubeBookmark.thumbnail" class="youtubeMarkImage"/>
+ <StackLayout v-if="youtubeBookmarkList != null">
+  <ListView for="youtubeBookmark in youtubeBookmarkList" separatorColor="transparent"
+            style="height:100%" @itemTap="goWebview" >
+   <v-template>
+    <StackLayout class="youtubeMarkMain" >
+     <StackLayout orientation="horizontal" class="youtubeMarkWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
+      <StackLayout class="youtubeMarkImageWrap">
+       <Image :src="youtubeBookmark.thumbnail_url" class="youtubeMarkImage"/>
+      </StackLayout>
+      <StackLayout class="youtubeRightWrap">
+       <StackLayout orientation="horizontal" class="youtubeMarkTitleWrap">
+        <Label :text="youtubeBookmark.title" class="youtubeMarkTitle" textWrap="true"/>
        </StackLayout>
-       <StackLayout class="youtubeRightWrap">
-        <StackLayout orientation="horizontal" class="youtubeMarkTitleWrap">
-         <Label :text="youtubeBookmark.title" class="youtubeMarkTitle" textWrap="true"/>
-        </StackLayout>
-        <StackLayout orientation="horizontal" class="youtubeMarkDateWrap">
-         <Label :text="youtubeBookmark.date" class="youtubeMarkDate"  />
-        </StackLayout>
+       <StackLayout orientation="horizontal" class="youtubeMarkDateWrap">
+        <Label :text="youtubeBookmark.write_date" class="youtubeMarkDate"  />
        </StackLayout>
       </StackLayout>
-       <StackLayout class="markUnderline">
-       </StackLayout>
      </StackLayout>
-    </v-template>
-   </ListView>
+     <StackLayout class="markUnderline">
+     </StackLayout>
+    </StackLayout>
+   </v-template>
+  </ListView>
+ </StackLayout>
+  <StackLayout v-else>
+   <label text="없음" />
+  </StackLayout>
 </template>
 
 <script>
  import axios from 'axios';
- import YBookmarkDetil from "./bookmarkDetail/YBookmarkDetil";
-
+ var cache = require("nativescript-cache");
+ const appSettings = require("tns-core-modules/application-settings");
+ import YoutubeWebview from '../../search/place/placeDetail/reviewMore/reviewMoreWebview/YoutubeWebview'
  import '~/Resources/css/menu/bookmark/bookmarkList/YoutubeBookmark/youtubeBookmark_320.scss';
  import '~/Resources/css/menu/bookmark/bookmarkList/YoutubeBookmark/youtubeBookmark_360.scss';
  import '~/Resources/css/menu/bookmark/bookmarkList/YoutubeBookmark/youtubeBookmark_420.scss';
@@ -36,45 +42,39 @@
         name:"YoutubeBookmark",
        data(){
         return {
-         youtubeBookmarkList:[
-          {
-           'thumbnail' : 'https://i.ytimg.com/vi/9f-bB4_SJkI/maxresdefault.jpg',
-           'title':'영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지',
-           'date':'7개월 전'
-          },
-          {
-           'thumbnail' : 'https://i.ytimg.com/vi/9f-bB4_SJkI/maxresdefault.jpg',
-           'title':'영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지',
-           'date':'7개월 전'
-          }
-         ]
+         youtubeBookmarkList:[]
         }
        },
         components: {
         },mounted() {
-        /* axios({
-          method: 'get',
-          url: 'http://api.matitzung.shop/v1/bookmarks?',
-          //  url: 'http://192.168.1.85:9090/v1/places?',
-          params: {
-           gubun: 'youtube',
-           user_id : 'jeetkn@naver.com'
-          },
-         }).then((response) => {
-          console.log(response.data);
-          this.$data.youtubeBookmarkList = response.data.dataList;
-         }, (error) => {
-          console.log(error);
-         });*/
+           this.getYoutubeReview();
      },methods:{
-      goYoutube(args){
-       console.log("여기 타니?");
+      goWebview(args){
        const view = args.view;
-       const page = view.page;
        const tappedItem = view.bindingContext;
-       this.$navigateTo(YBookmarkDetil, {
+
+       //console.log(tappedItem.url)
+       this.$navigateTo(YoutubeWebview, {
         props: {
-         context: tappedItem}});
+         itemList: tappedItem}
+       })
+      },
+     getYoutubeReview(){
+       axios({
+        method: 'get',
+        url: 'http://api.eatjeong.com/v1/bookmarks',
+        params: {
+         gubun: 'youtube',
+         user_id :  appSettings.getString("user_id"),
+         sns_division:appSettings.getString("sns_division")
+        },
+       }).then((response) => {
+        console.log(response.data);
+        this.$data.youtubeBookmarkList = response.data.dataList;
+        console.log('dddddddddd' + this.$data.youtubeBookmarkList)
+       }, (error) => {
+        console.log(error);
+       });
       }
      }
     };

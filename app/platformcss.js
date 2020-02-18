@@ -47,6 +47,7 @@ const setDevice = function(args) {
 				if (size >= groupings[i]) {
 					device += groupings[i];
 					found = true;
+					console.log("찾는데"+groupings[i])
 					console.log("정렬"+device)
 					break;
 				}

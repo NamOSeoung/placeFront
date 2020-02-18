@@ -1,10 +1,10 @@
 <script src="../../app.js"></script>
 <template>
        <Page actionBarHidden="true" backgroundSpanUnderStatusBar="true">
-              <ScrollView>
+              <ScrollView height="100%">
               <StackLayout class="loginPageWrap" >
-                     <StackLayout class="loginScreenTopWrap"backgroundImage="~/Resources/img/login/christopher_jolly_1_ib_8243_c_u_8_q_unsplash.png">
-                            <StackLayout class="loginTitleMessageWrap" orientation="horizontal">
+                     <StackLayout class="loginScreenTopWrap" backgroundImage="~/Resources/img/login/christopher_jolly_1_ib_8243_c_u_8_q_unsplash.png">
+                            <StackLayout class="loginTitleMessageWrap" orientation="horizontal" @tap="aaa">
                                    <label text="맛잇는 장소" class="loginTitleMessageMain" />
                                    <label text="를" class="loginTitleMessageMain2"  />
                             </StackLayout>
@@ -19,7 +19,7 @@
                                           <label text="둘러보기" class="loginBarogo"  />
                                    </StackLayout>
                                    <StackLayout class="loginBarogoRightWrap">
-                                          <image class="loginBarogoRight"  src="~/Resources/img/login/arrow-circle-right.png" />
+                                          <image class="loginBarogoRight"  src="~/Resources/img/login/arrow-cricle-right.png" />
                                    </StackLayout>
                             </StackLayout>
                      </StackLayout>
@@ -34,7 +34,8 @@
                                               returnKeyType="done"
                                               (returnPress)="onReturnPress($event)"
                                               autocorrect="false"
-                                              maxLength="10"
+                                              maxLength="50"
+                                              v-model="user_id"
                                               (focus)="onFocus($event)"
                                               (blur)="onBlur($event)">
                                    </TextField>
@@ -45,10 +46,11 @@
                                               [text]='name'
                                               secure="true"
                                               color="white"
+                                              v-model="password"
                                               returnKeyType="done"
                                               (returnPress)="onReturnPress($event)"
                                               autocorrect="false"
-                                              maxLength="10"
+                                              maxLength="20"
                                               (focus)="onFocus($event)"
                                               (blur)="onBlur($event)">
                                    </TextField>
@@ -58,16 +60,16 @@
                                           <StackLayout class="loginIdFindWrap" @tap="$navigateTo(findUserIdPage)">
                                                  <label class="loginIdFind" text="아이디찾기 | " />
                                           </StackLayout>
-                                          <StackLayout class="loginPasswordFindWrap">
+                                          <StackLayout class="loginPasswordFindWrap" @tap="$navigateTo(findUserPasswordPage)">
                                                  <label class="loginPasswordFind" text="비밀번호찾기" />
                                           </StackLayout>
                                    </StackLayout>
-                                   <StackLayout class="loginButtonWrap" >
+                                   <StackLayout class="loginButtonWrap" @tap="userLogin" >
                                           <label class="loginButton" text="로그인" />
                                    </StackLayout>
                             </StackLayout>
                             <StackLayout  class="loginSocialWrap">
-                                   <StackLayout class="loginEmailJoinWrap" >
+                                   <StackLayout class="loginEmailJoinWrap"  @tap="userJoin">
                                           <label text="이메일 회원가입" class="loginEmailJoin"  />
                                    </StackLayout>
                                    <StackLayout class="loginKakaoJoinWrap" orientation="horizontal">
@@ -94,12 +96,19 @@
 </template>
 
 <script>
+
        import MenuWrap from "../menu/MenuWrap";
        import FindUserId from "./findUserInfo/FindUserId"
+       import FindUserPassword from './findUserInfo/FindUserPassword'
        const platformModule = require("tns-core-modules/platform");
-
+       var Toast = require("nativescript-toast");
+       import axios from 'axios';
        import platformcss from '../../platformcss';
+       var phone = require( "nativescript-phone" );
+       import MemberJoinTermsList from '../member/joinComponents/MemberJoinTermsList'
 
+
+       const appSettings = require("tns-core-modules/application-settings"); //sharedpreferences;
        import '~/Resources/css/member/Login/login_320.scss';
        import '~/Resources/css/member/Login/login_360.scss';
        import '~/Resources/css/member/Login/login_420.scss';
@@ -110,7 +119,12 @@
               data: () => {
                      return {
                             detailPage: MenuWrap,
-                            findUserIdPage : FindUserId
+                            findUserIdPage : FindUserId,
+                            findUserPasswordPage:FindUserPassword,
+                            user_id:'',
+                            password:'',
+                            loginFlag:false,
+                           // infoEnderPage : InfoEnter
                      }
               },
               mounted() {
@@ -120,6 +134,92 @@
                      console.log(`screen.mainScreen.scale ${platformModule.screen.mainScreen.scale}`);
 
 
+              },methods:{
+                     userJoin(){
+                            this.$navigateTo(MemberJoinTermsList);
+                     },
+                     userLogin(){
+                            if(this.$data.user_id == ''){
+                                   Toast.makeText("이메일을 기입 해 주세요.").show();
+                                   return;
+                            }
+
+                            if(this.$data.password == ''){
+                                   Toast.makeText("패스워드를 기입 해 주세요.").show();
+                                   return;
+                            }
+
+                            axios({
+                                   method: 'get',
+                                   url: 'http://api.eatjeong.com/v1/users/general/signin?',
+                                   params: {
+                                          user_id:this.$data.user_id,
+                                          password:this.$data.password
+                                   },
+                            }).then((response) => {
+                                   console.log(response.data.dataList);
+                                   if(response.data.dataList.result == true){
+                                          Toast.makeText(response.data.dataList.result_message).show();
+                                          appSettings.setString("user_id",this.$data.user_id);
+                                          appSettings.setString("sns_division","C");
+                                          console.log(appSettings.getString("user_id"))
+                                          this.$navigateTo(MenuWrap,{ clearHistory: true });
+
+                                   }else {
+                                          Toast.makeText(response.data.dataList.result_message).show();
+                                   }
+
+                            }, (error) => {
+                                   console.log(error)
+                                   Toast.makeText("로그인 오류가 발생하였습니다. 잠시 후 다시 시도 해 주세요.").show();
+                            });
+                     },
+                     aaaa(){
+                            console.log('123123213')
+                     },
+                     aaa(){
+                            phone.sms("010-4163-8565","My Message") //New Method for single number is phone.sms(["212-555-1234"],"My Message")
+                                    .then(function(args){
+                                                   /// args.reponse: "success", "cancelled", "failed"
+                                                   console.log(JSON.stringify(args));
+                                            },
+                                            function(err){
+                                                   console.log("Error: " + err);
+                                            }
+                                    );
+                            //var app = require("application");
+                           // var context = app.android.context;
+                           // console.log("3333")
+                            //let intent = android.content.Intent(context, com.dev.testintent.MainActivity.class);
+
+                           // app.android.context.startActivity(intent);
+
+                            //console.log(new com.dev.module.Test().test());
+                            //com.google.firebase.auth.PhoneAuthProvider.getInstance().verifyPhoneNumber(arg.phoneOptions.phoneNumber, timeout, java.util.concurrent.TimeUnit.SECONDS, appModule.android.foregroundActivity, new OnVerificationStateChangedCallbacks());
+                           // firebase.phoneAuthCredential();
+                           // firebase.phoneAuthCredential();
+
+                            /*firebase.login({
+                                   type: firebase.LoginType.PHONE,
+                                   phoneOptions: {
+                                          phoneNumber: '+821041638565',
+                                          verification: "휴대폰 인증번호를 기입 해 주세요.", // default "Verification code"
+                                          // Optional
+                                          android: {
+                                                 timeout: 30 // The maximum amount of time you are willing to wait for SMS auto-retrieval to be completed by the library
+                                          }
+                                   }
+
+                            }).then(
+                                    function (result) {
+                                           console.log(" 성공"+JSON.stringify(result));
+                                           firebase.logout()
+                                    },
+                                    function (errorMessage) {
+                                           console.log("에러" + errorMessage);
+                                    }
+                            );*/
+                     }
               }
        };
 </script>

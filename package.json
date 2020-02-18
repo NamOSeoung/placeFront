@@ -1,11 +1,11 @@
 {
   "nativescript": {
     "id": "org.nativescript.matitzung",
-    "tns-android": {
-      "version": "6.3.1"
-    },
     "tns-ios": {
       "version": "6.3.0"
+    },
+    "tns-android": {
+      "version": "6.3.1"
     }
   },
   "description": "NativeScript Application",
@@ -17,6 +17,7 @@
     "@nstudio/nativescript-rad-imagepicker": "^2.0.5",
     "axios": "^0.19.1",
     "font-awesome": "^4.7.0",
+    "kakaojs": "^1.2.0",
     "nativescript-accordion": "^6.0.0-beta.2",
     "nativescript-background-http": "^4.2.1",
     "nativescript-cache": "^1.0.0",
@@ -30,6 +31,8 @@
     "nativescript-ng-shadow": "^2.1.0",
     "nativescript-phone": "^1.4.1",
     "nativescript-platform-css": "^1.6.10",
+    "nativescript-plugin-firebase": "^10.4.0",
+    "nativescript-preferences": "^1.1.2",
     "nativescript-swiper": "^0.1.0",
     "nativescript-textinputlayout": "^2.0.7",
     "nativescript-theme-core": "1.0.6",
@@ -38,8 +41,13 @@
     "nativescript-ui-listview": "^8.0.1",
     "nativescript-vue": "^2.5.0-alpha.3",
     "nativescript-vue-fonticon": "^1.0.3",
+    "nativescript-vue-router-ns": "^1.0.4",
     "nativescript-vue-shadow": "^0.1.0",
+    "nativescript-webview-interface": "^1.4.3",
+    "nativescript-windowed-modal": "^6.2.0",
     "tns-core-modules": "~6.3.0",
+    "vue-kakao-login": "^1.0.5",
+    "vue-router": "^3.1.5",
     "vuex": "^3.1.2"
   },
   "devDependencies": {

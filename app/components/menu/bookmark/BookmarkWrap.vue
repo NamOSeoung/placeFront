@@ -29,7 +29,7 @@
    </GridLayout>
   </GridLayout>
 
-  <GridLayout v-show="selectedTabview == 0" row="2" width="100%" paddingTop="18" height="540" backgroundColor="#eff2f7" >
+  <GridLayout v-show="selectedTabview == 0" row="2" width="100%" paddingTop="18" height="100%" backgroundColor="#eff2f7" >
    <PlaceBookmark/>
  <!--  <ListView ref="listview" separatorColor="transparent" for="item in items" :key="index">
     <v-template>
@@ -38,15 +38,15 @@
    </ListView>-->
   </GridLayout>
 
-  <GridLayout v-show="selectedTabview == 1" row="2" width="100%"  paddingTop="18" height="540" backgroundColor="#eff2f7">
+  <GridLayout v-show="selectedTabview == 1" row="2" width="100%"  paddingTop="18" height="100%" backgroundColor="#eff2f7">
    <YoutubeBookmark />
   </GridLayout>
 
-  <GridLayout v-show="selectedTabview == 2" row="2" width="100%"  paddingTop="18" height="540" backgroundColor="#eff2f7">
+  <GridLayout v-show="selectedTabview == 2" row="2" width="100%"  paddingTop="18" height="100%" backgroundColor="#eff2f7">
    <NaverBookmark />
  </GridLayout>
 
-  <GridLayout v-show="selectedTabview == 3" row="2" width="100%" paddingTop="18" height="540" backgroundColor="#eff2f7">
+  <GridLayout v-show="selectedTabview == 3" row="2" width="100%" paddingTop="18" height="100%" backgroundColor="#eff2f7">
     <TistoryBookmark />
     <BookmarkMessage visibility="collapsed"/>
   </GridLayout>

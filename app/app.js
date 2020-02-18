@@ -1,6 +1,13 @@
 import Vue from 'nativescript-vue';
 import RadListView from 'nativescript-ui-listview/vue';
 import Login from './components/member/Login';
+import MenuWrap from './components/menu/MenuWrap'
+import router from './router'
+import { ModalStack, overrideModalViewMethod, VueWindowedModal } from "nativescript-windowed-modal"
+import NaverMore from './components/menu/search/place/placeDetail/reviewMore/NaverMore'
+const VueRouter = require('vue-router');
+
+const appSettings = require("tns-core-modules/application-settings");
 import FontIcon from 'nativescript-vue-fonticon';
 import './app.css';
 import Pager from 'nativescript-accordion/vue'
@@ -10,6 +17,13 @@ require( "nativescript-platform-css" );
 Vue.registerElement("DropDown", () => require("nativescript-drop-down/drop-down").DropDown)
 Vue.use(NSVueShadow)
 Vue.use(Pager)
+
+Vue.use(VueRouter)
+
+overrideModalViewMethod()
+Vue.registerElement("ModalStack", () => ModalStack)
+Vue.use(VueWindowedModal)
+
 Vue.use(FontIcon, {
     componentName: 'FIcon', // <-- Optional. Will be the name for component icon.
     debug: true, // <-- Optional. Will output the css mapping to console.
@@ -17,9 +31,26 @@ Vue.use(FontIcon, {
         fa: './assets/font-awesome.css',
     }
 });
-
 Vue.use(RadListView);
 Vue.config.silent = false
-new Vue({
-    render: h => h('frame',[h(Login)])
-}).$start()
+
+if(appSettings.getString("user_id") != undefined ){
+    if(appSettings.getString("user_id") !=''){
+        new Vue({
+            router,
+            render: h => h('frame',[h(MenuWrap)])
+        }).$start()
+
+    }else{
+        new Vue({
+            router,
+            render: h => h('frame',[h(Login)])
+        }).$start()
+    }
+}else{
+    new Vue({
+        router,
+        render: h => h('frame',[h(Login)])
+    }).$start()
+}
+

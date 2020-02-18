@@ -1,31 +1,31 @@
 <template lang="html">
 <Page actionBarHidden="true">
-    <StackLayout class="faqWrap">
-        <StackLayout class="faqHeaderWrap" orientation="horizontal">
-            <StackLayout class="leftWrap" @tap="$navigateBack">
-                <image src="~/Resources/img/settings/left.png" class="leftIcon" />
+    <StackLayout>
+        <StackLayout orientation="horizontal" height="64.05" borderBottomWidth="1.05" borderBottomColor="#dddddd">
+            <StackLayout width="32.55" height="32.55" marginLeft="7" marginTop="17.5" @tap="$navigateBack">
+                <FIcon name="fa-angle-left" color="#555555"  fontSize="32.55"/>
             </StackLayout>
-            <StackLayout class="myInfoBackWrap"@tap="$navigateBack">
-                <label class="myInfoBack" text="내정보" />
+            <StackLayout marginLeft="0"  marginTop="29.95" @tap="$navigateBack">
+                <label text="내정보" color="#333333" fontSize="14" style="font-family: nanumsquareroundeb" width="38.5" height="15.05" />
             </StackLayout>
-            <StackLayout class="faqTitleWrap">
-                <label class="faqTitle" text="자주하는 질문" />
+            <StackLayout marginTop="24.5" marginLeft="107.45">
+                <label text="자주하는 질문"  style="font-family: nanumsquareroundeb" fontSize="16.45" color="#333333" />
             </StackLayout>
         </StackLayout>
-        <Accordion row="1" for="item of faq_list">
+        <Accordion row="1" for="notice of faq_list" height="100%">
             <v-template name="title">
-                <StackLayout orientation="horizontal" >
-                    <StackLayout class="faqHeaderTitleWrap">
-                        <Label :text="item.faq_header" class="faqHeaderTitle" />
+                <StackLayout orientation="horizontal"  backgroundColor="white" width="100%" borderBottomWidth="1" borderBottomColor="#dddddd">
+                    <StackLayout paddingTop="26.95" paddingBottom="25.275" width="287">
+                        <Label :text="notice.subject" fontSize="14" marginLeft="17.5" color="#333333"  style="font-family: nanumsquareroundeb" />
                     </StackLayout>
-                    <StackLayout class="faqDownIconWrap">
-                        <image src="~/Resources/img/settings/down.png" class="faqDownIcon" />
+                    <StackLayout marginTop="18.5" marginLeft="64.05">
+                        <FIcon name="fa-angle-down" color="#888888"  width="32.55" height="32.55" size="32.55" />
                     </StackLayout>
                 </StackLayout>
             </v-template>
             <v-template name="content">
-                <GridLayout rows="auto,auto" class="faqDetailWrap">
-                    <TextView :text="item.faq_detail" class="faqDetail"/>
+                <GridLayout rows="auto,auto" backgroundColor="#eff2f7">
+                    <TextView :text="notice.contents" backgroundColor="#eff2f7" color="#333333" marginLeft="17.5" marginRight="17.5" marginTop="16.45" lineHeight="25.55" fontSize="12.95" height="308" width="100%"  editable="false" style="border-bottom-width: 0;"/>
                 </GridLayout>
             </v-template>
         </Accordion>
@@ -39,45 +39,30 @@
     import '~/Resources/css/menu/settings/etcList/FAQ/faq_420.scss';
     import '~/Resources/css/menu/settings/etcList/FAQ/faq_480.scss';
 
-
+    import axios from 'axios'
     export default {
         name:"FAQ",
         components: {
         },data(){
             return {
-                faq_list: [
-                    {
-                        "faq_header": "Q 질문입니다 질문입니다 질문입니다 질문입니다.",
-                        "items": [
-                            { "faq_detail": "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다." +
-                                    "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다." +
-                                    "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다." +
-                                    "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다." +
-                                    "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다."}
-                        ]
-                    },
-                    {
-                        "faq_header": "Q 질문입니다 질문입니다 질문입니다 질문입니다.",
-                        "items": [
-                            { "faq_detail": "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다." +
-                                    "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다." +
-                                    "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다." +
-                                    "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다." +
-                                    "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다."}
-                        ]
-                    },
-                    {
-                        "faq_header": "Q 질문입니다 질문입니다 질문입니다 질문입니다.",
-                        "items": [
-                            { "faq_detail": "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다." +
-                                    "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다." +
-                                    "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다." +
-                                    "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다." +
-                                    "답변내용입니다.답변내용입니다.답변내용입니다.답변내용입니다."}
-                        ]
-                    }
-                ]
+                faq_list: []
             }
+        },methods:{
+            getFaq(){
+                axios({
+                    method: 'get',
+                    url: 'http://api.eatjeong.com/v1/users/faqs',
+                    params: {
+                    },
+                }).then((response) => {
+                    this.$data.faq_list = response.data.dataList;
+                    console.log(response.data.dataList[0].subject)
+                }, (error) => {
+                    console.log(error);
+                });
+            }
+        },mounted(){
+          this.getFaq();
         }
     };
 </script>

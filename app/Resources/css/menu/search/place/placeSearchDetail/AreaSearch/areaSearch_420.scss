@@ -1,0 +1,160 @@
+$medium:1.142;
+
+.android400 .areaSearchHeaderWrap{
+  width:360*$medium;
+  height: 45*$medium;
+  border-bottom-width: 4*$medium;
+  border-bottom-color: #ffe074;
+  margin-top: 27*$medium;
+}
+.android400 .areaSearchHeader{
+  margin-left: 21*$medium;
+  font-family: nanumsquareroundr;
+  font-size: 13*$medium;
+  color: #aaaaaa;
+  background-color: #ffffff;
+}
+.android400 .areaSearchCurrentLocationWrap{
+  width: 360*$medium;
+  height: 50*$medium;
+  border-bottom-color: #eeeeee;
+  border-bottom-width: 2*$medium;
+}
+.android400 .areaSearchCurrentLocationIconWrap{
+  width: 21*$medium;
+  height: 21*$medium;
+  margin-left: 21*$medium;
+  margin-top: 7*$medium;
+}
+.android400 .areaSearchCurrentLocationIcon{
+  width: 16*$medium;
+  height: 16*$medium;
+}
+.android400 .areaSearchCurrentLocationTitleWrap{
+  margin-left: 2*$medium;
+  width: 44*$medium;
+  height: 15*$medium;
+  margin-top: 2*$medium;
+}
+.android400 .areaSearchCurrentLocationTitle{
+  width: 44*$medium;
+  height: 15*$medium;
+  font-family: nanumsquareroundr;
+  font-size: 12*$medium;
+  color: #333333;
+}
+.android400 .areaSearchMainWrap{
+  height:425*$medium;
+}
+.android400 .areaSearchMainWrapWrap{
+  width:360*$medium;
+}
+.android400 .areaSearchLeftScrollWrap{
+  height: 425*$medium;
+}
+.android400 .areaSearchLeftMainWrap{
+  width: 95*$medium;
+  text-align: center;
+  border-right-width: 2*$medium;
+  border-right-color: #eeeeee;
+}
+.android400 .areaSearchLeftMainWrapWrap{
+  width:95*$medium;
+}
+.android400 .areaSearchLeftAreaWrap{
+  width: 95*$medium;
+  height:43*$medium;
+  padding-top: 14.5*$medium;
+}
+.android400 .areaSearchLeftAreaWrap.active{
+  width: 95*$medium;
+  height:43*$medium;
+  padding-top: 14.5*$medium;
+  background-color: #ffe074;
+}
+.android400 .areaSearchLeftArea{
+  width: 95*$medium;
+  height: 43*$medium;
+  font-family: nanumsquareroundr;
+  font-size: 12*$medium;
+  color: #333333;
+}
+.android400 .areaSearchRightScrollWrap{
+  height: 425*$medium;
+}
+.android400 .areaSearchRightMainWrap{
+  width: 265*$medium;
+  border-right-color: #eeeeee;
+  border-right-width: 2*$medium;
+}
+.android400 .areaSearchRightMainWrapWrap{
+  width: 265*$medium;
+  height:43*$medium;
+}
+.android400 .areaSearchRightMainWrapWrapWrap{
+  height:43*$medium;
+}
+.android400 .areaSearchRightAreaWrap{
+  width: 100*$medium;
+  padding-left: 26.5*$medium;
+  padding-top: 14.5*$medium;
+}
+.android400 .areaSearchRightArea{
+  font-family: nanumsquareroundr;
+  color: #333333;
+  font-size: 13*$medium;
+}
+.android400 .areaSearchRightArea.active{
+  font-family: nanumsquareroundb;
+  color: #333333;
+  font-size: 13*$medium;
+}
+.android400 .areaSearchRightCheckIcon{
+  margin-top: 13*$medium;
+  width: 20*$medium;
+  height: 20*$medium;
+}
+.android400 .areaSearchBottomWrap{
+  width: 360*$medium;
+  height: 45.5*$medium;
+  border-top-width: 2*$medium;
+  border-top-color: #eeeeee;
+  padding-top: 13.5*$medium;
+}
+.android400 .areaSearchCancelWrap{
+  width: 147*$medium;
+  text-align: right;
+}
+.android400 .areaSearchCancel{
+  width:159*$medium;
+  height: 16*$medium;
+  font-family: nanumsquareroundr;
+  font-size: 14*$medium;
+  color:#555555;
+}
+.android400 .areaSearchConfirmWrap{
+  width: 223*$medium;
+  text-align: center;
+}
+
+
+.android400 .areaSearchConfirm{
+  width: 211*$medium;
+  height: 16*$medium;
+  font-family: nanumsquareroundb;
+  font-size: 14*$medium;
+  color: #dddddd;
+}
+
+.android400 .areaSearchConfirm.active{
+  width: 211*$medium;
+  height: 16*$medium;
+  font-family: nanumsquareroundb;
+  font-size: 14*$medium;
+  color: #f0c735;
+}
+
+.android400 .areaSearchHeaderWrapWrap{
+  width: 320*$medium;
+}
+

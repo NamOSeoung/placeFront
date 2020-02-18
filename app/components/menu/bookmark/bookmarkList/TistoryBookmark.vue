@@ -1,112 +1,106 @@
 <template lang="html">
+ <StackLayout v-if="tistoryBookmarkList!=null">
  <ListView for="tistoryBookmark in tistoryBookmarkList" separatorColor="transparent"
-           style="height:100%" @itemTap="gotistory" >
+           style="height:100%" @itemTap="goWebview" >
   <v-template>
    <StackLayout class="tistoryMarkMain" >
     <StackLayout class="tistoryMarkMainWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
      <StackLayout class="tistoryMarkTitleWrap" >
       <label :text="tistoryBookmark.title" class="tistoryMarkTitle"/>
      </StackLayout>
-     <StackLayout orientation="horizontal" class="tistoryMarkSubWrap" v-if="tistoryBookmark.thumbnail != ''" >
+     <StackLayout orientation="horizontal" class="tistoryMarkSubWrap" v-if="tistoryBookmark.thumbnail_url != ''" >
       <StackLayout class="tistoryMarkImageWrap">
-       <Image :src="tistoryBookmark.thumbnail" stretch="aspectFill" class="tistoryMarkImage"/>
+       <Image :src="tistoryBookmark.thumbnail_url" stretch="aspectFill" class="tistoryMarkImage"/>
       </StackLayout>
       <StackLayout class="tistoryMarkRightWrap" >
        <StackLayout orientation="horizontal" class="tistoryMarkContentsWrap">
-        <Label :text="tistoryBookmark.contents" class="tistoryMarkContents" textWrap="true"/>
+        <Label :text="tistoryBookmark.description" class="tistoryMarkContents" textWrap="true"/>
        </StackLayout>
        <StackLayout orientation="horizontal" class="tistoryMarkDateWriterWrap" >
         <StackLayout class="tistoryMarkDateWrap">
-         <Label :text="tistoryBookmark.date" class="tistoryMarkDate"  />
+         <Label :text="tistoryBookmark.write_date" class="tistoryMarkDate"  />
         </StackLayout>
         <StackLayout class="tistoryMarkWriterWrap">
-         <label :text="tistoryBookmark.writer" class="tistoryMarkWriter" />
+         <label :text="tistoryBookmark.author" class="tistoryMarkWriter" />
         </StackLayout>
        </StackLayout>
       </StackLayout>
      </StackLayout>
-     <StackLayout orientation="horizontal" class="tistoryMarkSubWrap" v-if="tistoryBookmark.thumbnail == ''" >
+     <StackLayout orientation="horizontal" class="tistoryMarkSubWrap" v-else >
       <StackLayout class="tistoryMarkNoImageWrap" >
        <StackLayout orientation="horizontal" class="tistoryMarkNoImgContentsWrap">
-        <Label :text="tistoryBookmark.contents" class="tistoryMarkNoImgContents" textWrap="true" />
+        <Label :text="tistoryBookmark.description" class="tistoryMarkNoImgContents" textWrap="true" />
        </StackLayout>
        <StackLayout orientation="horizontal" class="tistoryMarkNoImgDateWriterWrap"  >
         <StackLayout class="tistoryMarkDateWrap">
-         <Label :text="tistoryBookmark.date" class="tistoryMarkNoImgDate"  />
+         <Label :text="tistoryBookmark.write_date" class="tistoryMarkNoImgDate"  />
         </StackLayout>
-        <StackLayout class="tistoryMarkNoImgWriterWrap">
-         <label :text="tistoryBookmark.writer" class="tistoryMarkNoImgWriter" />
+        <StackLayout class="tistoryMarkNoImgWriterWrap" width="230">
+         <label :text="tistoryBookmark.author" class="tistoryMarkNoImgWriter" width="230" />
         </StackLayout>
        </StackLayout>
       </StackLayout>
      </StackLayout>
     </StackLayout>
-
     <StackLayout class="markUnderline">
     </StackLayout>
    </StackLayout>
   </v-template>
  </ListView>
+ </StackLayout>
+ <StackLayout v-else>
+  <label text="없음." />
+ </StackLayout>
 </template>
 
 <script>
  import axios from 'axios';
- import YBookmarkDetil from "./bookmarkDetail/NBookmarkDetil";
+ var cache = require("nativescript-cache");
 
+ import TistoryWebview from '../../search/place/placeDetail/reviewMore/reviewMoreWebview/TistoryWebview'
  import '~/Resources/css/menu/bookmark/bookmarkList/TistoryBookmark/tistoryBookmark_320.scss';
  import '~/Resources/css/menu/bookmark/bookmarkList/TistoryBookmark/tistoryBookmark_360.scss';
  import '~/Resources/css/menu/bookmark/bookmarkList/TistoryBookmark/tistoryBookmark_420.scss';
  import '~/Resources/css/menu/bookmark/bookmarkList/TistoryBookmark/tistoryBookmark_480.scss';
+ const appSettings = require("tns-core-modules/application-settings");
 
  export default {
   name:"tistoryBookmark",
   data(){
    return {
-    tistoryBookmarkList:[
-     {
-      'thumbnail' : 'https://i.ytimg.com/vi/9f-bB4_SJkI/maxresdefault.jpg',
-      'title':'영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지',
-      'contents' : '내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 ' +
-              '내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 ',
-      'date':'2020.01.03',
-      'writer' : '홍길동'
-     },
-     {
-      'thumbnail' : '',
-      'title':'영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지 영상 제목 최대 세 줄까지',
-      'contents' : '내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 ' +
-              '내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 내용 두 줄까지 ',
-      'date':'2020.01.05',
-      'writer' : '아무개'
-     }
-    ]
+    tistoryBookmarkList:[]
    }
   },
   components: {
   },mounted() {
-   /* axios({
+    this.getTistoryReview();
+  },methods:{
+
+   goWebview(args){
+    const view = args.view;
+    const tappedItem = view.bindingContext;
+
+    console.log(tappedItem.url)
+    cache.set('place_name',tappedItem.place_name);
+    this.$navigateTo(TistoryWebview, {
+     props: {
+      itemList: tappedItem}
+    })
+   },getTistoryReview(){
+    axios({
      method: 'get',
-     url: 'http://api.matitzung.shop/v1/bookmarks?',
-     //  url: 'http://192.168.1.85:9090/v1/places?',
+     url: 'http://http://api.eatjeong.com/v1/bookmarks',
      params: {
-      gubun: 'youtube',
-      user_id : 'jeetkn@tistory.com'
+      gubun: 'tistory',
+      user_id : appSettings.getString("user_id"),
+      sns_division:appSettings.getString("user_division")
      },
     }).then((response) => {
      console.log(response.data);
-     this.$data.youtubeBookmarkList = response.data.dataList;
+     this.$data.tistoryBookmarkList = response.data.dataList;
     }, (error) => {
      console.log(error);
-    });*/
-  },methods:{
-   gotistory(args){
-    console.log("여기 타니?");
-    const view = args.view;
-    const page = view.page;
-    const tappedItem = view.bindingContext;
-    this.$navigateTo(YBookmarkDetil, {
-     props: {
-      context: tappedItem}});
+    });
    }
   }
  };

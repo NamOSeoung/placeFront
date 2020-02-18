@@ -1,5 +1,5 @@
 <template lang="html">
-<ScrollView>
+<ScrollView height="100%">
     <StackLayout>
          <StackLayout class="homeHeaderWrap">
              <StackLayout orientation="horizontal" class="homeTitleWrap">
@@ -8,7 +8,7 @@
              </StackLayout>
              <StackLayout orientation="horizontal" class="homeSearchWrap">
                  <image src="~/Resources/img/home/maker.png" class="homeMakerIcon"/>
-                 <label text="서울 맛집" class="homeSearchTitle"/>
+                 <label :text="data.locationKeyword" class="homeSearchTitle"/>
                  <image src="~/Resources/img/home/search.png" class="homeSearchIcon" />
              </StackLayout>
          </StackLayout>
@@ -45,7 +45,7 @@
     const geoLocation = require("nativescript-geolocation");
     import MenuWrap from '../MenuWrap'
     import Login from "../../member/Login";
-    var data = {area : '서울 맛집'}
+    var data = {locationKeyword : '서울 맛집'}
     import axios from 'axios';
 
     var cache = require("nativescript-cache");
@@ -64,7 +64,8 @@
                     latitude: null,
                     longitude: null,
                     altitude: null,
-                    direction: null
+                    direction: null,
+                    locationKeyword:'서울 맛집'
                 },
                 address:''
             }
@@ -74,6 +75,7 @@
             StoreList,YoutubeList,NaverList,TistoryList
         },methods:{
             goSearchTab(tab){
+                console.log('123123123')
                 MenuWrap.methods.tabChange(tab)
             },
             enableLocationServices: function() {
@@ -105,13 +107,24 @@
                             headers: { 'Authorization': 'KakaoAK b4bd7e75365a705323622c57d0b7e406' }
                         }).then((response) => {
                             console.log('호출함??')
+                            //console.log(response.data.documents[0].address.address_name)
+                            console.log(response.data)
+                            console.log(response)
+                            this.$data.address = response.data.documents[0].address.address_name
+                            data.locationKeyword = response.data.documents[0].address.address_name
                             console.log(response.data.documents[0].address.address_name)
-                            this.address = response.data.documents[0].address.address_name
-                            //console.log(response.data.medium_category)
-
-                            //this.$data.categorys = response.data;
-                            //this.$data.large_category = response.data.large_category;
-                            //this.$data.medium_category = response.data.medium_category;
+                            var current_location_arr =  data.locationKeyword.split(" ");
+                            var current_location="";
+                            for(var i = 0; i < current_location_arr.length; i++){
+                                if(i < 3){
+                                    if(i > 0 ){
+                                        current_location += " " + current_location_arr[i];
+                                    }else {
+                                        current_location += current_location_arr[i];
+                                    }
+                                }
+                            }
+                            data.locationKeyword = current_location;
                         }, (error) => {
                             console.log(error);
                         });
@@ -125,6 +138,8 @@
                     }
                 );
             }
+        },mounted(){
+            //this.enableLocationServices()
         }
     };
 </script>

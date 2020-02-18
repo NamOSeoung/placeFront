@@ -1,0 +1,72 @@
+$large : 1.5;
+
+.android480 .findIdCompleteBar{
+  width: 360*$large;
+  height: 55*$large;
+  border-bottom-color: #dddddd;
+  border-bottom-width: 1*$large;
+  text-align: center;
+}
+.android480 .findCompleteTitleWrap{
+  margin-top: 26*$large;
+}
+.android480 .findCompleteTitle{
+  font-family: nanumsquareroundb;
+  font-size: 14*$large;
+  color: #333333;
+}
+.android480 .findCompleteMainWrap{
+  text-align: center;
+}
+.android480 .findCompleteMainTitleWrap{
+  margin-top: 24*$large;
+}
+.android480 .findCompleteMainTitle{
+  font-size: 10*$large;
+  font-family: nanumsquareroundr;
+  color: #555555;
+}
+.android480 .findCompleteEmailWrap{
+  margin-top: 23*$large;
+}
+.android480 .findCompleteEmail{
+  font-family: nanumsquareroundb;
+  font-size: 14*$large;
+  color: #555555;
+}
+.android480 .findCompleteButtomWrap{
+  margin-top: 43*$large;
+}
+.android480 .findCompletePasswordWrap{
+  width: 120*$large;
+  height: 32*$large;
+  border-radius: 16*$large;
+  border-width: 1*$large;
+  border-color: #cccccc;
+  margin-left: 47*$large;
+}
+.android480 .findCompletePassword{
+  color: #555555;
+  font-family: nanumsquareroundb;
+  height: 14*$large;
+  font-size: 12*$large;
+  margin-top: 9*$large;
+}
+.android480 .findCompleteLoginWrap{
+  width: 120*$large;
+  height: 32*$large;
+  border-radius: 16*$large;
+  border-width: 1*$large;
+  border-color: #ffe074;
+  background-color: #ffe074;
+  margin-left: 32*$large;
+}
+.android480 .findCompleteLogin{
+  color: #555555;
+  font-family: nanumsquareroundb;
+  height: 14*$large;
+  font-size: 12*$large;
+  margin-top: 9*$large;
+}
+
+
