@@ -23,20 +23,19 @@
                                         <TextField
                                                 class="findUserIdPhoneNumber"
                                                 hint="000-0000-0000"
-                                                keyboardType="phone"
                                                 [text]='name'
                                                 secure="false"
                                                 v-model="phone_no"
                                                 ref="phone_no"
-                                                returnKeyType="done"
-                                                (returnPress)="onReturnPress($event)"
+                                                returnKeyType="search"
+                                                @returnPress="submit"
                                                 autocorrect="false"
                                                 maxLength="13"
                                                 backgroundColor="#ffffff"
                                                 (blur)="onBlur($event)">
                                         </TextField>
                                     </StackLayout>
-                                    <StackLayout class="findUserIdPhoneDeleteWrap" @tap="phone_del">
+                                    <StackLayout class="findUserIdPhoneDeleteWrap" @tap="phone_del" v-if="phone_no.length > 0">
                                         <image class="findUserIdPhoneDelete" src="~/Resources/img/login/delete-circle.png"/>
                                     </StackLayout>
                             </StackLayout>
@@ -58,9 +57,10 @@
                                         [text]='name'
                                         secure="false"
                                         returnKeyType="done"
-                                        (returnPress)="onReturnPress($event)"
+                                        returnPressEvent="submit"
                                         autocorrect="false"
                                         maxLength="8"
+                                        keyboardType="number"
                                         v-model="birthday"
                                         ref="birthday"
                                         backgroundColor="#ffffff"
@@ -68,7 +68,7 @@
                                         (blur)="onBlur($event)">
                                 </TextField>
                             </StackLayout>
-                            <StackLayout class="findUserIdPhoneDeleteWrap" @tap="birth_del">
+                            <StackLayout class="findUserIdPhoneDeleteWrap" @tap="birth_del" v-if="birthday.length> 0">
                                 <image class="findUserIdPhoneDelete" src="~/Resources/img/login/delete-circle.png" />
                             </StackLayout>
                         </StackLayout>
@@ -110,7 +110,6 @@
        import '~/Resources/css/member/findUserInfo/FindCommon/findCommon_360.scss';
        import '~/Resources/css/member/findUserInfo/FindCommon/findCommon_420.scss';
        import '~/Resources/css/member/findUserInfo/FindCommon/findCommon_480.scss';
-
 
        export default {
               name:'FindUserId',
@@ -162,7 +161,9 @@
                    }, (error) => {
                        console.log(error);
                    });
-                   }
+                   },submit(event){
+                       console.log("333")
+               }
               },
               mounted() {
 

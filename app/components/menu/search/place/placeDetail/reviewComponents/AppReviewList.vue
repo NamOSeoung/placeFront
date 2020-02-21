@@ -4,7 +4,7 @@
             <StackLayout orientation="horizontal" >
                 <image class="youtubeListIcon" src="~/Resources/img/place/google.png" />
                 <label class="tistoryListTitle" text="잇정리뷰" />
-                <label class="tistoryListMore" text="더보기" @tap="$navigateTo(appReviewMorePage)" />
+                <label class="tistoryListMore" text="더보기" @tap="goMorePage" />
                 <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png" />
             </StackLayout>
         </StackLayout>
@@ -75,13 +75,14 @@
     import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/AppReviewList/appReviewList_420.scss';
     import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/AppReviewList/appReviewList_480.scss';
     const appSettings = require("tns-core-modules/application-settings");
+    var Toast = require("nativescript-toast");
     export default {
         name:"AppList",
         components: {
         }, data(){
             return {
                 appReview:[],
-                appReviewMorePage:Detail
+                appReviewMorePage:AppReviewMore
             }
         },methods:{
             getAppReviewList(){
@@ -111,6 +112,13 @@
                     dismissEnabled:true,
                     dimAmount: 0.5 // Sets the alpha of the background dim,
                 });
+            },goMorePage(){
+                if(this.$data.appReview.length < 5){
+                    Toast.makeText("더보기 할 데이터가 존재하지 않습니다.").show();
+                }else{
+                    this.$navigateTo(this.$data.appReviewMorePage)
+                }
+
             }
         },
         mounted(){

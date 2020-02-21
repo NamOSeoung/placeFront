@@ -6,7 +6,7 @@
        <image class="reviewMoreIcon"  src="~/Resources/img/home/angle-left.png" />
      </StackLayout>
      <StackLayout class="reviewMorePlaceNameWrap"  >
-       <label class="reviewMorePlaceName" text="쉑쉑버거(강남점)"/>
+       <label class="reviewMorePlaceName" :text="place_name"/>
      </StackLayout>
        <StackLayout class="appReviewWriteIconWrap" >
            <image class="appReviewWriteIcon" src="~/Resources/img/place/Orion_edit.png" />
@@ -15,7 +15,7 @@
 
    <StackLayout>
        <ScrollView height="100%">
-           <StackLayout>
+           <StackLayout >
                <StackLayout class="appReviewHeaderWrap" orientation="horizontal">
                    <StackLayout class="appReviewHeaderIconWrap">
                        <image class="appReviewHeaderIcon" src="~/Resources/img/place/star_yellow.png" />
@@ -27,7 +27,7 @@
                        <label class="appReviewHeaderCount" :text="appReview.length + '개 리뷰'" />
                    </StackLayout>
                </StackLayout>
-               <StackLayout>
+               <StackLayout height="100%">
                    <StackLayout class="googleReviewMoreWrap" v-for="a_reviews in appReview" v-if="appReview != ''" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }"  >
                        <StackLayout class="googleReviewMoreTopWrap" orientation="horizontal">
                            <StackLayout class="appReviewUserIconWrap"  visibility="collapsed">
@@ -101,7 +101,8 @@
         }, data(){
             return {
                 appReview:[],
-                user_id:appSettings.getString("user_id")
+                user_id:appSettings.getString("user_id"),
+                place_name:cache.get('place_name')
             }
         },mounted(){
             this.appReviewMore();

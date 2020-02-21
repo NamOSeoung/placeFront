@@ -3,7 +3,7 @@
         <StackLayout orientation="horizontal" class="tistoryHeaderWrap">
             <image src="~/Resources/img/home/tistory.png" class="tistoryIcon"/>
             <label text="티스토리" class="tistoryTitle"/>
-            <label text="222" class="tistoryMore" @tap="$navigateTo(TistoryMorePage)"/>
+            <label text="더보기" class="tistoryMore" @tap="$navigateTo(TistoryMorePage)"/>
             <image src="~/Resources/img/home/angle-right.png" class="tistoryRightIcon" />
         </StackLayout>
         <ScrollView orientation="horizontal">

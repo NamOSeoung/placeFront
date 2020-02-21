@@ -36,7 +36,7 @@
                                         (blur)="onBlur($event)">
                                 </TextField>
                             </StackLayout>
-                            <StackLayout class="findUserIdPhoneDeleteWrap" @tap="delEmail">
+                            <StackLayout class="findUserIdPhoneDeleteWrap" @tap="delEmail" v-if="user_id.length > 0">
                                 <image class="findUserIdPhoneDelete" src="~/Resources/img/login/delete-circle.png"/>
                             </StackLayout>
                         </StackLayout>
@@ -60,6 +60,7 @@
                                         returnKeyType="done"
                                         (returnPress)="onReturnPress($event)"
                                         autocorrect="false"
+                                        keyboardType="phone"
                                         maxLength="13"
                                         v-model="phone_no"
                                         ref="phone_no"
@@ -68,7 +69,7 @@
                                         (blur)="onBlur($event)">
                                 </TextField>
                             </StackLayout>
-                            <StackLayout class="findUserIdPhoneDeleteWrap" @tap="delPhone">
+                            <StackLayout class="findUserIdPhoneDeleteWrap" @tap="delPhone" v-if="phone_no.length > 0">
                                 <image class="findUserIdPhoneDelete" src="~/Resources/img/login/delete-circle.png" />
                             </StackLayout>
                         </StackLayout>
@@ -257,6 +258,7 @@
                                 user_id: this.$data.user_id}
                         });
                     }else{
+                        alert("일치하는 정보가 없습니다.");
                         this.$data.user_exist=false;
                     }
 

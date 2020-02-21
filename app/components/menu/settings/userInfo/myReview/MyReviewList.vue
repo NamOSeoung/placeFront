@@ -13,7 +13,7 @@
           </StackLayout>
         </StackLayout>
          <ScrollView  orientation="horizontal" height="40.05" >
-        <StackLayout orientation="horizontal" >
+        <StackLayout orientation="horizontal">
             <StackLayout :class="selectTab==0?'active':''" class="aa" @tap="categorySetting('전체',0)"   >
                 <label text="전체"  :class="selectTab==0?'active':''" class="aaa"  />
             </StackLayout>
@@ -47,19 +47,19 @@
         </StackLayout>
          </ScrollView>
          <ScrollView height="100%" >
-            <StackLayout width="360" height="100%" backgroundColor="#eff2f7">
+            <StackLayout width="360" height="100%" backgroundColor="#eff2f7"  @swipe="onSwipeDataReset">
                 <StackLayout marginLeft="16" marginTop="15">
                     <label :text="category_count+'개 리뷰'" style="font-family: nanumsquareroundr" font-size="12" color="#333333" />
                 </StackLayout>
                 <StackLayout  v-if="category=='전체'" height="551" >
-                    <StackLayout marginTop="15"padding="15 15 15 15" v-for="list in myReviewList" backgroundColor="#ffffff" width="330" height="70"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 6 }">>
+                    <StackLayout marginTop="15"padding="15 15 15 15"  @tap="goMyReviewListDetail(index)" v-for="(list,index) in myReviewList" backgroundColor="#ffffff" width="330" height="70"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 6 }">>
                         <StackLayout orientation="horizontal" >
                             <StackLayout width="158" height="40" borderRightWidth="1" borderRightColor="#eff2f7">
                                 <StackLayout>
                                     <label :text="list.place_name" style="font-family:nanumsquareroundb" fontSize="14" color="#333333" textWrap="true" />
                                 </StackLayout>
                                 <StackLayout marginTop="7">
-                                    <label :text="'전체리뷰 '+list.rating_avg" style="font-family:nanumsquareroundr" fontSize="11" color="#888888" />
+                                    <label :text="'전체평점 '+list.rating_avg" style="font-family:nanumsquareroundr" fontSize="11" color="#888888" />
                                 </StackLayout>
                             </StackLayout>
                             <StackLayout paddingLeft="14">
@@ -101,7 +101,7 @@
                                     <label :text="list.place_name" style="font-family:nanumsquareroundb" fontSize="14" color="#333333" textWrap="true" />
                                 </StackLayout>
                                 <StackLayout marginTop="7">
-                                    <label :text="'전체리뷰 '+list.rating_avg" style="font-family:nanumsquareroundr" fontSize="11" color="#888888" />
+                                    <label :text="'전체평점 '+list.rating_avg" style="font-family:nanumsquareroundr" fontSize="11" color="#888888" />
                                 </StackLayout>
                             </StackLayout>
                             <StackLayout paddingLeft="14">
@@ -143,8 +143,10 @@
 <script>
     import NonReviewMessage from './message/NoneReviewMessage'
 
+    import MyReviewListDetail from './myReviewListDetail/MyReviewListDetail'
     import axios from 'axios'
     const appSettings = require("tns-core-modules/application-settings");
+    var cache = require("nativescript-cache");
     export default {
         name:"MyReviewList",
         components: {
@@ -155,9 +157,34 @@
                 myReviewList:[],
                 category:'전체',
                 category_count:0,
-                selectTab:0
+                selectTab:0,
+                MyReviewListDetailPage:MyReviewListDetail
             }
         },methods:{
+            onSwipeDataReset(args){
+                console.log('wwdasda')
+                console.log("Swipe!");
+                console.log("Object that triggered the event: " + args.object);
+                console.log("View that triggered the event: " + args.view);
+                console.log("Event name: " + args.eventName);
+                console.log("Swipe Direction: " + args.direction);
+                this.getMyReviewList();
+               /* axios({
+                    method: 'get',
+                    url: 'http://api.eatjeong.com/v1/bookmarks',
+                    params: {
+                        gubun: 'place',
+                        user_id : appSettings.getString("user_id"),
+                        sns_division:appSettings.getString("sns_division")
+                    },
+                }).then((response) => {
+                    console.log(response.data.dataList)
+                    console.log("zzzzzzzzzz"+response.data.dataList);
+                    this.data.placeBookmarkList = response.data.dataList;
+                }, (error) => {
+                    console.log(error);
+                });*/
+            },
             category(division){
             },categorySetting(category_name,tab){
                 this.$data.category_count = 0;
@@ -185,12 +212,18 @@
                         sns_division:appSettings.getString("sns_division")
                     },
                 }).then((response) => {
-                    console.log(response.data)
+                    console.log(response.data.dataList)
                     this.$data.myReviewList = response.data.dataList;
                     this.$data.category_count = response.data.dataList.length;
                 }, (error) => {
                     console.log(error);
                 });
+            },goMyReviewListDetail(index){
+                cache.set('place_id',this.$data.myReviewList[index].place_id);
+                this.$navigateTo(MyReviewListDetail, {
+                    props: {
+                        itemList: this.$data.myReviewList[index]}
+                })
             }
         },mounted(){
             this.getMyReviewList();

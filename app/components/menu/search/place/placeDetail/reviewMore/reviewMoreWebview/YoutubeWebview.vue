@@ -6,7 +6,7 @@
                     <image width="20" height="20" src="~/Resources/img/place/menu_5_64.png" />
                 </StackLayout>
                 <StackLayout width="274" height="18" marginTop="21" marginLeft="11">
-                    <label text="매장명" textWrap="true" height="18" width="274" style="font-family: nanumsquareroundb" fontSize="14" color="#494949"/>
+                    <label :text="place_name" textWrap="true" height="18" width="274" style="font-family: nanumsquareroundb" fontSize="14" color="#494949"/>
                 </StackLayout>
                 <StackLayout marginTop="25" @tap="$navigateBack">
                     <image width="17" height="17" src="~/Resources/img/place/close_5_64_b.png" />
@@ -22,6 +22,7 @@
 <script>
  import axios from 'axios';
  import ReviewWebviewBottomModal from './reviewWebviewBottomModal/ReviewWebviewBottomModal'
+ var cache = require("nativescript-cache");
 
 
     export default {
@@ -29,6 +30,7 @@
         props: ["itemList"],
        data(){
            return {
+               place_name:cache.get('place_name')
            }
        },
         components: {

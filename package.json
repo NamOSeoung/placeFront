@@ -27,6 +27,7 @@
     "nativescript-fonticon": "^2.0.0",
     "nativescript-geolocation": "^5.1.0",
     "nativescript-imagepicker": "^7.1.0",
+    "nativescript-loading-indicator": "^2.5.2",
     "nativescript-materialdropdownlist": "^1.0.15",
     "nativescript-ng-shadow": "^2.1.0",
     "nativescript-phone": "^1.4.1",

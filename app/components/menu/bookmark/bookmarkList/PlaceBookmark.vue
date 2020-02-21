@@ -162,7 +162,7 @@
         },
         components: {
         },mounted() {
-            //this.getPlaceBookmark();
+            this.getPlaceBookmark();
      },created(){
         // this.getPlaceBookmark();
      },methods: {

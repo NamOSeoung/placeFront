@@ -1,6 +1,7 @@
 <script src="../../app.js"></script>
 <template>
        <Page actionBarHidden="true" backgroundSpanUnderStatusBar="true">
+
               <ScrollView height="100%">
               <StackLayout class="loginPageWrap" >
                      <StackLayout class="loginScreenTopWrap" backgroundImage="~/Resources/img/login/christopher_jolly_1_ib_8243_c_u_8_q_unsplash.png">
@@ -15,11 +16,11 @@
                                    <label text="Brand Logo" class="loginBrandLogo"/>
                             </StackLayout>
                             <StackLayout orientation="horizontal" class="loginBarogoMainWrap"  @tap="$navigateTo(detailPage)">
-                                   <StackLayout  class="loginBarogoWrap">
-                                          <label text="둘러보기" class="loginBarogo"  />
+                                   <StackLayout  class="loginBarogoWrap" @tap="$navigateTo(detailPage)">
+                                          <label text="둘러보기" class="loginBarogo" @tap="$navigateTo(detailPage)"/>
                                    </StackLayout>
-                                   <StackLayout class="loginBarogoRightWrap">
-                                          <image class="loginBarogoRight"  src="~/Resources/img/login/arrow-cricle-right.png" />
+                                   <StackLayout class="loginBarogoRightWrap" @tap="$navigateTo(detailPage)">
+                                          <image class="loginBarogoRight"  src="~/Resources/img/login/arrow-cricle-right.png"  @tap="$navigateTo(detailPage)" />
                                    </StackLayout>
                             </StackLayout>
                      </StackLayout>
@@ -92,11 +93,13 @@
                      </StackLayout>
               </StackLayout>
               </ScrollView>
+
        </Page>
 </template>
 
 <script>
 
+      // require("nativescript-slideshow-busy-indicator");
        import MenuWrap from "../menu/MenuWrap";
        import FindUserId from "./findUserInfo/FindUserId"
        import FindUserPassword from './findUserInfo/FindUserPassword'
@@ -107,6 +110,8 @@
        var phone = require( "nativescript-phone" );
        import MemberJoinTermsList from '../member/joinComponents/MemberJoinTermsList'
 
+       import PasswordExcess from './passwordExcess/PasswordExcess'
+       //public images = ["~/Resources/img/place/google.png", "~/Resources/img/place/phone.png", "~/Resources/img/place/link_64.png", "~/images/share.png"];
 
        const appSettings = require("tns-core-modules/application-settings"); //sharedpreferences;
        import '~/Resources/css/member/Login/login_320.scss';
@@ -124,6 +129,8 @@
                             user_id:'',
                             password:'',
                             loginFlag:false,
+                            isBusy:false,
+                            images:["~/Resources/img/place/google.png", "~/Resources/img/place/phone.png", "~/Resources/img/place/link_64.png", "~/images/share.png"]
                            // infoEnderPage : InfoEnter
                      }
               },
@@ -139,13 +146,15 @@
                             this.$navigateTo(MemberJoinTermsList);
                      },
                      userLogin(){
+
+                            this.$data.isBusy = true;
                             if(this.$data.user_id == ''){
-                                   Toast.makeText("이메일을 기입 해 주세요.").show();
+                                   Toast.makeText("이메일을 입력해주세요.").show();
                                    return;
                             }
 
                             if(this.$data.password == ''){
-                                   Toast.makeText("패스워드를 기입 해 주세요.").show();
+                                   Toast.makeText("비밀번호를 입력해주세요.").show();
                                    return;
                             }
 
@@ -159,14 +168,24 @@
                             }).then((response) => {
                                    console.log(response.data.dataList);
                                    if(response.data.dataList.result == true){
-                                          Toast.makeText(response.data.dataList.result_message).show();
-                                          appSettings.setString("user_id",this.$data.user_id);
-                                          appSettings.setString("sns_division","C");
-                                          console.log(appSettings.getString("user_id"))
-                                          this.$navigateTo(MenuWrap,{ clearHistory: true });
 
+                                          console.log(response.data.dataList.login90_flag);
+                                          if(response.data.dataList.login90_flag == false){ //90일 경과
+                                                 //this.$navigateTo(PasswordExcess);
+                                                 this.$navigateTo(PasswordExcess, {
+                                                        props: {
+                                                               itemList: response.data.dataList}
+                                                 })
+                                          }else{
+                                                 Toast.makeText(response.data.dataList.result_message).show();
+                                                 appSettings.setString("user_id",this.$data.user_id);
+                                                 appSettings.setString("sns_division","C");
+                                                 console.log(appSettings.getString("user_id"))
+                                                 this.$navigateTo(MenuWrap,{ clearHistory: true });
+                                          }
                                    }else {
-                                          Toast.makeText(response.data.dataList.result_message).show();
+                                          alert("이메일이나 비밀번호가 다릅니다.");
+                                         // Toast.makeText(response.data.dataList.result_message).show();
                                    }
 
                             }, (error) => {
@@ -178,15 +197,16 @@
                             console.log('123123213')
                      },
                      aaa(){
-                            phone.sms("010-4163-8565","My Message") //New Method for single number is phone.sms(["212-555-1234"],"My Message")
-                                    .then(function(args){
-                                                   /// args.reponse: "success", "cancelled", "failed"
-                                                   console.log(JSON.stringify(args));
-                                            },
-                                            function(err){
-                                                   console.log("Error: " + err);
-                                            }
-                                    );
+                            this.$navigateTo(PasswordExcess);
+                            // phone.sms("010-4163-8565","My Message") //New Method for single number is phone.sms(["212-555-1234"],"My Message")
+                            //         .then(function(args){
+                            //                        /// args.reponse: "success", "cancelled", "failed"
+                            //                        console.log(JSON.stringify(args));
+                            //                 },
+                            //                 function(err){
+                            //                        console.log("Error: " + err);
+                            //                 }
+                            //         );
                             //var app = require("application");
                            // var context = app.android.context;
                            // console.log("3333")

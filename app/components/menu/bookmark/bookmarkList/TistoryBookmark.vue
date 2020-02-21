@@ -89,7 +89,7 @@
    },getTistoryReview(){
     axios({
      method: 'get',
-     url: 'http://http://api.eatjeong.com/v1/bookmarks',
+     url: 'http://api.eatjeong.com/v1/bookmarks',
      params: {
       gubun: 'tistory',
       user_id : appSettings.getString("user_id"),

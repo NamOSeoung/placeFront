@@ -3,8 +3,8 @@
         <StackLayout orientation="horizontal">
             <image class="youtubeListIcon" src="~/Resources/img/home/youtube.png"/>
             <label class="youtubeListTitle" text="유튜브"/>
-            <label class="youtubeListMore" text="더보기" @tap="goMorePage"/>
-            <image class="youtubeListMoreIcon" src="~/Resources/img/place/right_5_64.png" @tap="goMorePage"/>
+            <label class="youtubeListMore" text="더보기" @tap="goMorePage" v-if="youtubeReview.length > 4"/>
+            <image class="youtubeListMoreIcon" src="~/Resources/img/place/right_5_64.png" @tap="goMorePage" v-if="youtubeReview.length > 4"/>
         </StackLayout>
         <ScrollView orientation="horizontal">
 

@@ -20,7 +20,7 @@
                  <label text="- 재가입 하셔도 데이터는 복구할 수 없습니다."  style="font-family: nanumsquareroundr" fontSize="12" color="#444"/>
              </StackLayout>
          </StackLayout>
-         <StackLayout class="findUserIdPhoneTitleWrap">
+         <StackLayout class="findUserIdPhoneTitleWrap" v-if="sns_division == 'C'">
              <StackLayout class="findUserIdPhoneTitleWrapWrap"  >
                  <label text="비밀번호" class="findUserIdPhoneTitle"/>
              </StackLayout>
@@ -82,32 +82,37 @@
             return {
                 password:'',
                 password_check_flag:true,
+                sns_division:appSettings.getString("sns_division")
             }
         },methods :{
             userSeccession(){
-                axios({
-                    method: 'put',
-                    url: 'http://api.eatjeong.com/v1/users/general/accountclose',
-                    params: {
-                        user_id:appSettings.getString("user_id"),
-                        password:this.$data.password,
-                    },
-                }).then((response) => {
-                    console.log(response.data)
-                    if(response.data.dataList.result_flag ==true){
-                        appSettings.remove("user_id")
-                        appSettings.remove("sns_divisoin")
-                      //  this.$navigateTo(Login);
-                        this.seccessionModal();
-                    }else {
-                        this.$data.password_check_flag = false;
-                    }
+                var sns_division = this.$data.sns_division;
+                if(sns_division == 'C') { //일반 사용자일 경우 처리.
+                    axios({
+                        method: 'put',
+                        url: 'http://api.eatjeong.com/v1/users/general/accountclose',
+                        params: {
+                            user_id:appSettings.getString("user_id"),
+                            password:this.$data.password,
+                        },
+                    }).then((response) => {
+                        console.log(response.data)
+                        if(response.data.dataList.result_flag ==true){
+                            appSettings.remove("user_id")
+                            appSettings.remove("sns_divisoin")
+                            //  this.$navigateTo(Login);
+                            this.seccessionModal();
+                        }else {
+                            this.$data.password_check_flag = false;
+                        }
 
-                }, (error) => {
-                    console.log(error);
-                    Toast.makeText('탈퇴 실패하였습니다. 잠시 후 다시 시도 해 주세요.').show();
-                });
-             // this.$data.password_check_flag = false;
+                    }, (error) => {
+                        console.log(error);
+                        Toast.makeText('탈퇴 실패하였습니다. 잠시 후 다시 시도 해 주세요.').show();
+                    });
+                    // this.$data.password_check_flag = false;
+                }
+
             },
             seccessionModal(){
                 this.$showModal(SeccessionCompleteModal,{

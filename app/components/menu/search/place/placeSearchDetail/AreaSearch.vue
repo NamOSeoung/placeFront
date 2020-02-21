@@ -3,7 +3,7 @@
         <StackLayout>
             <StackLayout orientation="horizontal"class="areaSearchHeaderWrap">
                 <StackLayout class="areaSearchHeaderWrapWrap" >
-                    <TextView className="areaSearchHeader" v-model="areaKeyword" hint="지역을 입력해주세요." maxLength="50"  editable="true" @textChange="changeWrap" ></TextView>
+                    <TextView className="areaSearchHeader" v-model="areaKeyword" hint="지역을 입력해주세요." maxLength="50" returnKeyType="done"  editable="true" @textChange="changeWrap" ></TextView>
                 </StackLayout>
                 <StackLayout class="placeSearchBarDeleteIconWrap" visibility="collapsed" ref="keywordDelete" @tap="deleteKeyword">
                     <image class="placeSearchBarDeleteIcon" src="~/Resources/img/place/close_d_64.png"/>
@@ -99,7 +99,7 @@
         settingItems:[],
         allArea:[],
         firstAreaName:'',
-       secondAreaName:''
+         secondAreaName:''
    }
   },
   methods: {
@@ -209,20 +209,26 @@
       },search(){
           console.log(this.$data.firstAreaName);
           console.log(this.$data.secondAreaName);
-          if(this.$data.firstAreaName==''){
-              Toast.makeText("지역(대분류) 을 선택 해 주세요.").show();
-              return;
-          };
-          if(this.$data.secondAreaName==''){
-              Toast.makeText("지역(중분류) 을 선택 해 주세요.").show();
-              return;
+
+          try{
+              if(this.$data.firstAreaName==''){
+                  Toast.makeText("지역(대분류) 을 선택 해 주세요.").show();
+                  return;
+              };
+              if(this.$data.secondAreaName==''){
+                  Toast.makeText("지역(중분류) 을 선택 해 주세요.").show();
+                  return;
+              }
+
+              var keyword = this.$data.firstAreaName + " " + this.$data.secondAreaName;
+              PlaceSearch.data().data.areaFlag = true;
+              PlaceSearch.data().data.keyword = keyword;
+              //  PlaceSearch.methods.placeSearch(keyword)
+              this.$navigateBack();
+          }catch (e) {
+              console.log(e)
           }
 
-          var keyword = this.$data.firstAreaName + " " + this.$data.secondAreaName;
-          PlaceSearch.data().data.areaFlag = true;
-          PlaceSearch.data().data.keyword = keyword;
-        //  PlaceSearch.methods.placeSearch(keyword)
-          this.$navigateBack();
 
       }
   },mounted(){

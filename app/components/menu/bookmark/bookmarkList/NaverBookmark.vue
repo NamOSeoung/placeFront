@@ -97,6 +97,8 @@
                     },
                    }).then((response) => {
                     console.log(response.data);
+                    console.log("naverdata")
+                    console.log(response.data.dataList);
                     this.$data.naverBookmarkList = response.data.dataList;
                    }, (error) => {
                     console.log(error);

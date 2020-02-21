@@ -523,12 +523,29 @@
                      },
                      password:function(){
                             var password = this.$data.password;
+                            var password2 = this.$data.password2;
 
                             if(password == ''){
                                    this.$data.password_validation = 0;
                                    this.$data.input_check = false;
                                    return;
                             }
+
+                            if(this.$data.input_check == true){
+                                   if(password != password2){
+                                          this.$data.input_check = false;
+                                          return;
+                                   }
+                            }
+
+                            if(password2!=''){
+                                   if(password != password2){
+                                          this.$data.input_check = false;
+                                          return;
+                                   }
+                            }
+
+
                             if(password.length > 15 || password.length < 8){
                                    this.$data.password_validation = 1;
                                    return;
@@ -587,6 +604,23 @@
                                    this.$data.input_check = false;
                                    return;
                             }
+
+
+                            if(this.$data.input_check == true){
+                                   if(password != password2){
+                                          this.$data.input_check = false;
+                                          return;
+                                   }
+                            }
+
+                            if(password2!=''){
+                                   if(password != password2){
+                                          this.$data.input_check = false;
+                                          return;
+                                   }
+                            }
+
+
 
                             if(this.$data.password_validation<2){
                                    this.$data.password2_validation = 2;

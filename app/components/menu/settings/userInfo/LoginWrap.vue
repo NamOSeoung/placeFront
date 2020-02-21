@@ -26,7 +26,7 @@
             <StackLayout class="infoNickNameWrap" >
                 <label :text="user_info.nickname" class="infoNickName"  />
             </StackLayout>
-            <StackLayout class="infoMyinfoWrap"  @tap="$navigateTo(userInfoManagementPage)">
+            <StackLayout class="infoMyinfoWrap"  @tap="goUserInfoManagement">
                 <label text="내 정보 관리" class="infoMyinfo" />
             </StackLayout>
             <StackLayout orientation="horizontal" class="myListWrap" >
@@ -221,7 +221,11 @@
                     console.log(e.eventName);
                     console.log(e);
                 }
-            },
+            },goUserInfoManagement(){
+                this.$navigateTo(UserInfoManagement, {
+                    props: {
+                        my_info: this.$data.user_info}});
+            }
         }
     };
 </script>

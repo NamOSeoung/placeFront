@@ -6,7 +6,7 @@
        <image class="reviewMoreIcon"  src="~/Resources/img/home/angle-left.png" />
      </StackLayout>
      <StackLayout class="reviewMorePlaceNameWrap" width="300" style="text-align: center">
-       <label class="reviewMorePlaceName" text="쉑쉑버거(강남점)"/>
+       <label class="reviewMorePlaceName" :text="place_name"/>
      </StackLayout>
    </StackLayout>
    <StackLayout>
@@ -44,12 +44,16 @@
     import '~/Resources/css/menu/search/place/placeDetail/placeMore/GoogleMore/googleMore_420.scss';
     import '~/Resources/css/menu/search/place/placeDetail/placeMore/GoogleMore/googleMore_480.scss';
     const appSettings = require("tns-core-modules/application-settings");
+
+    var cache = require("nativescript-cache");
+
     export default {
         name:"GoogleMore",
         components: {
         }, data(){
             return {
-                googleReview:[]
+                googleReview:[],
+                place_name:cache.get('place_name')
             }
         },methods :{
             googleMore(){

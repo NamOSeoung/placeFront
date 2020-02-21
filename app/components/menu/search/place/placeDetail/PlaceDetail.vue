@@ -44,26 +44,58 @@
          <image class="placeDetailOpenIcon" src="~/Resources/img/place/clock_f_64.png"/>
         </StackLayout>
         <StackLayout class="placeDetailOpenTitleWrap">
-         <label class="placeDetailOpenTitle" text="영업종료"/>
+         <label class="placeDetailOpenTitle" text="ss"/>
         </StackLayout>
        </StackLayout>
-       <StackLayout class="placeDetailRatingWrap">
-        <StackLayout class="placeDetailRatingIconWrap">
-         <image class="placeDetailRatingIcon" src="~/Resources/img/place/star_f_64.png"/>
+
+       <StackLayout >
+        <StackLayout class="placeDetailRatingWrap"  v-if="placeInfo.rating > 0">
+         <StackLayout class="placeDetailRatingIconWrap" backgroundColor="#ffe074">
+          <image class="placeDetailRatingIcon" src="~/Resources/img/place/star_f_64.png"/>
+         </StackLayout>
+         <StackLayout class="placeDetailRatingTitleWrap">
+          <label class="placeDetailRatingTitle" :text="placeInfo.rating"/>
+         </StackLayout>
         </StackLayout>
-        <StackLayout class="placeDetailRatingTitleWrap">
-         <label class="placeDetailRatingTitle" :text="placeInfo.rating"/>
+         <StackLayout class="placeDetailRatingWrapNone" v-else>
+          <StackLayout class="placeDetailRatingIconWrap"  backgroundColor="#dddddd" >
+           <image class="placeDetailRatingIcon" src="~/Resources/img/place/star_f_64.png"/>
+          </StackLayout>
+          <StackLayout class="placeDetailRatingTitleWrap" >
+           <label class="placeDetailRatingTitle" text="정보없음"/>
+          </StackLayout>
+         </StackLayout>
+       </StackLayout>
+
+       <StackLayout>
+        <StackLayout v-if="placeInfo.phone_no != ''">
+         <StackLayout class="placeDetailTellingWrap" @tap="placeCallModal(placeInfo.phone_no)">
+          <StackLayout class="placeDetailTellingIconWrap" backgroundColor="#ffe074">
+           <image class="placeDetailTellingIcon" src="~/Resources/img/place/call_f_64.png"/>
+          </StackLayout>
+          <StackLayout class="placeDetailTellingTitleWrap"
+                       @tap="placeCallModal(placeInfo.phone_no)">
+           <label class="placeDetailTellingTitle" text="전화걸기"/>
+          </StackLayout>
+         </StackLayout>
+        </StackLayout>
+
+        <StackLayout v-else>
+         <StackLayout class="placeDetailTellingWrap">
+          <StackLayout class="placeDetailTellingIconWrap" backgroundColor="#dddddd">
+           <image class="placeDetailTellingIcon" src="~/Resources/img/place/call_f_64.png"/>
+          </StackLayout>
+          <StackLayout class="placeDetailTellingTitleWrap"
+                       @tap="placeCallModal(placeInfo.phone_no)">
+           <label class="placeDetailTellingTitle" text="정보없음"/>
+          </StackLayout>
+         </StackLayout>
         </StackLayout>
        </StackLayout>
-       <StackLayout class="placeDetailTellingWrap" @tap="placeCallModal(placeInfo.phone_no)">
-        <StackLayout class="placeDetailTellingIconWrap">
-         <image class="placeDetailTellingIcon" src="~/Resources/img/place/call_f_64.png"/>
-        </StackLayout>
-        <StackLayout class="placeDetailTellingTitleWrap"
-                     @tap="placeCallModal(placeInfo.phone_no)">
-         <label class="placeDetailTellingTitle" text="전화걸기"/>
-        </StackLayout>
-       </StackLayout>
+
+
+
+
        <StackLayout class="placeDetailMarkerWrap" @tap="addressCopy(placeInfo.road_address)">
         <StackLayout class="placeDetailMarkerIconWrap">
          <image class="placeDetailMarkerIcon" src="~/Resources/img/place/place_f_64.png"/>
@@ -95,7 +127,7 @@
      <!--    <label :text="placeInfo.rating" width="33.3%"/>-->
      <!--    <label text="메뉴" width="33.3%" />-->
      <!--   </StackLayout>-->
-     <StackLayout @tap="$navigateTo(reviewWritePage)" width="100" height="30" borderRadius="15"
+     <StackLayout @tap="goReviewWritePage" width="100" height="30" borderRadius="15"
                   backgroundColor="#ffe074" marginBottom="22">
       <label text="리뷰쓰기" color="#555555" fontSize="13" style="font-family: nanumsquareroundeb"
              marginLeft="26" marginTop="8"/>
@@ -116,10 +148,13 @@
  import GoogleList from './reviewComponents/GoogleList';
  import AppReviewList from './reviewComponents/AppReviewList';
 
+ import Login from '../../../../member/Login'
+
  import Tistory from "../../../home/homeComponents/TistoryList";
 
  import OpenTimeModal from './modal/OpenTimeModal';
  import PlaceCallModal from './modal/PlaceCallModal';
+ import PlaceGoLoginModal from './modal/PlaceGoLoginModal';
 
  var clipboard = require("nativescript-clipboard");
  var Toast = require("nativescript-toast");
@@ -166,6 +201,8 @@
    }).then((response) => {
       this.$data.placeInfo = response.data.dataList;
       this.$data.openTimeList = response.data.dataList.business_day;
+      console.log(this.$data.placeInfo)
+      console.log(this.$data.placeInfo.opening_hours)
       if(response.data.dataList.bookmark_flag == true){
        this.$data.bookmark = true;
       }else{
@@ -178,36 +215,70 @@
    this.$data.setPlace_id = this.item.place_id
 
   }, methods: {
+   goReviewWritePage(){
+     if(appSettings.getString("user_id") != undefined ){
+           if(appSettings.getString("user_id") !=''){
+              this.$navigateTo(reviewWritePage)
+           }else{
+              this.$navigateTo(Login)
+           }
+       }else{
+          this.$navigateTo(Login)
+       }
+   },
    bookmarkSetting(){
-    axios({
-     method: 'post',
-     url: 'http://api.eatjeong.com/v1/bookmarks',
-     params: {
-      gubun:'place',
-      place_id:cache.get("place_id"),
-      user_id:appSettings.getString("user_id"),
-      sns_division:appSettings.getString("sns_division")
-     },
-    }).then((response) => {
+
+    if(appSettings.getString("user_id") != undefined ){
+     if(appSettings.getString("user_id") !=''){
+      axios({
+       method: 'post',
+       url: 'http://api.eatjeong.com/v1/bookmarks',
+       params: {
+        gubun:'place',
+        place_id:cache.get("place_id"),
+        user_id:appSettings.getString("user_id"),
+        sns_division:appSettings.getString("sns_division")
+       },
+      }).then((response) => {
        this.$data.bookmark = true;
-    }, (error) => {
-     console.log(error);
-    });
+      }, (error) => {
+       console.log(error);
+      });
+     }else{
+      this.$showModal(PlaceGoLoginModal)
+     // this.$navigateTo(Login)
+     }
+    }else{
+     this.$showModal(PlaceGoLoginModal)
+    // this.$navigateTo(Login)
+    }
+
+
+
    },bookmarkDelete(){
-    axios({
-     method: 'delete',
-     url: 'http://api.eatjeong.com/v1/bookmarks',
-     params: {
-      gubun:'place',
-      place_id:cache.get("place_id"),
-      user_id:appSettings.getString("user_id"),
-      sns_division:appSettings.getString("sns_division")
-     },
-    }).then((response) => {
+
+    if(appSettings.getString("user_id") != undefined ){
+     if(appSettings.getString("user_id") !=''){
+      axios({
+       method: 'delete',
+       url: 'http://api.eatjeong.com/v1/bookmarks',
+       params: {
+        gubun:'place',
+        place_id:cache.get("place_id"),
+        user_id:appSettings.getString("user_id"),
+        sns_division:appSettings.getString("sns_division")
+       },
+      }).then((response) => {
        this.$data.bookmark = false;
-    }, (error) => {
-     console.log(error);
-    });
+      }, (error) => {
+       console.log(error);
+      });
+     }else{
+      this.$navigateTo(Login)
+     }
+    }else{
+     this.$navigateTo(Login)
+    }
    }, outubeReview() {
     return this.$data.setPlace_id
    }, addressCopy(address) {
@@ -220,6 +291,8 @@
      console.log("확인 " + content);
     })
    }, placeCallModal(phone_no) {
+    console.log(phone_no + "???")
+
     this.$showModal(PlaceCallModal, {
      props: {
       phone_no: phone_no,
@@ -231,17 +304,21 @@
      dimAmount: 0.5 // Sets the alpha of the background dim,
     });
    }, openTimeModal() {
-    this.$showModal(OpenTimeModal, {
-     props: {
-      openTimeList: this.$data.openTimeList
-     },
-     fullscreen: false,
-     animated: true,
-     stretched: false,
-     dismissEnabled: true,
-     dimAmount: 0.5 // Sets the alpha of the background dim,
-    });
+    if(this.$data.openTimeList != null){
+      this.$showModal(OpenTimeModal, {
+       props: {
+        openTimeList: this.$data.openTimeList
+       },
+       fullscreen: false,
+       animated: true,
+       stretched: false,
+       dismissEnabled: true,
+       dimAmount: 0.5 // Sets the alpha of the background dim,
+      });
+    }
+
    }, openingCheck() {
+    console.log(this.$data.placeInfo.opening_hours)
     var date = new Date();
     var day = date.toDateString().split(" ")[0];
     var before_day;
@@ -249,7 +326,7 @@
     var hour;
     var minute;
     var dayList = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    var opening_hours = JSON.parse(this.placeInfo.open_hours);
+    var opening_hours = JSON.parse(this.$data.placeInfo.opening_hours);
 
     //구글에서아예 서치를 못해 온 경우
     if (opening_hours == null) {

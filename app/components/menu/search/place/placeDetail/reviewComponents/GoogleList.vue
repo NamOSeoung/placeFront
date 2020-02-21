@@ -3,8 +3,8 @@
         <StackLayout orientation="horizontal" >
             <image class="youtubeListIcon" src="~/Resources/img/place/google.png" />
             <label class="tistoryListTitle" text="구글리뷰" />
-            <label class="tistoryListMore" text="더보기" @tap="$navigateTo(googleMorePage)" />
-            <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png" />
+<!--            <label class="tistoryListMore" text="더보기" @tap="goMorePage" />-->
+<!--            <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png" />-->
         </StackLayout>
         <ScrollView orientation="horizontal">
             <StackLayout class="googleListHeaderWrap" orientation="horizontal" >
@@ -47,7 +47,7 @@
     import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/GoogleList/googleList_360.scss';
     import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/GoogleList/googleList_420.scss';
     import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/GoogleList/googleList_480.scss';
-
+    var Toast = require("nativescript-toast");
     export default {
         name:"GoogleList",
         components: {
@@ -95,6 +95,13 @@
                     dismissEnabled:true,
                     dimAmount: 0.5 // Sets the alpha of the background dim,
                 });
+            },goMorePage(){
+                if(this.$data.googleMorePage.length < 5){
+                    Toast.makeText("더보기 할 데이터가 존재하지 않습니다.").show();
+                }else{
+                    this.$navigateTo(this.$data.googleMorePage)
+                }
+
             }
         }, mounted(){
             this.getGoogleReviewList()

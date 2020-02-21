@@ -6,7 +6,7 @@
        <image class="reviewMoreIcon"  src="~/Resources/img/home/angle-left.png" />
      </StackLayout>
      <StackLayout class="reviewMorePlaceNameWrap" >
-       <label class="reviewMorePlaceName" text="쉑쉑버거(강남점)"/>
+       <label class="reviewMorePlaceName" :text="place_name"/>
      </StackLayout>
    </StackLayout>
    <StackLayout marginTop="17">
@@ -52,12 +52,13 @@
  import '~/Resources/css/menu/search/place/placeDetail/placeMore/PlaceMoreBarCommon/placeMoreBarCommon_480.scss';
 
  import YoutubeWebview from './reviewMoreWebview/YoutubeWebview'
-
+ var cache = require("nativescript-cache");
     export default {
         name:"YoutubeMore",
        data(){
         return {
-            youtubeMoreList:[]
+            youtubeMoreList:[],
+            place_name:cache.get('place_name')
         }
        },
         components: {

@@ -1,84 +1,83 @@
 <template lang="html">
 <Page actionBarHidden="true">
      <StackLayout>
-        <StackLayout orientation="horizontal" height="64.05" borderBottomWidth="1.05" borderBottomColor="#dddddd" paddingBottom="21">
-          <StackLayout width="32.55" height="32.55" marginLeft="7" marginTop="30.5" @tap="$navigateBack">
-           <FIcon name="fa-angle-left" color="#555555"  fontSize="32.55"/>
+        <StackLayout orientation="horizontal" height="65" borderBottomWidth="1" borderBottomColor="#dddddd">
+          <StackLayout width="28" height="28" marginLeft="6" marginTop="34" @tap="$navigateBack">
+              <image src="~/Resources/img/home/angle-left.png" width="16" height="16"/>
           </StackLayout>
-          <StackLayout marginLeft="0"  marginTop="29.95" @tap="$navigateBack" height="15.05">
-              <label text="내정보" color="#333333" fontSize="14" style="font-family: nanumsquareroundeb" />
+          <StackLayout marginTop="23" @tap="$navigateBack" height="13">
+              <label text="내정보" color="#333333" fontSize="12" style="font-family: nanumsquareroundb" />
           </StackLayout>
-          <StackLayout marginTop="24.5" marginLeft="101.55" width="82.95" height="18.55">
-              <label text="내 정보 관리"  style="font-family: nanumsquareroundeb" fontSize="16.45" color="#333333" />
+          <StackLayout marginTop="21" marginLeft="82" width="71" height="16">
+              <label text="내 정보 관리"  style="font-family: nanumsquareroundb" fontSize="14" color="#333333" />
           </StackLayout>
         </StackLayout>
-         <StackLayout marginTop="37.45">
+         <StackLayout marginTop="37.45" v-if="sns_division=='K'">
              <StackLayout  orientation="horizontal">
-                 <StackLayout  marginLeft="29.05"  width="39.6" height="14.05">
-                     <label text="연동코드" color="#333333" style="font-family: nanumsquareroundeb"  fontSize="14"/>
+                 <StackLayout  marginLeft="25"  width="44" height="13">
+                     <label text="연동코드" color="#333333" style="font-family: nanumsquareroundb"  fontSize="12"/>
                  </StackLayout>
-                 <StackLayout marginLeft="197">
-                     <image src="~/Resources/img/user/kakaoicon.png" width="17.5" height="17.5" />
+                 <StackLayout marginLeft="126">
+                     <image src="~/Resources/img/user/kakaoicon.png" width="15" height="15" />
                  </StackLayout>
-                 <StackLayout marginLeft="1.05">
-                     <label text="KA00390208301" width="110.95" height="14.05" />
+                 <StackLayout marginLeft="10" width="100">
+                     <label text="KA00390208301" width="100" height="13" fontSize="12" color="#333333" fontFamily="nanumsquareroundr" />
                  </StackLayout>
-
              </StackLayout>
          </StackLayout>
          <StackLayout marginTop="37.45">
              <StackLayout  orientation="horizontal">
-                 <StackLayout  marginLeft="29.05"  width="39.6" height="14.05">
-                     <label text="이메일" color="#333333" style="font-family: nanumsquareroundeb"  fontSize="14"/>
+                 <StackLayout  marginLeft="25"  width="44" height="13">
+                     <label text="이메일" color="#333333" style="font-family: nanumsquareroundb"  fontSize="12"/>
                  </StackLayout>
-                 <StackLayout marginLeft="120" style="text-align: right" width="175" height="14.05">
-                     <label text="aaaaa@naver.com" style="font-family: nanumsquareroundr" fontSize="14" />
+                 <StackLayout marginLeft="70" style="text-align: right" width="175" height="14.05">
+                     <label :text="user_id" style="font-family: nanumsquareroundr" fontSize="12" color="#494949"/>
                  </StackLayout>
              </StackLayout>
          </StackLayout>
          <StackLayout marginTop="37.45">
              <StackLayout orientation="horizontal" @tap="$navigateTo(NickNamePage)">
-                 <StackLayout marginLeft="29.05"  width="39.6" height="14.05">
-                     <label text="닉네임" color="#333333" style="font-family: nanumsquareroundeb"  fontSize="14"/>
+                 <StackLayout   marginLeft="25"  width="44" height="13">
+                     <label text="닉네임"  color="#333333" style="font-family: nanumsquareroundb"  fontSize="12"/>
                  </StackLayout>
-                 <StackLayout marginLeft="120" style="text-align: right" width="175" height="14.05">
-                     <label text="닉네임닉네임닉네임닉" style="font-family: nanumsquareroundr" fontSize="14" />
+                 <StackLayout marginLeft="70" style="text-align: right" width="175" height="14.05">
+                     <label :text="nickname" style="font-family: nanumsquareroundr" fontSize="12" color="#494949"/>
                  </StackLayout>
                  <StackLayout  width="27.9" height="27.9">
-                     <FIcon name="fa-angle-right"  size="27.9" />
+                     <image src="~/Resources/img/home/angle-right.png"/>
                  </StackLayout>
              </StackLayout>
          </StackLayout>
          <StackLayout marginTop="37.45">
              <StackLayout orientation="horizontal"  @tap="$navigateTo(PhonePage)">
-                 <StackLayout marginLeft="29.05"  width="39.6" height="14.05">
-                     <label text="휴대폰" color="#333333" style="font-family: nanumsquareroundeb"  fontSize="14"/>
+                 <StackLayout  marginLeft="25"  width="44" height="13">
+                     <label text="휴대폰"color="#333333" style="font-family: nanumsquareroundb"  fontSize="12" />
                  </StackLayout>
-                 <StackLayout marginLeft="120" style="text-align: right" width="175" height="14.05">
-                     <label text="010-0000-0000" style="font-family: nanumsquareroundr" fontSize="14" />
+                 <StackLayout marginLeft="70" style="text-align: right" width="175" height="14.05">
+                     <label :text="phone_no" style="font-family: nanumsquareroundr" fontSize="12" color="#494949" />
                  </StackLayout>
                  <StackLayout  width="27.9" height="27.9">
-                     <FIcon name="fa-angle-right"  size="27.9" />
+                     <image src="~/Resources/img/home/angle-right.png"/>
                  </StackLayout>
              </StackLayout>
          </StackLayout>
-         <StackLayout marginTop="37.45">
+         <StackLayout marginTop="37.45" v-if="sns_division=='C'">
              <StackLayout orientation="horizontal" @tap="$navigateTo(PasswordPage)">
-                 <StackLayout marginLeft="29.05"  width="80.5" height="14.05">
-                     <label text="비밀번호 변경" color="#333333" style="font-family: nanumsquareroundeb"  fontSize="14"/>
+                 <StackLayout marginLeft="25"  width="80" height="13">
+                     <label text="비밀번호 변경" color="#333333" style="font-family: nanumsquareroundb"  fontSize="12"/>
                  </StackLayout>
-                 <StackLayout  width="27.9" height="27.9" marginLeft="254.45">
-                     <FIcon name="fa-angle-right"  size="27.9" />
+                 <StackLayout  width="27.9" height="27.9" marginLeft="210">
+                     <image src="~/Resources/img/home/angle-right.png"/>
                  </StackLayout>
              </StackLayout>
          </StackLayout>
-         <StackLayout marginTop="37.45">
+         <StackLayout marginTop="37.45"  v-if="sns_division=='C'">
              <StackLayout orientation="horizontal">
-                 <StackLayout marginLeft="29.05"  width="51.45" height="14.05" @tap="$navigateTo(UserSecessionPage)">
-                     <label text="탈퇴하기" color="#333333" style="font-family: nanumsquareroundeb"  fontSize="14"/>
+                 <StackLayout marginLeft="25"  width="44" height="13" @tap="$navigateTo(UserSecessionPage)">
+                     <label text="탈퇴하기" color="#333333" style="font-family: nanumsquareroundb"  fontSize="12"/>
                  </StackLayout>
-                 <StackLayout  width="27.9" height="27.9" marginLeft="283.45">
-                     <FIcon name="fa-angle-right"  size="27.9" />
+                 <StackLayout  width="27.9" height="27.9" marginLeft="245">
+                     <image src="~/Resources/img/home/angle-right.png"/>
                  </StackLayout>
              </StackLayout>
          </StackLayout>
@@ -90,16 +89,26 @@
     import NickName from './userInfoUpdate/NickName'
     import Phone from './userInfoUpdate/Phone'
     import UserSecession from './userInfoUpdate/UserSecession'
+
+    const appSettings = require("tns-core-modules/application-settings");
+
     export default {
         name:"UserInfoManagement",
+        props:['my_info'],
         components: {
         },data(){
             return {
                 PasswordPage:Password,
                 NickNamePage:NickName,
                 PhonePage:Phone,
-                UserSecessionPage:UserSecession
+                UserSecessionPage:UserSecession,
+                sns_division:appSettings.getString("sns_division"),
+                user_id:appSettings.getString("user_id"),
+                nickname:this.my_info.nickname,
+                phone_no:this.my_info.phone_number,
             }
+        },mounted(){
+            console.log(this.my_info.nickname)
         }
     };
 </script>

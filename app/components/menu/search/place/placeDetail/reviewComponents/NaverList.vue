@@ -3,8 +3,8 @@
         <StackLayout orientation="horizontal">
             <image class="youtubeListIcon" src="~/Resources/img/home/naver.png" />
             <label class="youtubeListTitle" text="네이버"  />
-            <label class="youtubeListMore" text="더보기"  @tap="$navigateTo(naverMorePage)"/>
-            <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png" />
+            <label class="youtubeListMore" text="더보기"  @tap="goMorePage" v-if="naverReview.length > 4"/>
+            <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png" v-if="naverReview.length > 4" />
         </StackLayout>
         <ScrollView orientation="horizontal">
             <StackLayout class="naverListHeaderWrap" orientation="horizontal"  >
@@ -60,6 +60,9 @@
     import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/NaverList/naverList_420.scss';
     import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/NaverList/naverList_480.scss';
     const appSettings = require("tns-core-modules/application-settings");
+
+    var Toast = require("nativescript-toast");
+
     export default {
         name:"NaverList",
         components: {
@@ -100,6 +103,13 @@
                     props: {
                         itemList: this.$data.naverReview[index-1]}
                 })
+            },goMorePage(){
+                if(this.$data.naverReview.length < 5){
+                    Toast.makeText("더보기 할 데이터가 존재하지 않습니다.").show();
+                }else{
+                    this.$navigateTo(this.$data.naverMorePage)
+                }
+
             }
         },mounted(){
             this.getNaverReviewList();

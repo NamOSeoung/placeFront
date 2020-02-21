@@ -6,9 +6,9 @@
                  <label text="잇정" class="homeAppName" />
                  <label text="어떤 맛집을 찾아볼까요?" class="homeTitle"/>
              </StackLayout>
-             <StackLayout orientation="horizontal" class="homeSearchWrap">
+             <StackLayout orientation="horizontal" class="homeSearchWrap" @tap="goSearchTab(1)">
                  <image src="~/Resources/img/home/maker.png" class="homeMakerIcon"/>
-                 <label :text="data.locationKeyword" class="homeSearchTitle"/>
+                 <label :text="data.locationKeyword" class="homeSearchTitle" />
                  <image src="~/Resources/img/home/search.png" class="homeSearchIcon" />
              </StackLayout>
          </StackLayout>

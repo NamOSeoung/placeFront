@@ -3,8 +3,8 @@
         <StackLayout orientation="horizontal">
             <image class="youtubeListIcon" src="~/Resources/img/home/tistory.png" />
             <label class="tistoryListTitle" text="티스토리" />
-            <label class="tistoryListMore" text="더보기" @tap="$navigateTo(tistoryMorePage)" />
-            <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png" />
+            <label class="tistoryListMore" text="더보기" @tap="goMorePage" v-if="tistoryReview.length > 4" />
+            <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png" v-if="tistoryReview.length > 4"/>
         </StackLayout>
         <ScrollView orientation="horizontal">
             <StackLayout class="naverListHeaderWrap" orientation="horizontal" >
@@ -55,7 +55,7 @@
     import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/TistoryList/tistoryList_360.scss';
     import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/TistoryList/tistoryList_420.scss';
     import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/TistoryList/tistoryList_480.scss';
-
+    var Toast = require("nativescript-toast");
     export default {
         name:"TistoryList",
         components: {
@@ -93,6 +93,13 @@
                     props: {
                         itemList: this.$data.tistoryReview[index-1]}
                 })
+            },goMorePage(){
+                if(this.$data.tistoryReview.length < 5){
+                    Toast.makeText("더보기 할 데이터가 존재하지 않습니다.").show();
+                }else{
+                    this.$navigateTo(this.$data.tistoryMorePage)
+                }
+
             }
         },
         mounted(){
