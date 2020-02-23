@@ -97,9 +97,12 @@
 
 <script>
 
+       import axios from 'axios';
+       const appSettings = require("tns-core-modules/application-settings"); //sharedpreferences;
+       import MenuWrap from '../../menu/MenuWrap'
        export default {
               name:'PasswordExcess',
-              props:['itemList'],
+              props:['user_id'],
               components : {
               },
               data: () => {
@@ -112,10 +115,32 @@
                      }
               },
               mounted() {
-                     console.log(this.itemList)
+                     console.log(this.user_id)
               },methods:{
                      chagePassword(){
                             console.log('2')
+
+                            axios({
+                                   method: 'put',
+                                   url: 'http://api.eatjeong.com/v1/users/general/password',
+                                   params: {
+                                          email:this.user_id,
+                                          password:this.$data.password,
+                                          sns_division:'C'
+                                   },
+                            }).then((response) => {
+                                   console.log(response.data.dataList)
+                                   if(response.data.dataList.result_flag == true){
+                                          appSettings.setString("user_id",this.user_id);
+                                          appSettings.setString("sns_division","C");
+                                          console.log(appSettings.getString("user_id"))
+                                          this.$navigateTo(MenuWrap,{ clearHistory: true });
+                                   }
+                            }, (error) => {
+                                   console.log(error)
+                                   Toast.makeText("로그인 오류가 발생하였습니다. 잠시 후 다시 시도 해 주세요.").show();
+                            });
+
                      },passwordDel(division){
                             if(division == 1){
                                    this.$data.password = '';

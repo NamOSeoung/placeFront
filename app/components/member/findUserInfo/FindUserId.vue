@@ -27,6 +27,7 @@
                                                 secure="false"
                                                 v-model="phone_no"
                                                 ref="phone_no"
+                                                keyboardType="number"
                                                 returnKeyType="search"
                                                 @returnPress="submit"
                                                 autocorrect="false"
