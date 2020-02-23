@@ -24,6 +24,17 @@
                                    </StackLayout>
                             </StackLayout>
                      </StackLayout>
+                     <StackLayout>
+                            <Button text="Show location" @tap="enableLocationServices"
+                                    :visibility="currentGeoLocation.latitude ? 'collapsed' : 'visible'" />
+                            <StackLayout
+                                    :visibility="currentGeoLocation.latitude ? 'visible' : 'collapsed'">
+                                   <Label :text="'Latitude: ' + currentGeoLocation.latitude" />
+                                   <Label :text="'Longitude: ' + currentGeoLocation.longitude" />
+                                   <Label :text="'Altitude: ' + currentGeoLocation.altitude" />
+                                   <Label :text="'Direction: ' + currentGeoLocation.direction" />
+                            </StackLayout>
+                     </StackLayout>
                      <StackLayout class="loginScreenBottomWrap" >
                             <StackLayout class="loginEmailWrap">
                                    <TextField
@@ -118,6 +129,7 @@
        import '~/Resources/css/member/Login/login_360.scss';
        import '~/Resources/css/member/Login/login_420.scss';
        import '~/Resources/css/member/Login/login_480.scss';
+      const geoLocation = require("nativescript-geolocation");
        export default {
               components : {
               },
@@ -130,7 +142,13 @@
                             password:'',
                             loginFlag:false,
                             isBusy:false,
-                            images:["~/Resources/img/place/google.png", "~/Resources/img/place/phone.png", "~/Resources/img/place/link_64.png", "~/images/share.png"]
+                            images:["~/Resources/img/place/google.png", "~/Resources/img/place/phone.png", "~/Resources/img/place/link_64.png", "~/images/share.png"],
+                            currentGeoLocation: {
+                                   latitude: null,
+                                   longitude: null,
+                                   altitude: null,
+                                   direction: null
+                            }
                            // infoEnderPage : InfoEnter
                      }
               },
@@ -142,6 +160,32 @@
 
 
               },methods:{
+                     enableLocationServices: function() {
+                            geoLocation.isEnabled().then(enabled => {
+                                   if (!enabled) {
+                                          geoLocation
+                                                  .enableLocationRequest()
+                                                  .then(() => this.showLocation());
+                                   } else {
+                                          this.showLocation();
+                                   }
+                            });
+                     },
+                     showLocation: function() {
+                            geoLocation.watchLocation(
+                                    location => {
+                                           this.currentGeoLocation = location;
+                                           console.log("location")
+                                    },
+                                    error => {
+                                           alert(error);
+                                    }, {
+                                           desiredAccuracy: 3,
+                                           updateDistance: 10,
+                                           minimumUpdateTime: 1000 * 1
+                                    }
+                            );
+                     },
                      userJoin(){
                             this.$navigateTo(MemberJoinTermsList);
                      },
