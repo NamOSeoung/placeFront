@@ -3,10 +3,11 @@
    <StackLayout orientation="horizontal" class="storeHeaderWrap">
        <image src="~/Resources/img/home/cook.png" class="storeCookIcon"/>
        <label text="매장정보" class="storeTitle"/>
-       <label text="더보기" class="storeMore" @tap="$navigateTo(StoreMorePage)"/>
-       <image src="~/Resources/img/home/angle-right.png" class="storeRightIcon" />
+       <label text="더보기" class="storeMore" @tap="$navigateTo(StoreMorePage)" v-if="storeList.length > 4"/>
+       <image src="~/Resources/img/home/angle-right.png" class="storeRightIcon"  v-if="storeList.length > 4"/>
    </StackLayout>
-     <ScrollView orientation="horizontal" >
+     <StackLayout v-if="storeList.length>0" marginTop="0">
+         <ScrollView orientation="horizontal" >
              <StackLayout orientation="horizontal" class="storeDetailSubWrap" >
                  <StackLayout orientation="horizontal" class="storeDetailWrap"  @tap="goPlaceDetail(index)" v-for="(list,index) in storeList">
                      <StackLayout class="storeLeftWrap" v-if="list.blog_thumbnail != null">
@@ -24,7 +25,7 @@
                                  <Image src="~/Resources/img/home/star.png" class="storeStarIcon" />
                              </StackLayout>
                              <StackLayout class="storeRatingWrap">
-                                 <label text="4.3" class="storeRating"/>
+                                 <label :text="list.google_rating" class="storeRating"/>
                              </StackLayout>
                          </StackLayout>
                          <StackLayout class="storeMiddleWrap">
@@ -36,7 +37,12 @@
                      </StackLayout>
                  </StackLayout>
              </StackLayout>
-     </ScrollView>
+         </ScrollView>
+     </StackLayout>
+     <StackLayout v-else marginTop="40" width="100%" style="text-align: center">
+         <label text="검색 결과가 없습니다." />
+     </StackLayout>
+
  </StackLayout>
 </template>
 
@@ -67,7 +73,7 @@
                     method: 'get',
                     url: 'http://api.eatjeong.com/v1/main/places?',
                     params: {
-                        query:"서울 동작구 상도동 맛집",
+                        query:keyword,
                         user_id:appSettings.getString("user_id"),
                         sns_division:appSettings.getString("sns_division"),
                         size:'5'
@@ -90,7 +96,12 @@
             }
         },
         mounted() {
-            this.getStoreList();
+            if(cache.get("location_name") == null){
+                this.getStoreList("서울 맛집");
+            }else{
+                this.getStoreList(cache.get("location_name"));
+            }
+            //this.getStoreList();
         }
     };
 </script>

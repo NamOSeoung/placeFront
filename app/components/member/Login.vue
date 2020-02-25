@@ -16,23 +16,12 @@
                                    <label text="Brand Logo" class="loginBrandLogo"/>
                             </StackLayout>
                             <StackLayout orientation="horizontal" class="loginBarogoMainWrap"  @tap="$navigateTo(detailPage)">
-                                   <StackLayout  class="loginBarogoWrap" @tap="$navigateTo(detailPage)">
-                                          <label text="둘러보기" class="loginBarogo" @tap="$navigateTo(detailPage)"/>
+                                   <StackLayout  class="loginBarogoWrap">
+                                          <label text="둘러보기" class="loginBarogo" />
                                    </StackLayout>
-                                   <StackLayout class="loginBarogoRightWrap" @tap="$navigateTo(detailPage)">
-                                          <image class="loginBarogoRight"  src="~/Resources/img/login/arrow-cricle-right.png"  @tap="$navigateTo(detailPage)" />
+                                   <StackLayout class="loginBarogoRightWrap">
+                                          <image class="loginBarogoRight"  src="~/Resources/img/login/arrow-cricle-right.png"  />
                                    </StackLayout>
-                            </StackLayout>
-                     </StackLayout>
-                     <StackLayout>
-                            <Button text="Show location" @tap="enableLocationServices"
-                                    :visibility="currentGeoLocation.latitude ? 'collapsed' : 'visible'" />
-                            <StackLayout
-                                    :visibility="currentGeoLocation.latitude ? 'visible' : 'collapsed'">
-                                   <Label :text="'Latitude: ' + currentGeoLocation.latitude" />
-                                   <Label :text="'Longitude: ' + currentGeoLocation.longitude" />
-                                   <Label :text="'Altitude: ' + currentGeoLocation.altitude" />
-                                   <Label :text="'Direction: ' + currentGeoLocation.direction" />
                             </StackLayout>
                      </StackLayout>
                      <StackLayout class="loginScreenBottomWrap" >
@@ -109,7 +98,7 @@
 </template>
 
 <script>
-
+       var dialogs = require("tns-core-modules/ui/dialogs");
       // require("nativescript-slideshow-busy-indicator");
        import MenuWrap from "../menu/MenuWrap";
        import FindUserId from "./findUserInfo/FindUserId"
@@ -129,7 +118,6 @@
        import '~/Resources/css/member/Login/login_360.scss';
        import '~/Resources/css/member/Login/login_420.scss';
        import '~/Resources/css/member/Login/login_480.scss';
-      const geoLocation = require("nativescript-geolocation");
        export default {
               components : {
               },
@@ -143,12 +131,6 @@
                             loginFlag:false,
                             isBusy:false,
                             images:["~/Resources/img/place/google.png", "~/Resources/img/place/phone.png", "~/Resources/img/place/link_64.png", "~/images/share.png"],
-                            currentGeoLocation: {
-                                   latitude: null,
-                                   longitude: null,
-                                   altitude: null,
-                                   direction: null
-                            }
                            // infoEnderPage : InfoEnter
                      }
               },
@@ -160,32 +142,6 @@
 
 
               },methods:{
-                     enableLocationServices: function() {
-                            geoLocation.isEnabled().then(enabled => {
-                                   if (!enabled) {
-                                          geoLocation
-                                                  .enableLocationRequest()
-                                                  .then(() => this.showLocation());
-                                   } else {
-                                          this.showLocation();
-                                   }
-                            });
-                     },
-                     showLocation: function() {
-                            geoLocation.watchLocation(
-                                    location => {
-                                           this.currentGeoLocation = location;
-                                           console.log("location")
-                                    },
-                                    error => {
-                                           alert(error);
-                                    }, {
-                                           desiredAccuracy: 3,
-                                           updateDistance: 10,
-                                           minimumUpdateTime: 1000 * 1
-                                    }
-                            );
-                     },
                      userJoin(){
                             this.$navigateTo(MemberJoinTermsList);
                      },
@@ -218,17 +174,27 @@
                                                  //this.$navigateTo(PasswordExcess);
                                                  this.$navigateTo(PasswordExcess, {
                                                         props: {
-                                                               itemList: response.data.dataList}
+                                                               user_id: this.$data.user_id}
                                                  })
                                           }else{
-                                                 Toast.makeText(response.data.dataList.result_message).show();
+                                                 //Toast.makeText(response.data.dataList.result_message).show();
                                                  appSettings.setString("user_id",this.$data.user_id);
                                                  appSettings.setString("sns_division","C");
                                                  console.log(appSettings.getString("user_id"))
                                                  this.$navigateTo(MenuWrap,{ clearHistory: true });
                                           }
                                    }else {
-                                          alert("이메일이나 비밀번호가 다릅니다.");
+                                          dialogs.alert({
+                                                 title: "",
+                                                 message: "이메일이나 비밀번호가 다릅니다.",
+                                                 okButtonText: "확인"
+                                          }).then(function () {
+                                                 console.log("Dialog closed!");
+                                          });
+                                          // dialogs.alert("").then(function() {
+                                          //        console.log("이메일이나 비밀번호가 다릅니다.");
+                                          // });
+                                          //alert("이메일이나 비밀번호가 다릅니다.");
                                          // Toast.makeText(response.data.dataList.result_message).show();
                                    }
 

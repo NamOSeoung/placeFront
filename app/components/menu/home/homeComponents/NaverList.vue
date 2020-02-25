@@ -3,28 +3,33 @@
         <StackLayout orientation="horizontal" class="naverHeaderWrap">
             <image src="~/Resources/img/home/naver.png" class="naverIcon"/>
             <label text="네이버" class="naverTitle"/>
-            <label text="더보기" class="naverMore" @tap="$navigateTo(NaverMorePage)"/>
-            <image src="~/Resources/img/home/angle-right.png" class="naverRightIcon" />
+            <label text="더보기" class="naverMore" @tap="$navigateTo(NaverMorePage)" v-if="naverList.length > 4"/>
+            <image src="~/Resources/img/home/angle-right.png" class="naverRightIcon" v-if="naverList.length > 4"/>
         </StackLayout>
-         <ScrollView orientation="horizontal" height="100%">
-             <StackLayout orientation="horizontal"  class="naverSubWrap" >
-                 <StackLayout  v-for="(list,index) in naverList" @tap="goWebview(index)" orientation="horizontal" class="naverMainWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" >
-                     <StackLayout class="naverImageWrap">
-                         <Image class="naverImage" stretch="aspectFill" :src="list.thumbnail_url"/>
-                     </StackLayout>
-                     <StackLayout class="naverRightWrap">
-                         <StackLayout class="naverRightTop">
-                            <label class="naverSubject" :text="list.title"  />
-                            <Label class="naverContents" :text="list.description" />
-                         </StackLayout>
-                         <StackLayout class="naverRightBottom" orientation="horizontal">
-                            <label class="naverWriteDate" :text="list.write_date"/>
-                            <label class="naverWriter" :text="list.author"/>
-                         </StackLayout>
-                     </StackLayout>
-                 </StackLayout>
-             </StackLayout>
-         </ScrollView>
+        <StackLayout v-if="naverList.length>0" marginTop="0" >
+            <ScrollView orientation="horizontal" height="100%">
+                <StackLayout orientation="horizontal"  class="naverSubWrap" >
+                    <StackLayout  v-for="(list,index) in naverList" @tap="goWebview(index)" orientation="horizontal" class="naverMainWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" >
+                        <StackLayout class="naverImageWrap">
+                            <Image class="naverImage" stretch="aspectFill" :src="list.thumbnail_url"/>
+                        </StackLayout>
+                        <StackLayout class="naverRightWrap">
+                            <StackLayout class="naverRightTop">
+                                <label class="naverSubject" :text="list.title"  />
+                                <Label class="naverContents" :text="list.description" />
+                            </StackLayout>
+                            <StackLayout class="naverRightBottom" orientation="horizontal">
+                                <label class="naverWriteDate" :text="list.write_date"/>
+                                <label class="naverWriter" :text="list.author"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+        <StackLayout v-else marginTop="40" width="100%" style="text-align: center">
+            <label text="검색 결과가 없습니다." />
+        </StackLayout>
      </StackLayout>
 </template>
 
@@ -37,7 +42,7 @@
     import NaverMore from './reviewMore/NaverMore'
     import NaverWebview from './reviewMore/mainReviewWebview/NaverWebview'
     import axios from 'axios';
-
+    var cache = require("nativescript-cache");
     export default {
         name:"NaverList",
         components: {
@@ -47,12 +52,12 @@
                 NaverMorePage:NaverMore
             }
          },methods :{
-            getNaverList(){
+            getNaverList(keyword){
                   axios({
                     method: 'get',
                         url: 'http://api.eatjeong.com/v1/main/reviews',
                     params: {
-                        query:"서울 동작구 상도동 맛집",
+                        query:keyword,
                         portal:"NAVER",
                         size:'5'
                     },
@@ -72,7 +77,13 @@
                 })
             }
         },mounted(){
-            this.getNaverList();
+
+            if(cache.get("location_name") == null){
+                this.getNaverList("서울 맛집");
+            }else{
+               this.getNaverList(cache.get("location_name"));
+            }
+           // this.getNaverList();
         }
     };
 

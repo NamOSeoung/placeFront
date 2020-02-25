@@ -3,21 +3,27 @@
      <StackLayout orientation="horizontal" class="youtubeHeaderWrap">
          <image src="~/Resources/img/home/youtube.png" class="youtubeIcon"/>
          <label text="유튜브" class="youtubeTitle"/>
-         <label text="더보기" class="youtubeMore" @tap="$navigateTo(YoutubeMorePage)"/>
-         <image src="~/Resources/img/home/angle-right.png" class="youtubeRightIcon" />
+         <label text="더보기" class="youtubeMore" @tap="$navigateTo(YoutubeMorePage)" v-if="youtubeList.length > 4" />
+         <image src="~/Resources/img/home/angle-right.png" class="youtubeRightIcon" v-if="youtubeList.length > 4" />
      </StackLayout>
-   <ScrollView orientation="horizontal">
-       <StackLayout orientation="horizontal" class="youtubeSubWrap"  >
-            <StackLayout class="youtubeMainWrap" v-for="(list,index)  in youtubeList" @tap="goWebview(index)">
-                <StackLayout class="youtubeImageWrap">
-                    <image class="youtubeImage" stretch="aspectFill"  :src="list.thumbnail_url"/>
-                </StackLayout>
-                <StackLayout class="youtubeSubjectWrap" >
-                    <Label row="2" class="youtubeSubject" :text="list.title" textWrap="true"  />
-                </StackLayout>
-            </StackLayout>
-       </StackLayout>
-   </ScrollView>
+     <StackLayout v-if="youtubeList.length>0" marginTop="0">
+         <ScrollView orientation="horizontal">
+             <StackLayout orientation="horizontal" class="youtubeSubWrap"  >
+                 <StackLayout class="youtubeMainWrap" v-for="(list,index)  in youtubeList" @tap="goWebview(index)">
+                     <StackLayout class="youtubeImageWrap">
+                         <image class="youtubeImage" stretch="aspectFill"  :src="list.thumbnail_url"/>
+                     </StackLayout>
+                     <StackLayout class="youtubeSubjectWrap" >
+                         <Label row="2" class="youtubeSubject" :text="list.title" textWrap="true"  />
+                     </StackLayout>
+                 </StackLayout>
+             </StackLayout>
+         </ScrollView>
+     </StackLayout>
+
+     <StackLayout v-else marginTop="60" width="100%" style="text-align: center">
+         <label text="검색 결과가 없습니다." />
+     </StackLayout>
  </StackLayout>
 </template>
 
@@ -31,7 +37,7 @@
 
     import YoutubeMore from './reviewMore/YoutubeMore'
     import YoutubeWebview from './reviewMore/mainReviewWebview/YoutubeWebview'
-
+    var cache = require("nativescript-cache");
     export default {
         name:"YoutubeList",
         components: {
@@ -42,12 +48,12 @@
                 YoutubeMorePage:YoutubeMore
             }
          },methods :{
-            getYoutubeList(){
+            getYoutubeList(keyword){
                   axios({
                     method: 'get',
                         url: 'http://api.eatjeong.com/v1/main/reviews?',
                     params: {
-                        query:"서울 동작구 상도동 맛집",
+                        query:keyword,
                         portal:"YOUTUBE",
                         size:'5'
                     },
@@ -68,7 +74,13 @@
             }
         },mounted(){
             console.log('213123123')
-            this.getYoutubeList();
+            console.log(cache.get("location_name"))
+            if(cache.get("location_name") == null){
+                this.getYoutubeList("서울 맛집");
+            }else{
+                this.getYoutubeList(cache.get("location_name"));
+            }
+           // this.getYoutubeList();
         }
     };
 </script>

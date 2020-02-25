@@ -10,21 +10,23 @@
                     <image src="~/Resources/img/place/close_5_64_b.png"/>
                 </StackLayout>
             </StackLayout>
-            <StackLayout class="findPasswordPhoneCertWrap"  orientation="horizontal">
+            <StackLayout class="findPasswordPhoneCertWrap" orientation="horizontal" width="300">
                 <StackLayout>
-                    <StackLayout class="findPasswordPhoneCertTitleWrap">
+                    <StackLayout class="findPasswordPhoneCertTitleWrap" width="360">
                         <StackLayout class="" >
                             <label text="휴대폰번호" class="findPasswordPhoneCertTitle" />
                         </StackLayout>
-                        <StackLayout class="findUserIdPhonerWrap" >
-                            <StackLayout class="findUserIdPhoneNumberWrap"  orientation="horizontal">
-                                <StackLayout class="findPasswordPhoneCertNumberWrapWrap">
+                        <StackLayout class="findUserIdPhonerWrap"  width="360" >
+                            <StackLayout class="findUserIdPhoneNumberWrap" orientation="horizontal" width="300" >
+                                <StackLayout class="findPasswordPhoneCertNumberWrapWrap" width="260" >
                                     <TextField
                                             class="findUserIdPhoneNumber"
+                                            width="260"
                                             hint="000-0000-0000"
                                             [text]='name'
                                             secure="false"
                                             returnKeyType="done"
+                                            keyboardType="number"
                                             v-model="phone_no"
                                             ref="phone_no"
                                             (returnPress)="onReturnPress($event)"
@@ -35,7 +37,7 @@
                                             (blur)="onBlur($event)">
                                     </TextField>
                                 </StackLayout>
-                                <StackLayout class="findUserIdPhoneDeleteWrap" @tap="delPhoneNo" ref="delPhone">
+                                <StackLayout class="findUserIdPhoneDeleteWrap" @tap="delPhoneNo" ref="delPhone" v-if="phone_no.length>0">
                                     <image class="findUserIdPhoneDelete" src="~/Resources/img/login/delete-circle.png"/>
                                 </StackLayout>
                             </StackLayout>
@@ -44,67 +46,20 @@
                     <StackLayout class="findPasswordPhoneCertWrongWrap" v-if="phone_validation == 1">
                         <label class="findPasswordPhoneCertWrong" text="숫자만 기입 해 주세요." />
                     </StackLayout>
-                </StackLayout>
-                <StackLayout class="phoneCertWrap" v-if="codeSendFlag == 0" >
-                    <label class="findPasswordPhoneCertNumberRespone" text="인증번호받기" />
-                </StackLayout>
-                <StackLayout class="phoneCertWrap2" v-else-if="codeSendFlag==1" @tap="codeSend">
-                    <label class="findPasswordPhoneCertNumberRespone2" text="인증번호받기" />
-                </StackLayout>
-                <StackLayout class="phoneCertWrap2" v-else-if="codeSendFlag==2">
-                    <label class="findPasswordPhoneCertNumberRespone2" text="재전송"  />
-                </StackLayout>
-            </StackLayout>
-        </StackLayout>
-        <StackLayout v-if="codeSendFlag == 2">
-            <StackLayout class="findPasswordPhoneCertBottomWrap" orientation="horizontal">
-                <StackLayout>
-                    <StackLayout class="findPasswordPhoneCertTitleWrap">
-                        <StackLayout class="findPasswordPhoneCertTitleWrapWrap44" >
-                            <label text="인증번호" class="findPasswordPhoneCertTitle" />
+                    <StackLayout class="findUserIdOkButtomWrap">
+                        <StackLayout v-if="button_ok == false">
+                            <StackLayout class="findUserIdOkButtomWrapWrap"  >
+                                <label class="findUserIdOkButtom" text="확인" />
+                            </StackLayout>
                         </StackLayout>
-                        <StackLayout class="findUserIdPhonerWrap" >
-                            <StackLayout class="findUserIdPhoneNumberWrap"  orientation="horizontal">
-                                <StackLayout class="findPasswordPhoneCertNumberWrapWrap">
-                                    <TextField
-                                            class="findUserIdPhoneNumber"
-                                            [text]='name'
-                                            secure="false"
-                                            returnKeyType="done"
-                                            v-model="sms_code"
-                                            (returnPress)="onReturnPress($event)"
-                                            autocorrect="false"
-                                            maxLength="10"
-                                            backgroundColor="#ffffff"
-                                            (focus)="onFocus($event)"
-                                            (blur)="onBlur($event)">
-                                    </TextField>
-                                </StackLayout>
+                        <StackLayout  v-else>
+                            <StackLayout class="findUserIdOkButtomWrapWrap2" @tap="phoneUpdate">
+                                <label class="findUserIdOkButtom2" text="확인" />
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout class="findPasswordPhoneCertCountWrap">
-                    <label class="findPasswordPhoneCertCount" :text="'남은시간 '+minute+second " />
-                </StackLayout>
-            </StackLayout>
-            <StackLayout class="findPasswordPhoneCertWrongWrap" v-if="code_validation==1" >
-                <label class="findPasswordPhoneCertWrong" text="인증번호가 틀립니다." />
-            </StackLayout>
-            <StackLayout class="findPasswordPhoneCertWrongWrap" v-if="code_validation==2" >
-                <label class="findPasswordPhoneCertWrong" text="인증시간이 만료되었습니다 재전송 해 주세요." />
-            </StackLayout>
-            <StackLayout class="findUserIdOkButtomWrap">
-                <StackLayout v-if="sms_code.length==0">
-                    <StackLayout class="findUserIdOkButtomWrapWrap">
-                        <label class="findUserIdOkButtom" text="확인" />
-                    </StackLayout>
-                </StackLayout>
-                <StackLayout v-else>
-                    <StackLayout class="findUserIdOkButtomWrapWrap2" @tap="codeCheck">
-                        <label class="findUserIdOkButtom2" text="확인" />
-                    </StackLayout>
-                </StackLayout>
+
             </StackLayout>
         </StackLayout>
     </StackLayout>
@@ -114,6 +69,7 @@
 
     import axios from 'axios';
     const appSettings = require("tns-core-modules/application-settings");
+    var dialogs = require("tns-core-modules/ui/dialogs");
     export default {
         name:"Phone",
         components: {
@@ -127,7 +83,8 @@
                 phone_validation:0,
                 bottomFlag:0,
                 code_validation:0,
-                sms_code:''
+                sms_code:'',
+                button_ok:false
             }
         },methods: {
             delPhoneNo() {
@@ -163,6 +120,14 @@
                     },
                 }).then((response) => {
                     console.log(response.data);
+                    dialogs.alert({
+                        title: "",
+                        message: "변경되었습니다.",
+                        okButtonText: "확인"
+                    }).then(() =>{
+                        console.log("Dialog closed!");
+                        this.$navigateBack();
+                    });
                 }, (error) => {
                     console.log(error);
                 });
@@ -204,14 +169,17 @@
 
                     if(phone_no.indexOf('-')>-1){
                         this.$data.phone_validation = 1;
+                        this.$data.button_ok = false;
                         return;
                     }
                     if(pattern1.test(phone_no)){
                         this.$data.phone_validation = 1;
+                        this.$data.button_ok = false;
                         return;
                     }
                     if(pattern2.test(phone_no)){
                         this.$data.phone_validation = 1;
+                        this.$data.button_ok = false;
                         return;
                     }
 
@@ -220,6 +188,7 @@
                 if(phone_no.length == ''){
                     this.$data.phone_validation = 0;
                     this.$data.codeSendFlag = 0;
+                    this.$data.button_ok = false;
                     return;
                 }else{
                     this.$data.phone_validation = 2;
@@ -232,6 +201,7 @@
                         console.log(phone_no2)
                         console.log(phone_no3)
                         this.$data.phone_no = phone_no1+phone_no2+phone_no3
+                        this.$data.button_ok = false;
                         console.log(this.$data.phone_no)
                         setTimeout(() => {
                             nativeView.android.setSelection(10)
@@ -246,10 +216,11 @@
                         var phone_no3 = phone_no.slice(7,11);
 
                         this.$data.phone_no = phone_no1 + '-' + phone_no2 + '-' + phone_no3;
-
+                        this.$data.button_ok = true;
                         setTimeout(() => {
                             nativeView.android.setSelection(13)
                         }, 10);
+
 
 
                         this.$data.phone_validation = 2;

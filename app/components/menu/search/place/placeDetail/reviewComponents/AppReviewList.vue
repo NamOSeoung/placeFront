@@ -4,13 +4,13 @@
             <StackLayout orientation="horizontal" >
                 <image class="youtubeListIcon" src="~/Resources/img/place/google.png" />
                 <label class="tistoryListTitle" text="잇정리뷰" />
-                <label class="tistoryListMore" text="더보기" @tap="goMorePage" />
-                <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png" />
+                <label class="tistoryListMore" text="더보기" @tap="goMorePage"  v-if="appReview.length > 4"/>
+                <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png"  v-if="appReview.length > 4"/>
             </StackLayout>
         </StackLayout>
         <ScrollView orientation="horizontal">
             <StackLayout orientation="horizontal">
-                <StackLayout class="appReviewListHeaderWrap" orientation="horizontal" v-for="a_reviews in appReview" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }"  >
+                <StackLayout class="appReviewListHeaderWrap" orientation="horizontal" v-for="a_reviews in appReview" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }"  @tap="appReviewDetail(a_reviews)" >
                        <StackLayout orientation="horizontal" v-if="a_reviews.image_url.length > 0 ">
                            <StackLayout class="appReviewListThumbnailWrap"  >
                                <Image class="appReviewListThumbnail"  stretch="aspectFill" :src="a_reviews.image_url[0]" @tap="pictureDetail(a_reviews.image_url[0])"/>
@@ -70,10 +70,12 @@
     import axios from 'axios';
     var cache = require("nativescript-cache");
     import PictureModal from '../modal/PictureModal'
+    import AppReviewModal from '../modal/AppReviewModal'
     import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/AppReviewList/appReviewList_320.scss';
     import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/AppReviewList/appReviewList_360.scss';
     import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/AppReviewList/appReviewList_420.scss';
     import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/AppReviewList/appReviewList_480.scss';
+    import GoogleReviewModal from "../modal/GoogleReviewModal";
     const appSettings = require("tns-core-modules/application-settings");
     var Toast = require("nativescript-toast");
     export default {
@@ -93,11 +95,48 @@
                     params: {
                         user_id:appSettings.getString("user_id"),
                         sns_division:appSettings.getString("sns_division"),
-                        size:'5'
+                        //size:'5'
                     },
                 }).then((response) => {
-                    (response.data);
-                    this.$data.appReview = response.data.dataList;
+                    var write_flag = false;
+                    if(response.data.dataList.length > 5){
+                        for(var i = 0; i < response.data.dataList.length; i++){
+                            if(appSettings.getString("user_id") != undefined ) {
+                                if (appSettings.getString("user_id") != '') {
+                                    if (response.data.dataList[i].review_user_id == appSettings.getString("user_id")) {
+                                        write_flag = true;
+                                    }
+                                }
+                            }
+                            console.log(response.data.dataList[i] + "reviewssssssss")
+                            if(i < 5){
+                                console.log(response.data.dataList[i] + "reviewssss")
+                                this.$data.appReview.push(response.data.dataList[i]);
+                            }
+                        }
+
+                    }else{
+                        this.$data.appReview = response.data.dataList;
+                        for(var i = 0; i < response.data.dataList.length; i++) {
+                            if (appSettings.getString("user_id") != undefined) {
+                                if (appSettings.getString("user_id") != '') {
+                                    if (response.data.dataList[i].review_user_id == appSettings.getString("user_id")) {
+                                        write_flag = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                    if( write_flag == true){
+                        cache.set("write_flag","true");
+                    }else{
+                        cache.set("write_flag","false");
+                    }
+
+                    console.log(write_flag + "asdasd")
+
                 }, (error) => {
                     console.log(error);
                 });
@@ -119,6 +158,18 @@
                     this.$navigateTo(this.$data.appReviewMorePage)
                 }
 
+            },appReviewDetail(review) {
+                console.log("ssss")
+                this.$showModal(AppReviewModal,{
+                    props: {
+                        reviewList:review
+                    },
+                    fullscreen: false,
+                    animated: true,
+                    stretched: false,
+                    dismissEnabled:true,
+                    dimAmount: 0.5 // Sets the alpha of the background dim,
+                });
             }
         },
         mounted(){

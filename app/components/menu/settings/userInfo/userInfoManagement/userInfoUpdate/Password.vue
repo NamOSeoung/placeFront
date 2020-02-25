@@ -30,7 +30,7 @@
                              (blur)="onBlur($event)">
                      </TextField>
                  </StackLayout>
-                 <StackLayout class="findUserIdPhoneDeleteWrap"  @tap="passwordDel(1)">
+                 <StackLayout class="findUserIdPhoneDeleteWrap"  @tap="passwordDel(1)" v-if="password.length>0">
                      <image class="findUserIdPhoneDelete" src="~/Resources/img/login/delete-circle.png"/>
                  </StackLayout>
              </StackLayout>
@@ -58,7 +58,7 @@
                                 (blur)="onBlur($event)">
                      </TextField>
                  </StackLayout>
-                 <StackLayout class="findUserIdPhoneDeleteWrap" @tap="passwordDel(2)">
+                 <StackLayout class="findUserIdPhoneDeleteWrap" @tap="passwordDel(2)" v-if="password2.length>0">
                      <image class="findUserIdPhoneDelete" src="~/Resources/img/login/delete-circle.png"/>
                  </StackLayout>
              </StackLayout>
@@ -84,7 +84,8 @@
 <script>
 
     import axios from 'axios';
-
+    const appSettings = require("tns-core-modules/application-settings");
+    var dialogs = require("tns-core-modules/ui/dialogs");
     export default {
         name:"Password",
         components: {
@@ -212,6 +213,30 @@
                     this.$data.password2 = '';
                 }
             },chagePassword(){
+
+                axios({
+                    method: 'put',
+                    url: 'http://api.eatjeong.com/v1/users/general/password',
+                    params: {
+                        email : appSettings.getString("user_id"),
+                        password : this.$data.password,
+                        sns_division : appSettings.getString("sns_division")
+                    },
+                }).then((response) => {
+                    console.log(response.data);
+                    dialogs.alert({
+                        title: "",
+                        message: "변경되었습니다.",
+                        okButtonText: "확인"
+                    }).then(() =>{
+                        console.log("Dialog closed!");
+                        this.$navigateBack();
+                    });
+                }, (error) => {
+                    console.log(error);
+                });
+
+
                 console.log('패스워드 변경')
             }
         }

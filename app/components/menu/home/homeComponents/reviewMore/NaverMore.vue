@@ -78,7 +78,24 @@
  import '~/Resources/css/menu/search/place/placeDetail/placeMore/PlaceMoreBarCommon/placeMoreBarCommon_360.scss';
  import '~/Resources/css/menu/search/place/placeDetail/placeMore/PlaceMoreBarCommon/placeMoreBarCommon_420.scss';
  import '~/Resources/css/menu/search/place/placeDetail/placeMore/PlaceMoreBarCommon/placeMoreBarCommon_480.scss';
-console.log('wwwwww')
+
+ // const Page = require('tns-core-modules/ui/page').Page;
+ //
+ // exports.pageLoaded = pageLoaded;
+ //
+ // function pageLoaded(args) {
+ //     var page = args.object;
+ //     console.log(page);
+ //     page.viewModel = viewModel;
+ //     viewModel.set("LastGetNews", "test");
+ // }
+     // Page.on('navigatingFrom', (data) => {
+     //     console.log("ghcnf")
+     //     // run destroy code
+     //     // (note: this will run when you either move forward to a new page or back to the previous page)
+     // })
+
+
     export default {
         name:"NaverMore",
        data(){

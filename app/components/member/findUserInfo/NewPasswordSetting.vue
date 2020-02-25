@@ -36,7 +36,7 @@
                                         (blur)="onBlur($event)">
                                 </TextField>
                             </StackLayout>
-                            <StackLayout class="findUserIdPhoneDeleteWrap" @tap="delPassword">
+                            <StackLayout class="findUserIdPhoneDeleteWrap" @tap="delPassword" v-if="password.length>0">
                                 <image class="findUserIdPhoneDelete" src="~/Resources/img/login/delete-circle.png"/>
                             </StackLayout>
                         </StackLayout>
@@ -73,7 +73,7 @@
                                         (blur)="onBlur($event)">
                                 </TextField>
                             </StackLayout>
-                            <StackLayout class="findUserIdPhoneDeleteWrap" @tap="delPassword2">
+                            <StackLayout class="findUserIdPhoneDeleteWrap" @tap="delPassword2" v-if="password2.length>0">
                                 <image class="findUserIdPhoneDelete" src="~/Resources/img/login/delete-circle.png" />
                             </StackLayout>
                         </StackLayout>
@@ -131,7 +131,7 @@
     var Toast = require("nativescript-toast");
     import FindPasswordPhoneCert from './FindPasswordPhoneCert'
     import Login from '../Login'
-
+    var dialogs = require("tns-core-modules/ui/dialogs");
     export default {
         name:'NewPasswordSetting',
         props:['user_id'],
@@ -167,16 +167,35 @@
                 }).then((response) => {
                     console.log(response.data)
                     if(response.data.dataList.result_flag == true){
-                        Toast.makeText('변경이 완료되었습니다. 다시 로그인 해 주세요.').show();
-                        this.$navigateTo(Login);
+                        dialogs.alert({
+                            title: "",
+                            message: "변경이 완료되었습니다.",
+                            okButtonText: "확인"
+                        }).then(() => {
+                            console.log("Dialog closed22!");
+                            //this.aaa()
+                            this.$navigateTo(Login);
+
+                        });
                     }else{
-                        Toast.makeText('비밀번호 변경 실패하였습니다.').show();
+                        dialogs.alert({
+                            title: "",
+                            message: "비밀번호 변경 실패하였습니다.",
+                            okButtonText: "확인"
+                        }).then(function () {
+                            console.log("Dialog closed!");
+                            //this.$navigateTo(Login);
+
+                        });
+                       // Toast.makeText('비밀번호 변경 실패하였습니다.').show();
                     }
 
                 }, (error) => {
                     console.log(error);
                     Toast.makeText('비밀번호 변경 실패하였습니다.').show();
                 });
+            },aaa(){
+                console.log('sss')
             }
         },
         watch:{

@@ -3,27 +3,33 @@
         <StackLayout orientation="horizontal" class="tistoryHeaderWrap">
             <image src="~/Resources/img/home/tistory.png" class="tistoryIcon"/>
             <label text="티스토리" class="tistoryTitle"/>
-            <label text="더보기" class="tistoryMore" @tap="$navigateTo(TistoryMorePage)"/>
-            <image src="~/Resources/img/home/angle-right.png" class="tistoryRightIcon" />
+            <label text="더보기" class="tistoryMore" @tap="$navigateTo(TistoryMorePage)"  v-if="tistoryList.length > 4" />
+            <image src="~/Resources/img/home/angle-right.png" class="tistoryRightIcon"   v-if="tistoryList.length > 4" />
         </StackLayout>
-        <ScrollView orientation="horizontal">
-            <StackLayout orientation="horizontal"  class="tistorySubWrap">
-                <StackLayout orientation="horizontal"  @tap="goWebview(index)" v-for="(list,index) in tistoryList" class="tistoryMainWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" >
-                    <StackLayout class="tistoryImageWrap">
-                        <Image class="tistoryImage" stretch="aspectFill" :src="list.thumbnail_url"/>
-                    </StackLayout>
-                    <StackLayout class="tistoryRightWrap">
-                        <StackLayout class="tistoryRightTop">
-                            <label class="tistorySubject" :text="list.title"  textWrap="true" row="2" />
+        <StackLayout v-if="tistoryList.length>0" marginTop="0">
+            <ScrollView orientation="horizontal">
+                <StackLayout orientation="horizontal"  class="tistorySubWrap">
+                    <StackLayout orientation="horizontal"  @tap="goWebview(index)" v-for="(list,index) in tistoryList" class="tistoryMainWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" >
+                        <StackLayout class="tistoryImageWrap">
+                            <Image class="tistoryImage" stretch="aspectFill" :src="list.thumbnail_url"/>
                         </StackLayout>
-                        <StackLayout class="tistoryRightBottom" orientation="horizontal">
-                            <label class="tistoryWriteDate" :text="list.write_date"/>
-                            <label class="tistoryWriter" :text="list.author"/>
+                        <StackLayout class="tistoryRightWrap">
+                            <StackLayout class="tistoryRightTop">
+                                <label class="tistorySubject" :text="list.title"  textWrap="true" row="2" />
+                            </StackLayout>
+                            <StackLayout class="tistoryRightBottom" orientation="horizontal">
+                                <label class="tistoryWriteDate" :text="list.write_date"/>
+                                <label class="tistoryWriter" :text="list.author"/>
+                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
-            </StackLayout>
-        </ScrollView>
+            </ScrollView>
+        </StackLayout>
+
+        <StackLayout v-else marginTop="40" width="100%" style="text-align: center">
+            <label text="검색 결과가 없습니다." />
+        </StackLayout>
     </StackLayout>
 </template>
 
@@ -37,18 +43,19 @@
     import { StackLayout } from 'ui/layouts/stack-layout';
     import TistoryMore from './reviewMore/TistoryMore'
     import TistoryWebview from './reviewMore/mainReviewWebview/TistoryWebview'
-    var observableModule = require("data/observable");
-    var observableArrayModule = require("data/observable-array");
-    let page;
-    var pageData = new observableModule.Observable({
-        myList: new observableArrayModule.ObservableArray(["foo", "bar"])
-    });
-    exports.loaded = function(args) {
-        console.log('123123123123')
-        var page = args.object;
-        page.bindingContext = pageData;
-        console.log(pageData.myList)
-    };
+    // var observableModule = require("data/observable");
+    // var observableArrayModule = require("data/observable-array");
+    // let page;
+    var cache = require("nativescript-cache");
+    // var pageData = new observableModule.Observable({
+    //     myList: new observableArrayModule.ObservableArray(["foo", "bar"])
+    // });
+    // exports.loaded = function(args) {
+    //     console.log('123123123123')
+    //     var page = args.object;
+    //     page.bindingContext = pageData;
+    //     console.log(pageData.myList)
+    // };
 
     export default {
         name:"Tistory",
@@ -60,12 +67,12 @@
                 user_name:global.user_name
             }
          },methods :{
-            getTistoryList(){
+            getTistoryList(keyword){
                   axios({
                     method: 'get',
                         url: 'http://api.eatjeong.com/v1/main/reviews?',
                     params: {
-                        query:"서울 동작구 상도동 맛집",
+                        query:keyword,
                         portal:"DAUM",
                         size:'5'
                     },
@@ -85,7 +92,12 @@
                 })
             }
         },mounted(){
-             this.getTistoryList();
+            if(cache.get("location_name") == null){
+                this.getTistoryList("서울 맛집");
+            }else{
+                this.getTistoryList(cache.get("location_name"));
+            }
+            // this.getTistoryList();
 
         }
     };

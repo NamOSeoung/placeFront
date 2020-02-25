@@ -77,9 +77,9 @@
                     <StackLayout class="findPasswordPhoneCertWrongWrap" v-if="phone_validation == 1">
                         <label class="findPasswordPhoneCertWrong" text="숫자만 기입 해 주세요." />
                     </StackLayout>
-                    <StackLayout class="infoEnterValidation" v-if="user_exist==false">
-                        <label class="infoEnterValidationRed" text="계정이 존재하지 않습니다." />
-                    </StackLayout>
+<!--                    <StackLayout class="infoEnterValidation" v-if="user_exist==false">-->
+<!--                        <label class="infoEnterValidationRed" text="계정이 존재하지 않습니다." />-->
+<!--                    </StackLayout>-->
                 </StackLayout>
                 <StackLayout class="findUserIdOkButtomWrap">
                     <StackLayout v-if="input_check == false">
@@ -116,7 +116,7 @@
 
     import FindPasswordPhoneCert from './FindPasswordPhoneCert'
     import NewPasswordSetting from './NewPasswordSetting'
-
+    var dialogs = require("tns-core-modules/ui/dialogs");
     export default {
         name:'FindUserPassword',
         components : {
@@ -258,7 +258,14 @@
                                 user_id: this.$data.user_id}
                         });
                     }else{
-                        alert("일치하는 정보가 없습니다.");
+                        dialogs.alert({
+                            title: "",
+                            message: "일치하는 정보가 없습니다.",
+                            okButtonText: "확인"
+                        }).then(function () {
+                            console.log("Dialog closed!");
+                        });
+                        // alert("일치하는 정보가 없습니다.");
                         this.$data.user_exist=false;
                     }
 

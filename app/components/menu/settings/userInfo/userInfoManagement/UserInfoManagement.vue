@@ -72,8 +72,8 @@
              </StackLayout>
          </StackLayout>
          <StackLayout marginTop="37.45"  v-if="sns_division=='C'">
-             <StackLayout orientation="horizontal">
-                 <StackLayout marginLeft="25"  width="44" height="13" @tap="$navigateTo(UserSecessionPage)">
+             <StackLayout orientation="horizontal" @tap="$navigateTo(UserSecessionPage)">
+                 <StackLayout marginLeft="25"  width="44" height="13" >
                      <label text="탈퇴하기" color="#333333" style="font-family: nanumsquareroundb"  fontSize="12"/>
                  </StackLayout>
                  <StackLayout  width="27.9" height="27.9" marginLeft="245">

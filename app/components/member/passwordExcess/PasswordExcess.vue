@@ -1,7 +1,7 @@
 <script src="../../app.js"></script>
 <template>
        <Page actionBarHidden="true">
-              <StackLayout>
+              <StackLayout ref="ss">
                      <StackLayout class="findUserIdBarWrap" orientation="horizontal" height="65" >
                             <StackLayout class="findUserIdBarTitleWrap"  marginLeft="140" width="80" >
                                    <label class="findUserIdBarTitle" text="비밀번호 변경" width="80"  />
@@ -27,9 +27,11 @@
                                                          hint="비밀번호"
                                                          [text]='name'
                                                          secure="true"
+                                                         id="password"
                                                          v-model="password"
+                                                         ref="password"
                                                          returnKeyType="done"
-                                                         (returnPress)="onReturnPress($event)"
+                                                         @returnPress="onReturnPress($event)"
                                                          autocorrect="false"
                                                          maxLength="50"
                                                          (focus)="onFocus($event)"
@@ -79,7 +81,7 @@
                                    </StackLayout>
                             </StackLayout>
                             <StackLayout orientation="horizontal" marginLeft="65">
-                                   <StackLayout marginTop="23.45" width="100" height="32" borderRadius="16" backgroundColor="#dddddd" style="text-align: center">
+                                   <StackLayout marginTop="23.45" width="100" height="32" borderRadius="16" backgroundColor="#dddddd" style="text-align: center" @tap="nextPasswordChange">
                                           <label text="다음에 변경" width="100"  color="#555555" fontSize="12" style="font-family: nanumsquareroundb"  height="13" marginTop="9" marginBottom="9"/>
                                    </StackLayout>
                                    <StackLayout marginTop="23.45" width="100" marginLeft="30" height="32" borderRadius="16" backgroundColor="#dddddd" style="text-align: center" v-if="input_check==false" >
@@ -100,6 +102,10 @@
        import axios from 'axios';
        const appSettings = require("tns-core-modules/application-settings"); //sharedpreferences;
        import MenuWrap from '../../menu/MenuWrap'
+       import Login from "../Login";
+       var dialogs = require("tns-core-modules/ui/dialogs");
+       const page = require('tns-core-modules/ui/page');
+
        export default {
               name:'PasswordExcess',
               props:['user_id'],
@@ -134,7 +140,18 @@
                                           appSettings.setString("user_id",this.user_id);
                                           appSettings.setString("sns_division","C");
                                           console.log(appSettings.getString("user_id"))
-                                          this.$navigateTo(MenuWrap,{ clearHistory: true });
+
+                                          dialogs.alert({
+                                                 title: "",
+                                                 message: "변경되었습니다.",
+                                                 okButtonText: "확인"
+                                          }).then(() => {
+                                                 console.log("Dialog closed22!");
+                                                 this.$navigateTo(MenuWrap,{ clearHistory: true });
+
+                                          });
+
+                                          //this.$navigateTo(MenuWrap,{ clearHistory: true });
                                    }
                             }, (error) => {
                                    console.log(error)
@@ -147,6 +164,34 @@
                             }else{
                                    this.$data.password2 = '';
                             }
+                     },onReturnPress(event){
+                            console.log("s33ss33")
+                            //this.$refs.ss.
+                           // event.object.android.setFocusable(false);
+                           // event.object.android.setFocusable(true);
+                            //page.getViewById("password").setFocusable(false);
+                     },nextPasswordChange(){
+                            console.log("2222")
+                            axios({
+                                   method: 'get',
+                                   url: 'http://api.eatjeong.com/v1/users/general/signinforce',
+                                   params: {
+                                          user_id:this.user_id,
+                                   },
+                            }).then((response) => {
+                                   console.log(response.data.dataList)
+                                   if(response.data.dataList.result == true){
+                                          appSettings.setString("user_id",this.user_id);
+                                          appSettings.setString("sns_division","C");
+                                          this.$navigateTo(MenuWrap,{ clearHistory: true });
+                                   }else{
+                                          Toast.makeText("로그인 오류가 발생하였습니다. 잠시 후 다시 시도 해 주세요.").show();
+                                   }
+                            }, (error) => {
+                                   console.log(error)
+                                   Toast.makeText("로그인 오류가 발생하였습니다. 잠시 후 다시 시도 해 주세요.").show();
+                            });
+
                      }
               },watch :{
                      password:function(){

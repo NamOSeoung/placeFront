@@ -26,7 +26,7 @@
                              (blur)="onBlur($event)">
                      </TextField>
                  </StackLayout>
-                 <StackLayout class="findUserIdPhoneDeleteWrap">
+                 <StackLayout class="findUserIdPhoneDeleteWrap"v-if="nickname.length >0" @tap="deleteAllNickname">
                      <image class="findUserIdPhoneDelete" src="~/Resources/img/login/delete-circle.png"/>
                  </StackLayout>
              </StackLayout>
@@ -50,7 +50,7 @@
 <script>
     import axios from 'axios'
     const appSettings = require("tns-core-modules/application-settings");
-
+    var dialogs = require("tns-core-modules/ui/dialogs");
     export default {
         name:"NickName",
         components: {
@@ -105,9 +105,21 @@
                     },
                 }).then((response) => {
                     console.log(response.data);
+                    dialogs.alert({
+                        title: "",
+                        message: "저장되었습니다.",
+                        okButtonText: "확인"
+                    }).then(() =>{
+                        console.log("Dialog closed!");
+                        this.$navigateBack();
+                    });
                 }, (error) => {
                     console.log(error);
                 });
+
+
+            },deleteAllNickname(){
+                this.$data.nickname = '';
             }
         }
     };

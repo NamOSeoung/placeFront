@@ -8,7 +8,7 @@
      <StackLayout class="reviewMorePlaceNameWrap"  >
        <label class="reviewMorePlaceName" :text="place_name"/>
      </StackLayout>
-       <StackLayout class="appReviewWriteIconWrap" >
+       <StackLayout class="appReviewWriteIconWrap" @tap="reviewWrite">
            <image class="appReviewWriteIcon" src="~/Resources/img/place/Orion_edit.png" />
        </StackLayout>
    </StackLayout>
@@ -39,11 +39,19 @@
                                <label class="appReviewUserNickName" :text="a_reviews.author" stretch="aspectFill" />
                            </StackLayout>
                            <StackLayout class="googleReviewMoreRatingWrap" orientation="horizontal">
-                               <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" v-if="a_reviews.rating_point > 0"/>
-                               <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" v-if="a_reviews.rating_point > 1"/>
-                               <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" v-if="a_reviews.rating_point > 2"/>
-                               <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" v-if="a_reviews.rating_point > 3"/>
-                               <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" v-if="a_reviews.rating_point > 4"/>
+                               <StackLayout orientation="horizontal">
+                                   <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="85" v-if="a_reviews.rating_point == 1"/>
+                                   <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="65" v-else-if="a_reviews.rating_point==2"/>
+                                   <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="45" v-else-if="a_reviews.rating_point == 3"/>
+                                   <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="25" v-else-if="a_reviews.rating_point== 4"/>
+                                   <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="5" v-else-if="a_reviews.rating_point == 5"/>
+                                   <StackLayout orientation="horizontal">
+                                       <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 1"/>
+                                       <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 2"/>
+                                       <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 3"/>
+                                       <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 4"/>
+                                   </StackLayout>
+                               </StackLayout>
                            </StackLayout>
                        </StackLayout>
                        <StackLayout class="googleReviewMoreContentsWrap" >
@@ -58,14 +66,20 @@
                            <StackLayout class="appReviewDateWrap" >
                                <label class="appReviewDate" :text="a_reviews.write_date" />
                            </StackLayout>
-                           <StackLayout class="appReviewLikeIconWrap">
-                               <image class="appReviewLikeIcon"  src="~/Resources/img/place/Orion_likes.png" />
+                           <StackLayout  v-if="a_reviews.like_flag == true" marginTop="-5" class="appReviewLikeIconWrap" @tap="updateLikeCount(a_reviews.review_id,'DEL')">
+                               <image class="appReviewLikeIcon"  src="~/Resources/img/settings/like_r_64.png" />
                            </StackLayout>
-                           <StackLayout class="appReviewLikeCountWrap" >
+                           <StackLayout  v-else class="appReviewLikeIconWrap" marginTop="-5" @tap="updateLikeCount(a_reviews.review_id,'ADD')">
+                               <image class="appReviewLikeIcon"  src="~/Resources/img/user/heart_d_64.png" />
+                           </StackLayout>
+                           <StackLayout class="appReviewLikeCountWrap" width="150" >
                                <label class="appReviewLikeCount" :text="a_reviews.like_count" />
                            </StackLayout>
-                           <StackLayout v-if="user_id == a_reviews.review_user_id">
-                               <StackLayout class="appReviewDeleteWrap" @tap="reviewDelete(a_reviews.review_id)" >
+                           <StackLayout orientation="horizontal" v-if="user_id == a_reviews.review_user_id">
+                               <StackLayout class="appReviewDeleteWrap" @tap="updateReview(a_reviews)" >
+                                   <label class="appReviewDelete" text="수정"/>
+                               </StackLayout>
+                               <StackLayout class="appReviewDeleteWrap" @tap="reviewDelete(a_reviews.review_id)" marginLeft="10" >
                                    <label class="appReviewDelete" text="삭제"/>
                                </StackLayout>
                            </StackLayout>
@@ -93,8 +107,13 @@
     import '~/Resources/css/menu/search/place/placeDetail/placeMore/AppReviewMore/appReviewMore_360.scss';
     import '~/Resources/css/menu/search/place/placeDetail/placeMore/AppReviewMore/appReviewMore_420.scss';
     import '~/Resources/css/menu/search/place/placeDetail/placeMore/AppReviewMore/appReviewMore_480.scss';
+    import Login from "../../../../../member/Login";
+    import ReviewWrite from "../review/ReviewWrite";
     const appSettings = require("tns-core-modules/application-settings");
     var cache = require("nativescript-cache");
+    import PlaceGoLoginModal from '../modal/PlaceGoLoginModal'
+    var dialogs = require("tns-core-modules/ui/dialogs");
+
     export default {
         name:"AppReviewMore",
         components: {
@@ -108,8 +127,6 @@
             this.appReviewMore();
         },methods :{
             appReviewMore(){
-
-
                 axios({
                     method: 'get',
                     url: 'http://api.eatjeong.com/v1/places/'+cache.get('place_id')  + '/reviews/eatzeong',
@@ -148,20 +165,146 @@
                 dimAmount: 0.5 // Sets the alpha of the background dim,
             });
          },reviewDelete(review_id){
-                console.log('ssss')
-                axios({
-                    method: 'delete',
-                    url: 'http://api.eatjeong.com/v1/places/'+cache.get("place_id")+'/reviews/'+review_id,
-                    params: {
-                        review_user_id:appSettings.getString("user_id"),
-                        sns_division:appSettings.getString("sns_division"),
-                    },
-                }).then((response) => {
-                    console.log(response.data);
-                    this.appReviewMore();
-                }, (error) => {
-                    console.log(error);
+                console.log('ssss');
+
+                dialogs.confirm({
+                    title: "",
+                    message: "리뷰를 삭제하시겠습니까?",
+                    okButtonText: "네",
+                    cancelButtonText: "아니오",
+                }).then((result) =>  {
+                    // result argument is boolean
+                    console.log("Dialog result: " + result);
+                    if(result == true){
+
+                        axios({
+                            method: 'delete',
+                            url: 'http://api.eatjeong.com/v1/places/'+cache.get("place_id")+'/reviews/'+review_id,
+                            params: {
+                                review_user_id:appSettings.getString("user_id"),
+                                sns_division:appSettings.getString("sns_division"),
+                            },
+                        }).then((response) => {
+                            console.log(response.data);
+
+                            dialogs.alert({
+                                title: "",
+                                message: "리뷰가 삭제되었습니다.",
+                                okButtonText: "확인"
+                            }).then(() => {
+                                console.log("Dialog closed22!");
+                                this.appReviewMore();
+                                //this.appReviewMore();
+                                //this.aaa()
+                                //this.$navigateTo(Login);
+
+                            });
+                        }, (error) => {
+                            console.log(error);
+                        });
+
+                    }
                 });
+
+                // axios({
+                //     method: 'delete',
+                //     url: 'http://api.eatjeong.com/v1/places/'+cache.get("place_id")+'/reviews/'+review_id,
+                //     params: {
+                //         review_user_id:appSettings.getString("user_id"),
+                //         sns_division:appSettings.getString("sns_division"),
+                //     },
+                // }).then((response) => {
+                //     console.log(response.data);
+                //     this.appReviewMore();
+                // }, (error) => {
+                //     console.log(error);
+                // });
+            },aaa(){
+                console.log('123123')
+            },updateReview(reviews){
+                console.log(reviews)
+                this.$navigateTo(ReviewWrite, {
+                    props: {
+                        itemList: reviews}
+                })
+            },updateLikeCount(review_id,division){
+                if(appSettings.getString("user_id") != undefined ) {
+                    if (appSettings.getString("user_id") != '') {
+                        if (division == 'ADD') {
+                            axios({
+                                method: 'post',
+                                url: 'http://api.eatjeong.com/v1/reviews/' + review_id,
+                                params: {
+                                    user_id: appSettings.getString("user_id"),
+                                    sns_division: appSettings.getString("sns_division"),
+                                },
+                            }).then((response) => {
+                                console.log(response.data);
+                                this.appReviewMore();
+                            }, (error) => {
+                                console.log(error);
+                            });
+                        } else {
+                            axios({
+                                method: 'delete',
+                                url: 'http://api.eatjeong.com/v1/reviews/' + review_id,
+                                params: {
+                                    user_id: appSettings.getString("user_id"),
+                                    sns_division: appSettings.getString("sns_division"),
+                                },
+                            }).then((response) => {
+                                console.log(response.data);
+                                this.appReviewMore();
+                            }, (error) => {
+                                console.log(error);
+                            });
+                        }
+                    }else{
+                        this.$showModal(PlaceGoLoginModal)
+                        this.$modal.close()
+                    }
+                }else{
+                    this.$showModal(PlaceGoLoginModal)
+                    this.$modal.close()
+                }
+            },reviewWrite(){
+                console.log("리뷰 작성")
+                if(appSettings.getString("user_id") != undefined ) {
+                    if (appSettings.getString("user_id") != '') {
+                        var write_flag = false;
+                        for(var i = 0; i < this.$data.appReview.length ; i++){
+                            if(this.$data.appReview[i].review_user_id == this.$data.user_id){
+                                write_flag = true;
+                                break;
+                            }
+                        }
+
+                        console.log(write_flag)
+
+                        if(write_flag == true){
+                            dialogs.alert({
+                                title: "",
+                                message: "이미 작성하신 리뷰가 존재합니다.",
+                                okButtonText: "확인"
+                            }).then(() => {
+                                console.log("Dialog closed22!");
+                                //this.appReviewMore();
+                                //this.appReviewMore();
+                                //this.aaa()
+                                //this.$navigateTo(Login);
+
+                            });
+                        }else{
+                            this.$navigateTo(ReviewWrite)
+                        }
+                    }else{
+                        this.$showModal(PlaceGoLoginModal)
+                        this.$modal.close()
+                    }
+                }else{
+                    this.$showModal(PlaceGoLoginModal)
+                    this.$modal.close()
+                }
             }
         }
     };

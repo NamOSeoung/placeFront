@@ -48,7 +48,7 @@
                      </StackLayout>
                  </StackLayout>
                  <StackLayout marginTop="20" backgroundColor="#ffffff" width="330" height="266">
-                     <TextView  height="266" width="330" backgroundColor="#ffffff" maxLength="1000" hint="10자 이상 입력해주세요." style="font-family: nanumsquareroundr"  color="#333333" v-model="contents" fontSize="12" hintColor="#cccccc" returnKeyType="send" @textChange="wordLengthCehck" ></TextView>
+                     <TextView  height="266" width="330" backgroundColor="#ffffff" maxLength="1000" hint="10자 이상 입력해주세요." style="font-family: nanumsquareroundr"   color="#333333"  returnKeyType="done" v-model="contents" fontSize="12" hintColor="#cccccc" @textChange="wordLengthCehck" ></TextView>
                  </StackLayout>
                  <StackLayout width="330" style="text-align: right" orientation="horizontal" marginTop="10">
                      <label v-model="wordLength" :text="wordLength" width="290" style="font-family: nanumsquareroundb" fontSize="13" color="#555555"/>
@@ -86,11 +86,12 @@
  import { Label } from "tns-core-modules/ui/label";
  import * as bghttp from "nativescript-background-http";
  import axios from "axios";
+ import AppReviewMore from "../reviewMore/AppReviewMore";
  const httpModule = require("tns-core-modules/http");
  import PictureDetail from './PictureDetail';
  var cache = require("nativescript-cache");
  const appSettings = require("tns-core-modules/application-settings");
-
+ var dialogs = require("tns-core-modules/ui/dialogs");
  export default {
      props:['itemList'],
   data() {
@@ -140,7 +141,7 @@
           this.$navigateTo(PictureDetail)
       },
       pictureDelete(){
-            if(this.$data.imageAssets[this.$data.imageAssets.length-1].indexOf("http") > -1) {
+            if(this.$data.imageAssets.indexOf("http") > -1) {
                 this.$data.image_url.pop();
             }
           this.$data.imageAssets.pop();
@@ -200,13 +201,40 @@
              console.log(e.eventName);
              console.log(e);
              if(e.eventName == 'complete'){
-                 this.$navigateBack();
+                 dialogs.alert({
+                     title: "",
+                     message: "리뷰가 등록되었습니다.",
+                     okButtonText: "확인"
+                 }).then(() =>{
+                     console.log("Dialog closed!");
+                     this.$navigateTo(AppReviewMore);
+                    // this.$navigateBack();
+                     return;
+                     // this.$navigateBack();
+                 });
+
              }
          },
       fileUpload(){
-          console.log(this.$data.fileList[0])
-          console.log(this.$data.fileList[0]._android)
-          var file = this.$data.imageAssets[0]._android;
+
+          if(this.$data.contents.length < 10 ){
+              dialogs.alert({
+                  title: "",
+                  message: "10자 이상 입력해주세요.",
+                  okButtonText: "확인"
+              }).then(() =>{
+                  console.log("Dialog closed!");
+                  return;
+                  // this.$navigateBack();
+              });
+              return;
+          }
+          //console.log(this.$data.fileList[0])
+          //console.log(this.$data.fileList[0]._android)
+          var file = '';
+          if(this.$data.imageAssets.length > 0){
+              file = this.$data.imageAssets[0]._android;
+          }
           var url = "http://api.eatjeong.com/v1/places/"+cache.get('place_id') +"/reviews";
           var name = file.substr(file.lastIndexOf("/") + 1);
 
@@ -261,7 +289,15 @@
              console.log(selection)
                 this.$data.fileList =  selection;
              if(selection.length > 4){
-                 alert('이미지 첨부는 4개까지만 가능합니다.');
+                 dialogs.alert({
+                     title: "",
+                     message: "최대 4장까지 등록 가능합니다.",
+                     okButtonText: "확인"
+                 }).then(() =>{
+                     console.log("Dialog closed!");
+                     // this.$navigateBack();
+                 });
+                 //alert('이미지 첨부는 4개까지만 가능합니다.');
                  return
              }
                 // set the images to be loaded from the assets with optimal sizes (optimize memory usage)
@@ -269,45 +305,60 @@
               element.options.width = this.isSingleMode ? this.previewSize : this.thumbSize;
               element.options.height = this.isSingleMode ? this.previewSize : this.thumbSize;
              });
-             if((this.imageAssets.length+selection.length)>4){
-                 alert('이미지 첨부는 4개까지만 가능합니다.'+(4-this.imageAssets.length)+'개 추가 첨부 가능합니다.');
-                 return;
-             } else if((this.imageAssets.length == 3)&&(selection.length == 1)){
-                 this.imageAssets.push(selection[0])
-                 this.$data.update_image_file.push(selection[0])
-             }else if((this.imageAssets.length == 2)&&(selection.length == 1)){
-                 this.imageAssets.push(selection[0])
-                 this.$data.update_image_file.push(selection[0])
-             }else if((this.imageAssets.length == 2)&&(selection.length == 1)){
-                    this.imageAssets.push(selection[0])
-                    this.imageAssets.push(selection[1])
 
-                 this.$data.update_image_file.push(selection[0])
-                 this.$data.update_image_file.push(selection[1])
-             }else if((this.imageAssets.length == 1)&&(selection.length == 1)){
-                    this.imageAssets.push(selection[0])
+           if(this.itemList != undefined) {
+                   if ((this.imageAssets.length + selection.length) > 4) {
+                       dialogs.alert({
+                           title: "",
+                           message: "최대 4장까지 등록 가능합니다.",
+                           okButtonText: "확인"
+                       }).then(() => {
+                           console.log("Dialog closed!");
+                           // this.$navigateBack();
+                       });
+                       //alert('이미지 첨부는 4개까지만 가능합니다.'+(4-this.imageAssets.length)+'개 추가 첨부 가능합니다.');
+                       return;
+                   } else if ((this.imageAssets.length == 3) && (selection.length == 1)) {
+                       this.imageAssets.push(selection[0])
+                       // this.$data.update_image_file.push(selection[0])
+                   } else if ((this.imageAssets.length == 2) && (selection.length == 1)) {
+                       this.imageAssets.push(selection[0])
+                      // this.$data.update_image_file.push(selection[0])
+                   } else if ((this.imageAssets.length == 2) && (selection.length == 1)) {
+                       this.imageAssets.push(selection[0])
+                       this.imageAssets.push(selection[1])
 
-                 this.$data.update_image_file.push(selection[0])
-             }else if((this.imageAssets.length ==1)&&(selection.length == 2)){
-                    this.imageAssets.push(selection[0])
-                    this.imageAssets.push(selection[1])
+                       // this.$data.update_image_file.push(selection[0])
+                       // this.$data.update_image_file.push(selection[1])
+                   } else if ((this.imageAssets.length == 1) && (selection.length == 1)) {
+                       this.imageAssets.push(selection[0])
 
-                 this.$data.update_image_file.push(selection[0])
-                 this.$data.update_image_file.push(selection[1])
+                       // this.$data.update_image_file.push(selection[0])
+                   } else if ((this.imageAssets.length == 1) && (selection.length == 2)) {
+                       this.imageAssets.push(selection[0])
+                       this.imageAssets.push(selection[1])
 
-             }else if((this.imageAssets.length == 1)&&(selection.length == 3)){
-                    this.imageAssets.push(selection[0])
-                    this.imageAssets.push(selection[1])
-                    this.imageAssets.push(selection[2])
+                       // this.$data.update_image_file.push(selection[0])
+                       // this.$data.update_image_file.push(selection[1])
 
-                 this.$data.update_image_file.push(selection[0])
-                 this.$data.update_image_file.push(selection[1])
-                 this.$data.update_image_file.push(selection[2])
-             }else{
-                 this.imageAssets = selection;
-                 this.$data.update_image_file = selection;
-             }
+                   } else if ((this.imageAssets.length == 1) && (selection.length == 3)) {
+                       this.imageAssets.push(selection[0])
+                       this.imageAssets.push(selection[1])
+                       this.imageAssets.push(selection[2])
 
+                       // this.$data.update_image_file.push(selection[0])
+                       // this.$data.update_image_file.push(selection[1])
+                       // this.$data.update_image_file.push(selection[2])
+                   } else {
+                       this.imageAssets = selection;
+                       //this.$data.update_image_file = selection;
+                   }
+              }else{
+                    if(this.imageAssets.length == 0){
+                        this.imageAssets = selection;
+                        this.$data.update_image_file = selection;
+                    }
+              }
             }).catch(function (e) {
      console.log(e);
     });

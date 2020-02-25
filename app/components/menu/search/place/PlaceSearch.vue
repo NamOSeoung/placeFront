@@ -28,23 +28,24 @@
         </StackLayout>
        </StackLayout>
 
-       <StackLayout v-if="keywordWrap == 'late'">
-        <ScrollView>
+       <StackLayout v-if="keywordWrap == 'late'" height="100%">
+        <ScrollView height="100%">
           <StackLayout backgroundColor="#ffffff">
-           <StackLayout v-for="(list,index) in latelyKeywordList" >
-            <StackLayout class="latelyKeywordHeaderWrap" orientation="horizontal" >
-             <StackLayout class="latelyKeywordKeywordWrap" @tap="placeSearch(list.keyword)">
-              <label class="latelyKeywordKeyword" :text="list.keyword" />
-             </StackLayout>
-             <StackLayout class="latelyKeyWordDateWrap">
-              <label class="latelyKeywordDate" :text="list.writeDate" />
-             </StackLayout>
-             <StackLayout class="latelyKeywordDeleteIconWrap"  @tap="deleteLatelyKeyword(list.keyword)" >
-              <image class="latelyKeywordDeleteIcon" width="10" height="10" src="~/Resources/img/place/close_5_64.png" />
+            <StackLayout v-for="(list,index) in latelyKeywordList">
+             <StackLayout class="latelyKeywordHeaderWrap" orientation="horizontal" >
+              <StackLayout class="latelyKeywordKeywordWrap" @tap="placeSearch(list.keyword)">
+               <label class="latelyKeywordKeyword" :text="list.keyword" />
+              </StackLayout>
+              <StackLayout class="latelyKeyWordDateWrap">
+               <label class="latelyKeywordDate" :text="list.writeDate" />
+              </StackLayout>
+              <StackLayout class="latelyKeywordDeleteIconWrap"  @tap="deleteLatelyKeyword(list.keyword)" >
+               <image class="latelyKeywordDeleteIcon" width="10" height="10" src="~/Resources/img/place/close_5_64.png" />
+              </StackLayout>
              </StackLayout>
             </StackLayout>
-           </StackLayout>
-           <StackLayout class="latelyKeywordAllDeleteWrap" @tap="removeLatelyKeyword('ALL')" height="100%">
+           <StackLayout class="latelyKeywordAllDeleteWrap" @tap="removeLatelyKeyword('ALL')">
+            <label class="latelyKeywordAllDelete" text="최근 검색어가 없습니다." marginBottom="20"  v-if="latelyKeywordList.length < 1" />
             <label class="latelyKeywordAllDelete" text="검색 기록 전체삭제" />
      <!--       <label v-else text="최근 검색어가 없습니다." marginTop="59.5" width="120" height="15" style="font-family: nanumsquareroundr" fontSize="12" color="#333333"/>-->
            </StackLayout>
@@ -52,10 +53,10 @@
         </ScrollView>
        </StackLayout>
 
-       <StackLayout v-else  height="100%">
-        <ScrollView>
+       <StackLayout v-else height="100%">
+        <ScrollView  height="100%">
          <StackLayout backgroundColor="#ffffff">
-          <StackLayout  class="popularKeywordWrap"  v-for="keyword in popularKeywordList">
+          <StackLayout  class="popularKeywordWrap" v-for="keyword in popularKeywordList">
            <StackLayout class="latelyKeywordHeaderWrap" orientation="horizontal" @tap="placeSearch(keyword.search_word)" >
             <StackLayout class="latelyKeywordKeywordWrap">
              <label class="latelyKeywordKeyword" :text="keyword.index +'. '+keyword.search_word" />
@@ -65,6 +66,7 @@
          </StackLayout>
         </ScrollView>
        </StackLayout>
+
       </StackLayout>
      </StackLayout>
 
@@ -81,73 +83,77 @@
      </StackLayout>
 
         <StackLayout class="placeSearchPlaceListWrap" v-else-if="listViewing=='place'"  marginTop="0" > <!-- 장소리스트 section -->
-         <ListView class="placeSearchPlaceList" for="place in placeList" separatorColor="transparent"
-                   style="height:100%" @itemTap="goPlaceDetail" >
-          <v-template>
-           <StackLayout class="storeMarkDetailSubWrap" >
-            <StackLayout orientation="horizontal" class="storeMarkDetailWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
-             <StackLayout class="storeLeftWrap" v-if="place.blog_thumbnail !=null ">
-              <image class="storeImage" stretch="aspectFill" :src="place.blog_thumbnail"/>
+         <StackLayout class="latelyKeywordAllDeleteWrap" height="20" v-if="placeList.length < 1" >
+          <label class="latelyKeywordAllDelete" text="검색 결과가 없습니다." />
+          <!--       <label v-else text="최근 검색어가 없습니다." marginTop="59.5" width="120" height="15" style="font-family: nanumsquareroundr" fontSize="12" color="#333333"/>-->
+         </StackLayout>
+          <ListView class="placeSearchPlaceList" for="place in placeList" separatorColor="transparent"
+                    style="height:100%" @itemTap="goPlaceDetail" >
+           <v-template v-if="placeList.length > 0">
+            <StackLayout class="storeMarkDetailSubWrap" >
+             <StackLayout orientation="horizontal" class="storeMarkDetailWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
+              <StackLayout class="storeLeftWrap" v-if="place.blog_thumbnail !=null ">
+               <image class="storeImage" stretch="aspectFill" :src="place.blog_thumbnail"/>
+              </StackLayout>
+              <StackLayout class="storeLeftWrap" v-else backgroundColor="#dddddd" borderRadius="10">
+               <image class="storeImage" width="55" height="55" marginTop="8" stretch="aspectFill" src="~/Resources/img/home/dinner_w_64.png"/>
+              </StackLayout>
+              <StackLayout class="storeMarkRightWrap">
+               <StackLayout orientation="horizontal" class="storeMarkTopWrap">
+                <StackLayout v-if="openingCheck(place.open_hours) != '영업종료'" class="storeMarkTimeWrap" backgroundColor="#ffe074" >
+                 <label :text="openingCheck(place.open_hours)" class="storeTime" />
+                </StackLayout>
+                <StackLayout v-else  class="storeMarkTimeWrap" backgroundColor="#dddddd" >
+                 <label :text="openingCheck(place.open_hours)" class="storeTime" />
+                </StackLayout>
+                <StackLayout class="storeMarkTimeWrap" v-else>
+                 <label :text="openingCheck(place.open_hours)" class="storeTime" />
+                </StackLayout>
+                <StackLayout class="storeStarIconWrap">
+                 <Image src="~/Resources/img/home/star.png" class="storeStarIcon" />
+                </StackLayout>
+                <StackLayout class="storeRatingWrap">
+                 <label :text="place.google_rating" v-if="place.app_rating == null&&place.google_rating != null"  class="storeRating"/>
+                 <label :text="place.app_rating" v-if="place.app_rating != null"  class="storeRating"/>
+                 <label text="0" v-else class="storeRating"/>
+                </StackLayout>
+               </StackLayout>
+               <StackLayout class="storeMarkMiddleWrap">
+                <label :text="place.place_name" class="storeMarkName"/>
+               </StackLayout>
+               <StackLayout orientation="horizontal" class="storeMarkBottomWrap">
+                <StackLayout class="storeMarkCategoryWrap">
+                 <label :text="place.category_name" class="storeMarkCategory"/>
+                </StackLayout>
+                <StackLayout class="storeMarkYIconWrap">
+                 <image v-if="place.youtube_review_count != '0'" class="storeMarkYIcon" stretch="aspectFill" src="~/Resources/img/bookmark/youtube-circle.png"/>
+                 <image v-else class="storeMarkYIcon" stretch="aspectFill" src="~/Resources/img/bookmark/youtube-circle_g.png"/>
+                </StackLayout>
+                <StackLayout class="storeMarkNIconWrap">
+                 <image v-if="place.naver_blog_count != '0'" class="storeMarkNIcon"stretch="aspectFill"  src="~/Resources/img/bookmark/naver-circle.png"/>
+                 <image v-else class="storeMarkNIcon"stretch="aspectFill"  src="~/Resources/img/bookmark/naver-circle_g.png"/>
+                </StackLayout>
+                <StackLayout class="storeMarkTIconWrap">
+                 <image  v-if="place.daum_blog_count != '0'" class="storeMarkTIcon" stretch="aspectFill" src="~/Resources/img/bookmark/tistory-circle.png"/>
+                 <image v-else class="storeMarkTIcon" stretch="aspectFill" src="~/Resources/img/bookmark/tistory-circle_g.png"/>
+                </StackLayout>
+                <StackLayout v-if="place.google_review_count != '0'" class="storeMarkGIconWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 50 }">
+                 <image class="storeMarkGIcon"stretch="aspectFill" src="~/Resources/img/bookmark/google-circle.png" />
+                </StackLayout>
+                <StackLayout v-else class="storeMarkGIconWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: '#888888', cornerRadius: 50 }">
+                 <image  class="storeMarkGIcon"stretch="aspectFill" src="~/Resources/img/bookmark/google-circle_g.png" />
+                </StackLayout>
+                <StackLayout class="storeMarkAIconWrap" >
+                 <image class="storeMarkAIcon" stretch="aspectFill"  src="~/Resources/img/bookmark/tistory-circle.png" />
+                </StackLayout>
+               </StackLayout>
+              </StackLayout>
              </StackLayout>
-             <StackLayout class="storeLeftWrap" v-else backgroundColor="#dddddd" borderRadius="10">
-              <image class="storeImage" width="55" height="55" marginTop="8" stretch="aspectFill" src="~/Resources/img/home/dinner_w_64.png"/>
-             </StackLayout>
-             <StackLayout class="storeMarkRightWrap">
-              <StackLayout orientation="horizontal" class="storeMarkTopWrap">
-               <StackLayout v-if="openingCheck(place.open_hours) != '영업종료'" class="storeMarkTimeWrap" backgroundColor="#ffe074" >
-                <label :text="openingCheck(place.open_hours)" class="storeTime" />
-               </StackLayout>
-               <StackLayout v-else  class="storeMarkTimeWrap" backgroundColor="#dddddd" >
-                <label :text="openingCheck(place.open_hours)" class="storeTime" />
-               </StackLayout>
-               <StackLayout class="storeMarkTimeWrap" v-else>
-                <label :text="openingCheck(place.open_hours)" class="storeTime" />
-               </StackLayout>
-               <StackLayout class="storeStarIconWrap">
-                <Image src="~/Resources/img/home/star.png" class="storeStarIcon" />
-               </StackLayout>
-               <StackLayout class="storeRatingWrap">
-                <label :text="place.google_rating" v-if="place.app_rating == null&&place.google_rating != null"  class="storeRating"/>
-                <label :text="place.app_rating" v-if="place.app_rating != null"  class="storeRating"/>
-                <label text="0" v-else class="storeRating"/>
-               </StackLayout>
-              </StackLayout>
-              <StackLayout class="storeMarkMiddleWrap">
-               <label :text="place.place_name" class="storeMarkName"/>
-              </StackLayout>
-              <StackLayout orientation="horizontal" class="storeMarkBottomWrap">
-               <StackLayout class="storeMarkCategoryWrap">
-                <label :text="place.category_name" class="storeMarkCategory"/>
-               </StackLayout>
-               <StackLayout class="storeMarkYIconWrap">
-                <image v-if="place.youtube_review_count != '0'" class="storeMarkYIcon" stretch="aspectFill" src="~/Resources/img/bookmark/youtube-circle.png"/>
-                <image v-else class="storeMarkYIcon" stretch="aspectFill" src="~/Resources/img/bookmark/youtube-circle_g.png"/>
-               </StackLayout>
-               <StackLayout class="storeMarkNIconWrap">
-                <image v-if="place.naver_blog_count != '0'" class="storeMarkNIcon"stretch="aspectFill"  src="~/Resources/img/bookmark/naver-circle.png"/>
-                <image v-else class="storeMarkNIcon"stretch="aspectFill"  src="~/Resources/img/bookmark/naver-circle_g.png"/>
-               </StackLayout>
-               <StackLayout class="storeMarkTIconWrap">
-                <image  v-if="place.daum_blog_count != '0'" class="storeMarkTIcon" stretch="aspectFill" src="~/Resources/img/bookmark/tistory-circle.png"/>
-                <image v-else class="storeMarkTIcon" stretch="aspectFill" src="~/Resources/img/bookmark/tistory-circle_g.png"/>
-               </StackLayout>
-               <StackLayout v-if="place.google_review_count != '0'" class="storeMarkGIconWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 50 }">
-                <image class="storeMarkGIcon"stretch="aspectFill" src="~/Resources/img/bookmark/google-circle.png" />
-               </StackLayout>
-               <StackLayout v-else class="storeMarkGIconWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: '#888888', cornerRadius: 50 }">
-                <image  class="storeMarkGIcon"stretch="aspectFill" src="~/Resources/img/bookmark/google-circle_g.png" />
-               </StackLayout>
-               <StackLayout class="storeMarkAIconWrap" >
-                <image class="storeMarkAIcon" stretch="aspectFill"  src="~/Resources/img/bookmark/tistory-circle.png" />
-               </StackLayout>
-              </StackLayout>
+             <StackLayout class="markUnderline">
              </StackLayout>
             </StackLayout>
-            <StackLayout class="markUnderline">
-            </StackLayout>
-           </StackLayout>
-          </v-template>
-         </ListView>
+           </v-template>
+          </ListView>
         </StackLayout>
     </StackLayout>
     <StackLayout v-else >
@@ -162,9 +168,9 @@
                </StackLayout>
        </StackLayout>
              <StackLayout ref="placeKeywordListWrap" visibility="collapsed">
-              <ListView for="item in settingItems" style="height:100%" >
+              <ListView for="item in settingItems" style="height:100%" width="100%">
                <v-template>
-                <StackLayout class="placeSearchAutoCompleteListWrap" >
+                <StackLayout class="placeSearchAutoCompleteListWrap" @tap="search(item)">
                  <label class="placeSearchAutoCompleteList" :text="item" />
                 </StackLayout>
                </v-template>
@@ -175,7 +181,7 @@
          <StackLayout class="areaSearchCurrentLocationIconWrap" >
           <image class="areaSearchCurrentLocationIcon"  src="~/Resources/img/place/place_3_64.png" />
          </StackLayout>
-         <StackLayout class="areaSearchCurrentLocationTitleWrap" >
+         <StackLayout class="areaSearchCurrentLocationTitleWrap" @tap="enableLocationServices" >
           <label class="areaSearchCurrentLocationTitle" text="현재위치" />
          </StackLayout>
         </StackLayout>
@@ -211,7 +217,7 @@
           <StackLayout class="areaSearchCancelWrap"  @tap="mapSearchDel">
            <label class="areaSearchCancel" text="지역검색취소"   />
           </StackLayout>
-          <StackLayout class="areaSearchConfirmWrap" @tap="search">
+          <StackLayout class="areaSearchConfirmWrap" @tap="search('N')">
            <label class="areaSearchConfirm"  text="검색하기" :class="selectedSubCategory!=''?'active':''"   />
           </StackLayout>
          </StackLayout>
@@ -252,7 +258,7 @@
  const appSettings = require("tns-core-modules/application-settings"); //sharedpreferences;
  var data = {keyword : '',areaFlag:false}
 
-
+ const geoLocation = require("nativescript-geolocation");
  var Toast = require("nativescript-toast");
  const dialogs = require('ui/dialogs')
 export default {
@@ -290,7 +296,14 @@ export default {
     settingItems:[],
     allArea:[],
     firstAreaName:'',
-    secondAreaName:''
+    secondAreaName:'',
+
+    currentGeoLocation: {
+     latitude: null,
+     longitude: null,
+     altitude: null,
+     direction: null,
+    },
 
    }
   },
@@ -310,7 +323,7 @@ export default {
    // }
 
  //  if(layely_count>0){
-      for(var i = 1; i < 11;i++){
+      for(var i = 1; i < 21;i++){
          if(appSettings.getString('keyword'+i.toString()) != ''){
             if(appSettings.getString('keyword'+i.toString()) != undefined){
               this.$data.latelyKeywordList.push({keyword :appSettings.getString('keyword'+i.toString()),writeDate:appSettings.getString('writeDate'+i.toString())});
@@ -334,7 +347,7 @@ export default {
   },
   deleteLatelyKeyword(keyword) {
    this.$data.latelyKeywordList = []
-   for (var i = 1; i < 11; i++) {
+   for (var i = 1; i < 21; i++) {
     if (appSettings.getString('keyword' + i.toString()) != '') {
      if (appSettings.getString('keyword' + i.toString()) != undefined) {
       var keyword1 = String(appSettings.getString('keyword' + i.toString()));
@@ -346,7 +359,7 @@ export default {
     }
    }
 
-   for (var i = 1; i < 11; i++) {
+   for (var i = 1; i < 21; i++) {
     if (appSettings.getString('keyword' + i.toString()) != '') {
      if (appSettings.getString('keyword' + i.toString()) != undefined) {
       this.$data.latelyKeywordList.push({
@@ -359,7 +372,7 @@ export default {
   },
   removeLatelyKeyword(num) {
    if (num == 'ALL') { //검색기록 전체 삭제.
-    for (var i = 1; i < 11; i++) {
+    for (var i = 1; i < 21; i++) {
      appSettings.remove("keyword" + i.toString())
      appSettings.remove("writeDate" + i.toString());
     }
@@ -410,7 +423,7 @@ export default {
 
 
    var layely_count = 0;
-   for (var i = 10; i > 0; i--) {
+   for (var i = 20; i > 0; i--) {
     if (appSettings.getString('keyword' + (i - 1).toString()) != '') {
      if (appSettings.getString('keyword' + (i - 1).toString()) != undefined) {
       console.log("kekeke222" + appSettings.getString('keyword' + (i - 1).toString()))
@@ -429,7 +442,7 @@ export default {
    }
    console.log(layely_count + "kekekekeke")
    if (layely_count == 0) {
-    for (var i = 10; i > 0; i--) {
+    for (var i = 20; i > 0; i--) {
      if (i == 1) {
       appSettings.setString("keyword1", keyword);
       appSettings.setString('writeDate1', toDay)
@@ -492,27 +505,27 @@ export default {
     return;
 
    } else {
-    this.$data.listViewing = 'auto'
-    axios({
-     method: 'get',
-     url: 'http://202.182.117.173:8080/v1/autocomplete',
-     //  url: 'http://192.168.1.85:9090/v1/places?',
-     params: {
-      term: data.keyword
-     },
-    }).then((response) => {
-     console.log(response.data);
-     this.$data.items = response.data;
-     this.$data.placeList = []
-
-     console.log(data.areaFlag)
-     if (data.areaFlag == true) {
-      this.placeSearch(data.keyword);
-     }
-    }, (error) => {
-     this.$data.placeList = []
-     console.log(error);
-    });
+    //this.$data.listViewing = 'auto'
+    // axios({
+    //  method: 'get',
+    //  url: 'http://202.182.117.173:8080/v1/autocomplete',
+    //  //  url: 'http://192.168.1.85:9090/v1/places?',
+    //  params: {
+    //   term: data.keyword
+    //  },
+    // }).then((response) => {
+    //  console.log(response.data);
+    //  this.$data.items = response.data;
+    //  this.$data.placeList = []
+    //
+    //  console.log(data.areaFlag)
+    //  if (data.areaFlag == true) {
+    //   this.placeSearch(data.keyword);
+    //  }
+    // }, (error) => {
+    //  this.$data.placeList = []
+    //  console.log(error);
+    // });
    }
   }, goMap() {
    //this.$data.listViewing = 'keyword';
@@ -522,7 +535,7 @@ export default {
    if (division == 0) { //최근검색어 클릭 시
     this.$data.keywordWrap = 'late';
     this.$data.latelyKeywordList = [];
-    for (var i = 1; i < 11; i++) {
+    for (var i = 1; i < 21; i++) {
      if (appSettings.getString('keyword' + i.toString()) != '') {
       if (appSettings.getString('keyword' + i.toString()) != undefined) {
        this.$data.latelyKeywordList.push({
@@ -732,29 +745,36 @@ export default {
 
     console.log(error);
    });
-  }, search() {
+  }, search(keyword_name) {
    console.log(this.$data.firstAreaName);
    console.log(this.$data.secondAreaName);
 
    try {
-    if (this.$data.firstAreaName == '') {
-     Toast.makeText("지역(대분류) 을 선택 해 주세요.").show();
-     return;
-    }
-    ;
-    if (this.$data.secondAreaName == '') {
-     Toast.makeText("지역(중분류) 을 선택 해 주세요.").show();
-     return;
-    }
+     if(keyword_name == "N"){
+        if (this.$data.firstAreaName == '') {
+         Toast.makeText("지역(대분류) 을 선택 해 주세요.").show();
+         return;
+        }
+        ;
+        if (this.$data.secondAreaName == '') {
+         Toast.makeText("지역(중분류) 을 선택 해 주세요.").show();
+         return;
+        }
+        var keyword = this.$data.firstAreaName + " " + this.$data.secondAreaName;
+        if(keyword.indexOf('전체') > -1){
+         keyword = keyword.split(" ")[1];
+        }
+        this.data.areaFlag = true;
+        this.data.keyword = keyword;
+        this.$data.mapFlag = false;
+        this.placeSearch(keyword)
+     }else{
+        this.data.areaFlag = true;
+        this.data.keyword = keyword_name;
+        this.$data.mapFlag = false;
+        this.placeSearch(keyword_name)
+     }
 
-    var keyword = this.$data.firstAreaName + " " + this.$data.secondAreaName;
-    if(keyword.indexOf('전체') > -1){
-        keyword = keyword.split(" ")[1];
-    }
-    this.data.areaFlag = true;
-    this.data.keyword = keyword;
-    this.$data.mapFlag = false;
-     this.placeSearch(keyword)
     //PlaceSearch.data().data.areaFlag = true;
    // PlaceSearch.data().data.keyword = keyword;
     //  PlaceSearch.methods.placeSearch(keyword)
@@ -765,6 +785,71 @@ export default {
   },mapSearchDel(){
      console.log('?')
      this.$data.mapFlag = false
+  },
+  enableLocationServices: function() {
+   geoLocation.isEnabled().then(enabled => {
+    if (!enabled) {
+     console.log(geoLocation.enableLocationRequest() + "여부?")
+     geoLocation
+             .enableLocationRequest()
+             .then(() => this.showLocation());
+     console.log("1?")
+
+    } else {
+     this.showLocation();
+     console.log("2?")
+    }
+   });
+  },
+  showLocation: function() {
+   geoLocation.watchLocation(
+           location => {
+            this.currentGeoLocation = location;
+            console.log(location + "asdasdasdasd")
+            cache.set("keyword","키워드다!");
+            console.log(cache.get("keyword"))
+            axios({
+             method: 'get',
+             url: 'https://dapi.kakao.com/v2/local/geo/coord2address.json',
+             params: {
+              x:this.currentGeoLocation.longitude,
+              y:this.currentGeoLocation.latitude
+             },
+             headers: { 'Authorization': 'KakaoAK b4bd7e75365a705323622c57d0b7e406' }
+            }).then((response) => {
+             console.log('호출함??')
+             //console.log(response.data.documents[0].address.address_name)
+             console.log(response.data)
+             console.log(response)
+             this.$data.address = response.data.documents[0].address.address_name
+             data.locationKeyword = response.data.documents[0].address.address_name
+             console.log(response.data.documents[0].address.address_name)
+             var current_location_arr =  data.locationKeyword.split(" ");
+             var current_location="";
+             for(var i = 0; i < current_location_arr.length; i++){
+              if(i < 3){
+               if(i > 0 ){
+                current_location += " " + current_location_arr[i];
+               }else {
+                current_location += current_location_arr[i];
+               }
+              }
+             }
+             data.locationKeyword = current_location;
+             this.search(current_location)
+             //cache.set("location_name",current_location+" 맛집")
+            }, (error) => {
+             console.log(error);
+            });
+           },
+           error => {
+            alert(error);
+           }, {
+            desiredAccuracy: 3,
+            updateDistance: 10,
+            minimumUpdateTime: 1000 * 1
+           }
+   );
   }
  }
 };

@@ -96,7 +96,7 @@
  application.on(application.suspendEvent, (args) => {
      if (args.android) {
          // For Android applications, args.android is an android activity class.
-         console.log("Activity: " + args.android);
+         console.log("Activity1: " + args.android);
      } else if (args.ios) {
          // For iOS applications, args.ios is UIApplication.
          console.log("UIApplication: " + args.ios);
@@ -106,7 +106,7 @@
  application.on(application.resumeEvent, (args) => {
      if (args.android) {
          // For Android applications, args.android is an android activity class.
-         console.log("Activity: " + args.android);
+         console.log("Activity2: " + args.android);
      } else if (args.ios) {
          // For iOS applications, args.ios is UIApplication.
          console.log("UIApplication: " + args.ios);
@@ -127,7 +127,7 @@
  application.on(application.exitEvent, (args) => {
      if (args.android) {
          // For Android applications, args.android is an android activity class.
-         console.log("Activity: " + args.android);
+         console.log("Activity3: " + args.android);
          if (args.android.isFinishing()) {
              console.log("Activity: " + args.android + " is exiting");
          } else {
@@ -142,7 +142,7 @@
  application.on(application.lowMemoryEvent, (args) => {
      if (args.android) {
          // For Android applications, args.android is an android activity class.
-         console.log("Activity: " + args.android);
+         console.log("Activity4: " + args.android);
      } else if (args.ios) {
          // For iOS applications, args.ios is UIApplication.
          console.log("UIApplication: " + args.ios);

@@ -30,7 +30,7 @@
       </StackLayout>
       <StackLayout class="placeDetailMapWrap" >
        <WebView class="placeDetailMap"
-                :src="'http://api.eatjeong.com:8211/?latitude='+item.latitude+'&longitude='+item.longitude+'&map_height=300'" />
+                :src="'http://api.eatjeong.com:8211/?latitude='+item.latitude+'&longitude='+item.longitude+'&map_height='+map_height" />
       </StackLayout>
       <StackLayout class="placeDetailTelNoWrap">
        <label class="placeDetailTelNo" :text="placeInfo.phone_no"/>
@@ -39,14 +39,27 @@
        <label class="placeDetailAddress" :text="placeInfo.road_address"/>
       </StackLayout>
       <StackLayout class="placeDetailInfoWrap" orientation="horizontal">
-       <StackLayout class="placeDetailOpenWrap" @tap="openTimeModal">
-        <StackLayout class="placeDetailOpenIconWrap">
-         <image class="placeDetailOpenIcon" src="~/Resources/img/place/clock_f_64.png"/>
+       <StackLayout>
+        <StackLayout class="placeDetailOpenWrap" @tap="openTimeModal" v-if="placeInfo.opening_hours != null">
+         <StackLayout class="placeDetailOpenIconWrap" backgroundColor="#ffe074">
+          <image class="placeDetailOpenIcon" src="~/Resources/img/place/clock_f_64.png"/>
+         </StackLayout>
+         <StackLayout class="placeDetailOpenTitleWrap" >
+          <!--         <label :text="placeInfo.opening_hours" />-->
+          <label class="placeDetailOpenTitle" :text="openingCheck()"/>
+         </StackLayout>
         </StackLayout>
-        <StackLayout class="placeDetailOpenTitleWrap">
-         <label class="placeDetailOpenTitle" text="ss"/>
+        <StackLayout class="placeDetailOpenWrap" @tap="openTimeModal" v-else>
+         <StackLayout class="placeDetailOpenIconWrap" backgroundColor="#dddddd">
+          <image class="placeDetailOpenIcon" src="~/Resources/img/place/clock_f_64.png"/>
+         </StackLayout>
+         <StackLayout class="placeDetailOpenTitleWrap" >
+          <!--         <label :text="placeInfo.opening_hours" />-->
+          <label class="placeDetailOpenTitle" :text="openingCheck()"/>
+         </StackLayout>
         </StackLayout>
        </StackLayout>
+
 
        <StackLayout >
         <StackLayout class="placeDetailRatingWrap"  v-if="placeInfo.rating > 0">
@@ -141,7 +154,7 @@
 <script>
 
  import axios from 'axios';
- import ReviewWrite from "./review/ReviewWrite";
+ import ReviewWrite from "./review/ReviewWrite"
  import YoutubeList from './reviewComponents/YoutubeList';
  import NaverList from './reviewComponents/NaverList';
  import TistoryList from './reviewComponents/TistoryList';
@@ -150,12 +163,13 @@
 
  import Login from '../../../../member/Login'
 
+
  import Tistory from "../../../home/homeComponents/TistoryList";
 
  import OpenTimeModal from './modal/OpenTimeModal';
  import PlaceCallModal from './modal/PlaceCallModal';
  import PlaceGoLoginModal from './modal/PlaceGoLoginModal';
-
+ const platformModule = require("tns-core-modules/platform");
  var clipboard = require("nativescript-clipboard");
  var Toast = require("nativescript-toast");
  var phone = require("nativescript-phone");
@@ -180,7 +194,8 @@
     appReviews: [],
     setPlace_id: '',
     openTimeList: [],
-    reviewWritePage: ReviewWrite
+    reviewWritePage: ReviewWrite,
+    map_height:220,
    }
   }, components: {
    Tistory, YoutubeList, NaverList, TistoryList, GoogleList, AppReviewList
@@ -189,6 +204,12 @@
     return this.context || {};
    }
   }, mounted() {
+   console.log("dpi" + platformModule.screen.mainScreen.widthDIPs)
+   if(platformModule.screen.mainScreen.widthDIPs <= 360){
+       this.$data.map_height = 220;
+   }else if(platformModule.screen.mainScreen.widthDIPs > 360){
+       this.$data.map_height = 300;
+   }
    axios({
     method: 'get',
     url: 'http://api.eatjeong.com/v1/places/' + this.item.place_id,
@@ -203,6 +224,11 @@
       this.$data.openTimeList = response.data.dataList.business_day;
       console.log(this.$data.placeInfo)
       console.log(this.$data.placeInfo.opening_hours)
+      if(this.$data.placeInfo.app_rating==0){
+           this.$data.placeInfo.rating = this.$data.placeInfo.google_rating;
+      }else{
+           this.$data.placeInfo.rating = this.$data.placeInfo.app_rating;
+      }
       if(response.data.dataList.bookmark_flag == true){
        this.$data.bookmark = true;
       }else{
@@ -218,12 +244,27 @@
    goReviewWritePage(){
      if(appSettings.getString("user_id") != undefined ){
            if(appSettings.getString("user_id") !=''){
-              this.$navigateTo(reviewWritePage)
+              if(cache.get("write_flag") == "true"){
+               dialogs.alert({
+                title: "",
+                message: "이미 작성하신 리뷰가 존재합니다.",
+                okButtonText: "확인"
+               }).then(() => {
+                console.log("Dialog closed22!");
+               });
+              }else{
+                 this.$navigateTo(ReviewWrite)
+              }
+
            }else{
-              this.$navigateTo(Login)
+              //this.$navigateTo(Login)
+               this.$showModal(PlaceGoLoginModal)
+               this.$modal.close()
            }
        }else{
-          this.$navigateTo(Login)
+          //this.$navigateTo(Login)
+          this.$showModal(PlaceGoLoginModal)
+          this.$modal.close()
        }
    },
    bookmarkSetting(){
@@ -319,6 +360,10 @@
 
    }, openingCheck() {
     console.log(this.$data.placeInfo.opening_hours)
+    if(this.$data.placeInfo.opening_hours == undefined){
+     return "정보없음";
+     return;
+    }
     var date = new Date();
     var day = date.toDateString().split(" ")[0];
     var before_day;

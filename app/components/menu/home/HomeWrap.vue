@@ -81,12 +81,15 @@
             enableLocationServices: function() {
                 geoLocation.isEnabled().then(enabled => {
                     if (!enabled) {
+                        console.log(geoLocation.enableLocationRequest() + "여부?")
                         geoLocation
                             .enableLocationRequest()
                             .then(() => this.showLocation());
+                        console.log("1?")
 
                     } else {
                         this.showLocation();
+                        console.log("2?")
                     }
                 });
             },
@@ -94,9 +97,9 @@
                 geoLocation.watchLocation(
                     location => {
                         this.currentGeoLocation = location;
+                        console.log(location + "asdasdasdasd")
                         cache.set("keyword","키워드다!");
                         console.log(cache.get("keyword"))
-                        console.log(cache.get())
                         axios({
                             method: 'get',
                             url: 'https://dapi.kakao.com/v2/local/geo/coord2address.json',
@@ -125,6 +128,7 @@
                                 }
                             }
                             data.locationKeyword = current_location;
+                            cache.set("location_name",current_location+" 맛집")
                         }, (error) => {
                             console.log(error);
                         });
@@ -139,7 +143,7 @@
                 );
             }
         },mounted(){
-            //this.enableLocationServices()
+            this.enableLocationServices()
         }
     };
 </script>
