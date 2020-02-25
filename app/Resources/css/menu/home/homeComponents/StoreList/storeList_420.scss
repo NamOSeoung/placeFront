@@ -1,0 +1,131 @@
+$medium : 1.142;
+
+.android400 .storeWrap{
+  width: 360*$medium;
+  height: 130*$medium;
+}
+
+.android400 .storeHeaderWrap{
+  width: 360*$medium;
+  height:27*$medium;
+}
+.android400 .storeCookIcon{
+  margin-top: 13*$medium;
+  width: 16*$medium;
+  height: 16*$medium;
+  margin-left: 16*$medium;
+}
+.android400 .storeTitle{
+  font-size: 13*$medium;
+  margin-top: 13*$medium;
+  font-family: nanumsquareroundeb;
+  color: #555555;
+  height: 14*$medium;
+  width: 250*$medium;
+  margin-left: 6*$medium;
+}
+.android400 .storeMore{
+  margin-top: 13*$medium;
+  width: 36*$medium;
+  height: 13*$medium;
+  color: #888888;
+  font-size: 12*$medium;
+  font-family: nanumsquareroundeb;
+}
+.android400 .storeRightIcon{
+  margin-top: 13*$medium;
+  width: 20*$medium;
+  height: 20*$medium;
+  margin-left: -6*$medium;
+}
+
+.android400 .storeDetailSubWrap{
+  height: 130*$medium;
+  border-bottom-width: 2*$medium;
+  border-bottom-color: #33000000;
+}
+.android400 .storeDetailWrap{
+  width: 243*$medium;
+  height: 70*$medium;
+}
+.android400 .storeLeftWrap{
+  width: 70*$medium;
+  height: 70*$medium;
+  margin-left: 15*$medium;
+}
+.android400 .storeImage{
+  height: 70*$medium;
+  width: 70*$medium;
+  border-radius: 8*$medium;
+}
+.android400 .storeRightWrap{
+  width: 173*$medium;
+  height: 70*$medium;
+}
+.android400 .storeTopWrap {
+  width: 173*$medium;
+  height: 18*$medium;
+}
+.android400 .storeTimeWrap{
+  background-color: #ffe074;
+  border-radius: 8*$medium;
+  text-align: center;
+  margin-left: 11*$medium;
+}
+.android400 .storeTime{
+  width: 50*$medium;
+  height: 18*$medium;
+  margin-top: 3*$medium;
+  margin-bottom: 3*$medium;
+  font-family: nanumsquareroundeb;
+  font-size: 10*$medium;
+  color: #333333;
+}
+.android400 .storeStarIconWrap{
+  width: 18*$medium;
+  height: 18*$medium;
+  margin-left: 10*$medium;
+}
+.android400 .storeRatingWrap{
+  width: 18*$medium;
+  height: 13*$medium;
+}
+.android400 .storeStarIcon{
+  width: 18*$medium;
+  height: 18*$medium;
+}
+.android400 .storeRatingWrap{
+  width: 18*$medium;
+  height: 13*$medium;
+  margin-left: 2*$medium;
+}
+.android400 .storeRating {
+  width: 18*$medium;
+  height: 13*$medium;
+  font-family: nanumsquareroundeb;
+  font-size: 12*$medium;
+  color: #333333;
+}
+.android400 .storeMiddleWrap{
+  width: 173*$medium;
+  height: 18*$medium;
+  margin-top:9*$medium;
+}
+.android400 .storeName{
+  width: 138*$medium;
+  height: 16*$medium;
+  font-family: nanumsquareroundeb;
+  font-size: 14*$medium;
+  color: #333333;
+}
+.android400 .storeBottomWrap{
+  height: 13*$medium;
+  margin-top: 9*$medium;
+  margin-left: 11*$medium;
+}
+.android400 .storeCategory{
+  height: 13*$medium;
+  font-size: 12*$medium;
+  font-family: nanumsquareroundr;
+  color: #555555;
+}

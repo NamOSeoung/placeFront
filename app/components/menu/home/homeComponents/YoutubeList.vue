@@ -1,56 +1,90 @@
 <template lang="html">
- <StackLayout backgroundColor="#ffffff" marginTop="10dp">
-   <StackLayout orientation="horizontal">
-       <image src="~/Resources/img/home/youtube.png" width="17" height="12" marginTop="16" marginLeft="15"/>
-       <label text="유튜브" width="36" height="14" fontSize="13" marginTop="15"  style="font-family: nanumsquareroundeb" marginLeft="6" />
-       <label text="더보기" width="36" height="13" fontSize="12sp" style="font-family: nanumsquareroundeb" color="#888888" marginTop="13" marginLeft="226dp"/>
-       <FIcon name="fa-angle-right" color="#A4A4A4"  fontSize="16" paddingTop="12"  />
-   </StackLayout>
-   <ScrollView orientation="horizontal">
-       <StackLayout orientation="horizontal" marginTop="10" height="156">
-            <StackLayout width="150" marginLeft="15">
-                <StackLayout>
-                    <StackLayout>
-                        <image width="100%" height="84" stretch="aspectFill"  src="https://i.ytimg.com/vi/kFJQwcsXwjU/hqdefault.jpg"/>
-                    </StackLayout>
-                    <StackLayout marginTop="7">
-                        <label width="150" text="영상 제목 두줄까지 영상제목 두줄까지"  marginTop="7" lineHeight="5sp" fontSize="13sp" style="font-family: nanumsquareroundeb" textWrap="true" row="2"/>
-                    </StackLayout>
-                </StackLayout>
-            </StackLayout>
-           <StackLayout width="150" height="260" marginLeft="10">
-               <StackLayout>
-                   <StackLayout>
-                       <image width="100%" height="84" stretch="aspectFill"  src="https://i.ytimg.com/vi/kFJQwcsXwjU/hqdefault.jpg"/>
-                   </StackLayout>
-                   <StackLayout marginTop="7">
-                       <label width="150" text="영상 제목 두줄까지 영상제목 두줄까지"  marginTop="7" lineHeight="5sp" fontSize="13sp" style="font-family: nanumsquareroundeb" textWrap="true" row="2"/>
-                   </StackLayout>
-               </StackLayout>
-           </StackLayout>
-           <StackLayout width="150" height="260" marginLeft="10">
-               <StackLayout>
-                   <StackLayout>
-                       <image width="100%" height="84" stretch="aspectFill"  src="https://i.ytimg.com/vi/kFJQwcsXwjU/hqdefault.jpg"/>
-                   </StackLayout>
-                   <StackLayout marginTop="7" row="1">
-                       <label ref='a' width="150" text="영상 제목 두줄까지 영상제목 두줄까지영상 제목 두줄까지 영상제목 두줄까지" maxLength="15"  marginTop="7" lineHeight="5sp" fontSize="13sp" style="font-family: nanumsquareroundeb" textWrap="true"/>
-                   </StackLayout>
-               </StackLayout>
-           </StackLayout>
-       </StackLayout>
-   </ScrollView>
+ <StackLayout class="youtubeWrap">
+     <StackLayout orientation="horizontal" class="youtubeHeaderWrap">
+         <image src="~/Resources/img/home/youtube.png" class="youtubeIcon"/>
+         <label text="유튜브" class="youtubeTitle"/>
+         <label text="더보기" class="youtubeMore" @tap="$navigateTo(YoutubeMorePage)" v-if="youtubeList.length > 4" />
+         <image src="~/Resources/img/home/angle-right.png" class="youtubeRightIcon" v-if="youtubeList.length > 4" />
+     </StackLayout>
+     <StackLayout v-if="youtubeList.length>0" marginTop="0">
+         <ScrollView orientation="horizontal">
+             <StackLayout orientation="horizontal" class="youtubeSubWrap"  >
+                 <StackLayout class="youtubeMainWrap" v-for="(list,index)  in youtubeList" @tap="goWebview(index)">
+                     <StackLayout class="youtubeImageWrap">
+                         <image class="youtubeImage" stretch="aspectFill"  :src="list.thumbnail_url"/>
+                     </StackLayout>
+                     <StackLayout class="youtubeSubjectWrap" >
+                         <Label row="2" class="youtubeSubject" :text="list.title" textWrap="true"  />
+                     </StackLayout>
+                 </StackLayout>
+             </StackLayout>
+         </ScrollView>
+     </StackLayout>
+
+     <StackLayout v-else marginTop="60" width="100%" style="text-align: center">
+         <label text="검색 결과가 없습니다." />
+     </StackLayout>
  </StackLayout>
 </template>
 
 <script>
+    import axios from 'axios'
+
+    import '~/Resources/css/menu/home/homeComponents/YoutubeList/youtubeList_320.scss';
+    import '~/Resources/css/menu/home/homeComponents/YoutubeList/youtubeList_360.scss';
+    import '~/Resources/css/menu/home/homeComponents/YoutubeList/youtubeList_420.scss';
+    import '~/Resources/css/menu/home/homeComponents/YoutubeList/youtubeList_480.scss';
+
+    import YoutubeMore from './reviewMore/YoutubeMore'
+    import YoutubeWebview from './reviewMore/mainReviewWebview/YoutubeWebview'
+    var cache = require("nativescript-cache");
     export default {
         name:"YoutubeList",
         components: {
 
+        },  data() {
+            return {
+                youtubeList:[],
+                YoutubeMorePage:YoutubeMore
+            }
+         },methods :{
+            getYoutubeList(keyword){
+                  axios({
+                    method: 'get',
+                        url: 'http://api.eatjeong.com/v1/main/reviews?',
+                    params: {
+                        query:keyword,
+                        portal:"YOUTUBE",
+                        size:'5'
+                    },
+                    }).then((response) => {
+                        console.log(response.data.dataList)
+                        this.$data.youtubeList = response.data.dataList;
+
+
+                    }, (error) => {
+                    console.log(error);
+                    });
+            },goWebview(index){
+                this.$navigateTo(YoutubeWebview, {
+                    props: {
+                        itemList: this.$data.youtubeList[index]
+                    }
+                })
+            }
+        },mounted(){
+            console.log('213123123')
+            console.log(cache.get("location_name"))
+            if(cache.get("location_name") == null){
+                this.getYoutubeList("서울 맛집");
+            }else{
+                this.getYoutubeList(cache.get("location_name"));
+            }
+           // this.getYoutubeList();
         }
     };
 </script>
 
 <style lang="scss">
+
 </style>

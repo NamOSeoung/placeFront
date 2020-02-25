@@ -1,0 +1,80 @@
+$large : 1.5;
+
+.android480 .termsWrap{
+  background-color: #ffffff;
+  width: 360*$large;
+  height: 650*$large;
+}
+.android480 .termsHeaderWrap{
+  background-color: #ffffff;
+  width: 360*$large;
+  height: 55*$large;
+  border-bottom-width: 1*$large;
+  border-bottom-color: #dddddd;
+  padding-bottom: 18*$large;
+}
+.android480 .leftWrap{
+  width: 14*$large;
+  height: 14*$large;
+  margin-left: 6*$large;
+  margin-top: 17*$large;
+}
+.android480 .leftIcon{
+  width:14*$large;
+  height: 14*$large;
+}
+.android480 .myInfoBackWrap{
+  margin-left: 2*$large;
+  width: 33*$large;
+  height: 14*$large;
+  margin-top: 20*$large;
+}
+.android480 .myInfoBack{
+  width: 33*$large;
+  height: 14*$large;
+  color: #333333;
+  font-size: 12*$large;
+  font-family: nanumsquareroundeb;
+}
+.android480 .termsTitleWrap{
+  width: 71*$large;
+  height: 18*$large;
+  margin-top: 21*$large;
+  margin-left: 88*$large;
+}
+.android480 .termsTitle{
+  width: 71*$large;
+  height: 16*$large;
+  color: #333333;
+  font-family: nanumsquareroundeb;
+  font-size: 14*$large;
+}
+
+.android480 .termsListWrap{
+  text-align: left;
+}
+
+.android480 .termsList{
+  border-bottom-width: 1*$large;
+  border-bottom-color: #dddddd;
+}
+
+.android480 .termsListIconWrap{
+  width:28*$large;
+  height: 28*$large;
+}
+
+.android480 .termsListTcon{
+  width:14*$large;
+  height: 14*$large;
+  margin-top: 7*$large;
+}
+.android480 .termsListTitle{
+  font-family: nanumsquareroundeb;
+  color: #333333;
+  width: 301*$large;
+  font-size: 12*$large;
+  margin-top: 15*$large;
+  margin-bottom: 15*$large;
+  margin-left: 15*$large;
+}

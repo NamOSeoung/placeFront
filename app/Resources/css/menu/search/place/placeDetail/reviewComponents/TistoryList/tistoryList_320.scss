@@ -1,0 +1,35 @@
+$small : 0.9;
+
+.android320 .tistoryListTitle{
+  font-size: 13*$small;
+  color: #333333*$small;
+  font-family: nanumsquareroundb;
+  width: 50*$small;
+  height: 20*$small;
+  margin-top: 23*$small;
+}
+.android320 .tistoryListMore{
+  width: 36*$small;
+  height: 13*$small;
+  margin-top: 15*$small;
+  font-size: 12*$small;
+  color: #333333;
+  font-family: nanumsquareroundb;
+  margin-left: 218*$small;
+}
+.android320 .tistoryListSubjectWrap{
+  padding-top: 12*$small;
+  padding-left: 8*$small;
+  padding-right: 9*$small;
+}
+.android320 .tistoryListSubject{
+  font-size: 13*$small;
+  font-family: nanumsquareroundb;
+  color: #333333;
+  height: 33*$small;
+  line-height:5*$small;
+}
+.android320 .tistoryListDateInfoWrap{
+  margin-top: 16*$small;
+  padding-left: 10*$small;
+}

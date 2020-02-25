@@ -1,0 +1,105 @@
+$medium : 1.142;
+
+.android400 .placeSearchBarWrap{
+  width: 360*$medium;
+  height: 63.5*$medium;
+  border-bottom-width: 4*$medium;
+  border-bottom-color: #ffe074;
+}
+.android400 .placeSearchBarMapIconWrap{
+  width: 20*$medium;
+  height: 20*$medium;
+  margin-left: 20*$medium;
+}
+.android400 .placeSearchBarMapIcon{
+  width: 20*$medium;
+  height: 20*$medium;
+}
+.android400 .placeSearchBarTextWrap{
+  width:251*$medium;
+  height:45*$medium;
+}
+.android400 .placeSearchBarTextWrapWrap{
+  margin-left: 24*$medium;
+  width: 200*$medium;
+  height:35*$medium;
+}
+.android400 .placeSearchBarText{
+  border-color: #ffffff;
+  background-color: #ffffff;
+  font-family: nanumsquareroundr;
+  color:#333333;
+  font-size: 13*$medium;
+}
+.android400 .placeSearchBarDeleteIconWrap{
+  width: 20*$medium;
+  height:20*$medium;
+}
+.android400 .placeSearchBarDeleteIcon{
+  width: 20*$medium;
+  height: 20*$medium;
+}
+.android400 .placeSearchBarSearchIconWrap{
+  margin-top: 20*$medium;
+  margin-left: 20*$medium;
+}
+.android400 .placeSearchBarSearchIcon{
+  width: 20*$medium;
+  height: 20*$medium;
+}
+.android400 .placeSearchKeywordListWrap{
+  margin-top: 18.5*$medium;
+}
+.android400 .placeSearchLatelyKeyword{
+  width: 64*$medium;
+  height:16*$medium;
+  font-size: 14*$medium;
+  color:#333333;
+  font-family: nanumsquareroundb;
+}
+.android400 .placeSearchPopularKeywordWrap{
+  width: 64*$medium;
+  padding-bottom: 5*$medium;
+  margin-left: 20*$medium;
+  border-bottom-color: #ffe074;
+  border-bottom-width: 0*$medium;
+}
+.android400 .placeSearchPopularKeyword{
+  width: 64*$medium;
+  height: 16*$medium;
+  font-size: 14*$medium;
+  font-family: nanumsquareroundr;
+  color: #333333;
+}
+.android400 .placeSearchAutoCompleteListWrap{
+  border-bottom-color: #eeeeee;
+  padding-bottom: 14.5*$medium;
+  padding-left: 20*$medium;
+  padding-top: 14.5*$medium;
+}
+.android400 .placeSearchAutoCompleteList{
+  font-family: nanumsquareroundr;
+  font-size: 12*$medium;
+  color: #333333;
+}
+.android400 .placeSearchPlaceListWrap{
+  margin-top: -20*$medium;
+  background-color: #eff2f7;
+}
+.android400 .placeSearchPlaceList{
+  margin-top: 15*$medium;
+}
+
+.android400 .placeSearchLatelyKeywordWrap{
+  width: 64*$medium;
+  margin-left: 20.5*$medium;
+  padding-bottom: 9*$medium;
+}
+
+.android400 .placeSearchLatelyKeywordWrap.active{
+  width: 64*$medium;
+  margin-left: 20.5*$medium;
+  border-bottom-color: #ffe074;
+  border-bottom-width: 4*$medium;
+  padding-bottom: 9*$medium;
+}

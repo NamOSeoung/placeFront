@@ -1,0 +1,57 @@
+$small : 0.9;
+
+.android320 .homeHeaderWrap{
+  width: 360*$small;
+  height: 110*$small;
+  background-color: #ffe074;
+}
+.android320 .homeTitleWrap{
+  width: 360*$small;
+  height: 55*$small;
+}
+.android320 .homeAppName{
+  width: 37*$small;
+  height: 22*$small;
+  margin-left: 35*$small;
+  font-family: nanumsquareroundeb;
+  font-size: 20*$small;
+  color: #222222;
+}
+.android320 .homeTitle{
+  width: 142*$small;
+  height: 17*$small;
+  font-family: nanumsquareroundeb;
+  font-size: 14*$small;
+  color: #555555;
+  margin-left: 13*$small;
+}
+.android320 .homeSearchWrap{
+  width: 290*$small;
+  height: 34*$small;
+  border-radius: 8*$small;
+  background-color: #ffffff;
+}
+.android320 .homeMakerIcon{
+  width: 22*$small;
+  height: 22*$small;
+  margin-left: 13*$small;
+}
+.android320 .homeSearchTitle{
+  margin-left: 10*$small;
+  width: 210*$small;
+  font-family: nanumsquareroundeb;
+  font-size: 13*$small;
+  color: #333333;
+  margin-top: 10*$small;
+  margin-bottom: 10*$small;
+}
+.android320 .homeSearchIcon{
+  width: 20*$small;
+  height: 20*$small;
+}
+
+.android320 .headerLine{
+  width: 360*$small;
+  height: 10*$small;
+  background-color: #eff2f7;
+}

@@ -1,0 +1,101 @@
+$small : 0.9;
+
+.android320 .tistoryWrap{
+  width: 360*$small;
+  height: 150*$small;
+  border-bottom-width: 2*$small;
+  border-bottom-color: #33000000;
+}
+
+.android320 .tistoryHeaderWrap{
+  width: 360*$small;
+  height:27*$small;
+}
+.android320 .tistoryIcon{
+  margin-top: 13*$small;
+  width: 16*$small;
+  height: 16*$small;
+  margin-left: 16*$small;
+}
+.android320 .tistoryTitle{
+  font-size: 13*$small;
+  margin-top: 13*$small;
+  font-family: nanumsquareroundeb;
+  color: #555555;
+  height: 14*$small;
+  width: 250*$small;
+  margin-left: 6*$small;
+}
+.android320 .tistoryMore{
+  margin-top: 13*$small;
+  width: 36*$small;
+  height: 13*$small;
+  color: #888888;
+  font-size: 12*$small;
+  font-family: nanumsquareroundeb;
+}
+.android320 .tistoryRightIcon{
+  margin-top: 13*$small;
+  width: 18*$small;
+  height: 18*$small;
+  margin-left: -6*$small;
+}
+.android320 .tistorySubWrap{
+  margin-top: 11*$small;
+  margin-left: 10*$small;
+  margin-right: 10*$small;
+}
+
+.android320 .tistoryMainWrap{
+  width: 260*$small;
+  height: 90*$small;
+  margin-left: 5*$small;
+  padding-left: 9*$small;
+  margin-right: 5*$small;
+  margin-top: 5*$small;
+  margin-bottom: 5*$small;
+}
+.android320 .tistoryImageWrap{
+  width: 70*$small;
+  height: 70*$small;
+}
+.android320 .tistoryImage{
+  width: 70*$small;
+  height: 70*$small;
+  border-radius: 8*$small;
+}
+.android320 .tistorySubjectWrap{
+  width: 150*$small;
+  height: 33*$small;
+  margin-top: 7*$small;
+
+}
+.android320 .tistorySubject {
+  font-size: 13*$small;
+  font-family: nanumsquareroundeb;
+  color: #333333;
+  margin-top: 10*$small;
+  margin-left: 12*$small;
+  height: 33*$small;
+  width:150*$small;
+  line-height:6*$small;
+}
+.android320 .tistoryWriteDate{
+  color: #888888;
+  font-size: 11*$small;
+  font-family: nanumsquareroundr;
+  margin-top: 7*$small;
+  margin-left: 12*$small;
+  height: 18*$small;
+}
+.android320 .tistoryWriter{
+  color: #888888;
+  font-size: 11*$small;
+  font-family: nanumsquareroundr;
+  margin-left: 7*$small;
+  margin-top: 7*$small;
+  width: 84*$small;
+  height: 18*$small;
+}
+
+

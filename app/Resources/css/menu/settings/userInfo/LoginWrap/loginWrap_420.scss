@@ -1,0 +1,148 @@
+$medium : 1.2;
+
+.android400 .loginTitleWrap{
+  width: 360*$medium;
+  height:100*$medium;
+  background-color: #ffe074;
+  text-align: center;
+}
+.android400 .loginTitleContents{
+  margin-top: 26*$medium;
+  width: 159*$medium;
+  height: 20*$medium;
+  font-size: 14*$medium;
+  color: #b99000;
+  font-family: nanumsquareroundeb;
+}
+.android400 .infoWrap{
+  width: 280*$medium;
+  height: 260*$medium;
+  background-color: #ffffff;
+  margin-top: -40*$medium;
+  border-radius: 9*$medium;
+}
+.android400 .infoPicture{
+  margin-top: 25*$medium;
+  width:80*$medium;
+  height: 80*$medium;
+  background-color: #dddddd;
+  border-radius: 50*$medium;
+}
+.android400 .infoCameraWrap{
+  margin-top: -20*$medium;
+  margin-left: 60*$medium;
+  background-color: #555555;
+  width:20*$medium;
+  height:20*$medium;
+  border-radius: 50*$medium;
+}
+.android400 .infoCamera{
+  color: red;
+  font-size:10*$medium;
+  margin-top: 1*$medium;
+  margin-left: 0.7*$medium;
+}
+.android400 .infoNickNameWrap{
+  margin-top: 15*$medium;
+  width: 146*$medium;
+  height: 19*$medium;
+  text-align: center;
+}
+.android400 .infoNickName{
+  width: 146*$medium;
+  height: 20*$medium;
+  color: #333333;
+  font-size: 16*$medium;
+  font-family: nanumsquareroundeb;
+}
+.android400 .infoMyinfoWrap{
+  width: 51*$medium;
+  height: 13*$medium;
+  text-align: center;
+  margin-top: 8*$medium;
+}
+.android400 .infoMyinfo{
+  width: 51*$medium;
+  height: 12*$medium;
+  color: #888888;
+  font-size: 10*$medium;
+  font-family: nanumsquareroundeb;
+}
+.android400 .myListWrap{
+  margin-top: 24*$medium;
+}
+.android400 .myReviewWrap{
+  width: 36*$medium;
+  height: 48*$medium;
+  margin-left:25*$medium;
+}
+.android400 .myReviewTextWrap{
+  width: 30*$medium;
+  height: 13*$medium;
+  text-align: center;
+}
+.android400 .myReviewText{
+  font-size: 10*$medium;
+  color: #555555;
+  font-family: nanumsquareroundr;
+}
+.android400 .myReviewIcon{
+  width: 36*$medium;
+  height: 36*$medium;
+}
+.android400 .blackListWrap{
+  width: 50*$medium;
+  height: 50*$medium;
+  margin-left: 56*$medium;
+}
+.android400 .blackListIcon{
+  width: 38*$medium;
+  height: 36*$medium;
+}
+.android400 .blackListTextWrap{
+  width: 46*$medium;
+  height: 13*$medium;
+  text-align: center;
+}
+.android400 .blackListText{
+  font-size: 10*$medium;
+  font-family: nanumsquareroundr;
+  color: #555555;
+}
+.android400 .oneToOneWrap{
+  margin-top: -5*$medium;
+  width: 35*$medium;
+  height: 51*$medium;
+  margin-left: 58.5*$medium;
+}
+.android400 .oneToOneIcon{
+  width: 35*$medium;
+  height: 33*$medium;
+}
+.android400 .oneToOneTextWrap{
+  width: 38*$medium;
+  height: 13*$medium;
+  text-align: center;
+}
+.android400 .oneToOneText{
+  font-size: 10*$medium;
+  font-family: nanumsquareroundr;
+  color: #555555;
+}
+.android400 .etcListWrap{
+  text-align: left;
+  margin-top: 15*$medium;
+}
+.android400 .etcList{
+  height: 360*$medium;
+}
+.android400 .etcText{
+  margin-left: 65*$medium;
+  font-size: 12*$medium;
+  font-family: nanumsquareroundeb;
+  color: #555555;
+}
+.android400 .etcTextWrap{
+  margin-top: 15*$medium;
+  margin-bottom: 15*$medium;
+}

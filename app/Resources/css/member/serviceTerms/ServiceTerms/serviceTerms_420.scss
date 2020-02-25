@@ -1,0 +1,52 @@
+$medium : 1.142;
+
+.android400 .serviceTermsHeaderWrap{
+  height: 55*$medium;
+  width: 360*$medium;
+  border-bottom-width: 1*$medium;
+  border-bottom-color: #dddddd;
+}
+.android400 .serviceTermsHeaderWrapWrap{
+  width: 192*$medium;
+  margin-top: 21*$medium;
+  margin-left: 134*$medium;
+}
+.android400 .serviceTermsHeader{
+  font-size: 14*$medium;
+  color: #333333;
+  font-family: nanumsquareroundb;
+}
+.android400 .serviceTermsHeaderIconWrap{
+  height: 30*$medium;
+  width: 30*$medium;
+  margin-top: 7*$medium;
+}
+.android400 .serviceTermsTitleWrap{
+  margin-top: 19*$medium;
+  margin-left: 15*$medium;
+}
+.android400 .serviceTermsTitle{
+  font-family: nanumsquareroundb;
+  font-size: 14*$medium;
+  color: #333333;
+}
+.android400 .serviceTermsListWrap{
+  margin-top: 13*$medium;
+  margin-left: 15*$medium;
+}
+.android400 .serviceTermsList{
+  font-size: 11*$medium;
+  color: #333333;
+  font-family: nanumsquareroundb;
+}
+.android400 .serviceTermsContentsWrap{
+  padding-left: 10*$medium;
+  padding-right: 10*$medium;
+}
+.android400 .serviceTermsContents{
+  font-family: nanumsquareroundr;
+  font-size: 11*$medium;
+  color: #333333;
+  line-height:5*$medium;
+  background-color: #ffffff;
+}

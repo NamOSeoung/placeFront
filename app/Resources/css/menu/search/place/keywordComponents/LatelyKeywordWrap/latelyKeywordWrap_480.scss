@@ -1,0 +1,47 @@
+$large : 1.5;
+
+.android480 .latelyKeywordHeaderWrap{
+  width: 320*$large;
+  border-bottom-color: #eeeeee;
+  border-bottom-width: 1*$large;
+  padding-bottom: 10*$large;
+  padding-top: 14.5*$large;
+}
+.android480 .latelyKeywordKeywordWrap{
+  width: 240*$large;
+}
+.android480 .latelyKeywordKeyword{
+  font-family: nanumsquareroundr;
+  font-size: 12*$large;
+  color: #333333;
+}
+.android480 .latelyKeyWordDateWrap{
+  width: 60*$large;
+}
+.android480 .latelyKeywordDate{
+  font-family: nanumsquareroundr;
+  font-size: 11*$large;
+  color: #888888;
+}
+.android480 .latelyKeywordDeleteIconWrap{
+  margin-left: 15*$large;
+  margin-top: 0*$large;
+  width: 10*$large;
+  height: 10*$large;
+}
+.android480 .latelyKeywordDeleteIcon{
+  width: 12*$large;
+  height: 12*$large;
+}
+.android480 .latelyKeywordAllDeleteWrap{
+  width: 360*$large;
+  text-align: center;
+  margin-top: 19.5*$large;
+  height: 50*$large;
+}
+.android480 .latelyKeywordAllDelete{
+  font-family: nanumsquareroundr;
+  font-size: 12*$large;
+  color: #333333;
+}
+

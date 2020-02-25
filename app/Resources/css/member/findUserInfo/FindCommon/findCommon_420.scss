@@ -1,0 +1,143 @@
+$medium : 1.142;
+
+
+.android400 .findUserIdBarWrap{
+  height: 56*$medium;
+  width: 360*$medium;
+  border-bottom-width: 1*$medium;
+  border-bottom-color: #dddddd;
+}
+.android400 .findUserIdBackIconWrap{
+  width: 28*$medium;
+  height: 28*$medium;
+  margin-left: 6*$medium;
+  margin-top: 25*$medium;
+}
+.android400 .findUserIdBackIcon{
+  width: 16*$medium;
+  height: 16*$medium;
+}
+.android400 .findUserIdBackWrap{
+  width: 33*$medium;
+  height:13*$medium;
+  margin-top: 15*$medium;
+}
+.android400 .findUserIdBack {
+  font-size: 12*$medium;
+  font-family: nanumsquareroundb;
+  width: 33*$medium;
+  height: 13*$medium;
+}
+.android400 .findUserIdBarTitleWrap{
+  margin-left: 84*$medium;
+  height: 16*$medium;
+  width: 68*$medium;
+  margin-top: 15*$medium;
+}
+.android400 .findUserIdBarTitle{
+  width: 68*$medium;
+  height:16*$medium;
+  font-family: nanumsquareroundb;
+  font-size: 14*$medium;
+  color: #333333;
+}
+
+//패스워드 변경부분 아이디 변경이랑 같이씀.
+.android400 .findUserPasswordBarTitleWrap{
+  margin-left:78*$medium;
+  height: 16*$medium;
+  width: 80*$medium;
+  margin-top: 15*$medium;
+}
+.android400 .findUserPasswordBarTitle{
+  width: 80*$medium;
+  height:16*$medium;
+  font-family: nanumsquareroundb;
+  font-size: 14*$medium;
+  color: #333333;
+}
+
+.android400 .findUserIdPhoneTitleWrapWrap{
+  width: 360*$medium;
+  margin-top: 24*$medium;
+}
+.android400 .findUserIdPhoneTitle{
+  margin-left: 25*$medium;
+  font-family: nanumsquareroundr;
+  color: #555555;
+  font-size: 10*$medium;
+}
+.android400 .findUserIdPhoneWrap{
+  width: 360*$medium;
+}
+.android400 .findUserIdPhoneNumberWrap{
+  width: 311*$medium;
+  border-bottom-width: 1*$medium;
+  border-bottom-color: #aaaaaa;
+}
+.android400 .findUserIdPhoneNumberWrapWrap{
+  width:285*$medium;
+}
+.android400 .findUserIdPhoneNumber{
+  font-size: 12*$medium;
+  color: #555555;
+  font-family: nanumsquareroundr;
+}
+.android400 .findUserIdPhoneDeleteWrap{
+  width: 20*$medium;
+  height: 20*$medium;
+}
+.android400 .findUserIdPhoneDelete{
+  width: 20*$medium;
+  height: 20*$medium;
+}
+.android400 .findUserIdBirthTitleWrap{
+  margin-top: 24.5*$medium;
+}
+.android .findUserIdBirthTitleWrap{
+  width: 360*$medium;
+}
+.android .findUserIdBirthTitle{
+  margin-left: 25*$medium;
+  color: #555555;
+  font-size: 10*$medium;
+  font-family: nanumsquareroundr;
+}
+.android400 .findUserIdOkButtomWrap{
+  width: 360*$medium;
+}
+.android400 .findUserIdOkButtomWrapWrap{
+  margin-top: 24.5*$medium;
+  margin-left: 130*$medium;
+  margin-right: 130*$medium;
+  width: 100*$medium;
+  background-color: #dddddd;
+  border-radius: 16*$medium;
+  text-align: center;
+  height: 32*$medium;
+}
+.android400 .findUserIdOkButtom{
+  margin-top: 9*$medium;
+  height: 14*$medium;
+  font-size: 12*$medium;
+  color: #ffffff;
+  font-family: nanumsquareroundb;
+}
+.android400 .findUserIdOkButtomWrapWrap2{
+  margin-top: 24.5*$medium;
+  margin-left: 130*$medium;
+  margin-right: 130*$medium;
+  width: 100*$medium;
+  background-color: #ffe074;
+  border-radius: 16*$medium;
+  text-align: center;
+  height: 32*$medium;
+}
+.android400 .findUserIdOkButtom2{
+  margin-top: 9*$medium;
+  height: 14*$medium;
+  font-size: 12*$medium;
+  color: #555555;
+  font-family: nanumsquareroundb;
+}
+

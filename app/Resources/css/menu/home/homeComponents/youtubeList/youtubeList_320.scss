@@ -1,0 +1,73 @@
+$small : 0.9;
+
+.android320 .youtubeWrap{
+  width: 360*$small;
+  height: 181*$small;
+}
+
+.android320 .youtubeHeaderWrap{
+  width: 360*$small;
+  height:27*$small;
+}
+.android320 .youtubeIcon{
+  margin-top: 13*$small;
+  width: 16*$small;
+  height: 16*$small;
+  margin-left: 16*$small;
+}
+.android320 .youtubeTitle{
+  font-size: 13*$small;
+  margin-top: 13*$small;
+  font-family: nanumsquareroundeb;
+  color: #555555;
+  height: 14*$small;
+  width: 250*$small;
+  margin-left: 6*$small;
+}
+.android320 .youtubeMore{
+  margin-top: 13*$small;
+  width: 36*$small;
+  height: 13*$small;
+  color: #888888;
+  font-size: 12*$small;
+  font-family: nanumsquareroundeb;
+}
+.android320 .youtubeRightIcon{
+  margin-top: 13*$small;
+  width: 18*$small;
+  height: 18*$small;
+  margin-left: -6*$small;
+}
+.android320 .youtubeSubWrap{
+  padding-left: 15*$small;
+  border-bottom-width: 2*$small;
+  border-bottom-color: #33000000;
+}
+
+.android320 .youtubeMainWrap{
+  margin-top: 19*$small;
+  width: 150*$small;
+  height: 142*$small;
+  margin-right: 10*$small;
+}
+.android320 .youtubeImageWrap{
+  width: 150*$small;
+  height: 84*$small;
+}
+.android320 .youtubeImage{
+  width: 150*$small;
+  height: 84*$small;
+}
+.android320 .youtubeSubjectWrap{
+  width: 150*$small;
+  height: 32*$small;
+  margin-top: 7*$small;
+}
+.android320 .youtubeSubject{
+  width: 150*$small;
+  height: 32*$small;
+  font-family: nanumsquareroundeb;
+  font-size: 12*$small;
+  color: #333333;
+  line-height:5*$small;
+}

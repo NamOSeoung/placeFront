@@ -10,21 +10,22 @@
 // create a file named before-plugins.gradle in the current directory and place it there
 
 android {
- compileSdkVersion 28
-     buildToolsVersion "29.0.2"
-     defaultConfig {
-         applicationId "org.nativescript.matitzung"
-         minSdkVersion 17
-         targetSdkVersion 28
-         versionCode 1
-         versionName "1.0"
-         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-     }
+      defaultConfig {
+        minSdkVersion 17
+        generatedDensities = []
+      }
   aaptOptions {
     additionalParameters "--no-version-vectors"
   }
-    dependencies {
-      compile 'com.android.support:appcompat-v7:26.0.0'
-      compile 'com.android.support:support-v4:26.0.0'
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+
+    }
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
   }
 }

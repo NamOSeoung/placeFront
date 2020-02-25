@@ -1,0 +1,20 @@
+$small : 0.9;
+
+.android320 .phoneCertWrap{
+  width: 100*$small;
+  margin-top: 40*$small;
+  height: 31*$small;
+  background-color: #dddddd;
+  border-radius: 6*$small;
+  text-align: center;
+  margin-left: 18*$small;
+}
+.android320 .phoneCertWrap2{
+  width: 100*$small;
+  margin-top: 40*$small;
+  height: 31*$small;
+  background-color: #333333;
+  border-radius: 6*$small;
+  text-align: center;
+  margin-left: 18*$small;
+}

@@ -1,0 +1,60 @@
+$small : 0.9;
+
+
+.android320 .googleListHeaderWrap{
+  margin-bottom: 10*$small;
+  height: 130*$small;
+}
+.android320 .googleListWrap{
+  background-color: #ffffff;
+  width: 260*$small;
+  height: 90*$small;
+  margin-top: 16*$small;
+  margin-left: 15*$small;
+  border-color: #eeeeee;
+  margin-bottom: 15*$small;
+}
+.android320 .googleListRatingIconWrap{
+  width: 200*$small;
+  margin-left: 9*$small;
+  margin-top: 11*$small;
+}
+.android320 .googleListRatingIcon{
+  width: 17*$small;
+  margin-left: 1*$small;
+  height: 17*$small;
+}
+.android320 .googleListDate{
+  margin-top: 11*$small;
+  color: #888888;
+  font-family: nanumsquareroundr;
+  font-size: 12*$small;
+}
+.android320 .googleListContentsWrap{
+  margin-top: 10*$small;
+  margin-left: 10*$small;
+  margin-bottom: 16*$small;
+  padding-right:10*$small;
+}
+.android320 .googleListContents{
+  background-color: #ffffff;
+  border-width: 0*$small;
+  color: #333333;
+  font-family: nanumsquareroundr;
+  line-height:5*$small;
+  font-size: 12*$small;
+  height: 31*$small;
+}
+.android320 .googleListBottomWrap{
+  height: 106*$small;
+}
+.android320 .googleListNonContentsWrap{
+  margin-left: 140*$small;
+  margin-top: 41*$small;
+  width: 90*$small;
+}
+.android320 .googleListNonContents{
+  color: #cccccc;
+  font-size: 12*$small;
+  font-family: nanumsquareroundb;
+}

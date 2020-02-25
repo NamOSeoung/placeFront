@@ -1,0 +1,158 @@
+.android360 .areaSearchHeaderWrap{
+  width:360;
+  height: 45;
+  border-bottom-width: 4;
+  border-bottom-color: #ffe074;
+ // margin-top: 27;
+}
+.android360 .areaSearchHeader{
+  margin-left: 21;
+  font-family: nanumsquareroundr;
+  font-size: 13;
+  color: #aaaaaa;
+  background-color: #ffffff;
+}
+.android360 .areaSearchCurrentLocationWrap{
+  width: 360;
+  height: 50;
+  border-bottom-color: #eeeeee;
+  border-bottom-width: 2;
+}
+.android360 .areaSearchCurrentLocationIconWrap{
+  width: 21;
+  height: 21;
+  margin-left: 21;
+  margin-top: 7;
+}
+.android360 .areaSearchCurrentLocationIcon{
+  width: 16;
+  height: 16;
+}
+.android360 .areaSearchCurrentLocationTitleWrap{
+  margin-left: 2;
+  width: 44;
+  height: 15;
+  margin-top: 2;
+}
+.android360 .areaSearchCurrentLocationTitle{
+  width: 44;
+  height: 15;
+  font-family: nanumsquareroundr;
+  font-size: 12;
+  color: #333333;
+}
+.android360 .areaSearchMainWrap{
+  height:425;
+}
+.android360 .areaSearchMainWrapWrap{
+  width:360;
+}
+.android360 .areaSearchLeftScrollWrap{
+  height: 425;
+}
+.android360 .areaSearchLeftMainWrap{
+  width: 95;
+  text-align: center;
+  border-right-width: 2;
+  border-right-color: #eeeeee;
+}
+.android360 .areaSearchLeftMainWrapWrap{
+  width:95;
+}
+.android360 .areaSearchLeftAreaWrap{
+  width: 95;
+  height:43;
+  padding-top: 14.5;
+}
+.android360 .areaSearchLeftAreaWrap.active{
+  width: 95;
+  height:43;
+  padding-top: 14.5;
+  background-color: #ffe074;
+}
+.android360 .areaSearchLeftArea{
+  width: 95;
+  height: 43;
+  font-family: nanumsquareroundr;
+  font-size: 12;
+  color: #333333;
+}
+.android360 .areaSearchRightScrollWrap{
+  height: 425;
+}
+.android360 .areaSearchRightMainWrap{
+  width: 265;
+  border-right-color: #eeeeee;
+  border-right-width: 2;
+}
+.android360 .areaSearchRightMainWrapWrap{
+  width: 265;
+  height:43;
+}
+.android360 .areaSearchRightMainWrapWrapWrap{
+  height:43;
+}
+.android360 .areaSearchRightAreaWrap{
+  width: 100;
+  padding-left: 26.5;
+  padding-top: 14.5;
+}
+.android360 .areaSearchRightArea{
+  font-family: nanumsquareroundr;
+  color: #333333;
+  font-size: 13;
+}
+.android360 .areaSearchRightArea.active{
+  font-family: nanumsquareroundb;
+  color: #333333;
+  font-size: 13;
+}
+.android360 .areaSearchRightCheckIcon{
+  margin-top: 13;
+  width: 20;
+  height: 20;
+}
+.android360 .areaSearchBottomWrap{
+  width: 360;
+  height: 45.5;
+  border-top-width: 2;
+  border-top-color: #eeeeee;
+  padding-top: 13.5;
+}
+.android360 .areaSearchCancelWrap{
+  width: 147;
+  text-align: right;
+}
+.android360 .areaSearchCancel{
+  width:159;
+  height: 16;
+  font-family: nanumsquareroundr;
+  font-size: 14;
+  color:#555555;
+}
+.android360 .areaSearchConfirmWrap{
+  width: 223;
+  text-align: center;
+}
+.android360 .areaSearchConfirm{
+  width: 211;
+  height: 16;
+  font-family: nanumsquareroundb;
+  font-size: 14;
+  color: #f0c735;
+}
+.android360 .areaSearchConfirm{
+  width: 211;
+  height: 16;
+  font-family: nanumsquareroundb;
+  font-size: 14;
+  color: #dddddd;
+}
+.android360 .areaSearchConfirm.active{
+  width: 211;
+  height: 16;
+  font-family: nanumsquareroundb;
+  font-size: 14;
+  color: #f0c735;
+}
+

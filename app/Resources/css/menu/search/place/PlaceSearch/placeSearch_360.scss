@@ -1,0 +1,104 @@
+.android360 .placeSearchBarWrap{
+  width: 360;
+  height: 63.5;
+  border-bottom-width: 4;
+  border-bottom-color: #ffe074;
+}
+.android360 .placeSearchBarMapIconWrap{
+  width: 20;
+  height: 20;
+  margin-left: 20;
+}
+.android360 .placeSearchBarMapIcon{
+  width: 20;
+  height: 20;
+}
+.android360 .placeSearchBarTextWrap{
+  width:251;
+  height:45;
+}
+.android360 .placeSearchBarTextWrapWrap{
+  margin-left: 24;
+  width: 200;
+  height:35;
+}
+.android360 .placeSearchBarText{
+  border-color: #ffffff;
+  background-color: #ffffff;
+  font-family: nanumsquareroundr;
+  color:#333333;
+  font-size: 13;
+}
+.android360 .placeSearchBarDeleteIconWrap{
+  width: 20;
+  height:20;
+}
+.android360 .placeSearchBarDeleteIcon{
+  width: 20;
+  height: 20;
+}
+.android360 .placeSearchBarSearchIconWrap{
+  margin-top: 20;
+  margin-left: 20;
+}
+.android360 .placeSearchBarSearchIcon{
+  width: 20;
+  height: 20;
+}
+.android360 .placeSearchKeywordListWrap{
+  margin-top: 18.5;
+}
+.android360 .placeSearchLatelyKeyword{
+  width: 64;
+  height:16;
+  font-size: 14;
+  color:#333333;
+  font-family: nanumsquareroundb;
+}
+.android360 .placeSearchPopularKeywordWrap{
+  width: 64;
+  padding-bottom: 5;
+  margin-left: 20;
+  border-bottom-color: #ffe074;
+  border-bottom-width: 0;
+}
+.android360 .placeSearchPopularKeyword{
+  width: 64;
+  height: 16;
+  font-size: 14;
+  font-family: nanumsquareroundr;
+  color: #333333;
+}
+.android360 .placeSearchAutoCompleteListWrap{
+  border-bottom-color: #eeeeee;
+  padding-bottom: 14.5;
+  padding-left: 20;
+  padding-top: 14.5;
+}
+.android360 .placeSearchAutoCompleteList{
+  font-family: nanumsquareroundr;
+  font-size: 12;
+  color: #333333;
+}
+.android360 .placeSearchPlaceListWrap{
+  margin-top: -20;
+  background-color: #eff2f7;
+}
+.android360 .placeSearchPlaceList{
+  margin-top: 15;
+}
+
+
+.android360 .placeSearchLatelyKeywordWrap{
+  width: 64;
+  margin-left: 20.5;
+  padding-bottom: 9;
+}
+
+.android360 .placeSearchLatelyKeywordWrap.active{
+  width: 64;
+  margin-left: 20.5;
+  border-bottom-color: #ffe074;
+  border-bottom-width: 4;
+  padding-bottom: 9;
+}

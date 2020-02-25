@@ -1,0 +1,98 @@
+$medium : 1.2;
+
+.android400 .faqWrap{
+  background-color: #ffffff;
+  width: 360*$medium;
+  height: 650*$medium;
+}
+.android400 .faqHeaderWrap{
+  background-color: #ffffff;
+  width: 360*$medium;
+  height: 55*$medium;
+  border-bottom-width: 1*$medium;
+  border-bottom-color: #dddddd;
+  padding-bottom: 18*$medium;
+}
+
+.android400 .leftWrap{
+  width: 14*$medium;
+  height: 14*$medium;
+  margin-left: 6*$medium;
+  margin-top: 17*$medium;
+}
+.android400 .leftIcon{
+  width:14*$medium;
+  height: 14*$medium;
+}
+.android400 .myInfoBackWrap{
+  margin-left: 2*$medium;
+  width: 33*$medium;
+  height: 14*$medium;
+  margin-top: 20*$medium;
+}
+.android400 .myInfoBack{
+  width: 33*$medium;
+  height: 14*$medium;
+  color: #333333;
+  font-size: 12*$medium;
+  font-family: nanumsquareroundeb;
+}
+.android400 .faqTitleWrap{
+  width: 80*$medium;
+  height: 18*$medium;
+  margin-top: 21*$medium;
+  margin-left: 88*$medium;
+}
+.android400 .faqTitle{
+  width: 80*$medium;
+  height: 16*$medium;
+  color: #333333;
+  font-family: nanumsquareroundeb;
+  font-size: 14*$medium;
+}
+
+.android400 .faqListWrap{
+  text-align: left;
+}
+
+.android400 .faqList{
+  border-bottom-width: 1*$medium;
+  border-bottom-color: #dddddd;
+}
+
+.android400 .faqHeaderTitleWrap{
+  width:311*$medium;
+}
+.android400 .faqHeaderTitle{
+  font-family: nanumsquareroundeb;
+  font-size: 12*$medium;
+  color: #333333;
+  height: 13*$medium;
+  margin-top: 23*$medium;
+  margin-bottom: 21*$medium;
+  margin-left:15*$medium;
+}
+.android400 .faqDownIconWrap{
+  width: 28*$medium;
+  height: 28*$medium;
+}
+.android400 .faqDownIcon{
+  margin-top: 10*$medium;
+  width: 15*$medium;
+  height: 15*$medium;
+}
+.android400 .faqDetailWrap{
+  background-color: #eff2f7;
+  width: 360*$medium;
+  padding-top: 14*$medium;
+  padding-right: 15*$medium;
+  padding-bottom: 18*$medium;
+  padding-left: 15*$medium;
+}
+.android400 .faqDetail{
+  font-size: 11*$medium;
+  color: #333333;
+  font-family: nanumsquareroundr;
+  line-height:22*$medium;
+  background-color: #eff2f7;
+}

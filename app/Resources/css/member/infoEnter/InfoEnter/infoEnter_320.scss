@@ -1,0 +1,120 @@
+$small : 0.9;
+
+.android320 .infoEnterCommonTitleWrap{
+  margin-top: 20*$small;
+  width: 311*$small;
+}
+.android320 .infoEnterCommonTitle{
+  font-family: nanumsquareroundr;
+  font-size: 10*$small;
+  color: #555555;
+}
+.android320 .infoEnterCommonContentsWrap{
+  width: 311*$small;
+  border-bottom-color: #aaaaaa;
+  border-bottom-width: 1*$small;
+}
+.android320 .infoEnterCommonContentsWrapWrap{
+  width: 285*$small;
+  margin-top: 5*$small;
+}
+.android320 .infoEnterCommonContents{
+  font-family: nanumsquareroundr;
+  color: #333333;
+  font-size: 12*$small;
+  background-color: #ffffff;
+}
+.android320 .infoEnterValidation{
+  margin-top: 10*$small;
+  margin-left: 25*$small;
+}
+.android320 .infoEnterValidationGray{
+  color: #888888;
+  font-size: 10*$small;
+  font-family: nanumsquareroundr;
+}
+.android320 .infoEnterValidationRed{
+  font-family: nanumsquareroundr;
+  font-size: 10*$small;
+  color: #db522b;
+}
+.android320 .infoEnterBirthTitleWrap{
+  width: 147*$small;
+}
+.android320 .infoEnterBirthIconWrap{
+  width: 14*$small;
+  height: 14*$small;
+}
+.android320 .infoEnterBirthMessageWrap{
+  text-align: right;
+  margin-left: 4*$small;
+}
+.android320 .infoEnterBirthMessage{
+  font-size: 10*$small;
+  color: #555555;
+  font-family: nanumsquareroundr;
+}
+.android320 .infoEnterGenderWrap{
+  margin-top: 10*$small;
+}
+.android320 .infoEnterGenderIconWrap{
+  width: 15*$small;
+  height: 15*$small;
+  border-radius: 25*$small;
+  border-width: 2*$small;
+  border-color: #ffe074;
+  margin-left: 24*$small;
+}
+.android320 .infoEnterGenderIconWrap2{
+  width: 15*$small;
+  height: 15*$small;
+  border-radius: 25*$small;
+  border-width: 2*$small;
+  border-color: #dddddd;
+  margin-left: 27*$small;
+}
+.android320 .infoEnterGenderIcon{
+  width: 7*$small;
+  height: 7*$small;
+  background-color: #ffe074;
+  border-radius: 25*$small;
+  margin-top: 1.5*$small;
+}
+.android320 .infoEnterGenderTitleWrap{
+  margin-left: 7*$small;
+}
+.android320 .infoEnterGenderTitle{
+  font-family: nanumsquareroundr;
+  color: #333333;
+  font-size: 12*$small;
+}
+.android320 .joinOkWrap{
+  margin-top: 32*$small;
+  border-radius: 16*$small;
+  background-color: #dddddd;
+  width: 100*$small;
+  height: 32*$small;
+  text-align: center;
+}
+.android320 .joinOkWrap2{
+  width: 100*$small;
+  height: 32*$small;
+  margin-top: 32*$small;
+  border-radius: 16*$small;
+  text-align: center;
+  background-color: #ffe074;
+
+}
+.android320 .joinOk{
+  font-size: 12*$small;
+  font-family: nanumsquareroundb;
+  color: #ffffff;
+  margin-top: 9*$small;
+}
+.android320 .joinOk2{
+  font-size: 12*$small;
+  font-family: nanumsquareroundb;
+  color: #555555;
+  margin-top: 9*$small;
+}
+

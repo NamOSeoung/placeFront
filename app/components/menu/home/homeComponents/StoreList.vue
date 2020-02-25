@@ -1,64 +1,111 @@
 <template lang="html">
- <StackLayout backgroundColor="#ffffff" marginTop="10dp">
-   <StackLayout orientation="horizontal">
-       <FIcon name="fa-concierge-bell" color="#A4A4A4"  width="16" heigit="16" size="16" marginTop="12" marginLeft="16" />
-       <label text="매장정보" width="48" height="14" style="font-family: nanumsquareroundeb" fontSize="13" marginTop="13" marginLeft="6"/>
-       <label text="더보기" width="36" height="13" fontSize="12sp" style="font-family: nanumsquareroundeb" color="#888888" marginTop="13" marginLeft="214dp"/>
-       <FIcon name="fa-angle-right" color="#A4A4A4"  fontSize="16" paddingTop="12"  />
+ <StackLayout class="storeWrap">
+   <StackLayout orientation="horizontal" class="storeHeaderWrap">
+       <image src="~/Resources/img/home/cook.png" class="storeCookIcon"/>
+       <label text="매장정보" class="storeTitle"/>
+       <label text="더보기" class="storeMore" @tap="$navigateTo(StoreMorePage)" v-if="storeList.length > 4"/>
+       <image src="~/Resources/img/home/angle-right.png" class="storeRightIcon"  v-if="storeList.length > 4"/>
    </StackLayout>
-     <ScrollView orientation="horizontal" marginTop="19">
-     <StackLayout orientation="horizontal">
-         <StackLayout orientation="horizontal" paddingBottom="14">
-             <StackLayout width="228" orientation="horizontal" marginLeft="15" >
-                 <StackLayout width="70" height="70">
-                     <image width="100%" height="100%" borderRadius="8" stretch="aspectFill" src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99CFD3405D09CF9C2B"/>
-                 </StackLayout>
-                 <StackLayout paddingLeft="11">
-                     <StackLayout orientation="horizontal" style="text-align:center">
-                         <label text="영업중" backgroundColor="#ffe074" borderRadius="8" paddingTop="3" width="50" height="18" fontSize="10" style="font-family: nanumsquareroundeb" />
-                         <FIcon name="fa-star" color="#ffe074"  fontSize="18" marginLeft="10" />
-                         <label text="4.3" paddingTop="3" fontSize="12" color="#333333" marginLeft="1" style="font-family: nanumsquareroundeb"/>
+     <StackLayout v-if="storeList.length>0" marginTop="0">
+         <ScrollView orientation="horizontal" >
+             <StackLayout orientation="horizontal" class="storeDetailSubWrap" >
+                 <StackLayout orientation="horizontal" class="storeDetailWrap"  @tap="goPlaceDetail(index)" v-for="(list,index) in storeList">
+                     <StackLayout class="storeLeftWrap" v-if="list.blog_thumbnail != null">
+                         <image class="storeImage" stretch="aspectFill" :src="list.blog_thumbnail"/>
                      </StackLayout>
-                     <StackLayout orientation="horizontal" marginTop="10">
-                         <label text="매장이름 한 줄까지 표시" fontSize="14" style="font-family: nanumsquareroundeb"/>
+                     <StackLayout class="storeLeftWrap" v-else backgroundColor="#dddddd" borderRadius="10">
+                         <image class="storeImage" width="55" height="55" marginTop="8" stretch="aspectFill" src="~/Resources/img/home/dinner_w_64.png"/>
                      </StackLayout>
-                     <StackLayout marginTop="9">
-                         <label text="곰탕전문점" fontSize="12" color="#555555" style="font-family: nanumsquareroundeb"/>
-                     </StackLayout>
-                 </StackLayout>
-             </StackLayout>
-             <StackLayout width="228" orientation="horizontal" marginLeft="15" >
-                 <StackLayout width="70" height="70">
-                     <image width="100%" height="100%" borderRadius="8" stretch="aspectFill" src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99CFD3405D09CF9C2B"/>
-                 </StackLayout>
-                 <StackLayout paddingLeft="11">
-                     <StackLayout orientation="horizontal" style="text-align:center">
-                         <label text="영업중" backgroundColor="#ffe074" borderRadius="8" width="50" fontSize="10" style="font-family: nanumsquareroundeb" />
-                         <FIcon name="fa-star" color="#ffe074"  fontSize="18" marginLeft="10" />
-                         <label text="4.3" fontSize="12" color="#333333" marginLeft="1" style="font-family: nanumsquareroundeb"/>
-                     </StackLayout>
-                     <StackLayout orientation="horizontal" marginTop="10">
-                         <label text="매장이름 한 줄까지 표시" fontSize="14" style="font-family: nanumsquareroundeb"/>
-                     </StackLayout>
-                     <StackLayout marginTop="9">
-                         <label text="곰탕전문점" fontSize="12" color="#555555" style="font-family: nanumsquareroundeb"/>
+                     <StackLayout class="storeRightWrap">
+                         <StackLayout orientation="horizontal" class="storeTopWrap">
+                             <StackLayout class="storeTimeWrap">
+                                 <label text="영업중" class="storeTime" />
+                             </StackLayout>
+                             <StackLayout class="storeStarIconWrap">
+                                 <Image src="~/Resources/img/home/star.png" class="storeStarIcon" />
+                             </StackLayout>
+                             <StackLayout class="storeRatingWrap">
+                                 <label :text="list.google_rating" class="storeRating"/>
+                             </StackLayout>
+                         </StackLayout>
+                         <StackLayout class="storeMiddleWrap">
+                             <label :text="list.place_name" class="storeName" />
+                         </StackLayout>
+                         <StackLayout class="storeBottomWrap">
+                             <label :text="list.category_name" class="storeCategory"/>
+                         </StackLayout>
                      </StackLayout>
                  </StackLayout>
              </StackLayout>
-         </StackLayout>
+         </ScrollView>
      </StackLayout>
-     </ScrollView>
+     <StackLayout v-else marginTop="40" width="100%" style="text-align: center">
+         <label text="검색 결과가 없습니다." />
+     </StackLayout>
+
  </StackLayout>
 </template>
 
 <script>
+    import axios from 'axios';
 
+    import '~/Resources/css/menu/home/homeComponents/StoreList/storeList_320.scss';
+    import '~/Resources/css/menu/home/homeComponents/StoreList/storeList_360.scss';
+    import '~/Resources/css/menu/home/homeComponents/StoreList/storeList_420.scss';
+    import '~/Resources/css/menu/home/homeComponents/StoreList/storeList_480.scss';
+
+    import StoreMore from './reviewMore/StoreMore'
+    var cache = require("nativescript-cache");
+    import PlaceDetail from '../../search/place/placeDetail/PlaceDetail'
+    const appSettings = require("tns-core-modules/application-settings");
     export default {
         name:"StoreList",
+        data(){
+            return{
+               storeList:[],
+                StoreMorePage:StoreMore
+        }
+        },
         components: {
+        },methods:{
+            getStoreList(keyword){
+                axios({
+                    method: 'get',
+                    url: 'http://api.eatjeong.com/v1/main/places?',
+                    params: {
+                        query:keyword,
+                        user_id:appSettings.getString("user_id"),
+                        sns_division:appSettings.getString("sns_division"),
+                        size:'5'
+                    },
+                }).then((response) => {
+                    console.log(response.data.dataList)
+                    this.$data.storeList = response.data.dataList;
+
+
+                }, (error) => {
+                    console.log(error);
+                });
+            },goPlaceDetail(index){
+                cache.set('place_id',this.$data.storeList[index].place_id)
+                cache.set('place_name',this.$data.storeList[index].place_name)
+                cache.set('place_address',this.$data.storeList[index].place_address);
+                this.$navigateTo(PlaceDetail, {
+                    props: {
+                        context: this.$data.storeList[index]}});
+            }
+        },
+        mounted() {
+            if(cache.get("location_name") == null){
+                this.getStoreList("서울 맛집");
+            }else{
+                this.getStoreList(cache.get("location_name"));
+            }
+            //this.getStoreList();
         }
     };
 </script>
 
 <style lang="scss">
+
 </style>

@@ -1,31 +1,45 @@
 <template lang="html">
     <StackLayout marginTop="10">
-        <StackLayout orientation="horizontal" >
-            <image src="~/Resources/img/home/naverblog.png" width="17" height="12" marginTop="16" marginLeft="15"/>
-            <label text="네이버" width="36" height="14" fontSize="13" marginTop="15"  style="font-family: nanumsquareroundeb" marginLeft="6" />
-            <label text="더보기" width="36" height="13" fontSize="12sp" style="font-family: nanumsquareroundeb" color="#888888" marginTop="13" marginLeft="226dp"/>
-            <FIcon name="fa-angle-right" color="#A4A4A4"  fontSize="16" paddingTop="12"  />
+        <StackLayout orientation="horizontal">
+            <image class="youtubeListIcon" src="~/Resources/img/home/naver.png" />
+            <label class="youtubeListTitle" text="네이버"  />
+            <label class="youtubeListMore" text="더보기"  @tap="goMorePage" v-if="naverReview.length > 4"/>
+            <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png" v-if="naverReview.length > 4" />
         </StackLayout>
         <ScrollView orientation="horizontal">
-            <StackLayout orientation="horizontal" marginBottom="10">
-                <StackLayout orientation="horizontal" backgroundColor="#ffffff" v-if="naverReview != ''" v-for="n_reviews in naverReview" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" width="260" marginTop="16" marginLeft="15" borderColor="#eeeeee" marginBottom="15">
-                    <StackLayout width="70" height="70" marginLeft="9" marginTop="10" marginBottom="10" >
-                        <Image width="100%" height="100%" borderRadius="8" stretch="aspectFill" :src="n_reviews.thumbnail_url"/>
-                    </StackLayout>
-                    <StackLayout>
-                        <StackLayout>
-                            <label :text="n_reviews.title" width="150" height="18" marginLeft="12" marginTop="12" style="font-family: nanumsquareroundeb" color="#333333" fontSize="13"  />
-                            <Label :text="n_reviews.description" marginLeft="12"  width="150" height="18" style="font-family: nanumsquareroundr"  color="#333333" fontSize="12"/>
-                        </StackLayout>
-                        <StackLayout orientation="horizontal" marginTop="7" marginLeft="12">
-                            <label :text="n_reviews.write_date"  width="60" height="18" color="#888888" style="font-family: nanumsquareroundr" fontSize="11" />
-                            <label :text="n_reviews.author" height="18" color="#888888" style="font-family: nanumsquareroundr" fontSize="11" />
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
-                <StackLayout v-if="naverReview == ''" height="106">
-                    <StackLayout marginLeft="140" marginTop="41" width="80" >
-                        <label text="정보가 없습니다." color="#cccccc" fontSize="12" style="font-family: nanumsquareroundeb;" />
+            <StackLayout class="naverListHeaderWrap" orientation="horizontal"  >
+                <StackLayout class="naverListTopWrap" orientation="horizontal" @tap="goWebview(n_reviews.index)" v-if="naverReview != ''" v-for="n_reviews in naverReview" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" >
+                      <StackLayout v-if="naverReview.thumbnail_url != null">
+                          <StackLayout class="naverListThumbnailWrap" >
+                              <Image class="naverListThumbnail"  stretch="aspectFill" :src="n_reviews.thumbnail_url"/>
+                          </StackLayout>
+                          <StackLayout>
+                              <StackLayout>
+                                  <label class="naverListTitle" :text="n_reviews.title"  />
+                                  <Label class="naverListDescription" :text="n_reviews.description" />
+                              </StackLayout>
+                              <StackLayout class="naverListDateInfoWrap" orientation="horizontal" >
+                                  <label class="naverListDate" :text="n_reviews.write_date"  />
+                                  <label class="naverListWriter" :text="n_reviews.author" />
+                              </StackLayout>
+                          </StackLayout>
+                      </StackLayout>
+                     <StackLayout v-else>
+                            <StackLayout width="260">
+                                <StackLayout width="227" >
+                                    <label width="227"  class="naverListTitle" :text="n_reviews.title"  />
+                                    <Label width="227"  class="naverListDescription" :text="n_reviews.description" />
+                                </StackLayout>
+                                <StackLayout width="227"  class="naverListDateInfoWrap" orientation="horizontal" >
+                                    <label class="naverListDate" :text="n_reviews.write_date"  />
+                                    <label class="naverListWriter" :text="n_reviews.author" />
+                                </StackLayout>
+                            </StackLayout>
+                      </StackLayout>
+                  </StackLayout>
+                <StackLayout class="naverListBottomWrap" v-if="naverReview == ''" >
+                    <StackLayout class="naverListNonContentsWrap" >
+                        <label class="naverListNonContents" text="정보가 없습니다."  />
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
@@ -35,38 +49,74 @@
 
 <script>
     import PlaceSearch from '../../PlaceSearch'
+    import NaverMore from '../reviewMore/NaverMore'
+    import PlaceDetail from '../PlaceDetail'
+    import NaverWebview from '../reviewMore/reviewMoreWebview/NaverWebview'
+
     import axios from 'axios';
+    var cache = require("nativescript-cache");
+    import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/NaverList/naverList_320.scss';
+    import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/NaverList/naverList_360.scss';
+    import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/NaverList/naverList_420.scss';
+    import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/NaverList/naverList_480.scss';
+    const appSettings = require("tns-core-modules/application-settings");
+
+    var Toast = require("nativescript-toast");
+
     export default {
         name:"NaverList",
         components: {
+        }, computed: {
         }, data(){
             return {
-                naverReview:[]
+                naverReview:[],
+                naverMorePage:NaverMore
             }
-        },mounted(){
-            var cache = require("nativescript-cache");
-            console.log(cache.get('place_id') + "유튜브 리스트에서 확인 ");
-            axios({
-                method: 'get',
-                url: 'http://api.matitzung.shop/v1/places/'+cache.get('place_id')  + '/portalblogs',
-                //url: 'http://192.168.1.85:8080/v1/places/'+this.place_id + '/portalblogs',
-                params: {
-                },
-            }).then((response) => {
-                console.log(response.data);
-                if(response.data.dataList.NAVER === undefined){
-                    this.$data.naverReview = '';
-                }else {
-                    this.$data.naverReview = response.data.dataList.NAVER;
+        },methods: {
+            getNaverReviewList() {
+                var address = cache.get('place_address').split(' ');
+                console.log("ji")
+                console.log('http://202.182.117.173:8080/v1/places/'+cache.get('place_id')+'/blogs/naver')
+                console.log(address[0] + ' ' + address[1] +' ' +cache.get('place_name') +' '+ '맛집')
+                 axios({
+                     method: 'get',
+                     url:'http://api.eatjeong.com/v1/places/'+cache.get('place_id')+'/blogs/naver',
+                     params: {
+                         user_id:appSettings.getString("user_id"),
+                         sns_division:appSettings.getString("sns_division"),
+                         query: address[0] + ' ' + address[1] +' ' +cache.get('place_name') +' '+ '맛집',
+                         size:'5'
+                     },
+                 }).then((response) => {
+                     console.log("naverList"+response.data.dataList);
+                     if(response.data.dataList === undefined){
+                         this.$data.naverReview = '';
+                     }else {
+                         this.$data.naverReview = response.data.dataList;
+                     }
+                 }, (error) => {
+                     console.log(error);
+                 });
+            },goWebview(index){ //네이버 웹뷰페이지 호출
+                console.log(index)
+                this.$navigateTo(NaverWebview, {
+                    props: {
+                        itemList: this.$data.naverReview[index-1]}
+                })
+            },goMorePage(){
+                if(this.$data.naverReview.length < 5){
+                    Toast.makeText("더보기 할 데이터가 존재하지 않습니다.").show();
+                }else{
+                    this.$navigateTo(this.$data.naverMorePage)
                 }
 
-                //this.$data.youtubeReviews = response.data.dataList.DAUM;
-            }, (error) => {
-                console.log(error);
-            });
+            }
+        },mounted(){
+            this.getNaverReviewList();
         }
     };
 </script>
 
 <style lang="scss">
+
 </style>

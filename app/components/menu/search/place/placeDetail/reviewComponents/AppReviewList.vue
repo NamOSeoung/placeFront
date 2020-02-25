@@ -1,35 +1,62 @@
 <template lang="html">
     <StackLayout marginTop="-15">
         <StackLayout orientation="horizontal" >
-            <StackLayout borderRadius="50" backgroundColor="#ffe074" width="16" height="16" marginLeft="15" marginTop="15">
-                <FIcon name="fa-concierge-bell" color="white"  width="10" heigit="10" size="10" paddingTop="3"  />
+            <StackLayout orientation="horizontal" >
+                <image class="youtubeListIcon" src="~/Resources/img/place/google.png" />
+                <label class="tistoryListTitle" text="잇정리뷰" />
+                <label class="tistoryListMore" text="더보기" @tap="goMorePage"  v-if="appReview.length > 4"/>
+                <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png"  v-if="appReview.length > 4"/>
             </StackLayout>
-            <label text="잇정리뷰" width="48" height="14" fontSize="13" marginTop="15"  style="font-family: nanumsquareroundeb" marginLeft="6" />
-            <label text="더보기" width="36" height="13" fontSize="12sp" style="font-family: nanumsquareroundeb" color="#888888" marginTop="13" marginLeft="214dp"/>
-            <FIcon name="fa-angle-right" color="#A4A4A4"  fontSize="16" paddingTop="12"  />
         </StackLayout>
         <ScrollView orientation="horizontal">
-            <StackLayout orientation="horizontal" marginBottom="10">
-                <StackLayout orientation="horizontal" backgroundColor="#ffffff" v-for="a_reviews in appReview" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" width="260" marginTop="16" marginLeft="15" borderColor="#eeeeee" marginBottom="15">
-                    <StackLayout width="70" height="70" marginLeft="9" marginTop="10" marginBottom="10" >
-                        <Image width="100%" height="100%" borderRadius="8" stretch="aspectFill" src="https://blogimgs.pstatic.net/nblog/mylog/post/og_default_image_160610.png"/>
-                    </StackLayout>
-                    <StackLayout>
-                        <StackLayout orientation="horizontal">
-                            <StackLayout orientation="horizontal" width="100">
-                                <FIcon name="fa-star" color="#ffe074"  fontSize="18" marginLeft="10" marginTop="11" v-if="a_reviews.rating_point > 0"/>
-                                <FIcon name="fa-star" color="#ffe074"  fontSize="18" marginLeft="1" marginTop="11" v-if="a_reviews.rating_point > 1"/>
-                                <FIcon name="fa-star" color="#ffe074"  fontSize="18" marginLeft="1" marginTop="11" v-if="a_reviews.rating_point > 2"/>
-                                <FIcon name="fa-star" color="#ffe074"  fontSize="18" marginLeft="1" marginTop="11" v-if="a_reviews.rating_point > 3"/>
-                                <FIcon name="fa-star" color="#ffe074"  fontSize="18" marginLeft="1" marginTop="11" v-if="a_reviews.rating_point > 4"/>
-                            </StackLayout>
+            <StackLayout orientation="horizontal">
+                <StackLayout class="appReviewListHeaderWrap" orientation="horizontal" v-for="a_reviews in appReview" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }"  @tap="appReviewDetail(a_reviews)" >
+                       <StackLayout orientation="horizontal" v-if="a_reviews.image_url.length > 0 ">
+                           <StackLayout class="appReviewListThumbnailWrap"  >
+                               <Image class="appReviewListThumbnail"  stretch="aspectFill" :src="a_reviews.image_url[0]" @tap="pictureDetail(a_reviews.image_url[0])"/>
+                           </StackLayout>
+                           <StackLayout>
+                               <StackLayout orientation="horizontal">
+                                   <StackLayout class="appReviewListRatingIconWrap" orientation="horizontal" >
+                                       <image class="appReviewListRatingIcon"  src="~/Resources/img/place/star_yellow.png" />
+                                       <image class="appReviewListRatingIcon"  src="~/Resources/img/place/star_yellow.png" />
+                                       <image class="appReviewListRatingIcon"  src="~/Resources/img/place/star_yellow.png" />
+                                       <image class="appReviewListRatingIcon"  src="~/Resources/img/place/star_yellow.png" />
+                                       <image class="appReviewListRatingIcon"  src="~/Resources/img/place/star_yellow.png" />
+                                   </StackLayout>
+                                   <StackLayout>
+                                       <label class="appReviewListDate" :text="a_reviews.write_date"  />
+                                   </StackLayout>
+                               </StackLayout>
+                               <StackLayout class="appReviewListContentsWrap" >
+                                   <label class="appReviewListContents" :text="a_reviews.review_contents" textWrap="true" />
+                               </StackLayout>
+                           </StackLayout>
+                       </StackLayout>
+                        <StackLayout orientation="horizontal" v-else>
                             <StackLayout>
-                                <label text="2020.01.12" marginTop="11" color="#888888" style="font-family: nanumsquareroundeb"  fontSize="12" />
+                                <StackLayout orientation="horizontal">
+                                    <StackLayout class="appReviewListRatingIconWrap" orientation="horizontal" >
+                                        <image class="appReviewListRatingIcon"  src="~/Resources/img/place/star_yellow.png" />
+                                        <image class="appReviewListRatingIcon"  src="~/Resources/img/place/star_yellow.png" />
+                                        <image class="appReviewListRatingIcon"  src="~/Resources/img/place/star_yellow.png" />
+                                        <image class="appReviewListRatingIcon"  src="~/Resources/img/place/star_yellow.png" />
+                                        <image class="appReviewListRatingIcon"  src="~/Resources/img/place/star_yellow.png" />
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <label class="appReviewListDate" :text="a_reviews.write_date"  />
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout class="appReviewListContentsWrap" >
+                                    <label class="appReviewListContents" :text="a_reviews.review_contents" textWrap="true" />
+                                </StackLayout>
                             </StackLayout>
                         </StackLayout>
-                        <StackLayout marginTop="5" marginLeft="10" marginBottom="16">
-                            <TextView :text="a_reviews.review_contents" editable="false" backgroundColor="white" borderWidth="0"  color="#494949" style="font-family: nanumsquareroundeb;" fontSize="12"  height="45"  returnKeyType="send" textWrap="true" />
-                        </StackLayout>
+                   </StackLayout>
+
+                <StackLayout class="googleListBottomWrap" v-if="appReview == ''" >
+                    <StackLayout class="googleListNonContentsWrap" >
+                        <label class="googleListNonContents" text="정보가 없습니다."  />
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
@@ -39,33 +66,135 @@
 
 <script>
     import PlaceSearch from '../../PlaceSearch'
+    import AppReviewMore from '../reviewMore/AppReviewMore'
     import axios from 'axios';
+    var cache = require("nativescript-cache");
+    import PictureModal from '../modal/PictureModal'
+    import AppReviewModal from '../modal/AppReviewModal'
+    import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/AppReviewList/appReviewList_320.scss';
+    import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/AppReviewList/appReviewList_360.scss';
+    import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/AppReviewList/appReviewList_420.scss';
+    import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/AppReviewList/appReviewList_480.scss';
+    import GoogleReviewModal from "../modal/GoogleReviewModal";
+    const appSettings = require("tns-core-modules/application-settings");
+    var Toast = require("nativescript-toast");
     export default {
         name:"AppList",
         components: {
         }, data(){
             return {
-                appReview:[]
+                appReview:[],
+                appReviewMorePage:AppReviewMore
             }
-        },mounted(){
-             var cache = require("nativescript-cache");
-             console.log(cache.get('place_id') + "유튜브 리스트에서 확인 ");
-             axios({
-                 method: 'get',
-                 // url: 'http://api.matitzung.shop/v1/places/'+cache.get('place_id')  + '/portalreviews',
-                 url: 'http://api.matitzung.shop/v1/places/8005815K/reviews',
-                 //url: 'http://192.168.1.85:8080/v1/places/'+this.place_id + '/portalblogs',
-                 params: {
-                 },
-             }).then((response) => {
-                 console.log(response.data);
-                 this.$data.appReview = response.data.dataList;
-             }, (error) => {
-                 console.log(error);
-             });
+        },methods:{
+            getAppReviewList(){
+                var cache = require("nativescript-cache");
+                axios({
+                    method: 'get',
+                    url: 'http://api.eatjeong.com/v1/places/'+cache.get('place_id')+'/reviews/eatzeong',
+                    params: {
+                        user_id:appSettings.getString("user_id"),
+                        sns_division:appSettings.getString("sns_division"),
+                        //size:'5'
+                    },
+                }).then((response) => {
+                    var write_flag = false;
+                    if(response.data.dataList.length > 5){
+                        for(var i = 0; i < response.data.dataList.length; i++){
+                            if(appSettings.getString("user_id") != undefined ) {
+                                if (appSettings.getString("user_id") != '') {
+                                    if (response.data.dataList[i].review_user_id == appSettings.getString("user_id")) {
+                                        write_flag = true;
+                                    }
+                                }
+                            }
+                            console.log(response.data.dataList[i] + "reviewssssssss")
+                            if(i < 5){
+                                console.log(response.data.dataList[i] + "reviewssss")
+                                this.$data.appReview.push(response.data.dataList[i]);
+                            }
+                        }
+
+                    }else{
+                        this.$data.appReview = response.data.dataList;
+                        for(var i = 0; i < response.data.dataList.length; i++) {
+                            if (appSettings.getString("user_id") != undefined) {
+                                if (appSettings.getString("user_id") != '') {
+                                    if (response.data.dataList[i].review_user_id == appSettings.getString("user_id")) {
+                                        write_flag = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                    if( write_flag == true){
+                        cache.set("write_flag","true");
+                    }else{
+                        cache.set("write_flag","false");
+                    }
+
+                    console.log(write_flag + "asdasd")
+
+                }, (error) => {
+                    console.log(error);
+                });
+            },pictureDetail(image){
+                this.$showModal(PictureModal,{
+                    props: {
+                        image:image,
+                    },
+                    fullscreen: false,
+                    animated: true,
+                    stretched: false,
+                    dismissEnabled:true,
+                    dimAmount: 0.5 // Sets the alpha of the background dim,
+                });
+            },goMorePage(){
+                if(this.$data.appReview.length < 5){
+                    Toast.makeText("더보기 할 데이터가 존재하지 않습니다.").show();
+                }else{
+                    this.$navigateTo(this.$data.appReviewMorePage)
+                }
+
+            },appReviewDetail(review) {
+                console.log("ssss")
+                this.$showModal(AppReviewModal,{
+                    props: {
+                        reviewList:review
+                    },
+                    fullscreen: false,
+                    animated: true,
+                    stretched: false,
+                    dismissEnabled:true,
+                    dimAmount: 0.5 // Sets the alpha of the background dim,
+                });
+            }
+        },
+        mounted(){
+            this.getAppReviewList()
+        }
+    };
+
+    const Detail = {
+        template: `
+    <Page>
+      <ActionBar title="Detail"/>
+      <StackLayout @tap="aa">
+        <Label text="Details.." />
+      </StackLayout>
+    </Page>
+  ` ,
+        methods: {
+           aa(){
+               console.log("ssssss")
+               this.$navigateBack;
+           }
         }
     };
 </script>
 
 <style lang="scss">
+
 </style>

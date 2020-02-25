@@ -1,68 +1,109 @@
 <template lang="html">
-    <StackLayout backgroundColor="#ffffff" marginTop="10dp">
-        <StackLayout orientation="horizontal" >
-            <image src="~/Resources/img/home/tistory.png" width="17" height="12" marginTop="16" marginLeft="15"/>
-            <label text="티스토리" width="48" height="14" fontSize="13" marginTop="15"  style="font-family: nanumsquareroundeb" marginLeft="6" />
-            <label text="더보기" width="36" height="13" fontSize="12sp" style="font-family: nanumsquareroundeb" color="#888888" marginTop="13" marginLeft="214dp"/>
-            <FIcon name="fa-angle-right" color="#A4A4A4"  fontSize="16" paddingTop="12"  />
+    <StackLayout class="tistoryWrap">
+        <StackLayout orientation="horizontal" class="tistoryHeaderWrap">
+            <image src="~/Resources/img/home/tistory.png" class="tistoryIcon"/>
+            <label text="티스토리" class="tistoryTitle"/>
+            <label text="더보기" class="tistoryMore" @tap="$navigateTo(TistoryMorePage)"  v-if="tistoryList.length > 4" />
+            <image src="~/Resources/img/home/angle-right.png" class="tistoryRightIcon"   v-if="tistoryList.length > 4" />
         </StackLayout>
-        <ScrollView orientation="horizontal">
-            <StackLayout orientation="horizontal" marginBottom="10">
-                <StackLayout orientation="horizontal" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" width="260" marginTop="16" marginLeft="15" borderColor="#eeeeee" marginBottom="15">
-                    <StackLayout width="70" height="70" marginLeft="9" marginTop="10" marginBottom="10" >
-                        <Image width="100%" height="100%" borderRadius="8" stretch="aspectFill" src="http://blogthumb2.naver.net/MjAxOTA4MDRfMTAy/MDAxNTY0ODY2MjQ5NjA0.THyQ3wCY4Bdq2A3hiODe0urYPYIfIiBX9A2azN__oWEg.sSUV2E7-g6QvJqYl7ylRS2yUwP3jE0kTn2QP-ywzwBwg.JPEG.appie14/%B0%AD%B3%B2%BF%AA_3%B9%F8%C3%E2%B1%B8_%B8%C0%C1%FD_%C1%B7%B9%DF09.jpg?type=w2"/>
-                    </StackLayout>
-                    <StackLayout>
-                        <StackLayout>
-                            <label text="서울 강남구 '중식당' 맛집 / 일일향 1호점 / 좋은 식재료를 사용하는 중국음식점" textWrap="true" row="2" width="150"  height="40" lineHeight="10" marginLeft="12" marginTop="12" style="font-family: nanumsquareroundeb" color="#333333" fontSize="13"  />
+        <StackLayout v-if="tistoryList.length>0" marginTop="0">
+            <ScrollView orientation="horizontal">
+                <StackLayout orientation="horizontal"  class="tistorySubWrap">
+                    <StackLayout orientation="horizontal"  @tap="goWebview(index)" v-for="(list,index) in tistoryList" class="tistoryMainWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" >
+                        <StackLayout class="tistoryImageWrap">
+                            <Image class="tistoryImage" stretch="aspectFill" :src="list.thumbnail_url"/>
                         </StackLayout>
-                        <StackLayout orientation="horizontal" marginTop="7" marginLeft="12">
-                            <label text="2020.01.02"  width="60" height="18" color="#888888" style="font-family: nanumsquareroundr" fontSize="11" />
-                            <label text="Yondi molar" height="18" color="#888888" style="font-family: nanumsquareroundr" fontSize="11" />
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
-                <StackLayout orientation="horizontal" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" width="260" marginTop="16" marginLeft="15" borderColor="#eeeeee" marginBottom="15">
-                    <StackLayout width="70" height="70" marginLeft="9" marginTop="10" marginBottom="10" >
-                        <Image width="100%" height="100%" borderRadius="8" stretch="aspectFill" src="http://blogthumb2.naver.net/MjAxOTA4MDRfMTAy/MDAxNTY0ODY2MjQ5NjA0.THyQ3wCY4Bdq2A3hiODe0urYPYIfIiBX9A2azN__oWEg.sSUV2E7-g6QvJqYl7ylRS2yUwP3jE0kTn2QP-ywzwBwg.JPEG.appie14/%B0%AD%B3%B2%BF%AA_3%B9%F8%C3%E2%B1%B8_%B8%C0%C1%FD_%C1%B7%B9%DF09.jpg?type=w2"/>
-                    </StackLayout>
-                    <StackLayout>
-                        <StackLayout>
-                            <label text="서울 강남구 '중식당' 맛집 / 일일향 1호점 / 좋은 식재료를 사용하는 중국음식점" textWrap="true" row="2" width="150"  height="40" lineHeight="10" marginLeft="12" marginTop="12" style="font-family: nanumsquareroundeb" color="#333333" fontSize="13"  />
-                        </StackLayout>
-                        <StackLayout orientation="horizontal" marginTop="7" marginLeft="12">
-                            <label text="2020.01.02"  width="60" height="18" color="#888888" style="font-family: nanumsquareroundr" fontSize="11" />
-                            <label text="Yondi molar" height="18" color="#888888" style="font-family: nanumsquareroundr" fontSize="11" />
+                        <StackLayout class="tistoryRightWrap">
+                            <StackLayout class="tistoryRightTop">
+                                <label class="tistorySubject" :text="list.title"  textWrap="true" row="2" />
+                            </StackLayout>
+                            <StackLayout class="tistoryRightBottom" orientation="horizontal">
+                                <label class="tistoryWriteDate" :text="list.write_date"/>
+                                <label class="tistoryWriter" :text="list.author"/>
+                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout orientation="horizontal" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" width="260" marginTop="16" marginLeft="15" borderColor="#eeeeee" marginBottom="15">
-                    <StackLayout width="70" height="70" marginLeft="9" marginTop="10" marginBottom="10" >
-                        <Image width="100%" height="100%" borderRadius="8" stretch="aspectFill" src="http://blogthumb2.naver.net/MjAxOTA4MDRfMTAy/MDAxNTY0ODY2MjQ5NjA0.THyQ3wCY4Bdq2A3hiODe0urYPYIfIiBX9A2azN__oWEg.sSUV2E7-g6QvJqYl7ylRS2yUwP3jE0kTn2QP-ywzwBwg.JPEG.appie14/%B0%AD%B3%B2%BF%AA_3%B9%F8%C3%E2%B1%B8_%B8%C0%C1%FD_%C1%B7%B9%DF09.jpg?type=w2"/>
-                    </StackLayout>
-                    <StackLayout>
-                        <StackLayout>
-                            <label text="서울 강남구 '중식당' 맛집 / 일일향 1호점 / 좋은 식재료를 사용하는 중국음식점" textWrap="true" row="2" width="150"  height="40" lineHeight="10" marginLeft="12" marginTop="12" style="font-family: nanumsquareroundeb" color="#333333" fontSize="13"  />
-                        </StackLayout>
-                        <StackLayout orientation="horizontal" marginTop="7" marginLeft="12">
-                            <label text="2020.01.02"  width="60" height="18" color="#888888" style="font-family: nanumsquareroundr" fontSize="11" />
-                            <label text="Yondi molar" height="18" color="#888888" style="font-family: nanumsquareroundr" fontSize="11" />
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
+            </ScrollView>
+        </StackLayout>
 
-            </StackLayout>
-        </ScrollView>
+        <StackLayout v-else marginTop="40" width="100%" style="text-align: center">
+            <label text="검색 결과가 없습니다." />
+        </StackLayout>
     </StackLayout>
 </template>
 
 <script>
+    import '~/Resources/css/menu/home/homeComponents/TistoryList/tistoryList_320.scss';
+    import '~/Resources/css/menu/home/homeComponents/TistoryList/tistoryList_360.scss';
+    import '~/Resources/css/menu/home/homeComponents/TistoryList/tistoryList_420.scss';
+    import '~/Resources/css/menu/home/homeComponents/TistoryList/tistoryList_480.scss';
+
+    import axios from 'axios'
+    import { StackLayout } from 'ui/layouts/stack-layout';
+    import TistoryMore from './reviewMore/TistoryMore'
+    import TistoryWebview from './reviewMore/mainReviewWebview/TistoryWebview'
+    // var observableModule = require("data/observable");
+    // var observableArrayModule = require("data/observable-array");
+    // let page;
+    var cache = require("nativescript-cache");
+    // var pageData = new observableModule.Observable({
+    //     myList: new observableArrayModule.ObservableArray(["foo", "bar"])
+    // });
+    // exports.loaded = function(args) {
+    //     console.log('123123123123')
+    //     var page = args.object;
+    //     page.bindingContext = pageData;
+    //     console.log(pageData.myList)
+    // };
+
     export default {
         name:"Tistory",
         components: {
+        }, data() {
+            return {
+                tistoryList:[],
+                TistoryMorePage:TistoryMore,
+                user_name:global.user_name
+            }
+         },methods :{
+            getTistoryList(keyword){
+                  axios({
+                    method: 'get',
+                        url: 'http://api.eatjeong.com/v1/main/reviews?',
+                    params: {
+                        query:keyword,
+                        portal:"DAUM",
+                        size:'5'
+                    },
+                    }).then((response) => {
+                        console.log(response.data.dataList)
+                        this.$data.tistoryList = response.data.dataList;
+
+
+                    }, (error) => {
+                    console.log(error);
+                    });
+            },goWebview(index){
+                this.$navigateTo(TistoryWebview, {
+                    props: {
+                        itemList: this.$data.tistoryList[index]
+                    }
+                })
+            }
+        },mounted(){
+            if(cache.get("location_name") == null){
+                this.getTistoryList("서울 맛집");
+            }else{
+                this.getTistoryList(cache.get("location_name"));
+            }
+            // this.getTistoryList();
+
         }
     };
 </script>
 
 <style lang="scss">
+
 </style>
+

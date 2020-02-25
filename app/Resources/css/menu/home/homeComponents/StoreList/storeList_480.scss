@@ -1,0 +1,131 @@
+$large : 1.5;
+
+.android480 .storeWrap{
+  width: 360*$large;
+  height: 130*$large;
+}
+
+.android480 .storeHeaderWrap{
+  width: 360*$large;
+  height:27*$large;
+}
+.android480 .storeCookIcon{
+  margin-top: 13*$large;
+  width: 16*$large;
+  height: 16*$large;
+  margin-left: 16*$large;
+}
+.android480 .storeTitle{
+  font-size: 13*$large;
+  margin-top: 13*$large;
+  font-family: nanumsquareroundeb;
+  color: #555555;
+  height: 14*$large;
+  width: 250*$large;
+  margin-left: 6*$large;
+}
+.android480 .storeMore{
+  margin-top: 13*$large;
+  width: 36*$large;
+  height: 13*$large;
+  color: #888888;
+  font-size: 12*$large;
+  font-family: nanumsquareroundeb;
+}
+.android480 .storeRightIcon{
+  margin-top: 13*$large;
+  width: 20*$large;
+  height: 20*$large;
+  margin-left: -6*$large;
+}
+
+.android480 .storeDetailSubWrap{
+  height: 130*$large;
+  border-bottom-width: 2*$large;
+  border-bottom-color: #33000000;
+}
+.android480 .storeDetailWrap{
+  width: 243*$large;
+  height: 70*$large;
+}
+.android480 .storeLeftWrap{
+  width: 70*$large;
+  height: 70*$large;
+  margin-left: 15*$large;
+}
+.android480 .storeImage{
+  height: 70*$large;
+  width: 70*$large;
+  border-radius: 8*$large;
+}
+.android480 .storeRightWrap{
+  width: 173*$large;
+  height: 70*$large;
+}
+.android480 .storeTopWrap {
+  width: 173*$large;
+  height: 18*$large;
+}
+.android480 .storeTimeWrap{
+  background-color: #ffe074;
+  border-radius: 8*$large;
+  text-align: center;
+  margin-left: 11*$large;
+}
+.android480 .storeTime{
+  width: 50*$large;
+  height: 18*$large;
+  margin-top: 3*$large;
+  margin-bottom: 3*$large;
+  font-family: nanumsquareroundeb;
+  font-size: 10*$large;
+  color: #333333;
+}
+.android480 .storeStarIconWrap{
+  width: 18*$large;
+  height: 18*$large;
+  margin-left: 10*$large;
+}
+.android480 .storeRatingWrap{
+  width: 18*$large;
+  height: 13*$large;
+}
+.android480 .storeStarIcon{
+  width: 18*$large;
+  height: 18*$large;
+}
+.android480 .storeRatingWrap{
+  width: 18*$large;
+  height: 13*$large;
+  margin-left: 2*$large;
+}
+.android480 .storeRating {
+  width: 18*$large;
+  height: 13*$large;
+  font-family: nanumsquareroundeb;
+  font-size: 12*$large;
+  color: #333333;
+}
+.android480 .storeMiddleWrap{
+  width: 173*$large;
+  height: 18*$large;
+  margin-top:9*$large;
+}
+.android480 .storeName{
+  width: 138*$large;
+  height: 16*$large;
+  font-family: nanumsquareroundeb;
+  font-size: 14*$large;
+  color: #333333;
+}
+.android480 .storeBottomWrap{
+  height: 13*$large;
+  margin-top: 9*$large;
+  margin-left: 11*$large;
+}
+.android480 .storeCategory{
+  height: 13*$large;
+  font-size: 12*$large;
+  font-family: nanumsquareroundr;
+  color: #555555;
+}

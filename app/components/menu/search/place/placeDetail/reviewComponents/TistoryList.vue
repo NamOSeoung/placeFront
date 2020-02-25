@@ -1,31 +1,43 @@
 <template lang="html">
     <StackLayout marginTop="-15">
-        <StackLayout orientation="horizontal" >
-            <image src="~/Resources/img/home/tistory.png" width="17" height="12" marginTop="16" marginLeft="15"/>
-            <label text="티스토리" width="48" height="14" fontSize="13" marginTop="15"  style="font-family: nanumsquareroundeb" marginLeft="6" />
-            <label text="더보기" width="36" height="13" fontSize="12sp" style="font-family: nanumsquareroundeb" color="#888888" marginTop="13" marginLeft="214dp"/>
-            <FIcon name="fa-angle-right" color="#A4A4A4"  fontSize="16" paddingTop="12"  />
+        <StackLayout orientation="horizontal">
+            <image class="youtubeListIcon" src="~/Resources/img/home/tistory.png" />
+            <label class="tistoryListTitle" text="티스토리" />
+            <label class="tistoryListMore" text="더보기" @tap="goMorePage" v-if="tistoryReview.length > 4" />
+            <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png" v-if="tistoryReview.length > 4"/>
         </StackLayout>
         <ScrollView orientation="horizontal">
-            <StackLayout orientation="horizontal" marginBottom="10">
-                <StackLayout orientation="horizontal" backgroundColor="#ffffff"  v-if="tistoryReview != ''" v-for="t_reviews in tistoryReview" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" width="260" marginTop="16" marginLeft="15" borderColor="#eeeeee" marginBottom="15">
-                    <StackLayout width="70" height="70" marginLeft="9" marginTop="10" marginBottom="10" >
-                        <Image width="100%" height="100%" borderRadius="8" stretch="aspectFill" :src="t_reviews.thumbnail_url"/>
-                    </StackLayout>
-                    <StackLayout>
-                        <StackLayout>
-                            <label :text="t_reviews.title" width="150" height="18" marginLeft="12" marginTop="12" style="font-family: nanumsquareroundeb" color="#333333" fontSize="13"  />
-                            <Label :text="t_reviews.description" marginLeft="12"  width="150" height="18" style="font-family: nanumsquareroundr"  color="#333333" fontSize="12"/>
+            <StackLayout class="naverListHeaderWrap" orientation="horizontal" >
+                <StackLayout class="naverListTopWrap" orientation="horizontal" @tap="goWebview(t_reviews.index)" v-if="tistoryReview != ''" v-for="t_reviews in tistoryReview" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" >
+                    <StackLayout width="100%" orientation="horizontal" v-if="t_reviews.thumbnail_url != ''">
+                        <StackLayout class="naverListThumbnailWrap" >
+                            <Image class="naverListThumbnail"  stretch="aspectFill" :src="t_reviews.thumbnail_url"/>
                         </StackLayout>
-                        <StackLayout orientation="horizontal" marginTop="7" marginLeft="12">
-                            <label :text="t_reviews.write_date"  width="60" height="18" color="#888888" style="font-family: nanumsquareroundr" fontSize="11" />
-                            <label :text="t_reviews.author" height="18" color="#888888" style="font-family: nanumsquareroundr" fontSize="11" />
+                        <StackLayout>
+                            <StackLayout class="tistoryListSubjectWrap" >
+                                <label class="tistoryListSubject"   :text="t_reviews.title" textWrap="true"  />
+                            </StackLayout>
+                            <StackLayout class="tistoryListDateInfoWrap" orientation="horizontal">
+                                <label class="naverListDate" :text="t_reviews.write_date"  />
+                                <label class="naverListWriter" :text="t_reviews.author" />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout width="100%" orientation="horizontal" v-else>
+                        <StackLayout  width="260" paddingLeft="10">
+                            <StackLayout class="tistoryListSubjectWrap"  width="260" >
+                                <label class="tistoryListSubject" width="260"   :text="t_reviews.title" textWrap="true"  />
+                            </StackLayout>
+                            <StackLayout class="tistoryListDateInfoWrap" width="260" orientation="horizontal">
+                                <label class="naverListDate" :text="t_reviews.write_date"  />
+                                <label class="naverListWriter" width="227" :text="t_reviews.author" />
+                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout v-if="tistoryReview == ''" height="106">
-                    <StackLayout marginLeft="140" marginTop="41" width="80" >
-                        <label text="정보가 없습니다." color="#cccccc" fontSize="12" style="font-family: nanumsquareroundeb;" />
+                <StackLayout class="naverListBottomWrap" v-if="tistoryReview == ''" >
+                    <StackLayout class="naverListNonContentsWrap" >
+                        <label class="naverListNonContents" text="정보가 없습니다."  />
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
@@ -35,37 +47,67 @@
 
 <script>
     import PlaceSearch from '../../PlaceSearch'
+    import TistoryMore from '../reviewMore/TistoryMore'
     import axios from 'axios';
+    import TistoryWebview from '../reviewMore/reviewMoreWebview/TistoryWebview'
+    const appSettings = require("tns-core-modules/application-settings");
+    import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/TistoryList/tistoryList_320.scss';
+    import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/TistoryList/tistoryList_360.scss';
+    import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/TistoryList/tistoryList_420.scss';
+    import '~/Resources/css/menu/search/place/placeDetail/reviewComponents/TistoryList/tistoryList_480.scss';
+    var Toast = require("nativescript-toast");
     export default {
         name:"TistoryList",
         components: {
         }, data(){
             return {
-                tistoryReview:[]
+                tistoryReview:[],
+                tistoryMorePage:TistoryMore
             }
-        },mounted(){
-            var cache = require("nativescript-cache");
-            console.log(cache.get('place_id') + "유튜브 리스트에서 확인 ");
-            axios({
-                method: 'get',
-                url: 'http://api.matitzung.shop/v1/places/'+cache.get('place_id')  + '/portalblogs',
-                //url: 'http://192.168.1.85:8080/v1/places/'+this.place_id + '/portalblogs',
-                params: {
-                },
-            }).then((response) => {
-                console.log(response.data);
-                if(response.data.dataList.DAUM === undefined){
-                    this.$data.tistoryReview = '';
-                }else {
-                    this.$data.tistoryReview = response.data.dataList.DAUM;
+        },methods:{
+            getTistoryReviewList(){
+                var cache = require("nativescript-cache");
+                var address = cache.get('place_address').split(' ');
+                 axios({
+                     method: 'get',
+                     url: 'http://api.eatjeong.com/v1/places/'+cache.get('place_id')  + '/blogs/daum',
+                     params: {
+                         user_id:appSettings.getString("user_id"),
+                         sns_division:appSettings.getString("sns_division"),
+                         query: address[0] + ' ' + address[1] +' ' +cache.get('place_name') +' '+ '맛집',
+                         size:'5'
+                     },
+                 }).then((response) => {
+                     console.log(response.data);
+                     if(response.data.dataList === undefined){
+                         this.$data.tistoryReview = '';
+                     }else {
+                         this.$data.tistoryReview = response.data.dataList;
+                     }
+                  }, (error) => {
+                     console.log(error);
+                 });
+            },goWebview(index){ //네이버 웹뷰페이지 호출
+                console.log(index)
+                this.$navigateTo(TistoryWebview, {
+                    props: {
+                        itemList: this.$data.tistoryReview[index-1]}
+                })
+            },goMorePage(){
+                if(this.$data.tistoryReview.length < 5){
+                    Toast.makeText("더보기 할 데이터가 존재하지 않습니다.").show();
+                }else{
+                    this.$navigateTo(this.$data.tistoryMorePage)
                 }
 
-            }, (error) => {
-                console.log(error);
-            });
+            }
+        },
+        mounted(){
+            this.getTistoryReviewList();
         }
     };
 </script>
 
 <style lang="scss">
+
 </style>

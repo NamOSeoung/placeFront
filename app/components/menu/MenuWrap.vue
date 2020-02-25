@@ -1,19 +1,24 @@
+<script src="../../app.js"></script>
 <template lang="html">
  <Page actionBarHidden="true" marginTop="24">
   <StackLayout>
    <BottomNavigation :selectedIndex="data.tab" @selectedIndexChanged="tabChangedEvent" >
     <TabStrip>
      <TabStripItem >
-      <FIcon name="fa-home" color="#A4A4A4"  fontSize="26" paddingTop="12"  />
+      <image v-if="tabIconSet==0" width="26" height="26" src="~/Resources/img/home/home_5_64.png"/>
+      <image v-else width="26" height="26" src="~/Resources/img/home/home_d_64.png"/>
      </TabStripItem>
      <TabStripItem>
-      <FIcon name="fa-search" color="#A4A4A4"  fontSize="26" paddingTop="12"  />
+      <image v-if="tabIconSet==1" width="26" height="26" src="~/Resources/img/home/search.png"/>
+      <image v-else width="26" height="26" src="~/Resources/img/home/search_d_64.png"/>
      </TabStripItem>
      <TabStripItem>
-      <FIcon name="fa-bookmark" color="#A4A4A4"  fontSize="26" paddingTop="12"  />
+      <image v-if="tabIconSet==2" width="26" height="26" src="~/Resources/img/home/agenda_5_64.png"/>
+      <image v-else width="26" height="26" src="~/Resources/img/home/agenda_d_64.png"/>
      </TabStripItem>
      <TabStripItem>
-      <FIcon name="fa-user" color="#A4A4A4"  fontSize="26" paddingTop="12"  />
+      <image v-if="tabIconSet==3" width="26" height="26" src="~/Resources/img/home/user_5_64.png"/>
+      <image v-else width="26" height="26" src="~/Resources/img/home/user_d_64.png"/>
      </TabStripItem>
     </TabStrip>
     <TabContentItem>
@@ -26,10 +31,7 @@
       <BookmarkWrap/> <!-- 북마크 관련 탭 -->
     </TabContentItem>
     <TabContentItem>
-     <GridLayout>
-      <Label text="Settings Page" class="h2 text-center">
-      </Label>
-     </GridLayout>
+     <SettingsWrap/>
     </TabContentItem>
    </BottomNavigation>
   </StackLayout>
@@ -40,6 +42,12 @@
     import PlaceSearch from './search/place/PlaceSearch'
     import BookmarkWrap from "./bookmark/BookmarkWrap";
     import HomeWrap from './home/HomeWrap';
+    import SettingsWrap from './settings/SettingsWrap';
+    const appSettings = require("tns-core-modules/application-settings");
+    const platformModule = require("tns-core-modules/platform");
+    import platformcss from '../../platformcss';
+    import Login from '../member/Login'
+    import PlaceBookark from '../menu/bookmark/bookmarkList/PlaceBookmark'
 
     var data = {tab : 0}
 
@@ -47,21 +55,29 @@
         name:"MenuWrap",
        data(){
         return {
-         data
+         data,
+         tabIconSet:0
          }
         },
         components: {
-         HomeWrap,PlaceSearch,BookmarkWrap
+         HomeWrap,PlaceSearch,BookmarkWrap,SettingsWrap
         },methods:{
             tabChange(tab){
                data.tab = tab;
             },tabChangedEvent(args){
                console.log(args.oldIndex)
-               console.log(args.newIndex)
+      // PlaceBookark.methods.getPlaceBookmark();
+       //BookmarkWrap.created()
+               this.$data.tabIconSet = args.newIndex;
                if(args.newIndex == 0){
                 data.tab = 0;
                }
             }
+        },mounted(){
+            platformcss.sizeGroupings([480,440,400,360,320]);
+            console.log("디피아이" + platformModule.screen.mainScreen.widthDIPs)
+            console.log("픽셀" + platformModule.screen.mainScreen.widthPixels)
+            console.log(`screen.mainScreen.scale ${platformModule.screen.mainScreen.scale}`);
         }
     };
 </script>

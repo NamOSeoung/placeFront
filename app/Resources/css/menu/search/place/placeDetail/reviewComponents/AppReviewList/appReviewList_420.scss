@@ -1,0 +1,54 @@
+$medium:1.142;
+
+.android400 .appReviewListHeaderWrap{
+  background-color: #ffffff;
+  width: 260*$medium;
+  margin-top: 16*$medium;
+  margin-left: 15*$medium;
+  border-color: #eeeeee;
+  margin-bottom: 15*$medium;
+}
+.android400 .appReviewListThumbnailWrap{
+  width: 70*$medium;
+  height: 70*$medium;
+  margin-left: 9*$medium;
+  margin-top: 10*$medium;
+  margin-bottom: 10*$medium;
+}
+.android400 .appReviewListThumbnail{
+  width: 100%;
+  height: 100%;
+  border-radius: 8*$medium;
+}
+.android400 .appReviewListRatingIconWrap{
+  width: 95*$medium;
+  margin-left: 6*$medium;
+  margin-top: 11*$medium;
+}
+.android400 .appReviewListRatingIcon{
+  width: 17*$medium;
+  height: 17*$medium;
+  margin-left: 1*$medium;
+}
+.android400 .appReviewListDate{
+  margin-top: 13*$medium;
+  color: #888888;
+  font-family: nanumsquareroundr;
+  font-size: 12*$medium;
+}
+.android400 .appReviewListContentsWrap{
+  margin-top: 11*$medium;
+  margin-left: 10*$medium;
+  margin-bottom: 16*$medium;
+  width: 164*$medium;
+  height: 31*$medium;
+  padding-right: 5*$medium;
+}
+.android400 .appReviewListContents{
+  width: 164*$medium;
+  height: 40*$medium;
+  font-family: nanumsquareroundr;
+  line-height:5*$medium;
+  font-size: 12*$medium;
+  color: #333333;
+}

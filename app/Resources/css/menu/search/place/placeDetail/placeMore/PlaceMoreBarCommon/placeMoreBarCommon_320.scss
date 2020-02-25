@@ -1,0 +1,30 @@
+$small : 0.9;
+
+.android320 .reviewMoreWrap{
+  width: 360*$small;
+  height: 55*$small;
+  background-color: #ffffff;
+  border-bottom-width: 1*$small;
+  border-bottom-color: #dddddd;
+}
+.android320 .reviewMoreIconWrap{
+  width: 28*$small;
+  height: 28*$small;
+  margin-top: 25*$small;
+}
+.android320 .reviewMoreIcon{
+  width: 15*$small;
+  height: 15*$small;
+}
+.android320 .reviewMorePlaceNameWrap{
+  margin-top: 26*$small;
+  width: 300*$small;
+  text-align: center;
+}
+.android320 .reviewMorePlaceName{
+  font-family: nanumsquareroundb;
+  color: #333333;
+  font-size: 14*$small;
+}
+
+

@@ -1,34 +1,43 @@
 <template lang="html">
- <StackLayout backgroundColor="#d3d3d3">
-  <StackLayout width="95%" marginTop="10"height="96%" backgroundColor="white">
-   <ListView for="youtubeBookmark in youtubeBookmarkList"
-             style="height:100%" @itemTap="goYoutube">
-    <v-template>
-     <StackLayout width="100%" padding="0" orientation="horizontal" >
-      <StackLayout paddingRight="-15">
-       <Image :src="youtubeBookmark.thumbnail_url" class="thumb img-thumbnail" width="40%" height="100" />
+ <StackLayout v-if="youtubeBookmarkList != null">
+  <ListView for="youtubeBookmark in youtubeBookmarkList" separatorColor="transparent"
+            style="height:100%" @itemTap="goWebview" >
+   <v-template>
+    <StackLayout class="youtubeMarkMain" >
+     <StackLayout orientation="horizontal" class="youtubeMarkWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
+      <StackLayout class="youtubeMarkImageWrap">
+       <Image :src="youtubeBookmark.thumbnail_url" class="youtubeMarkImage"/>
       </StackLayout>
-      <StackLayout width="60%" paddingLeft="0">
-       <StackLayout orientation="horizontal" style="text-align: center"  padding="0">
-        <Label :text="'@ ' +youtubeBookmark.place_name" fontSize="20" width="100%" style="text-align: left" />
+      <StackLayout class="youtubeRightWrap">
+       <StackLayout orientation="horizontal" class="youtubeMarkTitleWrap">
+        <Label :text="youtubeBookmark.title" class="youtubeMarkTitle" textWrap="true"/>
        </StackLayout>
-       <StackLayout orientation="horizontal" style="text-align: center"  padding="0">
-        <Label :text="youtubeBookmark.title" fontSize="16" width="100%" style="text-align: left" />
-       </StackLayout>
-       <StackLayout orientation="horizontal" style="text-align: center"  padding="0">
-        <Label :text="youtubeBookmark.description" fontSize="13" width="100%" style="text-align: left" />
+       <StackLayout orientation="horizontal" class="youtubeMarkDateWrap">
+        <Label :text="youtubeBookmark.write_date" class="youtubeMarkDate"  />
        </StackLayout>
       </StackLayout>
      </StackLayout>
-    </v-template>
-   </ListView>
-  </StackLayout>
+     <StackLayout class="markUnderline">
+     </StackLayout>
+    </StackLayout>
+   </v-template>
+  </ListView>
  </StackLayout>
+  <StackLayout v-else>
+   <label text="없음" />
+  </StackLayout>
 </template>
 
 <script>
  import axios from 'axios';
- import YBookmarkDetil from "./bookmarkDetail/YBookmarkDetil";
+ var cache = require("nativescript-cache");
+ const appSettings = require("tns-core-modules/application-settings");
+ import YoutubeWebview from '../../search/place/placeDetail/reviewMore/reviewMoreWebview/YoutubeWebview'
+ import '~/Resources/css/menu/bookmark/bookmarkList/YoutubeBookmark/youtubeBookmark_320.scss';
+ import '~/Resources/css/menu/bookmark/bookmarkList/YoutubeBookmark/youtubeBookmark_360.scss';
+ import '~/Resources/css/menu/bookmark/bookmarkList/YoutubeBookmark/youtubeBookmark_420.scss';
+ import '~/Resources/css/menu/bookmark/bookmarkList/YoutubeBookmark/youtubeBookmark_480.scss';
+
     export default {
         name:"YoutubeBookmark",
        data(){
@@ -38,39 +47,39 @@
        },
         components: {
         },mounted() {
-         axios({
-          method: 'get',
-          url: 'http://api.matitzung.shop/v1/bookmarks?',
-          //  url: 'http://192.168.1.85:9090/v1/places?',
-          params: {
-           gubun: 'youtube',
-           user_id : 'jeetkn@naver.com'
-          },
-         }).then((response) => {
-          console.log(response.data);
-          this.$data.youtubeBookmarkList = response.data.dataList;
-         }, (error) => {
-          console.log(error);
-         });
+           this.getYoutubeReview();
      },methods:{
-      goYoutube(args){
-       console.log("여기 타니?");
+      goWebview(args){
        const view = args.view;
-       const page = view.page;
        const tappedItem = view.bindingContext;
-       this.$navigateTo(YBookmarkDetil, {
+
+       //console.log(tappedItem.url)
+       this.$navigateTo(YoutubeWebview, {
         props: {
-         context: tappedItem}});
+         itemList: tappedItem}
+       })
+      },
+     getYoutubeReview(){
+       axios({
+        method: 'get',
+        url: 'http://api.eatjeong.com/v1/bookmarks',
+        params: {
+         gubun: 'youtube',
+         user_id :  appSettings.getString("user_id"),
+         sns_division:appSettings.getString("sns_division")
+        },
+       }).then((response) => {
+        console.log(response.data);
+        this.$data.youtubeBookmarkList = response.data.dataList;
+        console.log('dddddddddd' + this.$data.youtubeBookmarkList)
+       }, (error) => {
+        console.log(error);
+       });
       }
      }
     };
 </script>
 
 <style lang="scss">
-    // Start custom common variables
-      @import "~@nativescript/theme/scss/variables/orange";
-    // End custom common variables
-
-    // Custom styles
 
 </style>
