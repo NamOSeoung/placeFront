@@ -73,22 +73,22 @@
                                    <StackLayout class="loginEmailJoinWrap"  @tap="userJoin">
                                           <label text="이메일 회원가입" class="loginEmailJoin"  />
                                    </StackLayout>
-                                   <StackLayout class="loginKakaoJoinWrap" orientation="horizontal">
-                                          <StackLayout class="loginKakaoIconWrap" >
-                                                 <image class="loginKakaoIcon"  src="~/Resources/img/login/kakao-circle.png" />
-                                          </StackLayout>
-                                          <StackLayout class="loginKakaoLoginWrap">
-                                                 <label class="loginKakaoLogin" text="카카오 로그인"  />
-                                          </StackLayout>
-                                   </StackLayout>
-                                   <StackLayout class="loginNaverJoinWrap" orientation="horizontal" >
-                                          <StackLayout class="loginNaverIconWrap">
-                                                 <image class="loginNaverIcon" src="~/Resources/img/login/naver-circle.png" />
-                                          </StackLayout>
-                                          <StackLayout class="loginNaverLoginWrap" >
-                                                 <label class="loginNaverLogin" text="네이버 로그인"  style="font-family: nanumsquareroundeb" />
-                                          </StackLayout>
-                                   </StackLayout>
+<!--                                   <StackLayout class="loginKakaoJoinWrap" orientation="horizontal">-->
+<!--                                          <StackLayout class="loginKakaoIconWrap" >-->
+<!--                                                 <image class="loginKakaoIcon"  src="~/Resources/img/login/kakao-circle.png" />-->
+<!--                                          </StackLayout>-->
+<!--                                          <StackLayout class="loginKakaoLoginWrap">-->
+<!--                                                 <label class="loginKakaoLogin" text="카카오 로그인"  />-->
+<!--                                          </StackLayout>-->
+<!--                                   </StackLayout>-->
+<!--                                   <StackLayout class="loginNaverJoinWrap" orientation="horizontal" >-->
+<!--                                          <StackLayout class="loginNaverIconWrap">-->
+<!--                                                 <image class="loginNaverIcon" src="~/Resources/img/login/naver-circle.png" />-->
+<!--                                          </StackLayout>-->
+<!--                                          <StackLayout class="loginNaverLoginWrap" >-->
+<!--                                                 <label class="loginNaverLogin" text="네이버 로그인"  style="font-family: nanumsquareroundeb" />-->
+<!--                                          </StackLayout>-->
+<!--                                   </StackLayout>-->
                             </StackLayout>
                      </StackLayout>
               </StackLayout>

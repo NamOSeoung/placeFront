@@ -27,9 +27,7 @@
                 </StackLayout>
             </ScrollView>
         </StackLayout>
-        <StackLayout v-else marginTop="40" width="100%" style="text-align: center">
-            <label text="검색 결과가 없습니다." />
-        </StackLayout>
+
      </StackLayout>
 </template>
 
