@@ -94,6 +94,7 @@
        import ServiceTerms from '../serviceTerms/ServiceTerms';
        import MemberJoin from '../MemberJoin'
        import PhoneCert from '../phoneCert/PhoneCert';
+       import InfoEnter from "../infoEnter/InfoEnter";
 
 
        import '~/Resources/css/member/findUserInfo/FindCommon/findCommon_320.scss';
@@ -145,7 +146,8 @@
                                    }
                             }
                      },nextPage(){
-                            this.$navigateTo(PhoneCert)
+                            // this.$navigateTo(PhoneCert)
+                             this.$navigateTo(InfoEnter)
                      }
               }
        };
