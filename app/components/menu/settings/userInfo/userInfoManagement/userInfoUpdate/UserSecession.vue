@@ -1,12 +1,12 @@
 <template lang="html">
 <Page actionBarHidden="true">
      <StackLayout>
-         <StackLayout orientation="horizontal" height="55" width="360" borderBottomWidth="1" borderBottomColor="#dddddd" >
-             <StackLayout marginTop="30" width="330" height="30" paddingLeft="150">
-                 <label text="탈퇴 안내" style="font-family: nanumsquareroundb" height="16" fontSize="14" color="#494949" />
+         <StackLayout orientation="horizontal" height="55" width="100%" borderBottomWidth="1" borderBottomColor="#dddddd" >
+             <StackLayout class="findUserIdBarTitleWrap"  marginLeft="42%" width="25%" >
+                 <label class="findUserIdBarTitle" text="탈퇴 안내" width="100%"  />
              </StackLayout>
-             <StackLayout marginTop="25" @tap="$navigateBack">
-                 <image width="17" height="17" src="~/Resources/img/place/close_5_64_b.png" />
+             <StackLayout width="16" height="16" marginLeft="27%" marginTop="15" @tap="$navigateBack">
+                 <image src="~/Resources/img/place/close_5_64_b.png"/>
              </StackLayout>
          </StackLayout>
          <StackLayout backgroundColor="#eff2f7" width="320" height="120" marginTop="30" padding="20 25">
@@ -52,17 +52,17 @@
              <label class="infoEnterValidationRed" text="비밀번호가 일치하지 않습니다." />
          </StackLayout>
          <StackLayout orientation="horizontal">
-             <StackLayout marginTop="23.45" marginLeft="65" width="100" height="32" borderRadius="49" backgroundColor="#dddddd" style="text-align: center" @tap="$navigateBack">
-                 <label text="취소" color="#555555" fontSize="13" style="font-family: nanumsquareroundr" width="25.55" height="15.05" marginTop="10" marginBottom="10"/>
+             <StackLayout marginTop="23.45" marginLeft="20%" width="25%" height="32" borderRadius="49" backgroundColor="#dddddd" style="text-align: center" @tap="$navigateBack">
+                 <label text="취소" color="#555555" fontSize="13" style="font-family: nanumsquareroundr" width="100%" height="15.05" marginTop="10" marginBottom="10"/>
              </StackLayout>
              <StackLayout v-if="password.length<1">
-                 <StackLayout marginTop="23.45" marginLeft="30" width="100" height="32" borderRadius="49" backgroundColor="#dddddd" style="text-align: center">
-                     <label text="탈퇴" color="#555555" fontSize="13" style="font-family: nanumsquareroundr" width="25.55" height="15.05" marginTop="10" marginBottom="10"/>
+                 <StackLayout marginTop="23.45" marginLeft="15%" width="45%" height="32" borderRadius="49" backgroundColor="#dddddd" style="text-align: center">
+                     <label text="탈퇴" color="#555555" fontSize="13" style="font-family: nanumsquareroundr" width="100%" height="15.05" marginTop="10" marginBottom="10"/>
                  </StackLayout>
              </StackLayout>
              <StackLayout v-else>
-                 <StackLayout marginTop="23.45" marginLeft="30" width="100" height="32" borderRadius="49" backgroundColor="#ffe074" style="text-align: center" @tap="userSeccession">
-                     <label text="탈퇴" color="#555555" fontSize="13" style="font-family: nanumsquareroundr" width="25.55" height="15.05" marginTop="10" marginBottom="10"/>
+                 <StackLayout marginTop="23.45" marginLeft="15%" width="45%" height="32" borderRadius="49" backgroundColor="#ffe074" style="text-align: center" @tap="userSeccession">
+                     <label text="탈퇴" color="#555555" fontSize="13" style="font-family: nanumsquareroundr" width="100%" height="15.05" marginTop="10" marginBottom="10"/>
                  </StackLayout>
              </StackLayout>
          </StackLayout>

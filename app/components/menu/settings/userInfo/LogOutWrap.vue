@@ -1,6 +1,6 @@
 <template lang="html">
-    <StackLayout backgroundColor="#eff2f7" height="100%">
-        <StackLayout class="loginTitleWrap" >
+    <StackLayout backgroundColor="#eff2f7" height="100%" width="100%">
+        <StackLayout class="loginTitleWrap" width="100%">
             <label class="loginTitleContents" text="오늘은 어떤 식사를 하나요?" />
         </StackLayout>
         <StackLayout class="loginInfoWrap">
@@ -42,15 +42,15 @@
                 EtcList: [{
                     name: "공지사항"
                 },
-                    {
-                        name: "자주하는 질문"
-                    },
+                    // {
+                    //     name: "자주하는 질문"
+                    // },
                     {
                         name: "약관 및 정책"
                     },
-                    {
-                        name: "앱 정보"
-                    }
+                    // {
+                    //     name: "앱 정보"
+                    // }
                 ]
             }
         }, mounted() {
@@ -63,9 +63,10 @@
                 if(index == 0){
                     this.$navigateTo(Notice);
                 }else if(index == 1){
-                    this.$navigateTo(FAQ);
-                }else if(index == 2){
                     this.$navigateTo(TermsAndPolicy);
+                   // this.$navigateTo(FAQ);
+                }else if(index == 2){
+
                 }else if(index == 3){
 
                 }

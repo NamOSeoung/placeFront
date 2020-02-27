@@ -1,12 +1,11 @@
 <template lang="html">
 <Page actionBarHidden="true">
      <StackLayout>
-         <StackLayout orientation="horizontal" height="65" borderBottomWidth="1.05" borderBottomColor="#dddddd" paddingBottom="21">
-             <StackLayout marginTop="26" marginLeft="140" width="80" height="16">
-                 <label text="비밀번호 변경"  style="font-family: nanumsquareroundb" fontSize="14" color="#333333" />
+         <StackLayout orientation="horizontal" height="65" borderBottomWidth="1.05" borderBottomColor="#dddddd"  marginTop="10">
+             <StackLayout class="findUserIdBarTitleWrap"  marginLeft="40%" width="25%" >
+                 <label class="findUserIdBarTitle" text="비밀번호 변경" width="100%"  />
              </StackLayout>
-             <StackLayout width="16" height="16" marginLeft="110" marginTop="27" @tap="$navigateBack">
-<!--                 <FIcon name="fa-times" color="#555555"  fontSize="23.45"/>-->
+             <StackLayout width="16" height="16" marginLeft="27%" marginTop="15" @tap="$navigateBack">
                  <image src="~/Resources/img/place/close_5_64_b.png"/>
              </StackLayout>
          </StackLayout>

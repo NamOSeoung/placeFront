@@ -53,7 +53,7 @@
                                          </StackLayout>
                                   </StackLayout>
 
-                                  <StackLayout class="memberJoinTermsViewWrap2" >
+                                  <StackLayout class="memberJoinTermsViewWrap2" @tap="$navigateTo(userInfoTermsPage)" >
                                          <label class="memberJoinTermsView" text="보기"/>
                                   </StackLayout>
                            </StackLayout>
@@ -92,8 +92,10 @@
 <script>
        import Login from '../Login';
        import ServiceTerms from '../serviceTerms/ServiceTerms';
+       import UserInfoTerms from '../serviceTerms/UserInfoTerms';
        import MemberJoin from '../MemberJoin'
        import PhoneCert from '../phoneCert/PhoneCert';
+       import InfoEnter from "../infoEnter/InfoEnter";
 
 
        import '~/Resources/css/member/findUserInfo/FindCommon/findCommon_320.scss';
@@ -114,6 +116,7 @@
                      return {
                             loginPage:Login,
                             serviceTermsPage:ServiceTerms,
+                            userInfoTermsPage:UserInfoTerms,
                             serviceTerms:false,
                             policyTerms:false,
                      }
@@ -145,7 +148,8 @@
                                    }
                             }
                      },nextPage(){
-                            this.$navigateTo(PhoneCert)
+                            // this.$navigateTo(PhoneCert)
+                             this.$navigateTo(InfoEnter)
                      }
               }
        };

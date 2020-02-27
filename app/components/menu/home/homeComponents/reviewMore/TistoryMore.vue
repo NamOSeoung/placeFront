@@ -1,66 +1,66 @@
 <template lang="html">
-    <Page backgroundColor="#eff2f7" actionBarHidden="true" backgroundSpanUnderStatusBar="true" @swipe="onSwipe">
-        <StackLayout>
-            <StackLayout class="reviewMoreWrap" marginTop="10" height="8%" orientation="horizontal">
-                <StackLayout class="reviewMoreIconWrap" @tap="back">
-                    <image class="reviewMoreIcon" src="~/Resources/img/home/angle-left.png"/>
-                </StackLayout>
-                <StackLayout class="reviewMorePlaceNameWrap" marginTop="40%" width="80%">
-                    <label class="reviewMorePlaceName" text="서울 맛집"/>
-                </StackLayout>
-            </StackLayout>
-            <StackLayout marginTop="17" @swipe="onSwipe">
-                <ListView for="list in tistoryMoreList" separatorColor="transparent" style="height:100%" @itemTap="goWebview" @swipe="onSwipe">
-                    <v-template>
-                        <StackLayout class="tistoryMarkMain">
-                            <StackLayout class="tistoryMarkMainWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
-                                <StackLayout class="tistoryMarkTitleWrap">
-                                    <label :text="list.title" class="tistoryMarkTitle"/>
-                                </StackLayout>
-                                <StackLayout orientation="horizontal" class="tistoryMarkSubWrap" v-if="list.thumbnail_url != ''" >
-                                    <StackLayout class="tistoryMarkImageWrap">
-                                        <Image :src="list.thumbnail_url" stretch="aspectFill" class="tistoryMarkImage"/>
-                                    </StackLayout>
-                                    <StackLayout class="tistoryMarkRightWrap" width="75%" >
-                                        <StackLayout orientation="horizontal" width="93%" marginLeft="10%" class="tistoryMarkContentsWrap" >
-                                            <Label :text="list.description" width="98%" class="tistoryMarkContents" textWrap="true" />
-                                        </StackLayout>
-                                        <StackLayout orientation="horizontal" class="tistoryMarkDateWriterWrap" marginLeft="10%">
-                                            <StackLayout class="tistoryMarkDateWrap">
-                                                <Label :text="list.write_date" class="tistoryMarkDate"/>
-                                            </StackLayout>
-                                            <StackLayout class="tistoryMarkWriterWrap">
-                                                <label :text="list.author" class="tistoryMarkWriter"/>
-                                            </StackLayout>
-                                        </StackLayout>
-                                    </StackLayout>
-                                </StackLayout>
-                                <StackLayout orientation="horizontal" class="tistoryMarkSubWrap" v-else>
-                                    <StackLayout class="tistoryMarkNoImageWrap">
-                                        <StackLayout orientation="horizontal" class="tistoryMarkNoImgContentsWrap">
-                                            <Label :text="list.description" class="tistoryMarkNoImgContents" textWrap="true"/>
-                                        </StackLayout>
-                                        <StackLayout orientation="horizontal" class="tistoryMarkNoImgDateWriterWrap" marginLeft="10%">
-                                            <StackLayout class="tistoryMarkDateWrap">
-                                                <Label :text="list.write_date" class="tistoryMarkNoImgDate"/>
-                                            </StackLayout>
-                                            <StackLayout class="tistoryMarkNoImgWriterWrap">
-                                                <label :text="list.author" class="tistoryMarkNoImgWriter"/>
-                                            </StackLayout>
-                                        </StackLayout>
-                                    </StackLayout>
-                                </StackLayout>
-                            </StackLayout>
+ <Page backgroundColor="#eff2f7" actionBarHidden="true" backgroundSpanUnderStatusBar="true" @swipe="onSwipe">
+  <StackLayout>
+   <StackLayout class="reviewMoreWrap" marginTop="10" height="8%" orientation="horizontal" >
+     <StackLayout class="reviewMoreIconWrap" @tap="$navigateBack" >
+       <image class="reviewMoreIcon"  src="~/Resources/img/home/angle-left.png" />
+     </StackLayout>
+     <StackLayout class="reviewMorePlaceNameWrap" marginTop="40%" width="80%">
+       <label class="reviewMorePlaceName" text="서울 맛집"/>
+     </StackLayout>
+   </StackLayout>
+   <StackLayout marginTop="17" @swipe="onSwipe">
+       <ListView for="list in tistoryMoreList" separatorColor="transparent" style="height:100%" @itemTap="goWebview"  @swipe="onSwipe">
+           <v-template>
+               <StackLayout class="tistoryMarkMain" >
+                   <StackLayout class="tistoryMarkMainWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
+                       <StackLayout class="tistoryMarkTitleWrap" >
+                           <label :text="list.title" class="tistoryMarkTitle"/>
+                       </StackLayout>
+                       <StackLayout orientation="horizontal" class="tistoryMarkSubWrap" v-if="list.thumbnail_url != ''" >
+                           <StackLayout class="tistoryMarkImageWrap">
+                               <Image :src="list.thumbnail_url" stretch="aspectFill" class="tistoryMarkImage"/>
+                           </StackLayout>
+                           <StackLayout class="tistoryMarkRightWrap" width="75%" >
+                               <StackLayout orientation="horizontal" width="93%" marginLeft="10%" class="tistoryMarkContentsWrap">
+                                   <Label :text="list.description" width="98%" class="tistoryMarkContents" textWrap="true"/>
+                               </StackLayout>
+                               <StackLayout orientation="horizontal" class="tistoryMarkDateWriterWrap" >
+                                   <StackLayout class="tistoryMarkDateWrap">
+                                       <Label :text="list.write_date" class="tistoryMarkDate" marginLeft="10%" />
+                                   </StackLayout>
+                                   <StackLayout class="tistoryMarkWriterWrap">
+                                       <label :text="list.author" class="tistoryMarkWriter" />
+                                   </StackLayout>
+                               </StackLayout>
+                           </StackLayout>
+                       </StackLayout>
+                       <StackLayout orientation="horizontal" class="tistoryMarkSubWrap" v-else>
+                           <StackLayout class="tistoryMarkNoImageWrap" >
+                               <StackLayout orientation="horizontal" class="tistoryMarkNoImgContentsWrap">
+                                   <Label :text="list.description" class="tistoryMarkNoImgContents" textWrap="true" />
+                               </StackLayout>
+                               <StackLayout orientation="horizontal" class="tistoryMarkNoImgDateWriterWrap" marginLeft="10%" >
+                                   <StackLayout class="tistoryMarkDateWrap">
+                                       <Label :text="list.write_date" class="tistoryMarkNoImgDate"  />
+                                   </StackLayout>
+                                   <StackLayout class="tistoryMarkNoImgWriterWrap">
+                                       <label :text="list.author" class="tistoryMarkNoImgWriter" />
+                                   </StackLayout>
+                               </StackLayout>
+                           </StackLayout>
+                       </StackLayout>
+                   </StackLayout>
 
-                            <StackLayout class="markUnderline">
-                            </StackLayout>
-                        </StackLayout>
-                    </v-template>
-                </ListView>
-            </StackLayout>
-        </StackLayout>
+                   <StackLayout class="markUnderline">
+                   </StackLayout>
+               </StackLayout>
+           </v-template>
+       </ListView>
+   </StackLayout>
+  </StackLayout>
 
-    </Page>
+ </Page>
 </template>
 
 <script>

@@ -3,95 +3,103 @@
        <Page actionBarHidden="true" backgroundSpanUnderStatusBar="true">
 
               <ScrollView height="100%"  width="100%">
-              <StackLayout class="loginPageWrap">
-                     <StackLayout class="loginScreenTopWrap" >
-                            <StackLayout class="loginTitleMessageWrap" orientation="horizontal" @tap="aaa">
-                                   <label text="맛잇는 장소" class="loginTitleMessageMain" />
-                                   <label text="를" class="loginTitleMessageMain2"  />
-                            </StackLayout>
-                            <StackLayout class="loginTitleMessageSubWrap" >
-                                   <label text="찾아보세요." class="loginTitleMessageSub"  />
-                            </StackLayout>
-                            <StackLayout class="loginBrandLogoWrap" >
-                                   <label text="Brand Logo" class="loginBrandLogo"/>
-                            </StackLayout>
-                            <StackLayout orientation="horizontal" class="loginBarogoMainWrap"  @tap="$navigateTo(detailPage)">
-                                   <StackLayout  class="loginBarogoWrap">
-                                          <label text="둘러보기" class="loginBarogo" />
+              <AbsoluteLayout>
+                     <StackLayout class="loginPageWrap">
+                            <StackLayout class="loginScreenTopWrap" >
+                                   <StackLayout class="loginTitleMessageWrap" orientation="horizontal" @tap="aaa">
+                                          <label text="맛잇는 장소" class="loginTitleMessageMain" />
+                                          <label text="를" class="loginTitleMessageMain2"  />
                                    </StackLayout>
-                                   <StackLayout class="loginBarogoRightWrap">
-                                          <image class="loginBarogoRight"  src="~/Resources/img/login/arrow-cricle-right.png"  />
+                                   <StackLayout class="loginTitleMessageSubWrap" >
+                                          <label text="찾아보세요." class="loginTitleMessageSub"  />
+                                   </StackLayout>
+                                   <StackLayout class="loginBrandLogoWrap" >
+                                          <label text="Brand Logo" class="loginBrandLogo"/>
+                                   </StackLayout>
+                                   <StackLayout orientation="horizontal" class="loginBarogoMainWrap"  @tap="$navigateTo(detailPage)">
+                                          <StackLayout  class="loginBarogoWrap">
+                                                 <label text="둘러보기" class="loginBarogo" />
+                                          </StackLayout>
+                                          <StackLayout class="loginBarogoRightWrap">
+                                                 <image class="loginBarogoRight"  src="~/Resources/img/login/arrow-cricle-right.png"  />
+                                          </StackLayout>
+                                   </StackLayout>
+                            </StackLayout>
+                            <StackLayout class="loginScreenBottomWrap" >
+                                   <StackLayout class="loginEmailWrap">
+                                          <TextField
+                                                  class="loginEmail"
+                                                  hint="이메일"
+                                                  [text]='name'
+                                                  secure="false"
+                                                  color="white"
+                                                  returnKeyType="done"
+                                                  (returnPress)="onReturnPress($event)"
+                                                  autocorrect="false"
+                                                  maxLength="50"
+                                                  v-model="user_id"
+                                                  (focus)="onFocus($event)"
+                                                  (blur)="onBlur($event)">
+                                          </TextField>
+                                   </StackLayout>
+                                   <StackLayout class="loginPasswordWrap" >
+                                          <TextField hint="비밀번호"
+                                                     class="loginPassword"
+                                                     [text]='name'
+                                                     secure="true"
+                                                     color="white"
+                                                     v-model="password"
+                                                     returnKeyType="done"
+                                                     (returnPress)="onReturnPress($event)"
+                                                     autocorrect="false"
+                                                     maxLength="20"
+                                                     (focus)="onFocus($event)"
+                                                     (blur)="onBlur($event)">
+                                          </TextField>
+                                   </StackLayout>
+
+                                   <StackLayout class="loginFindWrap" orientation="horizontal" >
+                                          <StackLayout class="loginIdFindWrapWrap" orientation="horizontal" >
+                                                 <StackLayout class="loginIdFindWrap" @tap="$navigateTo(findUserIdPage)">
+                                                        <label class="loginIdFind" text="아이디찾기 | " />
+                                                 </StackLayout>
+                                                 <StackLayout class="loginPasswordFindWrap" @tap="$navigateTo(findUserPasswordPage)">
+                                                        <label class="loginPasswordFind" text="비밀번호찾기" />
+                                                 </StackLayout>
+                                          </StackLayout>
+                                          <StackLayout class="loginButtonWrap" @tap="userLogin" >
+                                                 <label class="loginButton" text="로그인" />
+                                          </StackLayout>
+                                   </StackLayout>
+                                   <StackLayout  class="loginSocialWrap">
+                                          <StackLayout class="loginEmailJoinWrap"  @tap="userJoin">
+                                                 <label text="이메일 회원가입" class="loginEmailJoin"  />
+                                          </StackLayout>
+                                          <!--                                   <StackLayout class="loginKakaoJoinWrap" orientation="horizontal">-->
+                                          <!--                                          <StackLayout class="loginKakaoIconWrap" >-->
+                                          <!--                                                 <image class="loginKakaoIcon"  src="~/Resources/img/login/kakao-circle.png" />-->
+                                          <!--                                          </StackLayout>-->
+                                          <!--                                          <StackLayout class="loginKakaoLoginWrap">-->
+                                          <!--                                                 <label class="loginKakaoLogin" text="카카오 로그인"  />-->
+                                          <!--                                          </StackLayout>-->
+                                          <!--                                   </StackLayout>-->
+                                          <!--                                   <StackLayout class="loginNaverJoinWrap" orientation="horizontal" >-->
+                                          <!--                                          <StackLayout class="loginNaverIconWrap">-->
+                                          <!--                                                 <image class="loginNaverIcon" src="~/Resources/img/login/naver-circle.png" />-->
+                                          <!--                                          </StackLayout>-->
+                                          <!--                                          <StackLayout class="loginNaverLoginWrap" >-->
+                                          <!--                                                 <label class="loginNaverLogin" text="네이버 로그인"  style="font-family: nanumsquareroundeb" />-->
+                                          <!--                                          </StackLayout>-->
+                                          <!--                                   </StackLayout>-->
                                    </StackLayout>
                             </StackLayout>
                      </StackLayout>
-                     <StackLayout class="loginScreenBottomWrap" >
-                            <StackLayout class="loginEmailWrap">
-                                   <TextField
-                                              class="loginEmail"
-                                              hint="이메일"
-                                              [text]='name'
-                                              secure="false"
-                                              color="white"
-                                              returnKeyType="done"
-                                              (returnPress)="onReturnPress($event)"
-                                              autocorrect="false"
-                                              maxLength="50"
-                                              v-model="user_id"
-                                              (focus)="onFocus($event)"
-                                              (blur)="onBlur($event)">
-                                   </TextField>
-                            </StackLayout>
-                            <StackLayout class="loginPasswordWrap" >
-                                   <TextField hint="비밀번호"
-                                              class="loginPassword"
-                                              [text]='name'
-                                              secure="true"
-                                              color="white"
-                                              v-model="password"
-                                              returnKeyType="done"
-                                              (returnPress)="onReturnPress($event)"
-                                              autocorrect="false"
-                                              maxLength="20"
-                                              (focus)="onFocus($event)"
-                                              (blur)="onBlur($event)">
-                                   </TextField>
-                            </StackLayout>
-                            <StackLayout class="loginFindWrap" orientation="horizontal" >
-                                   <StackLayout class="loginIdFindWrapWrap" orientation="horizontal" >
-                                          <StackLayout class="loginIdFindWrap" @tap="$navigateTo(findUserIdPage)">
-                                                 <label class="loginIdFind" text="아이디찾기 | " />
-                                          </StackLayout>
-                                          <StackLayout class="loginPasswordFindWrap" @tap="$navigateTo(findUserPasswordPage)">
-                                                 <label class="loginPasswordFind" text="비밀번호찾기" />
-                                          </StackLayout>
-                                   </StackLayout>
-                                   <StackLayout class="loginButtonWrap" @tap="userLogin" >
-                                          <label class="loginButton" text="로그인" />
-                                   </StackLayout>
-                            </StackLayout>
-                            <StackLayout  class="loginSocialWrap">
-                                   <StackLayout class="loginEmailJoinWrap"  @tap="userJoin">
-                                          <label text="이메일 회원가입" class="loginEmailJoin"  />
-                                   </StackLayout>
-<!--                                   <StackLayout class="loginKakaoJoinWrap" orientation="horizontal">-->
-<!--                                          <StackLayout class="loginKakaoIconWrap" >-->
-<!--                                                 <image class="loginKakaoIcon"  src="~/Resources/img/login/kakao-circle.png" />-->
-<!--                                          </StackLayout>-->
-<!--                                          <StackLayout class="loginKakaoLoginWrap">-->
-<!--                                                 <label class="loginKakaoLogin" text="카카오 로그인"  />-->
-<!--                                          </StackLayout>-->
-<!--                                   </StackLayout>-->
-<!--                                   <StackLayout class="loginNaverJoinWrap" orientation="horizontal" >-->
-<!--                                          <StackLayout class="loginNaverIconWrap">-->
-<!--                                                 <image class="loginNaverIcon" src="~/Resources/img/login/naver-circle.png" />-->
-<!--                                          </StackLayout>-->
-<!--                                          <StackLayout class="loginNaverLoginWrap" >-->
-<!--                                                 <label class="loginNaverLogin" text="네이버 로그인"  style="font-family: nanumsquareroundeb" />-->
-<!--                                          </StackLayout>-->
-<!--                                   </StackLayout>-->
-                            </StackLayout>
+
+                     <StackLayout top="0" width="100%" height="100%" >
+                            <ActivityIndicator :busy="busy" color="#ffe074" width="100" height="100" marginTop="300" />
                      </StackLayout>
-              </StackLayout>
+              </AbsoluteLayout>
+
               </ScrollView>
 
        </Page>
@@ -158,50 +166,56 @@
                                    return;
                             }
 
-                            axios({
-                                   method: 'get',
-                                   url: 'http://api.eatjeong.com/v1/users/general/signin?',
-                                   params: {
-                                          user_id:this.$data.user_id,
-                                          password:this.$data.password
-                                   },
-                            }).then((response) => {
-                                   console.log(response.data.dataList);
-                                   if(response.data.dataList.result == true){
+                            this.$data.busy = true;
+                            setTimeout(() => {
+                                   axios({
+                                          method: 'get',
+                                          url: 'http://api.eatjeong.com/v1/users/general/signin?',
+                                          params: {
+                                                 user_id:this.$data.user_id,
+                                                 password:this.$data.password
+                                          },
+                                   }).then((response) => {
+                                          console.log(response.data.dataList);
+                                          if(response.data.dataList.result == true){
 
-                                          console.log(response.data.dataList.login90_flag);
-                                          if(response.data.dataList.login90_flag == false){ //90일 경과
-                                                 //this.$navigateTo(PasswordExcess);
-                                                 this.$navigateTo(PasswordExcess, {
-                                                        props: {
-                                                               user_id: this.$data.user_id}
-                                                 })
-                                          }else{
-                                                 //Toast.makeText(response.data.dataList.result_message).show();
-                                                 appSettings.setString("user_id",this.$data.user_id);
-                                                 appSettings.setString("sns_division","C");
-                                                 console.log(appSettings.getString("user_id"))
-                                                 this.$navigateTo(MenuWrap,{ clearHistory: true });
+                                                 console.log(response.data.dataList.login90_flag);
+                                                 if(response.data.dataList.login90_flag == false){ //90일 경과
+                                                        //this.$navigateTo(PasswordExcess);
+                                                        this.$navigateTo(PasswordExcess, {
+                                                               props: {
+                                                                      user_id: this.$data.user_id}
+                                                        })
+                                                 }else{
+                                                        //Toast.makeText(response.data.dataList.result_message).show();
+                                                        appSettings.setString("user_id",this.$data.user_id);
+                                                        appSettings.setString("sns_division","C");
+                                                        console.log(appSettings.getString("user_id"))
+                                                        this.$navigateTo(MenuWrap,{ clearHistory: true });
+                                                 }
+                                          }else {
+                                                 dialogs.alert({
+                                                        title: "",
+                                                        message: "이메일이나 비밀번호가 다릅니다.",
+                                                        okButtonText: "확인"
+                                                 }).then(function () {
+                                                        console.log("Dialog closed!");
+                                                 });
+                                                 // dialogs.alert("").then(function() {
+                                                 //        console.log("이메일이나 비밀번호가 다릅니다.");
+                                                 // });
+                                                 //alert("이메일이나 비밀번호가 다릅니다.");
+                                                 // Toast.makeText(response.data.dataList.result_message).show();
                                           }
-                                   }else {
-                                          dialogs.alert({
-                                                 title: "",
-                                                 message: "이메일이나 비밀번호가 다릅니다.",
-                                                 okButtonText: "확인"
-                                          }).then(function () {
-                                                 console.log("Dialog closed!");
-                                          });
-                                          // dialogs.alert("").then(function() {
-                                          //        console.log("이메일이나 비밀번호가 다릅니다.");
-                                          // });
-                                          //alert("이메일이나 비밀번호가 다릅니다.");
-                                         // Toast.makeText(response.data.dataList.result_message).show();
-                                   }
+                                          this.$data.busy = false;
 
-                            }, (error) => {
-                                   console.log(error)
-                                   Toast.makeText("로그인 오류가 발생하였습니다. 잠시 후 다시 시도 해 주세요.").show();
-                            });
+                                   }, (error) => {
+                                          console.log(error)
+                                          Toast.makeText("로그인 오류가 발생하였습니다. 잠시 후 다시 시도 해 주세요.").show();
+                                          this.$data.busy = false;
+                                   });
+                            }, 1000);
+
                      },
                      aaaa(){
                             console.log('123123213')

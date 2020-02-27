@@ -40,16 +40,16 @@
                            </StackLayout>
                            <StackLayout class="googleReviewMoreRatingWrap" orientation="horizontal">
                                <StackLayout orientation="horizontal">
-                                   <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="85" v-if="a_reviews.rating_point == 1"/>
-                                   <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="65" v-else-if="a_reviews.rating_point==2"/>
-                                   <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="45" v-else-if="a_reviews.rating_point == 3"/>
-                                   <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="25" v-else-if="a_reviews.rating_point== 4"/>
-                                   <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="5" v-else-if="a_reviews.rating_point == 5"/>
+                                   <image class="appReviewRatingIcon1" src="~/Resources/img/place/star_yellow.png" marginLeft="85" v-if="a_reviews.rating_point == 1"/>
+                                   <image class="appReviewRatingIcon2" src="~/Resources/img/place/star_yellow.png" marginLeft="65" v-else-if="a_reviews.rating_point==2"/>
+                                   <image class="appReviewRatingIcon3" src="~/Resources/img/place/star_yellow.png" marginLeft="45" v-else-if="a_reviews.rating_point == 3"/>
+                                   <image class="appReviewRatingIcon4" src="~/Resources/img/place/star_yellow.png" marginLeft="25" v-else-if="a_reviews.rating_point== 4"/>
+                                   <image class="appReviewRatingIcon5" src="~/Resources/img/place/star_yellow.png" marginLeft="5" v-else-if="a_reviews.rating_point == 5"/>
                                    <StackLayout orientation="horizontal">
-                                       <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 1"/>
-                                       <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 2"/>
-                                       <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 3"/>
-                                       <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 4"/>
+                                       <image class="appReviewRatingIcon6" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 1"/>
+                                       <image class="appReviewRatingIcon6" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 2"/>
+                                       <image class="appReviewRatingIcon6" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 3"/>
+                                       <image class="appReviewRatingIcon6" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 4"/>
                                    </StackLayout>
                                </StackLayout>
                            </StackLayout>
@@ -79,7 +79,7 @@
                                <StackLayout class="appReviewDeleteWrap" @tap="updateReview(a_reviews)" >
                                    <label class="appReviewDelete" text="수정"/>
                                </StackLayout>
-                               <StackLayout class="appReviewDeleteWrap" @tap="reviewDelete(a_reviews.review_id)" marginLeft="10" >
+                               <StackLayout class="appReviewDeleteWrap" @tap="reviewDelete(a_reviews.review_id)" marginLeft="20"  >
                                    <label class="appReviewDelete" text="삭제"/>
                                </StackLayout>
                            </StackLayout>

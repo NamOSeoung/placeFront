@@ -8,4 +8,5 @@
         <item name="android:textColor">#FF0000</item>
         <item name="android:textSize">12dp</item>
     </style>
+    <string name="app_name">잇정</string>
 </resources>

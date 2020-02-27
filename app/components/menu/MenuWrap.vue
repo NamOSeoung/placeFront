@@ -1,8 +1,8 @@
 <template lang="html">
  <Page actionBarHidden="true" marginTop="24">
   <StackLayout>
-   <BottomNavigation :selectedIndex="data.tab" @selectedIndexChanged="tabChangedEvent"  @loaded="aaa">
-    <TabStrip @itemTap="aaa">
+   <BottomNavigation :selectedIndex="data.tab" @selectedIndexChanged="tabChangedEvent">
+    <TabStrip>
      <TabStripItem>
       <image v-if="tabIconSet==0" width="26" height="26" src="~/Resources/img/home/home_5_64.png"/>
       <image v-else width="26" height="26" src="~/Resources/img/home/home_d_64.png"/>

@@ -40,22 +40,10 @@
     import '~/Resources/css/menu/home/homeComponents/TistoryList/tistoryList_480.scss';
 
     import axios from 'axios'
-    import { StackLayout } from 'ui/layouts/stack-layout';
     import TistoryMore from './reviewMore/TistoryMore'
     import TistoryWebview from './reviewMore/mainReviewWebview/TistoryWebview'
-    // var observableModule = require("data/observable");
-    // var observableArrayModule = require("data/observable-array");
-    // let page;
     var cache = require("nativescript-cache");
-    // var pageData = new observableModule.Observable({
-    //     myList: new observableArrayModule.ObservableArray(["foo", "bar"])
-    // });
-    // exports.loaded = function(args) {
-    //     console.log('123123123123')
-    //     var page = args.object;
-    //     page.bindingContext = pageData;
-    //     console.log(pageData.myList)
-    // };
+
 
     export default {
         name:"Tistory",
@@ -92,11 +80,12 @@
                 })
             }
         },mounted(){
-            if(cache.get("location_name") == null){
-                this.getTistoryList("서울 맛집");
-            }else{
-                this.getTistoryList(cache.get("location_name"));
-            }
+            this.getTistoryList("서울 맛집");
+            // if(cache.get("location_name") == null){
+            //     this.getTistoryList("서울 맛집");
+            // }else{
+            //     this.getTistoryList(cache.get("location_name"));
+            // }
             // this.getTistoryList();
 
         }

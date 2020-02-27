@@ -140,10 +140,10 @@
      <!--    <label :text="placeInfo.rating" width="33.3%"/>-->
      <!--    <label text="메뉴" width="33.3%" />-->
      <!--   </StackLayout>-->
-     <StackLayout @tap="goReviewWritePage" width="100" height="30" borderRadius="15"
-                  backgroundColor="#ffe074" marginBottom="22">
-      <label text="리뷰쓰기" color="#555555" fontSize="13" style="font-family: nanumsquareroundeb"
-             marginLeft="26" marginTop="8"/>
+     <StackLayout @tap="goReviewWritePage" width="25%" height="30" borderRadius="15"
+                  backgroundColor="#ffe074" marginBottom="22" style="text-align: center">
+      <label text="리뷰쓰기" color="#555555" fontSize="11%" width="100%" style="font-family: nanumsquareroundb"
+              marginTop="8"/>
      </StackLayout>
     </StackLayout>
    </ScrollView>

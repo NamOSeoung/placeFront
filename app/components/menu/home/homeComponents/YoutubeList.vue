@@ -74,12 +74,13 @@
             }
         },mounted(){
             console.log('213123123')
-            console.log(cache.get("location_name"))
-            if(cache.get("location_name") == null){
-                this.getYoutubeList("서울 맛집");
-            }else{
-                this.getYoutubeList(cache.get("location_name"));
-            }
+            this.getYoutubeList("서울 맛집");
+            // console.log(cache.get("location_name"))
+            // if(cache.get("location_name") == null){
+            //     this.getYoutubeList("서울 맛집");
+            // }else{
+            //     this.getYoutubeList(cache.get("location_name"));
+            // }
            // this.getYoutubeList();
         }
     };

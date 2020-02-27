@@ -41,16 +41,23 @@
     import NaverWebview from './reviewMore/mainReviewWebview/NaverWebview'
     import axios from 'axios';
     var cache = require("nativescript-cache");
+    import * as application from "application";
+    import * as frame from "ui/frame";
+    import NaverList from './NaverList';
+
+
     export default {
         name:"NaverList",
         components: {
         }, data() {
             return {
                 naverList:[],
-                NaverMorePage:NaverMore
+                NaverMorePage:NaverMore,
             }
          },methods :{
             getNaverList(keyword){
+                console.log(keyword + "asdasdasdasdasd")
+                //this.$data.naverList = [],
                   axios({
                     method: 'get',
                         url: 'http://api.eatjeong.com/v1/main/reviews',
@@ -61,7 +68,8 @@
                     },
                     }).then((response) => {
                         console.log(response.data.dataList)
-                        this.$data.naverList = response.data.dataList;
+                       // this.$data.naverList = response.data.dataList;
+                      this.$data.naverList = response.data.dataList;
 
 
                     }, (error) => {
@@ -73,16 +81,71 @@
                         itemList: this.$data.naverList[index]
                     }
                 })
-            }
+            },test(){
+                console.log('123123123')
+            },
         },mounted(){
+            this.getNaverList("서울 맛집");
+           // console.log(cache.get("location_name"))
+           //  if(cache.get("location_name") == "false"){
+           //      this.getNaverList("서울 맛집");
+           //  }else{
+           //      this.getNaverList(cache.get("location_name"));
+           //  }
 
-            if(cache.get("location_name") == null){
-                this.getNaverList("서울 맛집");
-            }else{
-               this.getNaverList(cache.get("location_name"));
-            }
-           // this.getNaverList();
-        }
+
+            // application.on(application.resumeEvent, (args) => {
+            //     if (args.android) {
+            //         var cache2 = require("nativescript-cache");
+            //         // For Android applications, args.android is an android activity class.
+            //         console.log("Activity22222: " + args.android);
+            //         console.log(cache2.get("location_name"))
+            //         if(cache2.get("location_name") == "false"){
+            //             this.getNaverList("서울 맛집");
+            //         }else{
+            //             console.log(cache2.get("location_name") + "????!!!!!!!")
+            //             this.getNaverList(cache2.get("location_name"));
+            //         }
+            //     } else if (args.ios) {
+            //         // For iOS applications, args.ios is UIApplication.
+            //         console.log("UIApplication: " + args.ios);
+            //     }
+            // });
+
+            // if(cache.get("location_name") == null){
+            //     this.getNaverList("서울 맛집");
+            // }else{
+            //    this.getNaverList(cache.get("location_name"));
+            // }
+          // this.getNaverList();
+        },
+        // updated() {
+        //     console.log('updated');
+        //     this.$nextTick(function () {
+        //         // 모든 화면이 렌더링된 후 실행합니다.
+        //         console.log('gggggggggggggg')
+        //         application.on(application.resumeEvent, (args) => {
+        //             if (args.android) {
+        //                 var cache2 = require("nativescript-cache");
+        //                 // For Android applications, args.android is an android activity class.
+        //                 console.log("Activity22222: " + args.android);
+        //                 console.log(cache2.get("location_name"))
+        //                 if(cache2.get("location_name") == "false"){
+        //                     this.getNaverList("서울 맛집");
+        //                 }else{
+        //                     console.log(cache2.get("location_name") + "????!!!!!!!")
+        //                     this.getNaverList(cache2.get("location_name"));
+        //                 }
+        //             } else if (args.ios) {
+        //                 // For iOS applications, args.ios is UIApplication.
+        //                 console.log("UIApplication: " + args.ios);
+        //             }
+        //         });
+        //         });
+        //
+        //
+        // }
+
     };
 
 </script>

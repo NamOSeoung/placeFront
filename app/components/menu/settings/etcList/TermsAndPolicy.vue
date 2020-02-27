@@ -32,6 +32,7 @@
 <script>
 
     import Policy from './TermsAndPolicyDetail/Policy';
+    import Terms from './TermsAndPolicyDetail/Terms';
     const platformModule = require("tns-core-modules/platform");
     import platformcss from '~/platformcss';
 
@@ -63,6 +64,8 @@
                 console.log(tappedItem.category_id)
                 if(tappedItem.category_id == 1){
                     this.$navigateTo(Policy);
+                }else{
+                    this.$navigateTo(Terms);
                 }
              }
         },mounted() {

@@ -42,7 +42,7 @@
     import YoutubeList from './homeComponents/YoutubeList';
     import NaverList from './homeComponents/NaverList';
     import TistoryList from './homeComponents/TistoryList'
-    const geoLocation = require("nativescript-geolocation");
+    // const geoLocation = require("nativescript-geolocation");
     import MenuWrap from '../MenuWrap'
     import Login from "../../member/Login";
     var data = {locationKeyword : '서울 맛집'}
@@ -54,6 +54,7 @@
     import '~/Resources/css/menu/home/homeWrap/homeWrap_360.scss';
     import '~/Resources/css/menu/home/homeWrap/homeWrap_420.scss';
     import '~/Resources/css/menu/home/homeWrap/homeWrap_480.scss';
+    import Naver from "../settings/userInfo/blackList/platForm/naver/Naver";
 
     export default {
         name:"HomeWrap",
@@ -78,72 +79,76 @@
                 console.log('123123123')
                 MenuWrap.methods.tabChange(tab)
             },
-            enableLocationServices: function() {
-                geoLocation.isEnabled().then(enabled => {
-                    if (!enabled) {
-                        console.log(geoLocation.enableLocationRequest() + "여부?")
-                        geoLocation
-                            .enableLocationRequest()
-                            .then(() => this.showLocation());
-                        console.log("1?")
-
-                    } else {
-                        this.showLocation();
-                        console.log("2?")
-                    }
-                });
-            },
-            showLocation: function() {
-                geoLocation.watchLocation(
-                    location => {
-                        this.currentGeoLocation = location;
-                        console.log(location + "asdasdasdasd")
-                        cache.set("keyword","키워드다!");
-                        console.log(cache.get("keyword"))
-                        axios({
-                            method: 'get',
-                            url: 'https://dapi.kakao.com/v2/local/geo/coord2address.json',
-                            params: {
-                                x:this.currentGeoLocation.longitude,
-                                y:this.currentGeoLocation.latitude
-                            },
-                            headers: { 'Authorization': 'KakaoAK b4bd7e75365a705323622c57d0b7e406' }
-                        }).then((response) => {
-                            console.log('호출함??')
-                            //console.log(response.data.documents[0].address.address_name)
-                            console.log(response.data)
-                            console.log(response)
-                            this.$data.address = response.data.documents[0].address.address_name
-                            data.locationKeyword = response.data.documents[0].address.address_name
-                            console.log(response.data.documents[0].address.address_name)
-                            var current_location_arr =  data.locationKeyword.split(" ");
-                            var current_location="";
-                            for(var i = 0; i < current_location_arr.length; i++){
-                                if(i < 3){
-                                    if(i > 0 ){
-                                        current_location += " " + current_location_arr[i];
-                                    }else {
-                                        current_location += current_location_arr[i];
-                                    }
-                                }
-                            }
-                            data.locationKeyword = current_location;
-                            cache.set("location_name",current_location+" 맛집")
-                        }, (error) => {
-                            console.log(error);
-                        });
-                    },
-                    error => {
-                        alert(error);
-                    }, {
-                        desiredAccuracy: 3,
-                        updateDistance: 10,
-                        minimumUpdateTime: 1000 * 1
-                    }
-                );
-            }
+            // enableLocationServices: function() {
+            //     geoLocation.isEnabled().then(enabled => {
+            //         if (!enabled) {
+            //             geoLocation
+            //                 .enableLocationRequest()
+            //                 .then(() => this.showLocation());
+            //         } else {
+            //             this.showLocation();
+            //             console.log("2?")
+            //         }
+            //     });
+            // },
+            // showLocation: function() {
+            //     geoLocation.watchLocation(
+            //         location => {
+            //             this.currentGeoLocation = location;
+            //             axios({
+            //                 method: 'get',
+            //                 url: 'https://dapi.kakao.com/v2/local/geo/coord2address.json',
+            //                 params: {
+            //                     x:this.currentGeoLocation.longitude,
+            //                     y:this.currentGeoLocation.latitude
+            //                 },
+            //                 headers: { 'Authorization': 'KakaoAK b4bd7e75365a705323622c57d0b7e406' }
+            //             }).then((response) => {
+            //                 console.log('호출함??')
+            //                 //console.log(response.data.documents[0].address.address_name)
+            //                 console.log(response.data)
+            //                 console.log(response)
+            //                 this.$data.address = response.data.documents[0].address.address_name
+            //                 data.locationKeyword = response.data.documents[0].address.address_name
+            //                 console.log(response.data.documents[0].address.address_name)
+            //                 var current_location_arr =  data.locationKeyword.split(" ");
+            //                 var current_location="";
+            //                 for(var i = 0; i < current_location_arr.length; i++){
+            //                     if(i < 3){
+            //                         if(i > 0 ){
+            //                             current_location += " " + current_location_arr[i];
+            //                         }else {
+            //                             current_location += current_location_arr[i];
+            //                         }
+            //                     }
+            //                 }
+            //                 data.locationKeyword = current_location;
+            //                 console.log(current_location+" 맛집" + "asasddssdddddasas")
+            //                 cache.set("location_name",current_location+" 맛집")
+            //
+            //                 //NaverList.methods.getNaverList((current_location+" 맛집"));
+            //                 // alert("wwww")
+            //                // NaverList.methods.getNaverList("서울 맛집")
+            //                //  this.components.NaverList.methods.getNaverList("경기도 맛집")
+            //                //  this.components.render().NaverList.methods.getNaverList("경기도 맛집")
+            //             }, (error) => {
+            //                 console.log(error);
+            //             });
+            //         },
+            //         error => {
+            //             alert(error);
+            //         }, {
+            //             desiredAccuracy: 3,
+            //             updateDistance: 10,
+            //             minimumUpdateTime: 1000 * 1
+            //         }
+            //     );
+            // }
         },mounted(){
-            this.enableLocationServices()
+             // cache.set("location_name","false")
+             // this.enableLocationServices()
+        },created() {
+
         }
     };
 </script>

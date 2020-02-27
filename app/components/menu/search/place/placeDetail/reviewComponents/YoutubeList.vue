@@ -7,27 +7,32 @@
             <image class="youtubeListMoreIcon" src="~/Resources/img/place/right_5_64.png" @tap="goMorePage" v-if="youtubeReview.length > 4"/>
         </StackLayout>
         <ScrollView orientation="horizontal">
+            <AbsoluteLayout width="100%">
+                <StackLayout class="youtubeListContentsWrap"  orientation="horizontal">
+                    <StackLayout class="youtubeListDataTopWrap"  v-for="y_reviews in youtubeReview"
+                                 v-if="youtubeReview != ''"
+                                 v-shadow="{ elevation: 2,shape:'RECTANGLE',backgroundColor:'#eff2f7', cornerRadius: 0 }">
+                        <StackLayout>
+                            <StackLayout @tap="goWebview(y_reviews.index)">
+                                <image class="youtubeListThumbnail" stretch="aspectFill" :src="y_reviews.thumbnail_url"/>
+                            </StackLayout>
+                            <StackLayout class="youtubeListBottomWrap" >
+                                <TextView @tap="goWebview(y_reviews.index)"  class="youtubeListDescription" editable="false" :text="y_reviews.title"
+                                          returnKeyType="send" textWrap="true" row="2" height="94.78%"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout class="youtubeListNonContentsWrap" v-if="youtubeReview == ''&&busy==false">
+                        <StackLayout class="youtubeListNonContentsWrapWrap">
+                            <label class="youtubeListNonContents" text="정보가 없습니다."/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout top="0" width="100%">
+                    <ActivityIndicator :busy="busy" marginTop="60"color="#ffe074" width="50" height="50" />
+                </StackLayout>
+            </AbsoluteLayout>
 
-            <StackLayout class="youtubeListContentsWrap"  orientation="horizontal">
-                <StackLayout class="youtubeListDataTopWrap"  v-for="y_reviews in youtubeReview"
-                             v-if="youtubeReview != ''"
-                             v-shadow="{ elevation: 2,shape:'RECTANGLE',backgroundColor:'#eff2f7', cornerRadius: 0 }">
-                    <StackLayout>
-                        <StackLayout @tap="goWebview(y_reviews.index)">
-                            <image class="youtubeListThumbnail" stretch="aspectFill" :src="y_reviews.thumbnail_url"/>
-                        </StackLayout>
-                        <StackLayout class="youtubeListBottomWrap">
-                            <TextView @tap="goWebview(y_reviews.index)"  class="youtubeListDescription" editable="false" :text="y_reviews.title"
-                                      returnKeyType="send" textWrap="true" row="2" height="94.78%"/>
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
-                <StackLayout class="youtubeListNonContentsWrap" v-if="youtubeReview == ''">
-                    <StackLayout class="youtubeListNonContentsWrapWrap">
-                        <label class="youtubeListNonContents" text="정보가 없습니다."/>
-                    </StackLayout>
-                </StackLayout>
-            </StackLayout>
         </ScrollView>
     </StackLayout>
 </template>
@@ -50,7 +55,8 @@
             return {
                 isBusy: true,
                 youtubeReview: [],
-                youtubeMorePage: YoutubeMore
+                youtubeMorePage: YoutubeMore,
+                busy:false,
             }
         },
         components: {}, methods: {
@@ -64,32 +70,38 @@
 
                 console.log('addresscheck' + address[1])
                 console.log(cache.get('place_id') + "유튜브 리스트에서 확인 ");
-                axios({
-                    method: 'get',
-                    url: 'http://api.eatjeong.com/v1/places/' + cache.get('place_id') + '/reviews/youtube',
-                    params: {
-                        user_id:appSettings.getString("user_id"),
-                        sns_division:appSettings.getString("sns_division"),
-                        query: address[1] +' ' +place_name[0] +' '+ '맛집',
-                        size: '5'
-                    },
+                this.$data.busy = true;
+                setTimeout(() => {
+                    axios({
+                        method: 'get',
+                        url: 'http://api.eatjeong.com/v1/places/' + cache.get('place_id') + '/reviews/youtube',
+                        params: {
+                            user_id:appSettings.getString("user_id"),
+                            sns_division:appSettings.getString("sns_division"),
+                            query: address[1] +' ' +place_name[0] +' '+ '맛집',
+                            size: '5'
+                        },
 
-            }).
-                then((response) => {
-                    //console.log(response.data);
-                    console.log("유튜브" + response.data.dataList)
-                    if (response.data.dataList === undefined) {
-                        this.$data.youtubeReview = '';
-                    } else {
-                        this.$data.youtubeReview = response.data.dataList;
-                    }
+                    }).
+                    then((response) => {
+                        this.$data.busy = false;
+                        //console.log(response.data);
+                        console.log("유튜브" + response.data.dataList)
+                        if (response.data.dataList === undefined) {
+                            this.$data.youtubeReview = '';
+                        } else {
+                            this.$data.youtubeReview = response.data.dataList;
+                        }
 
-                    console.log(this.$data.youtubeReview + "유튜브 체킹")
-                    //this.$data.place_detail = response.data.dataList;
-                    //console.log(response.data);
-                }, (error) => {
-                    console.log(error);
-                });
+                        console.log(this.$data.youtubeReview + "유튜브 체킹")
+                        //this.$data.place_detail = response.data.dataList;
+                        //console.log(response.data);
+                    }, (error) => {
+                        this.$data.busy = false;
+                        console.log(error);
+                    });
+                }, 1000);
+
             },goWebview(index){ //네이버 웹뷰페이지 호출
                 console.log(index)
                 this.$navigateTo(YoutubeWebview, {

@@ -2,53 +2,53 @@
  <Page actionBarHidden="true">
      <ScrollView height="100%">
          <StackLayout  backgroundColor="#eff2f7" paddingBottom="15">
-                 <StackLayout orientation="horizontal" backgroundColor="#ffffff" height="55" width="360" borderBottomColor="#eff2f7" borderBottomWidth="1">
-                     <StackLayout width="58" marginTop="21" marginLeft="171" height="16">
+                 <StackLayout orientation="horizontal" backgroundColor="#ffffff" height="55" width="100%" borderBottomColor="#eff2f7" borderBottomWidth="1">
+                     <StackLayout width="58" marginTop="21" marginLeft="47%" height="16">
                          <label text="리뷰" style="font-family: nanumsquareroundb" fontSize="14" color="#333333"/>
                      </StackLayout>
-                     <StackLayout width="30" height="30" marginLeft="98" marginTop="25" @tap="$navigateBack">
+                     <StackLayout width="30" height="30" marginLeft="27%" marginTop="25" @tap="$navigateBack">
                         <image src="~/Resources/img/login/close.png" />
                      </StackLayout>
                  </StackLayout>
-                 <StackLayout marginLeft="35" marginTop="20">
+                 <StackLayout marginLeft="15%" marginTop="20">
                      <StackLayout v-if="selectStar==1" orientation="horizontal">
-                         <image width="40"  @tap="selectedStar(1)" marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="40"  @tap="selectedStar(2)" marginLeft="15" height="40" src="~/Resources/img/place/star_d_64.png"   />
-                         <image width="40"  @tap="selectedStar(3)" marginLeft="15" height="40" src="~/Resources/img/place/star_d_64.png"  />
-                         <image width="40"  @tap="selectedStar(4)" marginLeft="15" height="40" src="~/Resources/img/place/star_d_64.png"    />
-                         <image width="40"  @tap="selectedStar(5)" marginLeft="15" height="40" src="~/Resources/img/place/star_d_64.png"    />
+                         <image width="11%"  @tap="selectedStar(1)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%"  @tap="selectedStar(2)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_d_64.png"   />
+                         <image width="11%"  @tap="selectedStar(3)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_d_64.png"  />
+                         <image width="11%"  @tap="selectedStar(4)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_d_64.png"    />
+                         <image width="11%"  @tap="selectedStar(5)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_d_64.png"    />
                      </StackLayout>
                      <StackLayout v-else-if="selectStar==2" orientation="horizontal">
-                         <image width="40" @tap="selectedStar(1)" marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="40"  @tap="selectedStar(2)"marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="40"  @tap="selectedStar(3)" marginLeft="15" height="40" src="~/Resources/img/place/star_d_64.png"  />
-                         <image width="40"  @tap="selectedStar(4)"marginLeft="15" height="40" src="~/Resources/img/place/star_d_64.png"    />
-                         <image width="40"   @tap="selectedStar(5)"marginLeft="15" height="40" src="~/Resources/img/place/star_d_64.png"    />
+                         <image width="11%" @tap="selectedStar(1)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%"  @tap="selectedStar(2)"marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%"  @tap="selectedStar(3)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_d_64.png"  />
+                         <image width="11%"  @tap="selectedStar(4)"marginLeft="5%" height="12%" src="~/Resources/img/place/star_d_64.png"    />
+                         <image width="11%"   @tap="selectedStar(5)"marginLeft="5%" height="12%" src="~/Resources/img/place/star_d_64.png"    />
                      </StackLayout>
                      <StackLayout v-else-if="selectStar==3" orientation="horizontal">
-                         <image width="40"  @tap="selectedStar(1)" marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="40" @tap="selectedStar(2)" marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="40"  @tap="selectedStar(3)" marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="40"   @tap="selectedStar(4)" marginLeft="15" height="40" src="~/Resources/img/place/star_d_64.png"    />
-                         <image width="40"   @tap="selectedStar(5)" marginLeft="15" height="40" src="~/Resources/img/place/star_d_64.png"    />
+                         <image width="11%"  @tap="selectedStar(1)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%" @tap="selectedStar(2)" marginLeft="5%" height="12% src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%"  @tap="selectedStar(3)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%"   @tap="selectedStar(4)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_d_64.png"    />
+                         <image width="11%"   @tap="selectedStar(5)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_d_64.png"    />
                      </StackLayout>
                      <StackLayout v-else-if="selectStar==4" orientation="horizontal">
-                         <image width="40"  @tap="selectedStar(1)"marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="40" @tap="selectedStar(2)" marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="40"  @tap="selectedStar(3)"marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="40"  @tap="selectedStar(4)"marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="40"  @tap="selectedStar(5)"marginLeft="15" height="40" src="~/Resources/img/place/star_d_64.png"    />
+                         <image width="11%"  @tap="selectedStar(1)"marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%" @tap="selectedStar(2)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%"  @tap="selectedStar(3)"marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%"  @tap="selectedStar(4)"marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%"  @tap="selectedStar(5)"marginLeft="5%" height="12%" src="~/Resources/img/place/star_d_64.png"    />
                      </StackLayout>
                      <StackLayout v-else orientation="horizontal">
-                         <image width="40"  @tap="selectedStar(1)"marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="40"  @tap="selectedStar(2)"marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="40"  @tap="selectedStar(3)"marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="40"  @tap="selectedStar(4)"marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="40"  @tap="selectedStar(5)"marginLeft="15" height="40" src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%"  @tap="selectedStar(1)"marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%"  @tap="selectedStar(2)"marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%"  @tap="selectedStar(3)"marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%"  @tap="selectedStar(4)"marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%"  @tap="selectedStar(5)"marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
                      </StackLayout>
                  </StackLayout>
-                 <StackLayout marginTop="20" backgroundColor="#ffffff" width="330" height="266">
-                     <TextView  height="266" width="330" backgroundColor="#ffffff" maxLength="1000" hint="10자 이상 입력해주세요." style="font-family: nanumsquareroundr"   color="#333333"  returnKeyType="done" v-model="contents" fontSize="12" hintColor="#cccccc" @textChange="wordLengthCehck" ></TextView>
+                 <StackLayout marginTop="20" backgroundColor="#ffffff" width="90%" height="266">
+                     <TextView  height="266" width="100%%" backgroundColor="#ffffff" maxLength="1000" hint="10자 이상 입력해주세요." style="font-family: nanumsquareroundr"   color="#333333"  returnKeyType="done" v-model="contents" fontSize="12" hintColor="#cccccc" @textChange="wordLengthCehck" ></TextView>
                  </StackLayout>
                  <StackLayout width="330" style="text-align: right" orientation="horizontal" marginTop="10">
                      <label v-model="wordLength" :text="wordLength" width="290" style="font-family: nanumsquareroundb" fontSize="13" color="#555555"/>
@@ -122,16 +122,18 @@
              this.$data.wordLength = this.itemList.review_contents.length;
              this.$data.selectStar = this.itemList.rating_point;
              this.$data.update_flag = true;
+
+
              for(var i = 0; i < this.itemList.image_url.length ; i++){
                  this.$data.imageAssets.push(this.itemList.image_url[i]);
              }
 
-             for(var i = 0; i < this.itemList.image_url.length ; i++){
-                 this.$data.image_url.push(this.itemList.image_url[i]);
-             }
+             // for(var i = 0; i < this.itemList.image_url.length ; i++){
+             //     this.$data.image_url.push(this.itemList.image_url[i]);
+             // }
 
-             console.log(this.$data.image_url)
-             console.log(this.$data.image_url.length)
+             // console.log(this.$data.image_url)
+             // console.log(this.$data.image_url.length)
          }
 
      },
@@ -141,9 +143,9 @@
           this.$navigateTo(PictureDetail)
       },
       pictureDelete(){
-            if(this.$data.imageAssets.indexOf("http") > -1) {
-                this.$data.image_url.pop();
-            }
+            // if(this.$data.imageAssets.indexOf("http") > -1) {
+            //     this.$data.image_url.pop();
+            // }
           this.$data.imageAssets.pop();
       },
       showModal() {
@@ -164,6 +166,24 @@
           var bghttp = require("nativescript-background-http");
           var session = bghttp.session("image-upload");
 
+
+          for(var i = 0;i < this.$data.imageAssets.length;i++){
+              var check = JSON.stringify(this.$data.imageAssets[i]).indexOf("http");
+              if(check>-1){
+                  this.$data.image_url.push(this.$data.imageAssets[i])
+              }
+          }
+
+          console.log(this.$data.image_url);
+
+          for(var i = 0;i < this.$data.imageAssets.length;i++){
+              var check = JSON.stringify(this.$data.imageAssets[i]).indexOf("http");
+              if(check<0){
+                  console.log(this.$data.imageAssets[i])
+                  this.$data.update_image_file.push(this.$data.imageAssets[i])
+              }
+          }
+
           var request = {
               url: url,
               method: "put",
@@ -179,13 +199,16 @@
               { name: "sns_division", value: appSettings.getString("sns_division")},
               { name: "image_url" , value:this.$data.image_url}
           ];
+
+
           if(this.$data.update_image_file.length > 0){
               for(var i = 0; i <this.$data.update_image_file.length; i++ ){
                   params.push({ name: "file", filename: this.$data.update_image_file[i]._android, mimeType: "image/*" })
               }
-
           }
 
+          console.log(this.$data.update_image_file)
+          console.log(this.$data.image_url)
           var task = session.multipartUpload(params, request);
           //task.on("progress", logEvent);
           task.on("error", this.logEvent);

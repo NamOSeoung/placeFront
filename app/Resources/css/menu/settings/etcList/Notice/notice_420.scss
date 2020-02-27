@@ -1,0 +1,53 @@
+$medium : 1.142;
+
+.android400 .noticeBarTitleWrap{
+  margin-left: 90*$medium;
+  height: 16*$medium;
+  width: 68*$medium;
+  margin-top: 15*$medium;
+}
+
+.android400 .noticeBarTitle{
+  width: 68*$medium;
+  height:16*$medium;
+  font-family: nanumsquareroundb;
+  font-size: 14*$medium;
+  color: #333333;
+}
+
+.android400 .noticeListWrap{
+  background-color:white;
+  width: 100%;
+  border-bottom-width: 1*$medium;
+  border-bottom-color: #dddddd;
+}
+.android400 .noticeSubjectWrap{
+  padding-top: 26.95*$medium;
+  padding-bottom: 25.275*$medium;
+  width: 310*$medium;
+}
+.android400 .noticeSubject{
+  font-size: 12*$medium;
+  margin-left: 17.5*$medium;
+  color:#333333;
+  font-family: nanumsquareroundb;
+}
+.android400 .noticeImageWrap{
+  margin-top: 25*$medium;
+}
+.android400 .noticeImage{
+  width:18*$medium;
+  height: 18*$medium;
+}
+.android400 .noticeContentsWrap{
+  background-color: #eff2f7;
+  padding: 15*$medium 15*$medium 15*$medium 15*$medium;
+}
+.android400 .noticeContents{
+  background-color: #eff2f7;
+  color: #333333;
+  line-height:15*$medium;
+  font-size: 11*$medium;
+  width: 100%;
+  border-bottom-width: 0*$medium;
+}

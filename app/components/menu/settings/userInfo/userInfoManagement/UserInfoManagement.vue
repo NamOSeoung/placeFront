@@ -8,8 +8,8 @@
           <StackLayout marginTop="23" @tap="$navigateBack" height="13">
               <label text="내정보" color="#333333" fontSize="12" style="font-family: nanumsquareroundb" />
           </StackLayout>
-          <StackLayout marginTop="21" marginLeft="82" width="71" height="16">
-              <label text="내 정보 관리"  style="font-family: nanumsquareroundb" fontSize="14" color="#333333" />
+          <StackLayout class="myInfoTitleWrap" >
+              <label text="내 정보 관리" class="myInfoTitle"/>
           </StackLayout>
         </StackLayout>
          <StackLayout marginTop="37.45" v-if="sns_division=='K'">
@@ -30,7 +30,7 @@
                  <StackLayout  marginLeft="25"  width="44" height="13">
                      <label text="이메일" color="#333333" style="font-family: nanumsquareroundb"  fontSize="12"/>
                  </StackLayout>
-                 <StackLayout marginLeft="70" style="text-align: right" width="175" height="14.05">
+                 <StackLayout marginLeft="16%" style="text-align: right" width="55%" height="14.05">
                      <label :text="user_id" style="font-family: nanumsquareroundr" fontSize="12" color="#494949"/>
                  </StackLayout>
              </StackLayout>
@@ -40,7 +40,7 @@
                  <StackLayout   marginLeft="25"  width="44" height="13">
                      <label text="닉네임"  color="#333333" style="font-family: nanumsquareroundb"  fontSize="12"/>
                  </StackLayout>
-                 <StackLayout marginLeft="70" style="text-align: right" width="175" height="14.05">
+                 <StackLayout marginLeft="30%" style="text-align: right" width="40%" height="14.05">
                      <label :text="nickname" style="font-family: nanumsquareroundr" fontSize="12" color="#494949"/>
                  </StackLayout>
                  <StackLayout  width="27.9" height="27.9">
@@ -51,9 +51,9 @@
          <StackLayout marginTop="37.45">
              <StackLayout orientation="horizontal"  @tap="$navigateTo(PhonePage)">
                  <StackLayout  marginLeft="25"  width="44" height="13">
-                     <label text="휴대폰"color="#333333" style="font-family: nanumsquareroundb"  fontSize="12" />
+                     <label text="휴대폰"  color="#333333" style="font-family: nanumsquareroundb"  fontSize="12"/>
                  </StackLayout>
-                 <StackLayout marginLeft="70" style="text-align: right" width="175" height="14.05">
+                 <StackLayout marginLeft="26%" style="text-align: right" width="45%" height="14.05">
                      <label :text="phone_no" style="font-family: nanumsquareroundr" fontSize="12" color="#494949" />
                  </StackLayout>
                  <StackLayout  width="27.9" height="27.9">
@@ -66,7 +66,7 @@
                  <StackLayout marginLeft="25"  width="80" height="13">
                      <label text="비밀번호 변경" color="#333333" style="font-family: nanumsquareroundb"  fontSize="12"/>
                  </StackLayout>
-                 <StackLayout  width="27.9" height="27.9" marginLeft="210">
+                 <StackLayout  width="27.9" height="27.9" marginLeft="62%">
                      <image src="~/Resources/img/home/angle-right.png"/>
                  </StackLayout>
              </StackLayout>
@@ -76,7 +76,7 @@
                  <StackLayout marginLeft="25"  width="44" height="13" >
                      <label text="탈퇴하기" color="#333333" style="font-family: nanumsquareroundb"  fontSize="12"/>
                  </StackLayout>
-                 <StackLayout  width="27.9" height="27.9" marginLeft="245">
+                 <StackLayout  width="27.9" height="27.9" marginLeft="70%">
                      <image src="~/Resources/img/home/angle-right.png"/>
                  </StackLayout>
              </StackLayout>
@@ -114,13 +114,61 @@
 </script>
 
 <style lang="scss">
-TabView {
- font-family: nanumgothiccoding-bold;
- font-size: 14;
- highlighted-color: lightgrey;
- tab-text-color: #F2F2F2;
- selected-tab-text-color: black;
- android-selected-tab-highlight-color: #848484;
- tab-background-color: lightgray;
-}
+
+    $small:0.9;
+    $medium:1.142;
+    $large:1.5;
+
+
+    .android320 .myInfoTitleWrap{
+        margin-top: 21*$small;
+        margin-left: 82*$small;
+        width: 71*$small;
+        height: 16*$small;
+    }
+    .android320 .myInfoTitle{
+        font-family: nanumsquareroundb;
+        font-size: 14*$small;
+        color: #333333;
+    }
+
+
+    .android360 .myInfoTitleWrap{
+        margin-top: 21;
+        margin-left: 82;
+        width: 71;
+        height: 16;
+    }
+    .android360 .myInfoTitle{
+        font-family: nanumsquareroundb;
+        font-size: 14;
+        color: #333333;
+    }
+
+    .android400 .myInfoTitleWrap{
+        margin-top: 21*$medium;
+        margin-left: 102*$medium;
+        width: 71*$medium;
+        height: 16*$medium;
+    }
+    .android400 .myInfoTitle{
+        font-family: nanumsquareroundb;
+        font-size: 14*$medium;
+        color: #333333;
+    }
+
+    .android480 .myInfoTitleWrap{
+        margin-top: 21*$large;
+        margin-left: 82*$large;
+        width: 71*$large;
+        height: 16*$large;
+    }
+    .android480 .myInfoTitle{
+        font-family: nanumsquareroundb;
+        font-size: 14*$large;
+        color: #333333;
+    }
+
+
+
 </style>

@@ -1,7 +1,8 @@
 <template lang="html">
-    <ScrollView height="100%">
-    <StackLayout backgroundColor="#eff2f7" height="100%">
-        <StackLayout class="loginTitleWrap" >
+    <StackLayout height="100%" width="100%">
+    <ScrollView height="100%" width="100%">
+    <StackLayout backgroundColor="#eff2f7" height="100%" width="100%">
+        <StackLayout class="loginTitleWrap" width="100%">
             <label class="loginTitleContents" text="오늘은 어떤 식사를 하나요?" />
         </StackLayout>
         <StackLayout class="infoWrap">
@@ -70,6 +71,7 @@
         </StackLayout>
     </StackLayout>
     </ScrollView>
+    </StackLayout>
 </template>
 <script>
 
@@ -112,15 +114,15 @@
                 EtcList: [{
                         name: "공지사항"
                     },
-                    {
-                        name: "자주하는 질문"
-                    },
+                    // {
+                    //     name: "자주하는 질문"
+                    // },
                     {
                         name: "약관 및 정책"
                     },
-                    {
-                        name: "앱 정보"
-                    },
+                    // {
+                    //     name: "앱 정보"
+                    // },
                     {
                         name: "로그아웃"
                     }
@@ -135,15 +137,16 @@
                 if(index == 0){
                     this.$navigateTo(Notice);
                 }else if(index == 1){
-                    this.$navigateTo(FAQ);
-                }else if(index == 2){
                     this.$navigateTo(TermsAndPolicy);
-                }else if(index == 3){
-
-                }else if(index == 4){ //로그아웃일때
+                }else if(index == 2){
                     appSettings.remove("user_id")
                     appSettings.remove("sns_division")
                     this.$navigateTo(Login,{ clearHistory: true });
+                    //this.$navigateTo(TermsAndPolicy);
+                }else if(index == 3){ //로그아웃일때
+
+                }else if(index == 4){ //로그아웃일때
+
                 }
             },getUserInfo(){
                 axios({

@@ -86,7 +86,7 @@ $medium:1.142;
 }
 .android400 .appReviewLikeCountWrap{
   margin-left: 3*$medium;
-  width: 180*$medium;
+  width: 160*$medium;
   height: 18*$medium;
 }
 .android400 .appReviewLikeCount{
@@ -103,5 +103,38 @@ $medium:1.142;
   font-family: nanumsquareroundb;
   font-size: 12*$medium;
   color: #555555;
+}
+
+
+.android400 .appReviewRatingIcon1{
+  width: 18*$medium;
+  height: 18*$medium;
+  margin-left: 225*$medium;
+}
+
+.android400 .appReviewRatingIcon2{
+  width: 18*$medium;
+  height: 18*$medium;
+  margin-left: 205*$medium;
+}
+.android400 .appReviewRatingIcon3{
+  width: 18*$medium;
+  height: 18*$medium;
+  margin-left: 185*$medium;
+}
+.android400 .appReviewRatingIcon4{
+  width: 18*$medium;
+  height: 18*$medium;
+  margin-left: 165*$medium;
+}
+.android400 .appReviewRatingIcon5{
+  width: 18*$medium;
+  height: 18*$medium;
+  margin-left: 145*$medium;
+}
+.android400 .appReviewRatingIcon6{
+  width: 18*$medium;
+  height: 18*$medium;
+  margin-left: 3$medium;
 }
 
