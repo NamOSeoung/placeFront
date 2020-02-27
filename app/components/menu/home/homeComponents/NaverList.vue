@@ -1,22 +1,22 @@
 <template lang="html">
     <StackLayout class="naverWrap">
-        <StackLayout orientation="horizontal" class="naverHeaderWrap">
+        <StackLayout orientation="horizontal" class="naverHeaderWrap" width="100%">
             <image src="~/Resources/img/home/naver.png" class="naverIcon"/>
             <label text="네이버" class="naverTitle"/>
-            <label text="더보기" class="naverMore" @tap="$navigateTo(NaverMorePage)" v-if="naverList.length > 4"/>
-            <image src="~/Resources/img/home/angle-right.png" class="naverRightIcon" v-if="naverList.length > 4"/>
+            <label text="더보기" class="naverMore" @tap="$navigateTo(NaverMorePage)" v-if="naverList.length > 4" />
+            <image src="~/Resources/img/home/angle-right.png" class="naverRightIcon" v-if="naverList.length > 4" />
         </StackLayout>
         <StackLayout v-if="naverList.length>0" marginTop="0" >
             <ScrollView orientation="horizontal" height="100%">
-                <StackLayout orientation="horizontal"  class="naverSubWrap" >
+                <StackLayout orientation="horizontal"  class="naverSubWrap">
                     <StackLayout  v-for="(list,index) in naverList" @tap="goWebview(index)" orientation="horizontal" class="naverMainWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" >
                         <StackLayout class="naverImageWrap">
                             <Image class="naverImage" stretch="aspectFill" :src="list.thumbnail_url"/>
                         </StackLayout>
                         <StackLayout class="naverRightWrap">
                             <StackLayout class="naverRightTop">
-                                <label class="naverSubject" :text="list.title"  />
-                                <Label class="naverContents" :text="list.description" />
+                                <label class="naverSubject" :text="list.title"/>
+                                <Label class="naverContents" :text="list.description"/>
                             </StackLayout>
                             <StackLayout class="naverRightBottom" orientation="horizontal">
                                 <label class="naverWriteDate" :text="list.write_date"/>

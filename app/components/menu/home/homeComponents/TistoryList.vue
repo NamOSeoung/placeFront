@@ -1,13 +1,13 @@
 <template lang="html">
     <StackLayout class="tistoryWrap">
-        <StackLayout orientation="horizontal" class="tistoryHeaderWrap">
+        <StackLayout orientation="horizontal" class="tistoryHeaderWrap" width="100%">
             <image src="~/Resources/img/home/tistory.png" class="tistoryIcon"/>
             <label text="티스토리" class="tistoryTitle"/>
             <label text="더보기" class="tistoryMore" @tap="$navigateTo(TistoryMorePage)"  v-if="tistoryList.length > 4" />
             <image src="~/Resources/img/home/angle-right.png" class="tistoryRightIcon"   v-if="tistoryList.length > 4" />
         </StackLayout>
         <StackLayout v-if="tistoryList.length>0" marginTop="0">
-            <ScrollView orientation="horizontal">
+            <ScrollView orientation="horizontal" height="100%" >
                 <StackLayout orientation="horizontal"  class="tistorySubWrap">
                     <StackLayout orientation="horizontal"  @tap="goWebview(index)" v-for="(list,index) in tistoryList" class="tistoryMainWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" >
                         <StackLayout class="tistoryImageWrap">
@@ -15,7 +15,7 @@
                         </StackLayout>
                         <StackLayout class="tistoryRightWrap">
                             <StackLayout class="tistoryRightTop">
-                                <label class="tistorySubject" :text="list.title"  textWrap="true" row="2" />
+                                <label class="tistorySubject" :text="list.title"  textWrap="true" row="2" textAlignment="left"/>
                             </StackLayout>
                             <StackLayout class="tistoryRightBottom" orientation="horizontal">
                                 <label class="tistoryWriteDate" :text="list.write_date"/>

@@ -2,9 +2,9 @@
 <template>
        <Page actionBarHidden="true" backgroundSpanUnderStatusBar="true">
 
-              <ScrollView height="100%">
-              <StackLayout class="loginPageWrap" >
-                     <StackLayout class="loginScreenTopWrap" backgroundImage="~/Resources/img/login/christopher_jolly_1_ib_8243_c_u_8_q_unsplash.png">
+              <ScrollView height="100%"  width="100%">
+              <StackLayout class="loginPageWrap">
+                     <StackLayout class="loginScreenTopWrap" >
                             <StackLayout class="loginTitleMessageWrap" orientation="horizontal" @tap="aaa">
                                    <label text="맛잇는 장소" class="loginTitleMessageMain" />
                                    <label text="를" class="loginTitleMessageMain2"  />

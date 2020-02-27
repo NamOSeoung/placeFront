@@ -1,41 +1,41 @@
 <template lang="html">
 <Page backgroundColor="#eff2f7" actionBarHidden="true" backgroundSpanUnderStatusBar="true">
-    <StackLayout>
-        <StackLayout class="reviewMoreWrap" orientation="horizontal" >
+    <StackLayout width="100%">
+        <StackLayout class="reviewMoreWrap" orientation="horizontal" width="100%">
             <StackLayout class="reviewMoreIconWrap" @tap="$navigateBack" >
                 <image class="reviewMoreIcon"  src="~/Resources/img/home/angle-left.png" />
             </StackLayout>
-            <StackLayout class="reviewMorePlaceNameWrap" >
+            <StackLayout class="reviewMorePlaceNameWrap">
                 <label class="reviewMorePlaceName" text="서울 맛집"/>
             </StackLayout>
         </StackLayout>
         <StackLayout marginTop="17">
-            <ListView for="list in storeList" separatorColor="transparent"
-                      style="height:100%" @itemTap="" >
+            <ListView for="list in storeList" separatorColor="transparent" style="height:100%" @itemTap="" >
                 <v-template>
                     <StackLayout class="storeMarkDetailSubWrap">
-                        <StackLayout orientation="horizontal" class="storeMarkDetailWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
+                        <StackLayout orientation="horizontal" class="storeMarkDetailWrap"
+                                     v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
                             <StackLayout class="storeLeftWrap" v-if="list.blog_thumbnail != null">
-                                <image class="storeImage" stretch="aspectFill" :src="list.blog_thumbnail"/>
+                                <image class="storeImageTrue" stretch="aspectFill" :src="list.blog_thumbnail"/>
                             </StackLayout>
                             <StackLayout class="storeLeftWrap" v-else backgroundColor="#dddddd" borderRadius="10">
-                                <image class="storeImage" width="55" height="55" marginTop="8" stretch="aspectFill" src="~/Resources/img/home/dinner_w_64.png"/>
+                                <image class="storeImageFalse" stretch="aspectFill" src="~/Resources/img/home/dinner_w_64.png"/>
                             </StackLayout>
                             <StackLayout class="storeMarkRightWrap">
                                 <StackLayout orientation="horizontal" class="storeMarkTopWrap">
                                     <StackLayout class="storeMarkTimeWrap" v-if="list.open_hours !=null">
-                                        <label :text="openingCheck(list.open_hours)" class="storeTime" />
+                                        <label :text="openingCheck(list.open_hours)" class="storeTime"/>
                                     </StackLayout>
                                     <StackLayout class="storeMarkTimeWrap" v-else>
-                                        <label text="정보없음" class="storeTime" />
+                                        <label text="정보없음" class="storeTime"/>
                                     </StackLayout>
                                     <StackLayout class="storeStarIconWrap">
-                                        <Image src="~/Resources/img/home/star.png" class="storeStarIcon" />
+                                        <Image src="~/Resources/img/home/star.png" class="storeStarIcon"/>
                                     </StackLayout>
                                     <StackLayout class="storeRatingWrap" v-if="list.google_rating != ''">
                                         <label :text="list.google_rating" class="storeRating"/>
                                     </StackLayout>
-                                    <StackLayout class="storeRatingWrap" v-else >
+                                    <StackLayout class="storeRatingWrap" v-else>
                                         <label text="0" class="storeRating"/>
                                     </StackLayout>
                                 </StackLayout>
@@ -47,19 +47,25 @@
                                         <label :text="list.category_name" class="storeMarkCategory"/>
                                     </StackLayout>
                                     <StackLayout class="storeMarkYIconWrap">
-                                        <image class="storeMarkYIcon" stretch="aspectFill" src="~/Resources/img/bookmark/youtube-circle.png"/>
+                                        <image class="storeMarkYIcon" stretch="aspectFill"
+                                               src="~/Resources/img/bookmark/youtube-circle.png"/>
                                     </StackLayout>
                                     <StackLayout class="storeMarkNIconWrap">
-                                        <image class="storeMarkNIcon"stretch="aspectFill"  src="~/Resources/img/bookmark/naver-circle.png"/>
+                                        <image class="storeMarkNIcon" stretch="aspectFill"
+                                               src="~/Resources/img/bookmark/naver-circle.png"/>
                                     </StackLayout>
                                     <StackLayout class="storeMarkTIconWrap">
-                                        <image class="storeMarkTIcon" stretch="aspectFill" src="~/Resources/img/bookmark/tistory-circle.png"/>
+                                        <image class="storeMarkTIcon" stretch="aspectFill"
+                                               src="~/Resources/img/bookmark/tistory-circle.png"/>
                                     </StackLayout>
-                                    <StackLayout class="storeMarkGIconWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 50 }">
-                                        <image class="storeMarkGIcon"stretch="aspectFill" src="~/Resources/img/bookmark/google-circle.png" />
+                                    <StackLayout class="storeMarkGIconWrap"
+                                                 v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 50 }">
+                                        <image class="storeMarkGIcon" stretch="aspectFill"
+                                               src="~/Resources/img/bookmark/google-circle.png"/>
                                     </StackLayout>
-                                    <StackLayout class="storeMarkAIconWrap" >
-                                        <image class="storeMarkAIcon" stretch="aspectFill"  src="~/Resources/img/bookmark/tistory-circle.png" />
+                                    <StackLayout class="storeMarkAIconWrap">
+                                        <image class="storeMarkAIcon" stretch="aspectFill"
+                                               src="~/Resources/img/bookmark/tistory-circle.png"/>
                                     </StackLayout>
                                 </StackLayout>
                             </StackLayout>

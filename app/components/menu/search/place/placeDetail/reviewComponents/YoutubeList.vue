@@ -16,9 +16,9 @@
                         <StackLayout @tap="goWebview(y_reviews.index)">
                             <image class="youtubeListThumbnail" stretch="aspectFill" :src="y_reviews.thumbnail_url"/>
                         </StackLayout>
-                        <StackLayout class="youtubeListBottomWrap" >
+                        <StackLayout class="youtubeListBottomWrap">
                             <TextView @tap="goWebview(y_reviews.index)"  class="youtubeListDescription" editable="false" :text="y_reviews.title"
-                                      returnKeyType="send" textWrap="true"/>
+                                      returnKeyType="send" textWrap="true" row="2" height="94.78%"/>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>

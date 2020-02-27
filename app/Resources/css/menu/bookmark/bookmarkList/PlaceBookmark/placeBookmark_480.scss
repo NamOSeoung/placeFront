@@ -1,13 +1,14 @@
 $large : 1.5;
 
 .android480 .storeMarkDetailSubWrap{
-  width:360*$large;
+  width:480;
   height: 100%;
 }
 .android480 .storeMarkDetailWrap{
   width: 320*$large;
   height: 90*$large;
   border-radius: 6*$large;
+  margin-left: 20;
 }
 
 .android480 .storeMarkRightWrap{

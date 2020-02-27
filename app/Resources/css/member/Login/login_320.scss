@@ -1,13 +1,17 @@
 $small : 0.9;
 
 .android320 .loginPageWrap{
-  width: 360*$small;
-  height: 704*$small;
+  width: 100%;
+  height: 100%;
   background-color: #333333;
 }
 .android320 .loginScreenTopWrap{
-  width: 360*$small;
+  width: 100%;
   height: 294*$small;
+  background-image: url('~/Resources/img/login/christopher_jolly_1_ib_8243_c_u_8_q_unsplash.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .android320 .loginTitleMessageWrap{
   width: 360*$small;

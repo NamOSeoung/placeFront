@@ -1,22 +1,22 @@
 <template lang="html">
  <StackLayout class="storeWrap">
-   <StackLayout orientation="horizontal" class="storeHeaderWrap">
+   <StackLayout orientation="horizontal" class="storeHeaderWrap" width="100%">
        <image src="~/Resources/img/home/cook.png" class="storeCookIcon"/>
        <label text="매장정보" class="storeTitle"/>
        <label text="더보기" class="storeMore" @tap="$navigateTo(StoreMorePage)" v-if="storeList.length > 4"/>
-       <image src="~/Resources/img/home/angle-right.png" class="storeRightIcon"  v-if="storeList.length > 4"/>
+       <image src="~/Resources/img/home/angle-right.png" class="storeRightIcon"  v-if="storeList.length > 4" />
    </StackLayout>
      <StackLayout v-if="storeList.length>0" marginTop="0">
          <ScrollView orientation="horizontal" >
              <StackLayout orientation="horizontal" class="storeDetailSubWrap" >
                  <StackLayout orientation="horizontal" class="storeDetailWrap"  @tap="goPlaceDetail(index)" v-for="(list,index) in storeList">
                      <StackLayout class="storeLeftWrap" v-if="list.blog_thumbnail != null">
-                         <image class="storeImage" stretch="aspectFill" :src="list.blog_thumbnail"/>
+                         <image class="storeImageTrue" stretch="aspectFill" :src="list.blog_thumbnail"/>
                      </StackLayout>
                      <StackLayout class="storeLeftWrap" v-else backgroundColor="#dddddd" borderRadius="10">
-                         <image class="storeImage" width="55" height="55" marginTop="8" stretch="aspectFill" src="~/Resources/img/home/dinner_w_64.png"/>
+                         <image class="storeImageFalse" stretch="aspectFill" src="~/Resources/img/home/dinner_w_64.png"/>
                      </StackLayout>
-                     <StackLayout class="storeRightWrap">
+                     <StackLayout class="storeRightWrap" >
                          <StackLayout orientation="horizontal" class="storeTopWrap">
                              <StackLayout class="storeTimeWrap">
                                  <label text="영업중" class="storeTime" />
@@ -25,14 +25,14 @@
                                  <Image src="~/Resources/img/home/star.png" class="storeStarIcon" />
                              </StackLayout>
                              <StackLayout class="storeRatingWrap">
-                                 <label :text="list.google_rating" class="storeRating"/>
+                                 <label :text="list.google_rating" class="storeRating" />
                              </StackLayout>
                          </StackLayout>
                          <StackLayout class="storeMiddleWrap">
                              <label :text="list.place_name" class="storeName" />
                          </StackLayout>
                          <StackLayout class="storeBottomWrap">
-                             <label :text="list.category_name" class="storeCategory"/>
+                             <label :text="list.category_name" class="storeCategory" />
                          </StackLayout>
                      </StackLayout>
                  </StackLayout>

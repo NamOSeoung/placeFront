@@ -26,6 +26,7 @@ $small : 0.9;
 }
 .android320 .youtubeMore{
   margin-top: 13*$small;
+  margin-left: 15*$small;
   width: 36*$small;
   height: 13*$small;
   color: #888888;
@@ -34,8 +35,8 @@ $small : 0.9;
 }
 .android320 .youtubeRightIcon{
   margin-top: 13*$small;
-  width: 18*$small;
-  height: 18*$small;
+  width: 20*$small;
+  height: 20*$small;
   margin-left: -6*$small;
 }
 .android320 .youtubeSubWrap{
@@ -65,9 +66,9 @@ $small : 0.9;
 }
 .android320 .youtubeSubject{
   width: 150*$small;
-  height: 32*$small;
   font-family: nanumsquareroundeb;
   font-size: 12*$small;
-  color: #333333;
+  height: 32*$small;
   line-height:5*$small;
+  color: #333333;
 }

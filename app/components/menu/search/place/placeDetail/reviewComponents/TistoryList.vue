@@ -24,11 +24,11 @@
                         </StackLayout>
                     </StackLayout>
                     <StackLayout width="100%" orientation="horizontal" v-else>
-                        <StackLayout  width="260" paddingLeft="10">
-                            <StackLayout class="tistoryListSubjectWrap"  width="260" >
-                                <label class="tistoryListSubject" width="260"   :text="t_reviews.title" textWrap="true"  />
+                        <StackLayout  width="100%" paddingLeft="10">
+                            <StackLayout class="tistoryListSubjectWrap"  width="100%" paddingLeft="8">
+                                <label class="tistoryListSubject" width="100%" height="30%" :text="t_reviews.title" textWrap="true"/>
                             </StackLayout>
-                            <StackLayout class="tistoryListDateInfoWrap" width="260" orientation="horizontal">
+                            <StackLayout class="tistoryListDateInfoWrap" width="100%" paddingLeft="8" orientation="horizontal">
                                 <label class="naverListDate" :text="t_reviews.write_date"  />
                                 <label class="naverListWriter" width="227" :text="t_reviews.author" />
                             </StackLayout>

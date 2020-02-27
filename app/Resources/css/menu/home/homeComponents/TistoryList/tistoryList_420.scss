@@ -28,6 +28,7 @@ $medium : 1.142;
 }
 .android400 .tistoryMore{
   margin-top: 13*$medium;
+  margin-left: 15*$medium;
   width: 36*$medium;
   height: 13*$medium;
   color: #888888;
@@ -44,6 +45,7 @@ $medium : 1.142;
   margin-top: 11*$medium;
   margin-left: 10*$medium;
   margin-right: 10*$medium;
+  padding-bottom: 9*$medium;
 }
 
 .android400 .tistoryMainWrap{
@@ -66,7 +68,7 @@ $medium : 1.142;
 }
 .android400 .tistorySubjectWrap{
   width: 150*$medium;
-  height: 33*$medium;
+  height: 35*$medium;
   margin-top: 7*$medium;
 
 }
@@ -74,12 +76,17 @@ $medium : 1.142;
   font-size: 13*$medium;
   font-family: nanumsquareroundeb;
   color: #333333;
-  margin-top: 10*$medium;
+  margin-top: 13*$medium;
   margin-left: 12*$medium;
-  height: 33*$medium;
+  height: 35*$medium;
   width:150*$medium;
   line-height:6*$medium;
 }
+
+.android400 .tistoryRightBottom{
+  margin-top: 9*$medium;
+}
+
 .android400 .tistoryWriteDate{
   color: #888888;
   font-size: 11*$medium;
@@ -97,4 +104,3 @@ $medium : 1.142;
   width: 84*$medium;
   height: 18*$medium;
 }
-

@@ -2,22 +2,22 @@
  <Page actionBarHidden="true">
   <StackLayout>
    <ActivityIndicator :busy="isBusy" v-if="isBusy==true" class="activity-indicator"/>
-   <StackLayout orientation="horizontal" class="placeDetailBarWrap">
-    <StackLayout class="placeDetailBackIconWrap" @tap="$navigateBack">
+   <StackLayout orientation="horizontal" class="placeDetailBarWrap" paddingTop="10" marginTop="0">
+    <StackLayout class="placeDetailBackIconWrap" @tap="$navigateBack" marginTop="4%">
      <image class="placeDetailBackIcon" src="~/Resources/img/home/angle-left.png"/>
     </StackLayout>
-    <StackLayout class="placeDetailBackTitleWrap" @tap="$navigateBack">
+    <StackLayout class="placeDetailBackTitleWrap" @tap="$navigateBack" marginTop="4%" width="80%">
      <label class="placeDetailBackTitle" text="검색결과"/>
     </StackLayout>
-    <StackLayout class="placeDetailBookmarkWrap" v-if="bookmark == true" @tap="bookmarkDelete">
+    <StackLayout class="placeDetailBookmarkWrap" marginTop="4%" v-if="bookmark == true" @tap="bookmarkDelete">
      <image class="placeDetailBookmark" src="~/Resources/img/place/bookmark_y_64.png"/>
     </StackLayout>
-    <StackLayout class="placeDetailBookmarkWrap" v-else @tap="bookmarkSetting">
+    <StackLayout class="placeDetailBookmarkWrap" marginTop="4%" marginLeft="0" v-else @tap="bookmarkSetting">
      <image class="placeDetailBookmark" src="~/Resources/img/place/bookmark_d_64.png"/>
     </StackLayout>
-<!--    <StackLayout class="placeDetailShareWrap">-->
-<!--     <image class="placeDetailShare" src="~/Resources/img/place/share_3_64.png"/>-->
-<!--    </StackLayout>-->
+    <!--    <StackLayout class="placeDetailShareWrap">-->
+    <!--     <image class="placeDetailShare" src="~/Resources/img/place/share_3_64.png"/>-->
+    <!--    </StackLayout>-->
    </StackLayout>
    <ScrollView class="placeDetailScrollWrap"  id="ScrollView" orientation="vertical" height="100%" > <!--//@scroll -->
     <StackLayout>
@@ -109,7 +109,7 @@
 
 
 
-       <StackLayout class="placeDetailMarkerWrap" @tap="addressCopy(placeInfo.road_address)">
+       <StackLayout class="placeDetailMarkerWrap" @tap="addressCopy(placeInfo.road_address)" marginLeft="13%">
         <StackLayout class="placeDetailMarkerIconWrap">
          <image class="placeDetailMarkerIcon" src="~/Resources/img/place/place_f_64.png"/>
         </StackLayout>

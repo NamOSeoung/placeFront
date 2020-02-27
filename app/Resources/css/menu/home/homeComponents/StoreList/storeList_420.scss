@@ -26,6 +26,7 @@ $medium : 1.142;
 }
 .android400 .storeMore{
   margin-top: 13*$medium;
+  margin-left: 15*$medium;
   width: 36*$medium;
   height: 13*$medium;
   color: #888888;
@@ -52,8 +53,15 @@ $medium : 1.142;
   width: 70*$medium;
   height: 70*$medium;
   margin-left: 15*$medium;
+
 }
-.android400 .storeImage{
+.android400 .storeImageFalse{
+  height: 55*$medium;
+  width: 55*$medium;
+  margin-top: 8*$medium;
+  border-radius: 8*$medium;
+}
+.android400 .storeImageTrue{
   height: 70*$medium;
   width: 70*$medium;
   border-radius: 8*$medium;
@@ -113,10 +121,12 @@ $medium : 1.142;
 }
 .android400 .storeName{
   width: 138*$medium;
-  height: 16*$medium;
+  height: 15*$medium;
   font-family: nanumsquareroundeb;
   font-size: 14*$medium;
   color: #333333;
+  margin-top: 3*$medium;
+  text-align: left;
 }
 .android400 .storeBottomWrap{
   height: 13*$medium;
@@ -128,4 +138,5 @@ $medium : 1.142;
   font-size: 12*$medium;
   font-family: nanumsquareroundr;
   color: #555555;
+  text-align: left;
 }

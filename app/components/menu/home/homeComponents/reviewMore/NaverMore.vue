@@ -1,67 +1,66 @@
 <template lang="html">
- <Page backgroundColor="#eff2f7" actionBarHidden="true">
-  <StackLayout>
-   <StackLayout class="reviewMoreWrap" orientation="horizontal" >
-     <StackLayout class="reviewMoreIconWrap" @tap="$navigateBack" >
-       <image class="reviewMoreIcon"  src="~/Resources/img/home/angle-left.png" />
-     </StackLayout>
-     <StackLayout class="reviewMorePlaceNameWrap" >
-       <label class="reviewMorePlaceName" text="서울 맛집"/>
-     </StackLayout>
-   </StackLayout>
-   <StackLayout marginTop="17">
-       <ListView for="list in naverMoreList" separatorColor="transparent"
-                 style="height:100%" @itemTap="goWebview" >
-           <v-template>
-               <StackLayout class="naverMarkMain" >
-                   <StackLayout class="naverMarkMainWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
-                       <StackLayout class="naverMarkTitleWrap" >
-                           <label :text="list.title" class="naverMarkTitle"/>
-                       </StackLayout>
-                       <StackLayout orientation="horizontal" class="naverMarkSubWrap" v-if="list.thumbnail_url != null" >
-                           <StackLayout class="naverMarkImageWrap">
-                               <Image :src="list.thumbnail_url" stretch="aspectFill" class="naverMarkImage"/>
-                           </StackLayout>
-                           <StackLayout class="naverMarkRightWrap" >
-                               <StackLayout orientation="horizontal" class="naverMarkContentsWrap">
-                                   <Label :text="list.description" class="naverMarkContents" textWrap="true"/>
-                               </StackLayout>
-                               <StackLayout orientation="horizontal" class="naverMarkDateWriterWrap" >
-                                   <StackLayout class="naverMarkDateWrap">
-                                       <Label :text="list.write_date" class="naverMarkDate"  />
-                                   </StackLayout>
-                                   <StackLayout class="naverMarkWriterWrap" width="200">
-                                       <label :text="list.author" width="200" class="naverMarkWriter" />
-                                   </StackLayout>
-                               </StackLayout>
-                           </StackLayout>
-                       </StackLayout>
-                       <StackLayout orientation="horizontal" class="naverMarkSubWrap" v-else>
-                           <StackLayout class="naverMarkNoImageWrap" >
-                               <StackLayout orientation="horizontal" class="naverMarkNoImgContentsWrap">
-                                   <Label :text="list.description" class="naverMarkNoImgContents" textWrap="true" />
-                               </StackLayout>
-                               <StackLayout orientation="horizontal" class="naverMarkNoImgDateWriterWrap"  >
-                                   <StackLayout class="naverMarkDateWrap">
-                                       <Label :text="list.write_date" class="naverMarkNoImgDate"  />
-                                   </StackLayout>
-                                   <StackLayout class="naverMarkNoImgWriterWrap" width="230">
-                                       <label :text="list.author" width="230" class="naverMarkNoImgWriter" />
-                                   </StackLayout>
-                               </StackLayout>
-                           </StackLayout>
-                       </StackLayout>
-                   </StackLayout>
+    <Page backgroundColor="#eff2f7" actionBarHidden="true">
+        <StackLayout>
+            <StackLayout class="reviewMoreWrap" marginTop="10" height="8%" orientation="horizontal">
+                <StackLayout class="reviewMoreIconWrap" @tap="$navigateBack">
+                    <image class="reviewMoreIcon" src="~/Resources/img/home/angle-left.png"/>
+                </StackLayout>
+                <StackLayout class="reviewMorePlaceNameWrap" marginTop="40%" width="80%">
+                    <label class="reviewMorePlaceName" text="서울 맛집"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout marginTop="17">
+                <ListView for="list in naverMoreList" separatorColor="transparent" style="height:100%" @itemTap="goWebview">
+                    <v-template>
+                        <StackLayout class="naverMarkMain">
+                            <StackLayout class="naverMarkMainWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
+                                <StackLayout class="naverMarkTitleWrap">
+                                    <label :text="list.title" class="naverMarkTitle"/>
+                                </StackLayout>
+                                <StackLayout orientation="horizontal" class="naverMarkSubWrap" v-if="list.thumbnail_url != null">
+                                    <StackLayout class="naverMarkImageWrap">
+                                        <Image :src="list.thumbnail_url" stretch="aspectFill" class="naverMarkImage"/>
+                                    </StackLayout>
+                                    <StackLayout class="naverMarkRightWrap" width="75%">
+                                        <StackLayout orientation="horizontal" width="93%" marginLeft="10%" class="naverMarkContentsWrap">
+                                            <Label :text="list.description" width="98%" class="naverMarkContents" textWrap="true"/>
+                                        </StackLayout>
+                                        <StackLayout orientation="horizontal" class="naverMarkDateWriterWrap" marginLeft="10%">
+                                            <StackLayout class="naverMarkDateWrap">
+                                                <Label :text="list.write_date" class="naverMarkDate"/>
+                                            </StackLayout>
+                                            <StackLayout class="naverMarkWriterWrap" >
+                                                <label :text="list.author" class="naverMarkWriter"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout orientation="horizontal" class="naverMarkSubWrap" v-else>
+                                    <StackLayout class="naverMarkNoImageWrap">
+                                        <StackLayout orientation="horizontal" class="naverMarkNoImgContentsWrap">
+                                            <Label :text="list.description" class="naverMarkNoImgContents" textWrap="true"/>
+                                        </StackLayout>
+                                        <StackLayout orientation="horizontal" class="naverMarkNoImgDateWriterWrap" marginLeft="10%">
+                                            <StackLayout class="naverMarkDateWrap">
+                                                <Label :text="list.write_date" class="naverMarkNoImgDate"/>
+                                            </StackLayout>
+                                            <StackLayout class="naverMarkNoImgWriterWrap" >
+                                                <label :text="list.author" class="naverMarkNoImgWriter"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
 
-                   <StackLayout class="markUnderline">
-                   </StackLayout>
-               </StackLayout>
-           </v-template>
-       </ListView>
-   </StackLayout>
-  </StackLayout>
+                            <StackLayout class="markUnderline">
+                            </StackLayout>
+                        </StackLayout>
+                    </v-template>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
 
- </Page>
+    </Page>
 </template>
 
 <script>

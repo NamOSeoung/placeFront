@@ -4,7 +4,6 @@ $large : 1.5;
 .android480 .naverWrap{
   width: 360*$large;
   height: 150*$large;
-
   border-bottom-width: 2*$large;
   border-bottom-color: #33000000;
 }
@@ -25,11 +24,12 @@ $large : 1.5;
   font-family: nanumsquareroundeb;
   color: #555555;
   height: 14*$large;
-  width: 250*$large;
+  width: 220*$large;
   margin-left: 6*$large;
 }
 .android480 .naverMore{
   margin-top: 13*$large;
+  margin-left: 10*$large;
   width: 36*$large;
   height: 13*$large;
   color: #888888;
@@ -46,6 +46,7 @@ $large : 1.5;
   margin-top: 11*$large;
   margin-left: 10*$large;
   margin-right: 10*$large;
+  padding-bottom: 9*$large;
 }
 
 .android480 .naverMainWrap{
@@ -81,10 +82,10 @@ $large : 1.5;
   font-size: 13*$large;
   font-family: nanumsquareroundeb;
   color: #333333;
-  margin-top: 10*$large;
+  margin-top: 13*$large;
   margin-left: 12*$large;
-  width:150*$large;
   height: 18*$large;
+  width:150*$large;
 }
 
 .android480 .naverContents{
@@ -92,9 +93,14 @@ $large : 1.5;
   font-family: nanumsquareroundr;
   font-size: 12*$large;
   width: 150*$large;
-  margin-top: 6*$large;
+  margin-top: 9*$large;
   margin-left: 12*$large;
   height: 18*$large;
+  text-align: left;
+}
+
+.android480 .naverRightBottom{
+  margin-top: 3*$large;
 }
 
 .android480 .naverWriteDate{

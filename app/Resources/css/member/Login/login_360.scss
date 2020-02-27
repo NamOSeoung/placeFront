@@ -1,11 +1,15 @@
 .android360 .loginPageWrap{
-  width: 360;
-  height: 704;
+  width: 100%;
+  height: 100%;
   background-color: #333333;
 }
 .android360 .loginScreenTopWrap{
-  width: 360;
+  width: 100%;
   height: 294;
+  background-image: url('~/Resources/img/login/christopher_jolly_1_ib_8243_c_u_8_q_unsplash.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .android360 .loginTitleMessageWrap{
   width: 360;

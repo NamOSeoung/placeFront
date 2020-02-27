@@ -55,14 +55,23 @@ $medium : 1.142;
   height:16*$medium;
   font-size: 14*$medium;
   color:#333333;
+  font-family: nanumsquareroundr;
+}
+
+.android400 .placeSearchLatelyKeyword.active{
+  width: 64*$medium;
+  height:16*$medium;
+  font-size: 14*$medium;
+  color:#333333;
   font-family: nanumsquareroundb;
 }
+
 .android400 .placeSearchPopularKeywordWrap{
   width: 64*$medium;
   padding-bottom: 5*$medium;
   margin-left: 20*$medium;
   border-bottom-color: #ffe074;
-  border-bottom-width: 0*$medium;
+  border-bottom-width: 0;
 }
 .android400 .placeSearchPopularKeyword{
   width: 64*$medium;
@@ -71,6 +80,15 @@ $medium : 1.142;
   font-family: nanumsquareroundr;
   color: #333333;
 }
+
+.android400 .placeSearchPopularKeyword.active{
+  width: 64*$medium;
+  height: 16*$medium;
+  font-size: 14*$medium;
+  font-family: nanumsquareroundb;
+  color: #333333;
+}
+
 .android400 .placeSearchAutoCompleteListWrap{
   border-bottom-color: #eeeeee;
   padding-bottom: 14.5*$medium;
@@ -89,6 +107,7 @@ $medium : 1.142;
 .android400 .placeSearchPlaceList{
   margin-top: 15*$medium;
 }
+
 
 .android400 .placeSearchLatelyKeywordWrap{
   width: 64*$medium;

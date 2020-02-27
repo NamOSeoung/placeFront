@@ -25,12 +25,12 @@
                           </StackLayout>
                       </StackLayout>
                      <StackLayout v-else>
-                            <StackLayout width="260">
-                                <StackLayout width="227" >
-                                    <label width="227"  class="naverListTitle" :text="n_reviews.title"  />
-                                    <Label width="227"  class="naverListDescription" :text="n_reviews.description" />
+                            <StackLayout width="100%">
+                                <StackLayout width="100%" paddingLeft="8">
+                                    <label width="96%" class="naverListTitle" :text="n_reviews.title" />
+                                    <Label width="96%" class="naverListDescription" :text="n_reviews.description" />
                                 </StackLayout>
-                                <StackLayout width="227"  class="naverListDateInfoWrap" orientation="horizontal" >
+                                <StackLayout width="100%" paddingLeft="8" class="naverListDateInfoWrap" orientation="horizontal">
                                     <label class="naverListDate" :text="n_reviews.write_date"  />
                                     <label class="naverListWriter" :text="n_reviews.author" />
                                 </StackLayout>

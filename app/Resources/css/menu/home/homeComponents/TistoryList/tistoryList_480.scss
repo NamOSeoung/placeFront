@@ -23,11 +23,12 @@ $large : 1.5;
   font-family: nanumsquareroundeb;
   color: #555555;
   height: 14*$large;
-  width: 250*$large;
+  width: 220*$large;
   margin-left: 6*$large;
 }
 .android480 .tistoryMore{
   margin-top: 13*$large;
+  margin-left: 10*$large;
   width: 36*$large;
   height: 13*$large;
   color: #888888;
@@ -44,6 +45,7 @@ $large : 1.5;
   margin-top: 11*$large;
   margin-left: 10*$large;
   margin-right: 10*$large;
+  padding-bottom: 9*$large;
 }
 
 .android480 .tistoryMainWrap{
@@ -66,7 +68,7 @@ $large : 1.5;
 }
 .android480 .tistorySubjectWrap{
   width: 150*$large;
-  height: 33*$large;
+  height: 35*$large;
   margin-top: 7*$large;
 
 }
@@ -74,12 +76,17 @@ $large : 1.5;
   font-size: 13*$large;
   font-family: nanumsquareroundeb;
   color: #333333;
-  margin-top: 10*$large;
+  margin-top: 13*$large;
   margin-left: 12*$large;
-  height: 33*$large;
+  height: 35*$large;
   width:150*$large;
   line-height:6*$large;
 }
+
+.android480 .tistoryRightBottom{
+  margin-top: 9*$large;
+}
+
 .android480 .tistoryWriteDate{
   color: #888888;
   font-size: 11*$large;
@@ -97,5 +104,4 @@ $large : 1.5;
   width: 84*$large;
   height: 18*$large;
 }
-
 

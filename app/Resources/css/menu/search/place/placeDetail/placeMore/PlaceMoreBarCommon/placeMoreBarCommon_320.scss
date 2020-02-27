@@ -1,8 +1,9 @@
 $small : 0.9;
 
 .android320 .reviewMoreWrap{
-  width: 360*$small;
+  width: 100%;
   height: 55*$small;
+  margin-top: 10*$small;
   background-color: #ffffff;
   border-bottom-width: 1*$small;
   border-bottom-color: #dddddd;

@@ -1,15 +1,15 @@
 <template lang="html">
  <Page backgroundColor="#eff2f7" actionBarHidden="true" backgroundSpanUnderStatusBar="true">
      <StackLayout>
-         <StackLayout width="100%" backgroundColor="#ffffff" height="55" orientation="horizontal" borderBottomWidth="1" borderBottomColor="#dddddd" >
-                <StackLayout marginTop="25" marginLeft="16" @tap="detailMenu">
-                    <image width="20" height="20" src="~/Resources/img/place/menu_5_64.png" />
+         <StackLayout class="webViewWrap" width="100%" orientation="horizontal" borderBottomWidth="1" borderBottomColor="#dddddd">
+                <StackLayout marginTop="25" marginLeft="16" @tap="detailMenu" backgroundColor="aqua">
+                    <image class="webViewModalButton" src="~/Resources/img/place/menu_5_64.png" />
                 </StackLayout>
-                <StackLayout width="274" height="18" marginTop="21" marginLeft="11">
-                    <label :text="place_name" textWrap="true" height="18" width="274" style="font-family: nanumsquareroundb" fontSize="14" color="#494949"/>
+                <StackLayout width="30%" height="18" marginTop="21" marginLeft="11">
+                    <label :text="place_name" textWrap="true" height="18" width="100%" style="font-family: nanumsquareroundb" fontSize="14" color="#494949"/>
                 </StackLayout>
-                <StackLayout marginTop="25" @tap="backMoreList">
-                    <image width="17" height="17" src="~/Resources/img/place/close_5_64_b.png" />
+                <StackLayout class="webViewNavigation" @tap="backMoreList">
+                    <image class="webViewExit" src="~/Resources/img/place/close_5_64_b.png" />
                 </StackLayout>
          </StackLayout>
          <StackLayout>

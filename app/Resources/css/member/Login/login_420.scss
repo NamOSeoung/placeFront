@@ -1,13 +1,17 @@
 $medium : 1.142;
 
 .android400 .loginPageWrap{
-  width: 360*$medium;
-  height: 704*$medium;
+  width: 100%;
+  height: 100%;
   background-color: #333333;
 }
 .android400 .loginScreenTopWrap{
-  width: 360*$medium;
+  width: 100%;
   height: 294*$medium;
+  background-image: url('~/Resources/img/login/christopher_jolly_1_ib_8243_c_u_8_q_unsplash.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .android400 .loginTitleMessageWrap{
   width: 360*$medium;

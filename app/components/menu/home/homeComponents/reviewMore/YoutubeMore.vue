@@ -1,41 +1,39 @@
 <template lang="html">
- <Page backgroundColor="#eff2f7" actionBarHidden="true" backgroundSpanUnderStatusBar="true">
-  <StackLayout>
-   <StackLayout class="reviewMoreWrap" orientation="horizontal" >
-     <StackLayout class="reviewMoreIconWrap" @tap="$navigateBack" >
-       <image class="reviewMoreIcon"  src="~/Resources/img/home/angle-left.png" />
-     </StackLayout>
-     <StackLayout class="reviewMorePlaceNameWrap" >
-       <label class="reviewMorePlaceName" text="서울 맛집"/>
-     </StackLayout>
-   </StackLayout>
-   <StackLayout marginTop="17">
-     <ListView for="list in youtubeMoreList" separatorColor="transparent"
-               style="height:100%"  @itemTap="goWebview">
-      <v-template>
-       <StackLayout class="youtubeMarkMain">
-        <StackLayout orientation="horizontal" class="youtubeMarkWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
-         <StackLayout class="youtubeMarkImageWrap">
-          <Image :src="list.thumbnail_url" class="youtubeMarkImage"/>
-         </StackLayout>
-         <StackLayout class="youtubeRightWrap">
-          <StackLayout orientation="horizontal" class="youtubeMarkTitleWrap">
-           <Label :text="list.title" class="youtubeMarkTitle" textWrap="true"/>
-          </StackLayout>
-          <StackLayout orientation="horizontal" class="youtubeMarkDateWrap">
-           <Label :text="list.write_date" class="youtubeMarkDate"  />
-          </StackLayout>
-         </StackLayout>
+    <Page backgroundColor="#eff2f7" actionBarHidden="true" backgroundSpanUnderStatusBar="true">
+        <StackLayout>
+            <StackLayout class="reviewMoreWrap" orientation="horizontal">
+                <StackLayout class="reviewMoreIconWrap" @tap="$navigateBack">
+                    <image class="reviewMoreIcon" src="~/Resources/img/home/angle-left.png"/>
+                </StackLayout>
+                <StackLayout class="reviewMorePlaceNameWrap">
+                    <label class="reviewMorePlaceName" text="서울 맛집"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout marginTop="17">
+                <ListView for="list in youtubeMoreList" separatorColor="transparent" style="height:100%" @itemTap="goWebview">
+                    <v-template>
+                        <StackLayout class="youtubeMarkMain">
+                            <StackLayout orientation="horizontal" class="youtubeMarkWrap" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
+                                <StackLayout class="youtubeMarkImageWrap" >
+                                    <Image :src="list.thumbnail_url" class="youtubeMarkImage"/>
+                                </StackLayout>
+                                <StackLayout class="youtubeRightWrap" width="55%">
+                                    <StackLayout orientation="horizontal" class="youtubeMarkTitleWrap" width="93%" paddingRight="0" >
+                                        <Label :text="list.title" class="youtubeMarkTitle" width="95%" textWrap="true" />
+                                    </StackLayout>
+                                    <StackLayout orientation="horizontal" class="youtubeMarkDateWrap" >
+                                        <Label :text="list.write_date" class="youtubeMarkDate"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout class="markUnderline">
+                            </StackLayout>
+                        </StackLayout>
+                    </v-template>
+                </ListView>
+            </StackLayout>
         </StackLayout>
-        <StackLayout class="markUnderline">
-        </StackLayout>
-       </StackLayout>
-      </v-template>
-     </ListView>
-   </StackLayout>
-  </StackLayout>
-
- </Page>
+    </Page>
 </template>
 
 <script>

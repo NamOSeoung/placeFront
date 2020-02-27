@@ -2,7 +2,7 @@
     <Page actionBarHidden="true">
         <StackLayout>
             <StackLayout orientation="horizontal"class="areaSearchHeaderWrap">
-                <StackLayout class="areaSearchHeaderWrapWrap" >
+                <StackLayout class="areaSearchHeaderWrapWrap">
                     <TextView className="areaSearchHeader" v-model="areaKeyword" hint="지역을 입력해주세요." maxLength="50" returnKeyType="done"  editable="true" @textChange="changeWrap" ></TextView>
                 </StackLayout>
                 <StackLayout class="placeSearchBarDeleteIconWrap" visibility="collapsed" ref="keywordDelete" @tap="deleteKeyword">
@@ -28,9 +28,9 @@
                     </StackLayout>
                 </StackLayout>
                 <StackLayout  class="areaSearchMainWrap" >
-                        <StackLayout class="areaSearchMainWrapWrap"orientation="horizontal">
-                            <ScrollView class="areaSearchLeftScrollWrap">
-                            <StackLayout class="areaSearchLeftMainWrap">
+                        <StackLayout class="areaSearchMainWrapWrap" orientation="horizontal" >
+                            <ScrollView class="areaSearchLeftScrollWrap" >
+                            <StackLayout class="areaSearchLeftMainWrap" >
                                 <StackLayout class="areaSearchLeftMainWrapWrap" v-for="category in fitstArea_category">
                                     <StackLayout class="areaSearchLeftAreaWrap" :class="selectedTabview==category.area?'active':''" @tap="tabSelect(category.area,category.area_name)">
                                         <label class="areaSearchLeftArea"  :text="category.area_name" />

@@ -22,7 +22,7 @@ $small : 0.9;
 .android320 .placeSearchBarTextWrapWrap{
   margin-left: 24*$small;
   width: 200*$small;
-  height:35*$small;
+  height:35;
 }
 .android320 .placeSearchBarText{
   border-color: #ffffff;
@@ -55,14 +55,23 @@ $small : 0.9;
   height:16*$small;
   font-size: 14*$small;
   color:#333333;
+  font-family: nanumsquareroundr;
+}
+
+.android320 .placeSearchLatelyKeyword.active{
+  width: 64*$small;
+  height:16*$small;
+  font-size: 14*$small;
+  color:#333333;
   font-family: nanumsquareroundb;
 }
+
 .android320 .placeSearchPopularKeywordWrap{
   width: 64*$small;
   padding-bottom: 5*$small;
   margin-left: 20*$small;
   border-bottom-color: #ffe074;
-  border-bottom-width: 0*$small;
+  border-bottom-width: 0;
 }
 .android320 .placeSearchPopularKeyword{
   width: 64*$small;
@@ -71,6 +80,15 @@ $small : 0.9;
   font-family: nanumsquareroundr;
   color: #333333;
 }
+
+.android320 .placeSearchPopularKeyword.active{
+  width: 64*$small;
+  height: 16*$small;
+  font-size: 14*$small;
+  font-family: nanumsquareroundb;
+  color: #333333;
+}
+
 .android320 .placeSearchAutoCompleteListWrap{
   border-bottom-color: #eeeeee;
   padding-bottom: 14.5*$small;
@@ -104,3 +122,4 @@ $small : 0.9;
   border-bottom-width: 4*$small;
   padding-bottom: 9*$small;
 }
+

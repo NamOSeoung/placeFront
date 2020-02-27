@@ -1,8 +1,9 @@
 $medium : 1.142;
 
 .android400 .reviewMoreWrap{
-  width: 360*$medium;
+  width: 100%;
   height: 55*$medium;
+  margin-top: 10*$medium;
   background-color: #ffffff;
   border-bottom-width: 1*$medium;
   border-bottom-color: #dddddd;

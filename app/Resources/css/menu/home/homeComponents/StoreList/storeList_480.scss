@@ -21,11 +21,12 @@ $large : 1.5;
   font-family: nanumsquareroundeb;
   color: #555555;
   height: 14*$large;
-  width: 250*$large;
+  width: 220*$large;
   margin-left: 6*$large;
 }
 .android480 .storeMore{
   margin-top: 13*$large;
+  margin-left: 10*$large;
   width: 36*$large;
   height: 13*$large;
   color: #888888;
@@ -52,8 +53,15 @@ $large : 1.5;
   width: 70*$large;
   height: 70*$large;
   margin-left: 15*$large;
+
 }
-.android480 .storeImage{
+.android480 .storeImageFalse{
+  height: 55*$large;
+  width: 55*$large;
+  margin-top: 8*$large;
+  border-radius: 8*$large;
+}
+.android480 .storeImageTrue{
   height: 70*$large;
   width: 70*$large;
   border-radius: 8*$large;
@@ -113,10 +121,12 @@ $large : 1.5;
 }
 .android480 .storeName{
   width: 138*$large;
-  height: 16*$large;
+  height: 15*$large;
   font-family: nanumsquareroundeb;
   font-size: 14*$large;
   color: #333333;
+  margin-top: 3*$large;
+  text-align: left;
 }
 .android480 .storeBottomWrap{
   height: 13*$large;
@@ -128,4 +138,5 @@ $large : 1.5;
   font-size: 12*$large;
   font-family: nanumsquareroundr;
   color: #555555;
+  text-align: left;
 }

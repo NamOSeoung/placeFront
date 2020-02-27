@@ -28,6 +28,7 @@ $medium : 1.142;
 }
 .android400 .naverMore{
   margin-top: 13*$medium;
+  margin-left: 15*$medium;
   width: 36*$medium;
   height: 13*$medium;
   color: #888888;
@@ -44,6 +45,7 @@ $medium : 1.142;
   margin-top: 11*$medium;
   margin-left: 10*$medium;
   margin-right: 10*$medium;
+  padding-bottom: 9*$medium;
 }
 
 .android400 .naverMainWrap{
@@ -79,10 +81,10 @@ $medium : 1.142;
   font-size: 13*$medium;
   font-family: nanumsquareroundeb;
   color: #333333;
-  margin-top: 10*$medium;
+  margin-top: 13*$medium;
   margin-left: 12*$medium;
+  height: 18*$medium;
   width:150*$medium;
-  height: 18*$medium;;
 }
 
 .android400 .naverContents{
@@ -90,9 +92,14 @@ $medium : 1.142;
   font-family: nanumsquareroundr;
   font-size: 12*$medium;
   width: 150*$medium;
-  margin-top: 6*$medium;
-  height: 18*$medium;;
+  margin-top: 9*$medium;
   margin-left: 12*$medium;
+  height: 18*$medium;
+  text-align: left;
+}
+
+.android400 .naverRightBottom{
+  margin-top: 3*$medium;
 }
 
 .android400 .naverWriteDate{
@@ -101,7 +108,7 @@ $medium : 1.142;
   font-family: nanumsquareroundr;
   margin-top: 3*$medium;
   margin-left: 12*$medium;
-  height: 18*$medium;;
+  height: 18*$medium;
 }
 .android400 .naverWriter{
   color: #888888;
@@ -110,5 +117,5 @@ $medium : 1.142;
   margin-left: 7*$medium;
   margin-top: 3*$medium;
   width: 84*$medium;
-  height: 18*$medium;;
+  height: 18*$medium;
 }

@@ -21,11 +21,12 @@ $large : 1.5;
   font-family: nanumsquareroundeb;
   color: #555555;
   height: 14*$large;
-  width: 250*$large;
+  width: 220*$large;
   margin-left: 6*$large;
 }
 .android480 .youtubeMore{
   margin-top: 13*$large;
+  margin-left: 10*$large;
   width: 36*$large;
   height: 13*$large;
   color: #888888;
@@ -34,8 +35,8 @@ $large : 1.5;
 }
 .android480 .youtubeRightIcon{
   margin-top: 13*$large;
-  width: 18*$large;
-  height: 18*$large;
+  width: 20*$large;
+  height: 20*$large;
   margin-left: -6*$large;
 }
 .android480 .youtubeSubWrap{
@@ -65,9 +66,9 @@ $large : 1.5;
 }
 .android480 .youtubeSubject{
   width: 150*$large;
-  height: 32*$large;
   font-family: nanumsquareroundeb;
   font-size: 12*$large;
+  height: 32*$large;
   line-height:5*$large;
   color: #333333;
 }

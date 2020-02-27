@@ -1,0 +1,18 @@
+$small : 0.9;
+
+.android320 .webViewWrap{
+  height: 55*$small;
+}
+.android320 .webViewNavigation{
+  width: 360*$small;
+  margin-top: 30*$small;
+}
+.android320 .webViewExit{
+  width: 17*$small;
+  height: 17*$small;
+  margin-left: 220*$small;
+}
+.android320 .webViewModalButton{
+  width: 17*$small;
+  height: 17*$small;
+}

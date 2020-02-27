@@ -1,0 +1,18 @@
+$medium : 1.142;
+
+.android400 .webViewWrap{
+  height: 55*$medium;
+}
+.android400 .webViewNavigation{
+  width: 360*$medium;
+  margin-top: 30*$medium;
+}
+.android400 .webViewExit{
+  width: 17*$medium;
+  height: 17*$medium;
+  margin-left: 290*$medium;
+}
+.android400 .webViewModalButton{
+  width: 17*$medium;
+  height: 17*$medium;
+}

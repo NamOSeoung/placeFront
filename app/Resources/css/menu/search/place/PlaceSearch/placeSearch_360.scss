@@ -53,8 +53,17 @@
   height:16;
   font-size: 14;
   color:#333333;
+  font-family: nanumsquareroundr;
+}
+
+.android360 .placeSearchLatelyKeyword.active{
+  width: 64;
+  height:16;
+  font-size: 14;
+  color:#333333;
   font-family: nanumsquareroundb;
 }
+
 .android360 .placeSearchPopularKeywordWrap{
   width: 64;
   padding-bottom: 5;
@@ -69,6 +78,15 @@
   font-family: nanumsquareroundr;
   color: #333333;
 }
+
+.android360 .placeSearchPopularKeyword.active{
+  width: 64;
+  height: 16;
+  font-size: 14;
+  font-family: nanumsquareroundb;
+  color: #333333;
+}
+
 .android360 .placeSearchAutoCompleteListWrap{
   border-bottom-color: #eeeeee;
   padding-bottom: 14.5;

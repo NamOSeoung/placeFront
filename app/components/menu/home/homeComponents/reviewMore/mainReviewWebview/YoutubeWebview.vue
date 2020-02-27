@@ -1,9 +1,9 @@
 <template lang="html">
  <Page backgroundColor="#eff2f7" actionBarHidden="true" backgroundSpanUnderStatusBar="true">
      <StackLayout>
-         <StackLayout width="100%" height="55" orientation="horizontal" borderBottomWidth="1" borderBottomColor="#dddddd" >
-             <StackLayout width="360" marginTop="30" @tap="$navigateBack">
-                 <image width="17" height="17" marginLeft="290" src="~/Resources/img/place/close_5_64_b.png" />
+         <StackLayout class="webViewWrap" width="100%"  orientation="horizontal" borderBottomWidth="1" borderBottomColor="#dddddd" >
+             <StackLayout class="webViewNavigation"  @tap="$navigateBack">
+                 <image class="webViewExit" src="~/Resources/img/place/close_5_64_b.png" />
              </StackLayout>
          </StackLayout>
          <StackLayout>
@@ -15,7 +15,10 @@
 
 <script>
  import axios from 'axios';
-
+ import '~/Resources/css/menu/home/homeComponents/WebViewCommon/WebView_320.scss';
+ import '~/Resources/css/menu/home/homeComponents/WebViewCommon/WebView_360.scss';
+ import '~/Resources/css/menu/home/homeComponents/WebViewCommon/WebView_420.scss';
+ import '~/Resources/css/menu/home/homeComponents/WebViewCommon/WebView_480.scss';
 
     export default {
         name:"YoutubeWebview",

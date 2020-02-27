@@ -10,7 +10,7 @@
             <StackLayout class="googleListHeaderWrap" orientation="horizontal" >
                 <StackLayout class="googleListWrap" @tap="googleReviewDetail(g_reviews.g_rating,g_reviews.g_content,g_reviews.g_write_Date)"  v-for="g_reviews in googleReview" v-if="googleReview != ''" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" >
                     <StackLayout class="googleListWrapWrap" orientation="horizontal">
-                        <StackLayout class="googleListRatingIconWrap" orientation="horizontal" >
+                        <StackLayout class="googleListRatingIconWrap" orientation="horizontal" width="68%">
                             <image class="googleListRatingIcon" src="~/Resources/img/place/star.png" v-if="g_reviews.g_rating > 0"/>
                             <image class="googleListRatingIcon" src="~/Resources/img/place/star.png" v-if="g_reviews.g_rating > 1"/>
                             <image class="googleListRatingIcon" src="~/Resources/img/place/star.png" v-if="g_reviews.g_rating > 2"/>
@@ -19,7 +19,7 @@
                             <!--<FIcon name="fa-star" color="#e7711b"  fontSize="18" marginLeft="10" marginTop="11" v-if="g_reviews.g_rating > 0"/> -->
                         </StackLayout>
                         <StackLayout>
-                            <label class="googleListDate" :text="g_reviews.write_date"  />
+                            <label class="googleListDate" :text="g_reviews.write_date" height="20%"/>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout class="googleListContentsWrap"  >

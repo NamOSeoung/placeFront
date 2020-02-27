@@ -1,6 +1,6 @@
 <template lang="html">
  <StackLayout class="youtubeWrap">
-     <StackLayout orientation="horizontal" class="youtubeHeaderWrap">
+     <StackLayout orientation="horizontal" class="youtubeHeaderWrap" width="100%">
          <image src="~/Resources/img/home/youtube.png" class="youtubeIcon"/>
          <label text="유튜브" class="youtubeTitle"/>
          <label text="더보기" class="youtubeMore" @tap="$navigateTo(YoutubeMorePage)" v-if="youtubeList.length > 4" />
@@ -14,7 +14,7 @@
                          <image class="youtubeImage" stretch="aspectFill"  :src="list.thumbnail_url"/>
                      </StackLayout>
                      <StackLayout class="youtubeSubjectWrap" >
-                         <Label row="2" class="youtubeSubject" :text="list.title" textWrap="true"  />
+                         <Label row="2" class="youtubeSubject" :text="list.title" textWrap="true" textAlignment="left" />
                      </StackLayout>
                  </StackLayout>
              </StackLayout>

@@ -1,10 +1,10 @@
 <template lang="html">
 <ScrollView height="100%">
-    <StackLayout>
-         <StackLayout class="homeHeaderWrap">
+    <StackLayout width="100%">
+         <StackLayout class="homeHeaderWrap" width="100%">
              <StackLayout orientation="horizontal" class="homeTitleWrap">
                  <label text="잇정" class="homeAppName" />
-                 <label text="어떤 맛집을 찾아볼까요?" class="homeTitle"/>
+                 <label text="어떤 맛집을 찾아볼까요?" class="homeTitle" />
              </StackLayout>
              <StackLayout orientation="horizontal" class="homeSearchWrap" @tap="goSearchTab(1)">
                  <image src="~/Resources/img/home/maker.png" class="homeMakerIcon"/>
@@ -12,14 +12,14 @@
                  <image src="~/Resources/img/home/search.png" class="homeSearchIcon" />
              </StackLayout>
          </StackLayout>
-         <StackLayout class="headerLine"/>
-         <StoreList />
-         <StackLayout class="headerLine"/>
-         <YoutubeList/>
-         <StackLayout class="headerLine"/>
-         <NaverList />
-         <StackLayout class="headerLine"/>
-         <TistoryList />
+         <StackLayout class="headerLine" width="100%"/>
+         <StoreList width="100%"/>
+         <StackLayout class="headerLine" width="100%"/>
+         <YoutubeList width="100%"/>
+         <StackLayout class="headerLine" width="100%"/>
+         <NaverList width="100%"/>
+         <StackLayout class="headerLine" width="100%"/>
+         <TistoryList width="100%"/>
          <StackLayout class="headerLine"/>
 <!--        <StackLayout>-->
 <!--            <Button text="Show location" @tap="enableLocationServices"-->
@@ -149,7 +149,6 @@
 </script>
 
 <style lang="scss">
-
 
 
 </style>

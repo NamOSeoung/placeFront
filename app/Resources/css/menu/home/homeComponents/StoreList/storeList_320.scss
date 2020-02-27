@@ -26,6 +26,7 @@ $small : 0.9;
 }
 .android320 .storeMore{
   margin-top: 13*$small;
+  margin-left: 15*$small;
   width: 36*$small;
   height: 13*$small;
   color: #888888;
@@ -52,8 +53,15 @@ $small : 0.9;
   width: 70*$small;
   height: 70*$small;
   margin-left: 15*$small;
+
 }
-.android320 .storeImage{
+.android320 .storeImageFalse{
+  height: 55*$small;
+  width: 55*$small;
+  margin-top: 8*$small;
+  border-radius: 8*$small;
+}
+.android320 .storeImageTrue{
   height: 70*$small;
   width: 70*$small;
   border-radius: 8*$small;
@@ -113,10 +121,12 @@ $small : 0.9;
 }
 .android320 .storeName{
   width: 138*$small;
-  height: 16*$small;
+  height: 15*$small;
   font-family: nanumsquareroundeb;
   font-size: 14*$small;
   color: #333333;
+  margin-top: 3*$small;
+  text-align: left;
 }
 .android320 .storeBottomWrap{
   height: 13*$small;
@@ -128,5 +138,5 @@ $small : 0.9;
   font-size: 12*$small;
   font-family: nanumsquareroundr;
   color: #555555;
+  text-align: left;
 }
-
