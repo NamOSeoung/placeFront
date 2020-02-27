@@ -56,6 +56,7 @@
 
     import StoreMore from './reviewMore/StoreMore'
     var cache = require("nativescript-cache");
+    import * as application from "application";
     import PlaceDetail from '../../search/place/placeDetail/PlaceDetail'
     const appSettings = require("tns-core-modules/application-settings");
     export default {
@@ -96,13 +97,32 @@
             }
         },
         mounted() {
-            if(cache.get("location_name") == null){
-                this.getStoreList("서울 맛집");
-            }else{
-                this.getStoreList(cache.get("location_name"));
-            }
+            this.getStoreList("서울 맛집");
+            // if(cache.get("location_name") == "false"){
+            //     this.getStoreList("서울 맛집");
+            // }else{
+            //     this.getStoreList(cache.get("location_name"));
+            // }
+            //
+            // application.on(application.resumeEvent, (args) => {
+            //     if (args.android) {
+            //         var cache2 = require("nativescript-cache");
+            //         // For Android applications, args.android is an android activity class.
+            //         console.log("Activity22222: " + args.android);
+            //         console.log(cache2.get("location_name"))
+            //         if(cache2.get("location_name") == "false"){
+            //             this.getStoreList("서울 맛집");
+            //         }else{
+            //             console.log(cache2.get("location_name") + "????!!!!!!!")
+            //             this.getStoreList(cache2.get("location_name"));
+            //         }
+            //     } else if (args.ios) {
+            //         // For iOS applications, args.ios is UIApplication.
+            //         console.log("UIApplication: " + args.ios);
+            //     }
+            // });
             //this.getStoreList();
-        }
+        },
     };
 </script>
 

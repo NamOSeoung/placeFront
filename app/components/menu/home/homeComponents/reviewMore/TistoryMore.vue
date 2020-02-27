@@ -2,7 +2,7 @@
  <Page backgroundColor="#eff2f7" actionBarHidden="true" backgroundSpanUnderStatusBar="true" @swipe="onSwipe">
   <StackLayout>
    <StackLayout class="reviewMoreWrap" orientation="horizontal" >
-     <StackLayout class="reviewMoreIconWrap" @tap="back" >
+     <StackLayout class="reviewMoreIconWrap" @tap="$navigateBack" >
        <image class="reviewMoreIcon"  src="~/Resources/img/home/angle-left.png" />
      </StackLayout>
      <StackLayout class="reviewMorePlaceNameWrap">

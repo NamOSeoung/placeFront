@@ -313,7 +313,8 @@
                             sns_division:appSettings.getString("sns_division"),
                             portal:this.portal_gubun,
                             author:this.itemList.author,
-                            blacklist_division: 'post'
+                            blacklist_division: 'post',
+                            review_id:this.itemList.review_id
                         },
                     }).then((response) => {
                         console.log(response.data)

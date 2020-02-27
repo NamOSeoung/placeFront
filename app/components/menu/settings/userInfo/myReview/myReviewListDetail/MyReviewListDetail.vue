@@ -8,9 +8,9 @@
      <StackLayout class="reviewMorePlaceNameWrap"  >
        <label class="reviewMorePlaceName" text="리뷰목록"/>
      </StackLayout>
-       <StackLayout class="appReviewWriteIconWrap" @tap="updateReview">
-           <image class="appReviewWriteIcon" src="~/Resources/img/place/Orion_edit.png" />
-       </StackLayout>
+<!--       <StackLayout class="appReviewWriteIconWrap" @tap="updateReview">-->
+<!--           <image class="appReviewWriteIcon" src="~/Resources/img/place/Orion_edit.png" />-->
+<!--       </StackLayout>-->
    </StackLayout>
        <ScrollView height="100%">
            <StackLayout>
@@ -38,16 +38,16 @@
                                </StackLayout>
                                <StackLayout class="googleReviewMoreRatingWrap" orientation="horizontal" >
                                    <StackLayout orientation="horizontal">
-                                       <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="225" v-if="a_reviews.rating_point == 1"/>
-                                       <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="205" v-else-if="a_reviews.rating_point==2"/>
-                                       <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="185" v-else-if="a_reviews.rating_point == 3"/>
-                                       <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="165" v-else-if="a_reviews.rating_point== 4"/>
-                                       <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="145" v-else-if="a_reviews.rating_point == 5"/>
+                                       <image class="appReviewRatingIcon1" src="~/Resources/img/place/star_yellow.png" v-if="a_reviews.rating_point == 1"/>
+                                       <image class="appReviewRatingIcon2" src="~/Resources/img/place/star_yellow.png"  v-else-if="a_reviews.rating_point==2"/>
+                                       <image class="appReviewRatingIcon3" src="~/Resources/img/place/star_yellow.png"  v-else-if="a_reviews.rating_point == 3"/>
+                                       <image class="appReviewRatingIcon4" src="~/Resources/img/place/star_yellow.png"  v-else-if="a_reviews.rating_point== 4"/>
+                                       <image class="appReviewRatingIcon5" src="~/Resources/img/place/star_yellow.png"  v-else-if="a_reviews.rating_point == 5"/>
                                        <StackLayout orientation="horizontal">
-                                           <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 1"/>
-                                           <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 2"/>
-                                           <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 3"/>
-                                           <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 4"/>
+                                           <image class="appReviewRatingIcon6" src="~/Resources/img/place/star_yellow.png"  v-if="a_reviews.rating_point > 1"/>
+                                           <image class="appReviewRatingIcon6" src="~/Resources/img/place/star_yellow.png" v-if="a_reviews.rating_point > 2"/>
+                                           <image class="appReviewRatingIcon6" src="~/Resources/img/place/star_yellow.png"  v-if="a_reviews.rating_point > 3"/>
+                                           <image class="appReviewRatingIcon6" src="~/Resources/img/place/star_yellow.png"  v-if="a_reviews.rating_point > 4"/>
                                        </StackLayout>
                                    </StackLayout>
                                </StackLayout>
@@ -70,11 +70,14 @@
                                <StackLayout  v-else class="appReviewLikeIconWrap" marginTop="-5" @tap="updateLikeCount(a_reviews.review_id,'ADD')">
                                    <image class="appReviewLikeIcon"  src="~/Resources/img/user/heart_d_64.png" />
                                </StackLayout>
-                               <StackLayout class="appReviewLikeCountWrap" marginTop="-1" >
+                               <StackLayout class="appReviewLikeCountWrap" marginTop="-1">
                                    <label class="appReviewLikeCount" :text="a_reviews.like_count" />
                                </StackLayout>
-                               <StackLayout v-if="user_id == a_reviews.review_user_id">
-                                   <StackLayout class="appReviewDeleteWrap" @tap="reviewDelete(a_reviews.review_id)" >
+                               <StackLayout v-if="user_id == a_reviews.review_user_id" orientation="horizontal">
+                                   <StackLayout class="appReviewDeleteWrap" @tap="updateReview" >
+                                       <label class="appReviewDelete" text="수정"/>
+                                   </StackLayout>
+                                   <StackLayout class="appReviewDeleteWrap" marginLeft="20" @tap="reviewDelete(a_reviews.review_id)" >
                                        <label class="appReviewDelete" text="삭제"/>
                                    </StackLayout>
                                </StackLayout>
@@ -106,16 +109,16 @@
                                    </StackLayout>
                                    <StackLayout class="googleReviewMoreRatingWrap" orientation="horizontal">
                                        <StackLayout orientation="horizontal">
-                                           <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="85" v-if="a_reviews.rating_point == 1"/>
-                                           <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="65" v-else-if="a_reviews.rating_point==2"/>
-                                           <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="45" v-else-if="a_reviews.rating_point == 3"/>
-                                           <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="25" v-else-if="a_reviews.rating_point== 4"/>
-                                           <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="5" v-else-if="a_reviews.rating_point == 5"/>
+                                           <image class="appReviewRatingIcon1" src="~/Resources/img/place/star_yellow.png" marginLeft="85" v-if="a_reviews.rating_point == 1"/>
+                                           <image class="appReviewRatingIcon2" src="~/Resources/img/place/star_yellow.png" marginLeft="65" v-else-if="a_reviews.rating_point==2"/>
+                                           <image class="appReviewRatingIcon3" src="~/Resources/img/place/star_yellow.png" marginLeft="45" v-else-if="a_reviews.rating_point == 3"/>
+                                           <image class="appReviewRatingIcon4" src="~/Resources/img/place/star_yellow.png" marginLeft="25" v-else-if="a_reviews.rating_point== 4"/>
+                                           <image class="appReviewRatingIcon5" src="~/Resources/img/place/star_yellow.png" marginLeft="5" v-else-if="a_reviews.rating_point == 5"/>
                                            <StackLayout orientation="horizontal">
-                                               <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 1"/>
-                                               <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 2"/>
-                                               <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 3"/>
-                                               <image class="appReviewRatingIcon" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 4"/>
+                                               <image class="appReviewRatingIcon6" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 1"/>
+                                               <image class="appReviewRatingIcon6" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 2"/>
+                                               <image class="appReviewRatingIcon6" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 3"/>
+                                               <image class="appReviewRatingIcon6" src="~/Resources/img/place/star_yellow.png" marginLeft="3" v-if="a_reviews.rating_point > 4"/>
                                            </StackLayout>
                                        </StackLayout>
                                    </StackLayout>
@@ -138,7 +141,7 @@
                                    <StackLayout  v-else class="appReviewLikeIconWrap" marginTop="-5" @tap="updateLikeCount(a_reviews.review_id,'ADD')">
                                        <image class="appReviewLikeIcon"  src="~/Resources/img/user/heart_d_64.png" />
                                    </StackLayout>
-                                   <StackLayout class="appReviewLikeCountWrap" >
+                                   <StackLayout class="appReviewLikeCountWrap">
                                        <label class="appReviewLikeCount" :text="a_reviews.like_count" />
                                    </StackLayout>
                                    <StackLayout v-if="user_id == a_reviews.review_user_id">

@@ -2,10 +2,10 @@
 <Page actionBarHidden="true">
      <StackLayout>
              <StackLayout class="findUserIdBarWrap" orientation="horizontal" height="65" >
-                 <StackLayout class="findUserIdBarTitleWrap"  marginLeft="150" width="68" >
-                     <label class="findUserIdBarTitle" text="닉네임 수정" width="68"  />
+                 <StackLayout class="findUserIdBarTitleWrap"  marginLeft="42%" width="25%" >
+                     <label class="findUserIdBarTitle" text="닉네임 수정" width="100%"  />
                  </StackLayout>
-                 <StackLayout width="16" height="16" marginLeft="95" marginTop="15" @tap="$navigateBack">
+                 <StackLayout width="16" height="16" marginLeft="27%" marginTop="15" @tap="$navigateBack">
                      <image src="~/Resources/img/place/close_5_64_b.png"/>
                  </StackLayout>
              </StackLayout>

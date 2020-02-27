@@ -43,7 +43,7 @@
                 this.$showModal(ReviewWebviewBottomModal,{
                     props: {
                         itemList : this.itemList,
-                        portal_gubun:'daum'
+                        portal_gubun:'tistory'
                     },
                     fullscreen: false,
                     animated: true,

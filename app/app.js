@@ -9,6 +9,7 @@ import FontIcon from 'nativescript-vue-fonticon';
 import './app.css';
 import Pager from 'nativescript-accordion/vue'
 import NSVueShadow from 'nativescript-vue-shadow'
+
 require( "nativescript-platform-css" );
 
 Vue.registerElement("DropDown", () => require("nativescript-drop-down/drop-down").DropDown)
@@ -33,6 +34,7 @@ Vue.config.silent = false
 if(appSettings.getString("user_id") != undefined ){
     if(appSettings.getString("user_id") !=''){
         new Vue({
+
             render: h => h('frame',[h(MenuWrap)])
         }).$start()
 

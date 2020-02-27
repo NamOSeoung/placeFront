@@ -1,67 +1,101 @@
 <template lang="html">
-    <StackLayout v-if="data.placeBookmarkList!= null" @swipe="onSwipe" >
-        <ListView for="placeBookmark in data.placeBookmarkList" separatorColor="transparent"
-                  style="height:100%" @itemTap="" @swipe="onSwipe">
-            <v-template>
-                <StackLayout class="storeMarkDetailSubWrap" @swipe="onSwipe">
-                    <StackLayout orientation="horizontal" class="storeMarkDetailWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
-                        <StackLayout class="storeLeftWrap" v-if="placeBookmark.thumbnail != ''">
-                            <image class="storeImage" stretch="aspectFill" :src="placeBookmark.thumbnail"/>
+    <StackLayout v-if="data.placeBookmarkList.length>0" @swipe="onSwipe" >
+        <AbsoluteLayout>
+            <ListView for="placeBookmark in data.placeBookmarkList" separatorColor="transparent"
+                      style="height:100%"  @swipe="onSwipe" marginTop="20">
+                <v-template>
+                    <StackLayout class="storeMarkDetailSubWrap" @swipe="onSwipe" @tap="goPlaceDetail(placeBookmark)" >
+                        <StackLayout orientation="horizontal" class="storeMarkDetailWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }">
+                            <StackLayout class="storeLeftWrap" v-if="placeBookmark.thumbnail != ''">
+                                <image class="storeImage" stretch="aspectFill" :src="placeBookmark.thumbnail"/>
+                            </StackLayout>
+                            <StackLayout class="storeLeftWrap" v-else backgroundColor="#dddddd" borderRadius="10">
+                                <image class="storeImage" width="55" height="55" marginTop="8" stretch="aspectFill" src="~/Resources/img/home/dinner_w_64.png"/>
+                            </StackLayout>
+                            <StackLayout class="storeMarkRightWrap">
+                                <StackLayout orientation="horizontal" class="storeMarkTopWrap">
+                                    <StackLayout class="storeMarkTimeWrap" v-if="placeBookmark.open_hours !=''">
+                                        <label :text="openingCheck(placeBookmark.open_hours)" class="storeTime" />
+                                    </StackLayout>
+                                    <StackLayout class="storeMarkTimeWrap" v-else>
+                                        <label text="정보없음" class="storeTime" />
+                                    </StackLayout>
+                                    <StackLayout class="storeStarIconWrap">
+                                        <Image src="~/Resources/img/home/star.png" class="storeStarIcon" />
+                                    </StackLayout>
+                                    <StackLayout class="storeRatingWrap" v-if="placeBookmark.rating_point != ''">
+<!--                                        <label :text="placeBookmark.rating_point" class="storeRating"/>-->
+                                        <label :text="placeBookmark.google_rating" v-if="placeBookmark.app_rating < 1&&placeBookmark.google_rating > 0"  class="storeRating"/>
+                                        <label :text="placeBookmark.app_rating" v-else-if="placeBookmark.app_rating > 0"  class="storeRating"/>
+                                        <label text="0" v-else class="storeRating"/>
+                                    </StackLayout>
+                                    <StackLayout class="storeRatingWrap" v-else >
+                                        <label text="0" class="storeRating"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout class="storeMarkMiddleWrap">
+                                    <label :text="placeBookmark.place_name" class="storeMarkName"/>
+                                </StackLayout>
+                                <StackLayout orientation="horizontal" class="storeMarkBottomWrap">
+                                    <StackLayout class="storeMarkCategoryWrap">
+                                        <label :text="placeBookmark.category_name" class="storeMarkCategory"/>
+                                    </StackLayout>
+                                    <StackLayout class="storeMarkYIconWrap">
+                                        <image v-if="placeBookmark.youtube_review_count>0" class="storeMarkYIcon" stretch="aspectFill" src="~/Resources/img/bookmark/youtube-circle.png"/>
+                                        <image v-else class="storeMarkYIcon" stretch="aspectFill" src="~/Resources/img/bookmark/youtube-circle_g.png"/>
+<!--                                        <image class="storeMarkYIcon" stretch="aspectFill" src="~/Resources/img/bookmark/youtube-circle.png"/>-->
+                                    </StackLayout>
+                                    <StackLayout class="storeMarkNIconWrap">
+                                        <image v-if="placeBookmark.naver_blog_count > 0" class="storeMarkNIcon"stretch="aspectFill"  src="~/Resources/img/bookmark/naver-circle.png"/>
+                                        <image v-else class="storeMarkNIcon"stretch="aspectFill"  src="~/Resources/img/bookmark/naver-circle_g.png"/>
+<!--                                        <image class="storeMarkNIcon"stretch="aspectFill"  src="~/Resources/img/bookmark/naver-circle.png"/>-->
+                                    </StackLayout>
+                                    <StackLayout class="storeMarkTIconWrap">
+                                        <image  v-if="placeBookmark.daum_blog_count > 0" class="storeMarkTIcon" stretch="aspectFill" src="~/Resources/img/bookmark/tistory-circle.png"/>
+                                        <image v-else class="storeMarkTIcon" stretch="aspectFill" src="~/Resources/img/bookmark/tistory-circle_g.png"/>
+<!--                                        <image class="storeMarkTIcon" stretch="aspectFill" src="~/Resources/img/bookmark/tistory-circle.png"/>-->
+                                    </StackLayout>
+                                    <StackLayout v-if="placeBookmark.google_review_count > 0" class="storeMarkGIconWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 50 }">
+                                        <image class="storeMarkGIcon"stretch="aspectFill" src="~/Resources/img/bookmark/google-circle.png" />
+                                    </StackLayout>
+                                    <StackLayout v-else class="storeMarkGIconWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: '#888888', cornerRadius: 50 }">
+                                        <image  class="storeMarkGIcon"stretch="aspectFill" src="~/Resources/img/bookmark/google-circle_g.png" />
+                                    </StackLayout>
+<!--                                    <StackLayout class="storeMarkGIconWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 50 }">-->
+<!--                                        <image class="storeMarkGIcon"stretch="aspectFill" src="~/Resources/img/bookmark/google-circle.png" />-->
+<!--                                    </StackLayout>-->
+                                    <StackLayout class="storeMarkAIconWrap" >
+                                        <image class="storeMarkAIcon" stretch="aspectFill"  src="~/Resources/img/place/playstore-icon.png" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
                         </StackLayout>
-                        <StackLayout class="storeLeftWrap" v-else backgroundColor="#dddddd" borderRadius="10">
-                            <image class="storeImage" width="55" height="55" marginTop="8" stretch="aspectFill" src="~/Resources/img/home/dinner_w_64.png"/>
-                        </StackLayout>
-                        <StackLayout class="storeMarkRightWrap">
-                            <StackLayout orientation="horizontal" class="storeMarkTopWrap">
-                                <StackLayout class="storeMarkTimeWrap" v-if="placeBookmark.open_hours !=''">
-                                    <label :text="openingCheck(placeBookmark.open_hours)" class="storeTime" />
-                                </StackLayout>
-                                <StackLayout class="storeMarkTimeWrap" v-else>
-                                    <label text="정보없음" class="storeTime" />
-                                </StackLayout>
-                                <StackLayout class="storeStarIconWrap">
-                                    <Image src="~/Resources/img/home/star.png" class="storeStarIcon" />
-                                </StackLayout>
-                                <StackLayout class="storeRatingWrap" v-if="placeBookmark.rating_point != ''">
-                                    <label :text="placeBookmark.rating_point" class="storeRating"/>
-                                </StackLayout>
-                                <StackLayout class="storeRatingWrap" v-else >
-                                    <label text="0" class="storeRating"/>
-                                </StackLayout>
-                            </StackLayout>
-                            <StackLayout class="storeMarkMiddleWrap">
-                                <label :text="placeBookmark.place_name" class="storeMarkName"/>
-                            </StackLayout>
-                            <StackLayout orientation="horizontal" class="storeMarkBottomWrap">
-                                <StackLayout class="storeMarkCategoryWrap">
-                                    <label :text="placeBookmark.category" class="storeMarkCategory"/>
-                                </StackLayout>
-                                <StackLayout class="storeMarkYIconWrap">
-                                    <image class="storeMarkYIcon" stretch="aspectFill" src="~/Resources/img/bookmark/youtube-circle.png"/>
-                                </StackLayout>
-                                <StackLayout class="storeMarkNIconWrap">
-                                    <image class="storeMarkNIcon"stretch="aspectFill"  src="~/Resources/img/bookmark/naver-circle.png"/>
-                                </StackLayout>
-                                <StackLayout class="storeMarkTIconWrap">
-                                    <image class="storeMarkTIcon" stretch="aspectFill" src="~/Resources/img/bookmark/tistory-circle.png"/>
-                                </StackLayout>
-                                <StackLayout class="storeMarkGIconWrap"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 50 }">
-                                    <image class="storeMarkGIcon"stretch="aspectFill" src="~/Resources/img/bookmark/google-circle.png" />
-                                </StackLayout>
-                                <StackLayout class="storeMarkAIconWrap" >
-                                    <image class="storeMarkAIcon" stretch="aspectFill"  src="~/Resources/img/bookmark/tistory-circle.png" />
-                                </StackLayout>
-                            </StackLayout>
+                        <StackLayout class="markUnderline">
                         </StackLayout>
                     </StackLayout>
-                    <StackLayout class="markUnderline">
-                    </StackLayout>
-                </StackLayout>
-            </v-template>
-        </ListView>
+                </v-template>
+            </ListView>
+            <StackLayout width="100%" height="100%" backgroundColor="#dddddd" top="0" opacity="0.4" v-if="busy==true">
+
+            </StackLayout>
+            <StackLayout top="0" width="100%">
+                <ActivityIndicator :busy="busy" marginTop="230" color="#ffe074" width="100" height="100" />
+            </StackLayout>
+        </AbsoluteLayout>
+
     </StackLayout>
-    <StackLayout v-else @swipe="onSwipe">
-        <label text="없음" />
+    <StackLayout v-else  @swipe="onSwipe">
+        <AbsoluteLayout>
+            <StackLayout width="100%" style="text-align: center">
+                <label text="저장 된 내용이 없습니다." fontSize="14" color="#333333" marginTop="300" fontFamily="nanumsquareroundr" />
+            </StackLayout>
+            <StackLayout width="100%" height="100%" backgroundColor="#dddddd" top="0" opacity="0.4" v-if="busy==true">
+
+            </StackLayout>
+            <StackLayout top="0" width="100%">
+                <ActivityIndicator :busy="busy" marginTop="230" color="#ffe074" width="100" height="100" />
+            </StackLayout>
+        </AbsoluteLayout>
     </StackLayout>
 </template>
 <script>
@@ -78,123 +112,104 @@
  let data = {placeBookmarkList:[]};
  const frameModule = require("ui/frame"); // #A
  const appSettings = require("tns-core-modules/application-settings");
-
+ const enums = require("tns-core-modules/ui/enums");
+ const platformModule = require("tns-core-modules/platform");
  // other imports here
  import * as application from "application";
  import * as frame from "ui/frame";
-
- application.on(application.launchEvent, (args) => {
-     if (args.android) {
-         // For Android applications, args.android is an android.content.Intent class.
-         console.log("Launched Android application with the following intent: " + args.android + ".");
-     } else if (args.ios !== undefined) {
-         // For iOS applications, args.ios is NSDictionary (launchOptions).
-         console.log("Launched iOS application with options: " + args.ios);
-     }
- });
-
- application.on(application.suspendEvent, (args) => {
-     if (args.android) {
-         // For Android applications, args.android is an android activity class.
-         console.log("Activity1: " + args.android);
-     } else if (args.ios) {
-         // For iOS applications, args.ios is UIApplication.
-         console.log("UIApplication: " + args.ios);
-     }
- });
-
- application.on(application.resumeEvent, (args) => {
-     if (args.android) {
-         // For Android applications, args.android is an android activity class.
-         console.log("Activity2: " + args.android);
-     } else if (args.ios) {
-         // For iOS applications, args.ios is UIApplication.
-         console.log("UIApplication: " + args.ios);
-     }
- });
-
- application.on(application.displayedEvent, (args) => {
-     // args is of type ApplicationEventData
-     console.log("displayedEvent");
- });
-
- application.on(application.orientationChangedEvent, (args) => {
-     // args is of type OrientationChangedEventData
-     console.log(args.newValue); // "portrait", "landscape", "unknown"
- });
-
-
- application.on(application.exitEvent, (args) => {
-     if (args.android) {
-         // For Android applications, args.android is an android activity class.
-         console.log("Activity3: " + args.android);
-         if (args.android.isFinishing()) {
-             console.log("Activity: " + args.android + " is exiting");
-         } else {
-             console.log("Activity: " + args.android + " is restarting");
-         }
-     } else if (args.ios) {
-         // For iOS applications, args.ios is UIApplication.
-         console.log("UIApplication: " + args.ios);
-     }
- });
-
- application.on(application.lowMemoryEvent, (args) => {
-     if (args.android) {
-         // For Android applications, args.android is an android activity class.
-         console.log("Activity4: " + args.android);
-     } else if (args.ios) {
-         // For iOS applications, args.ios is UIApplication.
-         console.log("UIApplication: " + args.ios);
-     }
- });
-
- application.on(application.uncaughtErrorEvent, (args) => {
-     console.log("Error: " + args.error);
- });
+ import PlaceDetail from "../../search/place/placeDetail/PlaceDetail";
+ var cache = require("nativescript-cache");
 
  export default {
         name:"PlaceBookmark",
         data(){
             return {
-                data
+                data,
+                busy:false,
             }
         },
         components: {
         },mounted() {
             this.getPlaceBookmark();
+
+
+         //
+         // setTimeout(() => {
+         //     while(true){
+         //         this.$refs.aaa.nativeView
+         //             .animate({
+         //                 translate: {x: 0, y: 100},
+         //                 duration: 1000,
+         //                 curve: enums.AnimationCurve.easeIn
+         //             })
+         //
+         //         this.$refs.aaa.nativeView
+         //             .animate({
+         //                 translate: {x: 100, y: 0},
+         //                 duration: 1000,
+         //                 curve: enums.AnimationCurve.easeIn
+         //             })
+         //     }
+         // }, 1000);
+
+
      },created(){
         // this.getPlaceBookmark();
      },methods: {
+
+         goPlaceDetail(args){
+            console.log(args)
+            //const view = args.view;
+            //const tappedItem = view.bindingContext;
+             //data.keyword = tappedItem;
+             //this.placeSearch(data.keyword);
+             //this.$data.listViewing = 'place';
+
+
+             cache.set('place_id',args.place_id)
+             cache.set('place_name',args.place_name)
+             cache.set('place_address',args.place_address);
+             this.$navigateTo(PlaceDetail, {
+                 props: {
+                     context: args}});
+         },
             onSwipe(args){
+
                 console.log('wwdasda')
                 console.log("Swipe!");
                 console.log("Object that triggered the event: " + args.object);
                 console.log("View that triggered the event: " + args.view);
                 console.log("Event name: " + args.eventName);
                 console.log("Swipe Direction: " + args.direction);
-                axios({
-                    method: 'get',
-                    url: 'http://api.eatjeong.com/v1/bookmarks',
-                    params: {
-                        gubun: 'place',
-                        user_id : appSettings.getString("user_id"),
-                        sns_division:appSettings.getString("sns_division")
-                    },
-                }).then((response) => {
-                    console.log(response.data.dataList)
-                    console.log("zzzzzzzzzz"+response.data.dataList);
-                    this.data.placeBookmarkList = response.data.dataList;
-                }, (error) => {
-                    console.log(error);
-                });
+
+                this.getPlaceBookmark();
+                // this.$data.busy = true;
+                // setTimeout(() => {
+                //     axios({
+                //         method: 'get',
+                //         url: 'http://api.eatjeong.com/v1/bookmarks',
+                //         params: {
+                //             gubun: 'place',
+                //             user_id : appSettings.getString("user_id"),
+                //             sns_division:appSettings.getString("sns_division")
+                //         },
+                //     }).then((response) => {
+                //         this.$data.busy = false;
+                //         console.log(response.data.dataList)
+                //         console.log("zzzzzzzzzz"+response.data.dataList);
+                //         this.data.placeBookmarkList = response.data.dataList;
+                //     }, (error) => {
+                //         this.$data.busy = false;
+                //         console.log(error);
+                //     });
+                // }, 1000);
             },
             aa(){
                console.log('123123123123123123123')
             },
 
             getPlaceBookmark(){
-
+                this.$data.busy = true;
                 // after class code:
                 setTimeout(() => {
                     axios({
@@ -206,13 +221,15 @@
                             sns_division:appSettings.getString("sns_division")
                         },
                     }).then((response) => {
+                        this.$data.busy = false;
                         console.log(response.data.dataList)
                         console.log("zzzzzzzzzz"+response.data.dataList.length + "asdasd");
                         this.data.placeBookmarkList = response.data.dataList;
                     }, (error) => {
+                        this.$data.busy = false;
                         console.log(error);
                     });
-                }, 2000);
+                }, 1000);
 
             },openingCheck(open_hours){
                 try{

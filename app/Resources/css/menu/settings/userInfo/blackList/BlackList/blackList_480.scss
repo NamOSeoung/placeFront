@@ -1,0 +1,168 @@
+$large : 1.5;
+
+.android480 .blackListButtonWrap {
+  width: 50*$large;
+  margin-left: 11*$large;
+  height: 20*$large;
+  border-radius: 4*$large;
+  background-color: #dddddd;
+  text-align: center;
+}
+
+.android480 .blackListButtonWrap.active {
+  width: 50*$large;
+  margin-left: 11*$large;
+  height: 20*$large;
+  border-radius: 4*$large;
+  background-color: #333333;
+  text-align: center;
+}
+.android480 .blackListTabWrap{
+  width: 33*$large;
+  margin-left: 22*$large;
+  height: 40.5*$large;
+}
+.android480 .blackListTabWrap.active{
+  width: 33*$large;
+  margin-left: 22*$large;
+  height: 40.5*$large;
+  border-bottom-color: #ffe074;
+  border-bottom-width: 4*$large;
+}
+.android480 .blackListHeaderWrap{
+  width: 100%;
+  height: 55*$large;
+  border-bottom-width: 1.05*$large ;
+  border-bottom-color: #dddddd;
+}
+.android480 .blackListBackIconWrap{
+  width: 28*$large;
+  height: 28*$large;
+  margin-left: 6*$large;
+  margin-top: 30.5*$large;
+}
+.android480 .blackListBackIcon{
+  width: 16*$large;
+  height: 16*$large;
+}
+.android480 .blackListBackTitleWrap{
+  height: 13*$large;
+  width: 13*$large;
+  margin-left: 2*$large;
+  margin-top: 20*$large;
+}
+.android480 .blackListBackTitle{
+  color: #333333;
+  font-size: 12*$large;
+  font-family: nanumsquareroundb;
+}
+.android480 .blackListTitleWrap{
+  margin-top: 24.5*$large;
+  margin-left: 80*$large;
+  width: 64*$large;
+  height: 18.55*$large;
+}
+.android480 .blackListTitle{
+  font-family: nanumsquareroundb;
+  font-size: 14*$large;
+  color: #333333;
+}
+.android480 .blackListTabAutor{
+  margin-top: 12*$large;
+  height: 13*$large;
+  font-family: nanumsquareroundb;
+  font-size: 12*$large;
+  color: #333333;
+}
+.android480 .blackListTabContents{
+  margin-top: 12*$large;
+  height: 13*$large;
+  margin-bottom: 13*$large;
+  font-family: nanumsquareroundb;
+  font-size: 12*$large;
+  color: #333333;
+}
+.android480 .blackListPortalTapWrap{
+  margin-left: 48*$large;
+}
+.android480 .blackListYoutubeTitleWrap{
+  font-family: nanumsquareroundb;
+  font-size: 10*$large;
+  color: #ffffff;
+  margin-top: 4*$large;
+}
+.android480 .blackListNaverTitleWrap{
+  font-family: nanumsquareroundb;
+  font-size: 10*$large;
+  color: #ffffff;
+  margin-top: 4*$large;
+}
+.android480 .blackListTistoryTitleWrap{
+  font-family: nanumsquareroundb;
+  font-size: 10*$large;
+  color:#ffffff;
+  margin-top: 4*$large;
+
+}
+.android480 .blackListAutorWrap{
+  background-color: #eff2f7;
+  width: 100%;
+  height: 100%;
+  padding-top: 11*$large;
+}
+.android480 .blackListAutorYoutubeWrap{
+  width: 299*$large;
+  padding-top: 15*$large;
+  padding-bottom: 15*$large;
+  border-bottom-color: #dddddd;
+  border-bottom-width: 1*$large;
+}
+.android480 .blackListAutorYoutubeWrapWrap{
+  width: 261*$large;
+}
+.android480 .blackListAutorYoutubeCancelWrap{
+  width: 40*$large;
+  height: 18*$large;
+  border-radius: 10*$large;
+  border-width: 1*$large;
+  border-color: #555555;
+  text-align: center;
+}
+.android480 .blackListAutorYoutubeCancel{
+  margin-top:3*$large;
+  font-family: nanumsquareroundr;
+  font-size: 10*$large;
+  color: #555555;
+}
+.android480 .blackListYoutubeContentsWrap{
+  width: 299*$large;
+  padding-top: 15*$large;
+  padding-bottom: 15*$large;
+  border-bottom-width: 1*$large;
+  border-bottom-color: #dddddd;
+}
+.android480 .blackListYoutubeContentsTitleWrap{
+  width: 261*$large;
+}
+.android480 .blackListYoutubeContentsDelWrap{
+  width: 40*$large;
+  height: 18*$large;
+  border-radius: 10*$large;
+  border-width: 1*$large;
+  border-color: #555555;
+  text-align: center;
+}
+.android480 .blackListYoutubeContentsDel{
+  margin-top: 3*$large;
+  font-family: nanumsquareroundr;
+  font-size: 10*$large;
+  color: #555555;
+}
+
+.android480 .blackListBusy{
+  width: 90*$large;
+  height: 90*$large;
+  margin-top: 250*$large;
+  margin-left: 135*$large;
+  color: #ffe074;
+}

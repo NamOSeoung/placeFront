@@ -7,24 +7,25 @@
             <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png" v-if="naverReview.length > 4" />
         </StackLayout>
         <ScrollView orientation="horizontal">
-            <StackLayout class="naverListHeaderWrap" orientation="horizontal"  >
-                <StackLayout class="naverListTopWrap" orientation="horizontal" @tap="goWebview(n_reviews.index)" v-if="naverReview != ''" v-for="n_reviews in naverReview" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" >
-                      <StackLayout v-if="naverReview.thumbnail_url != null">
-                          <StackLayout class="naverListThumbnailWrap" >
-                              <Image class="naverListThumbnail"  stretch="aspectFill" :src="n_reviews.thumbnail_url"/>
-                          </StackLayout>
-                          <StackLayout>
-                              <StackLayout>
-                                  <label class="naverListTitle" :text="n_reviews.title"  />
-                                  <Label class="naverListDescription" :text="n_reviews.description" />
-                              </StackLayout>
-                              <StackLayout class="naverListDateInfoWrap" orientation="horizontal" >
-                                  <label class="naverListDate" :text="n_reviews.write_date"  />
-                                  <label class="naverListWriter" :text="n_reviews.author" />
-                              </StackLayout>
-                          </StackLayout>
-                      </StackLayout>
-                     <StackLayout v-else>
+            <AbsoluteLayout width="100%">
+                <StackLayout class="naverListHeaderWrap" orientation="horizontal"  >
+                    <StackLayout class="naverListTopWrap" orientation="horizontal" @tap="goWebview(n_reviews.index)" v-if="naverReview != ''" v-for="n_reviews in naverReview" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" >
+                        <StackLayout v-if="naverReview.thumbnail_url != null">
+                            <StackLayout class="naverListThumbnailWrap" >
+                                <Image class="naverListThumbnail"  stretch="aspectFill" :src="n_reviews.thumbnail_url"/>
+                            </StackLayout>
+                            <StackLayout>
+                                <StackLayout>
+                                    <label class="naverListTitle" :text="n_reviews.title"  />
+                                    <Label class="naverListDescription" :text="n_reviews.description" />
+                                </StackLayout>
+                                <StackLayout class="naverListDateInfoWrap" orientation="horizontal" >
+                                    <label class="naverListDate" :text="n_reviews.write_date"  />
+                                    <label class="naverListWriter" :text="n_reviews.author" />
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout v-else>
                             <StackLayout width="260">
                                 <StackLayout width="227" >
                                     <label width="227"  class="naverListTitle" :text="n_reviews.title"  />
@@ -35,14 +36,18 @@
                                     <label class="naverListWriter" :text="n_reviews.author" />
                                 </StackLayout>
                             </StackLayout>
-                      </StackLayout>
-                  </StackLayout>
-                <StackLayout class="naverListBottomWrap" v-if="naverReview == ''" >
-                    <StackLayout class="naverListNonContentsWrap" >
-                        <label class="naverListNonContents" text="정보가 없습니다."  />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout class="naverListBottomWrap" v-if="naverReview == ''&&busy==false" >
+                        <StackLayout class="naverListNonContentsWrap" >
+                            <label class="naverListNonContents" text="정보가 없습니다."  />
+                        </StackLayout>
                     </StackLayout>
                 </StackLayout>
-            </StackLayout>
+                <StackLayout top="10" width="100%">
+                    <ActivityIndicator :busy="busy" marginTop="10"  color="#ffe074" width="50" height="50" />
+                </StackLayout>
+            </AbsoluteLayout>
         </ScrollView>
     </StackLayout>
 </template>
@@ -70,7 +75,8 @@
         }, data(){
             return {
                 naverReview:[],
-                naverMorePage:NaverMore
+                naverMorePage:NaverMore,
+                busy:false
             }
         },methods: {
             getNaverReviewList() {
@@ -78,25 +84,32 @@
                 console.log("ji")
                 console.log('http://202.182.117.173:8080/v1/places/'+cache.get('place_id')+'/blogs/naver')
                 console.log(address[0] + ' ' + address[1] +' ' +cache.get('place_name') +' '+ '맛집')
-                 axios({
-                     method: 'get',
-                     url:'http://api.eatjeong.com/v1/places/'+cache.get('place_id')+'/blogs/naver',
-                     params: {
-                         user_id:appSettings.getString("user_id"),
-                         sns_division:appSettings.getString("sns_division"),
-                         query: address[0] + ' ' + address[1] +' ' +cache.get('place_name') +' '+ '맛집',
-                         size:'5'
-                     },
-                 }).then((response) => {
-                     console.log("naverList"+response.data.dataList);
-                     if(response.data.dataList === undefined){
-                         this.$data.naverReview = '';
-                     }else {
-                         this.$data.naverReview = response.data.dataList;
-                     }
-                 }, (error) => {
-                     console.log(error);
-                 });
+
+                this.$data.busy = true;
+                setTimeout(() => {
+                    axios({
+                        method: 'get',
+                        url:'http://api.eatjeong.com/v1/places/'+cache.get('place_id')+'/blogs/naver',
+                        params: {
+                            user_id:appSettings.getString("user_id"),
+                            sns_division:appSettings.getString("sns_division"),
+                            query: address[0] + ' ' + address[1] +' ' +cache.get('place_name') +' '+ '맛집',
+                            size:'5'
+                        },
+                    }).then((response) => {
+                        this.$data.busy = false;
+                        console.log("naverList"+response.data.dataList);
+                        if(response.data.dataList === undefined){
+                            this.$data.naverReview = '';
+                        }else {
+                            this.$data.naverReview = response.data.dataList;
+                        }
+                    }, (error) => {
+                        this.$data.busy = false;
+                        console.log(error);
+                    });
+                }, 1000);
+
             },goWebview(index){ //네이버 웹뷰페이지 호출
                 console.log(index)
                 this.$navigateTo(NaverWebview, {

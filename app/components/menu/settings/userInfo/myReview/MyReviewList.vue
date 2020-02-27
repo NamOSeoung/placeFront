@@ -1,18 +1,18 @@
 <template lang="html">
 <Page actionBarHidden="true">
      <StackLayout>
-        <StackLayout orientation="horizontal" width="360" height="55" borderBottomWidth="1.05" borderBottomColor="#dddddd" >
-          <StackLayout width="28" height="28" marginLeft="6" marginTop="30.5" @tap="$navigateBack">
-              <image width="16" height="16" src="~/Resources/img/home/angle-left.png" />
+        <StackLayout orientation="horizontal" class="myReviewListTitleWrap"  >
+          <StackLayout class="myReviewListTitleImageWrap"  @tap="$navigateBack">
+              <image class="myReviewListTitleImage"  src="~/Resources/img/home/angle-left.png" />
           </StackLayout>
-          <StackLayout marginLeft="2"  marginTop="20" @tap="$navigateBack" height="13" width="33">
-              <label text="내정보" color="#333333" fontSize="12" style="font-family: nanumsquareroundb" />
+          <StackLayout class="myReviewListBackTitleWrap"  @tap="$navigateBack" >
+              <label class="myReviewListBackTitle" text="내정보"/>
           </StackLayout>
-          <StackLayout marginTop="24.5" marginLeft="90" width="49" height="18.55">
-              <label text="내 리뷰"  style="font-family: nanumsquareroundb" fontSize="14" color="#333333" />
+          <StackLayout class="myReviewListTitleWrapWrap" >
+              <label text="내 리뷰"  class="myReviewListTitle"/>
           </StackLayout>
         </StackLayout>
-         <ScrollView  orientation="horizontal" height="40.05" >
+         <ScrollView  orientation="horizontal" class="myReviewListTapTapWrap" >
         <StackLayout orientation="horizontal">
             <StackLayout :class="selectTab==0?'active':''" class="aa" @tap="categorySetting('전체',0)"   >
                 <label text="전체"  :class="selectTab==0?'active':''" class="aaa"  />
@@ -47,7 +47,7 @@
         </StackLayout>
          </ScrollView>
          <ScrollView height="100%" >
-            <StackLayout width="360" height="100%" backgroundColor="#eff2f7"  @swipe="onSwipeDataReset">
+            <StackLayout width="100%" height="100%" backgroundColor="#eff2f7"  @swipe="onSwipeDataReset">
                 <StackLayout marginLeft="16" marginTop="15">
                     <label :text="category_count+'개 리뷰'" style="font-family: nanumsquareroundr" font-size="12" color="#333333" />
                 </StackLayout>
@@ -94,7 +94,7 @@
                     </StackLayout>
                 </StackLayout>
                 <StackLayout v-else>
-                    <StackLayout marginTop="15" v-if="list.category_name==category" padding="15 15 15 15" v-for="list in myReviewList" backgroundColor="#ffffff" width="330" height="70"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 6 }">
+                    <StackLayout marginTop="15" v-if="list.category_name==category" padding="15 15 15 15"  @tap="goMyReviewListDetail(index)" v-for="(list,index) in myReviewList" backgroundColor="#ffffff" width="330" height="70"  v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 6 }">
                         <StackLayout orientation="horizontal" >
                             <StackLayout width="158" height="40" borderRightWidth="1" borderRightColor="#eff2f7">
                                 <StackLayout>
@@ -147,6 +147,12 @@
     import axios from 'axios'
     const appSettings = require("tns-core-modules/application-settings");
     var cache = require("nativescript-cache");
+
+    import '~/Resources/css/menu/settings/userInfo/myReview/MyReviewList/myReviewList_320';
+    import '~/Resources/css/menu/settings/userInfo/myReview/MyReviewList/myReviewList_360';
+    import '~/Resources/css/menu/settings/userInfo/myReview/MyReviewList/myReviewList_420';
+    import '~/Resources/css/menu/settings/userInfo/myReview/MyReviewList/myReviewList_480';
+
     export default {
         name:"MyReviewList",
         components: {
@@ -232,29 +238,5 @@
 </script>
 
 <style lang="scss">
-.aa{
-    padding-top: 10;
-    width: 60;
-    text-align: center;
-    border-bottom-width: 0;
-    border-bottom-color: #ffffff;
-}
 
-.aa.active{
-    border-bottom-width: 4.55;
-    border-bottom-color: #ffe074;
-    width: 60;
-    padding-top: 10;
-    text-align: center;
-}
-    .aaa{
-        font-size: 12;
-        font-family: nanumsquareroundb;
-        color:#cccccc;
-    }
-    .aaa.active{
-        font-size: 12;
-        font-family: nanumsquareroundb;
-        color:#333333;
-    }
 </style>

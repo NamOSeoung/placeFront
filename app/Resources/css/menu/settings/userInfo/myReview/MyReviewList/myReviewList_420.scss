@@ -1,0 +1,69 @@
+$medium:1.142;
+
+.android400 .aa{
+  padding-top: 10*$medium;
+  width: 60*$medium;
+  text-align: center;
+  border-bottom-width: 0;
+  border-bottom-color: #ffffff;
+}
+
+.android400 .aa.active{
+  border-bottom-width: 4.55*$medium;
+  border-bottom-color: #ffe074;
+  width: 60*$medium;
+  padding-top: 10*$medium;
+  text-align: center;
+}
+.android400 .aaa{
+  font-size: 12*$medium;
+  font-family: nanumsquareroundb;
+  color:#cccccc;
+}
+.android400 .aaa.active{
+  font-size: 12*$medium;
+  font-family: nanumsquareroundb;
+  color:#333333;
+}
+
+.android400 .myReviewListTitleWrap{
+  width: 100%;
+  height: 55*$medium;
+  border-bottom-color: #dddddd;
+  border-bottom-width: 1.05*$medium;
+}
+.android400 .myReviewListTitleImageWrap{
+  width: 28*$medium;
+  height: 28*$medium;
+  margin-left: 6*$medium;
+  margin-top: 30.5*$medium;
+}
+.android400 .myReviewListTitleImage{
+  width: 16*$medium;
+  height: 16*$medium;
+}
+.android400 .myReviewListBackTitleWrap{
+  margin-left: 2*$medium;
+  margin-top: 20*$medium;
+  height: 13*$medium;
+  width: 33*$medium;
+}
+.android400 .myReviewListBackTitle{
+  color:#333333;
+  font-size:12*$medium;
+  font-family: nanumsquareroundb;
+}
+.android400 .myReviewListTitleWrapWrap{
+  margin-top: 24.5*$medium;
+  margin-left: 90*$medium;
+  width: 49*$medium;
+  height: 18.55*$medium;
+}
+.android400 .myReviewListTitle{
+  font-family: nanumsquareroundb;
+  font-size: 14*$medium;
+  color: #333333;
+}
+.android400 .myReviewListTapTapWrap{
+  height: 40.05*$medium;
+}

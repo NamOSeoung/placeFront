@@ -3,21 +3,21 @@
     <StackLayout>
         <StackLayout>
             <StackLayout class="findUserIdBarWrap" orientation="horizontal" height="65" >
-                <StackLayout class="findUserIdBarTitleWrap"  marginLeft="130" width="97" >
-                    <label class="findUserIdBarTitle" text="휴대폰 번호 변경" width="97"  />
+                <StackLayout class="findUserIdBarTitleWrap"  marginLeft="38%" width="35%" >
+                    <label class="findUserIdBarTitle" text="휴대폰 번호 변경" width="100%"  />
                 </StackLayout>
-                <StackLayout width="18" height="18" marginLeft="95" marginTop="15" @tap="$navigateBack">
+                <StackLayout width="16" height="16" marginLeft="20%" marginTop="15" @tap="$navigateBack">
                     <image src="~/Resources/img/place/close_5_64_b.png"/>
                 </StackLayout>
             </StackLayout>
-            <StackLayout class="findPasswordPhoneCertWrap" orientation="horizontal" width="300">
+            <StackLayout class="findPasswordPhoneCertWrap" orientation="horizontal" width="100%">
                 <StackLayout>
-                    <StackLayout class="findPasswordPhoneCertTitleWrap" width="360">
+                    <StackLayout class="findPasswordPhoneCertTitleWrap" width="100%">
                         <StackLayout class="" >
                             <label text="휴대폰번호" class="findPasswordPhoneCertTitle" />
                         </StackLayout>
-                        <StackLayout class="findUserIdPhonerWrap"  width="360" >
-                            <StackLayout class="findUserIdPhoneNumberWrap" orientation="horizontal" width="300" >
+                        <StackLayout class="findUserIdPhonerWrap"  width="100%" >
+                            <StackLayout class="findUserIdPhoneNumberWrap" orientation="horizontal" width="90%" marginRight="5%" >
                                 <StackLayout class="findPasswordPhoneCertNumberWrapWrap" width="260" >
                                     <TextField
                                             class="findUserIdPhoneNumber"
