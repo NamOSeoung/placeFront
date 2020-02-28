@@ -136,6 +136,7 @@
                             findUserPasswordPage:FindUserPassword,
                             user_id:'',
                             password:'',
+                            busy:false,
                             loginFlag:false,
                             busy:false,
                             isBusy:false,

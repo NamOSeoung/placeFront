@@ -1,7 +1,7 @@
 <template lang="html">
  <StackLayout backgroundColor="#ffffff" height="100%" width="100%">
-  <AbsoluteLayout height="100%">
-   <StackLayout height="100%">
+  <AbsoluteLayout height="100%" width="100%">
+   <StackLayout height="100%" width="100%">
     <StackLayout v-if="mapFlag == false" width="100%">
      <StackLayout class="placeSearchBarWrap" orientation="horizontal" width="100%">
       <StackLayout class="placeSearchBarMapIconWrap"  @tap="goMap()">
@@ -22,7 +22,7 @@
      <StackLayout v-if="listViewing=='keyword'" height="100%"> <!-- 최근검색어 인기검색어 section-->
       <StackLayout class="placeSearchKeywordListWrap" height="100%">
        <StackLayout class="placeSearchKeywordListWrapWrap" orientation="horizontal">
-        <StackLayout  :class="keywordWrap=='late'?'active':''" class="placeSearchLatelyKeywordWrap" @tap="keyWordChange(0)" >
+        <StackLayout  :class="keywordWrap=='late'?'active':''" class="placeSearchLatelyKeywordWrap" @tap="keyWordChange(0)">
          <label :class="keywordWrap=='late'?'active':''" class="placeSearchLatelyKeyword" text="최근검색어"  />
         </StackLayout>
         <StackLayout :class="keywordWrap=='popu'?'active':''" class="placeSearchLatelyKeywordWrap" @tap="keyWordChange(1)">
@@ -34,7 +34,7 @@
         <ScrollView height="100%">
          <StackLayout backgroundColor="#ffffff" width="90%">
           <StackLayout v-for="(list,index) in latelyKeywordList">
-           <StackLayout class="latelyKeywordHeaderWrap" orientation="horizontal" >
+           <StackLayout class="latelyKeywordHeaderWrap" orientation="horizontal">
             <StackLayout class="latelyKeywordKeywordWrap" @tap="placeSearch(list.keyword)">
              <label class="latelyKeywordKeyword" :text="list.keyword" />
             </StackLayout>
@@ -163,7 +163,7 @@
       <StackLayout>
        <StackLayout orientation="horizontal"class="areaSearchHeaderWrap">
         <StackLayout class="areaSearchHeaderWrapWrap" >
-         <TextField className="areaSearchHeader" v-model="areaKeyword" returnKeyType="done" hint="지역을 입력해주세요." maxLength="50"  editable="true" @textChange="changeWrap2" ></TextField>
+         <TextField className="areaSearchHeader" v-model="areaKeyword" returnKeyType="done" hint="지역을 입력해주세요." paddingTop="13" maxLength="50"  editable="true" @textChange="changeWrap2" ></TextField>
         </StackLayout>
         <StackLayout class="placeSearchBarDeleteIconWrap" visibility="collapsed" ref="keywordDelete" @tap="deleteKeyword">
          <image class="placeSearchBarDeleteIcon" src="~/Resources/img/place/close_d_64.png"/>
@@ -187,9 +187,9 @@
 <!--          <label class="areaSearchCurrentLocationTitle" text="현재위치" />-->
 <!--         </StackLayout>-->
 <!--        </StackLayout>-->
-        <StackLayout  class="areaSearchMainWrap">
+        <StackLayout  class="areaSearchMainWrap" height="92.5%">
          <StackLayout class="areaSearchMainWrapWrap"orientation="horizontal">
-          <ScrollView class="areaSearchLeftScrollWrap">
+          <ScrollView class="areaSearchLeftScrollWrap" height="100%">
            <StackLayout class="areaSearchLeftMainWrap">
             <StackLayout class="areaSearchLeftMainWrapWrap" v-for="category in fitstArea_category">
              <StackLayout class="areaSearchLeftAreaWrap" :class="selectedTabview==category.area?'active':''" @tap="tabSelect(category.area,category.area_name)">
@@ -198,7 +198,7 @@
             </StackLayout>
            </StackLayout>
           </ScrollView>
-          <ScrollView class="areaSearchRightScrollWrap" >
+          <ScrollView class="areaSearchRightScrollWrap" height="100%">
            <StackLayout class="areaSearchRightMainWrap">
             <StackLayout class="areaSearchRightMainWrapWrap" orientation="vertical" v-for="sub in secondArea_category" >
              <StackLayout class="areaSearchRightMainWrapWrapWrap" orientation="horizontal" @tap="subCategorySelect(sub.area,sub.area_name)">
