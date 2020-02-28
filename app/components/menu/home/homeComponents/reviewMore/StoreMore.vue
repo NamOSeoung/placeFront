@@ -65,7 +65,7 @@
                                     </StackLayout>
                                     <StackLayout class="storeMarkAIconWrap">
                                         <image class="storeMarkAIcon" stretch="aspectFill"
-                                               src="~/Resources/img/bookmark/tistory-circle.png"/>
+                                               src="~/Resources/img/place/playstore-icon.png"/>
                                     </StackLayout>
                                 </StackLayout>
                             </StackLayout>
