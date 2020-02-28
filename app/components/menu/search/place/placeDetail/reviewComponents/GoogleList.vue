@@ -7,7 +7,7 @@
 <!--            <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png" />-->
         </StackLayout>
         <ScrollView orientation="horizontal">
-            <AbsoluteLayout width="100%">
+<!--            <AbsoluteLayout>-->
                 <StackLayout class="googleListHeaderWrap" orientation="horizontal" >
                     <StackLayout class="googleListWrap" @tap="googleReviewDetail(g_reviews.g_rating,g_reviews.g_content,g_reviews.g_write_Date)"  v-for="g_reviews in googleReview" v-if="googleReview != ''" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" >
                         <StackLayout class="googleListWrapWrap" orientation="horizontal">
@@ -33,10 +33,10 @@
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout top="10" width="100%">
-                    <ActivityIndicator :busy="busy" marginTop="30"color="#ffe074" width="50" height="50" />
-                </StackLayout>
-            </AbsoluteLayout>
+<!--                <StackLayout top="10" width="100%">-->
+<!--                    <ActivityIndicator :busy="busy" marginTop="30"color="#ffe074" width="50" height="50" />-->
+<!--                </StackLayout>-->
+<!--            </AbsoluteLayout>-->
         </ScrollView>
     </StackLayout>
 </template>

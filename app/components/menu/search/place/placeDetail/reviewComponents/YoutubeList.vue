@@ -7,7 +7,7 @@
             <image class="youtubeListMoreIcon" src="~/Resources/img/place/right_5_64.png" @tap="goMorePage" v-if="youtubeReview.length > 4"/>
         </StackLayout>
         <ScrollView orientation="horizontal">
-            <AbsoluteLayout width="100%">
+<!--            <AbsoluteLayout>-->
                 <StackLayout class="youtubeListContentsWrap"  orientation="horizontal">
                     <StackLayout class="youtubeListDataTopWrap"  v-for="y_reviews in youtubeReview"
                                  v-if="youtubeReview != ''"
@@ -22,17 +22,17 @@
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>
+
                     <StackLayout class="youtubeListNonContentsWrap" v-if="youtubeReview == ''&&busy==false">
                         <StackLayout class="youtubeListNonContentsWrapWrap">
                             <label class="youtubeListNonContents" text="정보가 없습니다."/>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout top="0" width="100%">
-                    <ActivityIndicator :busy="busy" marginTop="60"color="#ffe074" width="50" height="50" />
-                </StackLayout>
-            </AbsoluteLayout>
-
+<!--            <StackLayout top="0" width="100%" backgroundColor="blue" v-if="busy == true">-->
+<!--                <ActivityIndicator :busy="busy" marginTop="60"color="#ffe074" width="50" height="50" />-->
+<!--            </StackLayout>-->
+<!--            </AbsoluteLayout>-->
         </ScrollView>
     </StackLayout>
 </template>

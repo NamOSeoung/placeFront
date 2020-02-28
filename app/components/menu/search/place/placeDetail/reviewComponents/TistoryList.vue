@@ -7,7 +7,7 @@
             <image class="youtubeListMoreIcon"  src="~/Resources/img/place/right_5_64.png" v-if="tistoryReview.length > 4"/>
         </StackLayout>
         <ScrollView orientation="horizontal">
-            <AbsoluteLayout width="100%">
+<!--            <AbsoluteLayout>-->
                 <StackLayout class="naverListHeaderWrap" orientation="horizontal" >
                     <StackLayout class="naverListTopWrap" orientation="horizontal" @tap="goWebview(t_reviews.index)" v-if="tistoryReview != ''" v-for="t_reviews in tistoryReview" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }" >
                         <StackLayout width="100%" orientation="horizontal" v-if="t_reviews.thumbnail_url != ''">
@@ -42,10 +42,10 @@
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout top="10" width="100%">
-                    <ActivityIndicator :busy="busy" marginTop="10" color="#ffe074" width="50" height="50" />
-                </StackLayout>
-            </AbsoluteLayout>
+<!--                <StackLayout top="10" width="100%">-->
+<!--                    <ActivityIndicator :busy="busy" marginTop="10" color="#ffe074" width="50" height="50" />-->
+<!--                </StackLayout>-->
+<!--            </AbsoluteLayout>-->
         </ScrollView>
     </StackLayout>
 </template>

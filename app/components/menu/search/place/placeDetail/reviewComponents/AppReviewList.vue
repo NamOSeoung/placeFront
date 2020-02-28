@@ -9,7 +9,7 @@
             </StackLayout>
         </StackLayout>
         <ScrollView orientation="horizontal">
-            <AbsoluteLayout width="100%">
+<!--            <AbsoluteLayout>-->
                 <StackLayout orientation="horizontal">
                     <StackLayout class="appReviewListHeaderWrap" orientation="horizontal" v-for="a_reviews in appReview" v-shadow="{ elevation: 2,shape:'RECTANGLE', bgcolor: 'white', cornerRadius: 10 }"  >
                         <StackLayout orientation="horizontal" v-if="a_reviews.image_url.length > 0 ">
@@ -60,10 +60,10 @@
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout top="10" width="100%">
-                    <ActivityIndicator :busy="busy" marginTop="10"  color="#ffe074" width="50" height="50" />
-                </StackLayout>
-            </AbsoluteLayout>
+<!--                <StackLayout top="10" width="100%">-->
+<!--                    <ActivityIndicator :busy="busy"  marginTop="10"  color="#ffe074" width="50" height="50" />-->
+<!--                </StackLayout>-->
+<!--            </AbsoluteLayout>-->
 
         </ScrollView>
     </StackLayout>
