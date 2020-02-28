@@ -10,22 +10,40 @@
 // create a file named before-plugins.gradle in the current directory and place it there
 
 android {
+    compileSdkVersion 29
+      buildToolsVersion "29.0.2"
       defaultConfig {
-        minSdkVersion 17
-        generatedDensities = []
+          minSdkVersion 19
+          targetSdkVersion 29
+          testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
       }
-  aaptOptions {
-    additionalParameters "--no-version-vectors"
-  }
+   aaptOptions {
+     additionalParameters "--no-version-vectors"
+   }
+ }
 
 allprojects {
     repositories {
         google()
         jcenter()
+        maven{
+            url "https://maven.google.com"
+        }
+        /*카카오*/
+        maven { url 'http://devrepo.kakao.com:8088/nexus/content/groups/public/'}
 
     }
 }
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.aar'])
-  }
+        implementation 'androidx.appcompat:appcompat:1.1.0'
+        implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+        implementation 'com.google.android.material:material:1.0.0'
+        testImplementation 'junit:junit:4.12'
+        androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+        androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+         /*카카오로그인*/
+            implementation 'com.kakao.sdk:usermgmt:1.27.0'
+
 }

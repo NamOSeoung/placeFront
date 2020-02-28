@@ -67,7 +67,7 @@
 
    </StackLayout>
    <StackLayout top="0" width="100%">
-    <ActivityIndicator :busy="busy" marginTop="230" color="#ffe074" width="100" height="100" />
+    <ActivityIndicator :busy="busy" marginTop="230"  color="#ffe074" width="100" height="100" />
    </StackLayout>
   </AbsoluteLayout>
  </StackLayout>
@@ -85,7 +85,7 @@
  const appSettings = require("tns-core-modules/application-settings");
 
  export default {
-  name:"tistoryBookmark",
+  name:"TistoryBookmark",
   data(){
    return {
     tistoryBookmarkList:[],
@@ -97,14 +97,6 @@
     this.getTistoryReview();
   },methods:{
    onSwipe(args){
-
-    console.log('wwdasda')
-    console.log("Swipe!");
-    console.log("Object that triggered the event: " + args.object);
-    console.log("View that triggered the event: " + args.view);
-    console.log("Event name: " + args.eventName);
-    console.log("Swipe Direction: " + args.direction);
-
     this.getTistoryReview();
 
    },
