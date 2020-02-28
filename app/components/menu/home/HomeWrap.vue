@@ -21,18 +21,6 @@
          <StackLayout class="headerLine" width="100%"/>
          <TistoryList width="100%"/>
          <StackLayout class="headerLine"/>
-<!--        <StackLayout>-->
-<!--            <Button text="Show location" @tap="enableLocationServices"-->
-<!--                    :visibility="currentGeoLocation.latitude ? 'collapsed' : 'visible'" />-->
-<!--            <StackLayout-->
-<!--                    :visibility="currentGeoLocation.latitude ? 'visible' : 'collapsed'">-->
-<!--                <Label :text="'Latitude: ' + currentGeoLocation.latitude" />-->
-<!--                <Label :text="'Longitude: ' + currentGeoLocation.longitude" />-->
-<!--                <Label :text="'Altitude: ' + currentGeoLocation.altitude" />-->
-<!--                <Label :text="'Direction: ' + currentGeoLocation.direction" />-->
-
-<!--            </StackLayout>-->
-<!--        </StackLayout>-->
     </StackLayout>
 </ScrollView>
 </template>
@@ -61,13 +49,6 @@
         data(){
             return {
                 data,
-                currentGeoLocation: {
-                    latitude: null,
-                    longitude: null,
-                    altitude: null,
-                    direction: null,
-                    locationKeyword:'서울 맛집'
-                },
                 address:''
             }
         },
@@ -79,74 +60,8 @@
                 console.log('123123123')
                 MenuWrap.methods.tabChange(tab)
             },
-            // enableLocationServices: function() {
-            //     geoLocation.isEnabled().then(enabled => {
-            //         if (!enabled) {
-            //             geoLocation
-            //                 .enableLocationRequest()
-            //                 .then(() => this.showLocation());
-            //         } else {
-            //             this.showLocation();
-            //             console.log("2?")
-            //         }
-            //     });
-            // },
-            // showLocation: function() {
-            //     geoLocation.watchLocation(
-            //         location => {
-            //             this.currentGeoLocation = location;
-            //             axios({
-            //                 method: 'get',
-            //                 url: 'https://dapi.kakao.com/v2/local/geo/coord2address.json',
-            //                 params: {
-            //                     x:this.currentGeoLocation.longitude,
-            //                     y:this.currentGeoLocation.latitude
-            //                 },
-            //                 headers: { 'Authorization': 'KakaoAK b4bd7e75365a705323622c57d0b7e406' }
-            //             }).then((response) => {
-            //                 console.log('호출함??')
-            //                 //console.log(response.data.documents[0].address.address_name)
-            //                 console.log(response.data)
-            //                 console.log(response)
-            //                 this.$data.address = response.data.documents[0].address.address_name
-            //                 data.locationKeyword = response.data.documents[0].address.address_name
-            //                 console.log(response.data.documents[0].address.address_name)
-            //                 var current_location_arr =  data.locationKeyword.split(" ");
-            //                 var current_location="";
-            //                 for(var i = 0; i < current_location_arr.length; i++){
-            //                     if(i < 3){
-            //                         if(i > 0 ){
-            //                             current_location += " " + current_location_arr[i];
-            //                         }else {
-            //                             current_location += current_location_arr[i];
-            //                         }
-            //                     }
-            //                 }
-            //                 data.locationKeyword = current_location;
-            //                 console.log(current_location+" 맛집" + "asasddssdddddasas")
-            //                 cache.set("location_name",current_location+" 맛집")
-            //
-            //                 //NaverList.methods.getNaverList((current_location+" 맛집"));
-            //                 // alert("wwww")
-            //                // NaverList.methods.getNaverList("서울 맛집")
-            //                //  this.components.NaverList.methods.getNaverList("경기도 맛집")
-            //                //  this.components.render().NaverList.methods.getNaverList("경기도 맛집")
-            //             }, (error) => {
-            //                 console.log(error);
-            //             });
-            //         },
-            //         error => {
-            //             alert(error);
-            //         }, {
-            //             desiredAccuracy: 3,
-            //             updateDistance: 10,
-            //             minimumUpdateTime: 1000 * 1
-            //         }
-            //     );
-            // }
         },mounted(){
-             // cache.set("location_name","false")
-             // this.enableLocationServices()
+
         },created() {
 
         }

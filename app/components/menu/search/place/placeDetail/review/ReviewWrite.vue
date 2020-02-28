@@ -27,7 +27,7 @@
                      </StackLayout>
                      <StackLayout v-else-if="selectStar==3" orientation="horizontal">
                          <image width="11%"  @tap="selectedStar(1)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
-                         <image width="11%" @tap="selectedStar(2)" marginLeft="5%" height="12% src="~/Resources/img/place/star_y1_64.png"  />
+                         <image width="11%" @tap="selectedStar(2)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
                          <image width="11%"  @tap="selectedStar(3)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_y1_64.png"  />
                          <image width="11%"   @tap="selectedStar(4)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_d_64.png"    />
                          <image width="11%"   @tap="selectedStar(5)" marginLeft="5%" height="12%" src="~/Resources/img/place/star_d_64.png"    />
@@ -329,7 +329,6 @@
               element.options.height = this.isSingleMode ? this.previewSize : this.thumbSize;
              });
 
-           if(this.itemList != undefined) {
                    if ((this.imageAssets.length + selection.length) > 4) {
                        dialogs.alert({
                            title: "",
@@ -376,12 +375,6 @@
                        this.imageAssets = selection;
                        //this.$data.update_image_file = selection;
                    }
-              }else{
-                    if(this.imageAssets.length == 0){
-                        this.imageAssets = selection;
-                        this.$data.update_image_file = selection;
-                    }
-              }
             }).catch(function (e) {
      console.log(e);
     });

@@ -137,6 +137,7 @@
                             user_id:'',
                             password:'',
                             loginFlag:false,
+                            busy:false,
                             isBusy:false,
                             images:["~/Resources/img/place/google.png", "~/Resources/img/place/phone.png", "~/Resources/img/place/link_64.png", "~/images/share.png"],
                            // infoEnderPage : InfoEnter

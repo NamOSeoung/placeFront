@@ -1,5 +1,4 @@
 import Vue from 'nativescript-vue';
-import RadListView from 'nativescript-ui-listview/vue';
 import Login from './components/member/Login';
 import MenuWrap from './components/menu/MenuWrap'
 import { ModalStack, overrideModalViewMethod, VueWindowedModal } from "nativescript-windowed-modal"
@@ -27,7 +26,6 @@ Vue.use(FontIcon, {
         fa: './assets/font-awesome.css',
     }
 });
-Vue.use(RadListView);
 Vue.config.silent = false
 
 

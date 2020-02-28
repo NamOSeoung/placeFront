@@ -47,8 +47,7 @@
     const appSettings = require("tns-core-modules/application-settings");
     const platformModule = require("tns-core-modules/platform");
     import platformcss from '../../platformcss';
-    import Login from '../member/Login'
-    import PlaceBookark from '../menu/bookmark/bookmarkList/PlaceBookmark'
+
 
     var data = {tab : 0}
 
@@ -68,8 +67,6 @@
                data.tab = tab;
             },tabChangedEvent(args){
                console.log(args.oldIndex)
-      // PlaceBookark.methods.getPlaceBookmark();
-       //BookmarkWrap.created()
                this.$data.tabIconSet = args.newIndex;
                if(args.newIndex == 0){
                 data.tab = 0;
@@ -80,7 +77,7 @@
                return;
             }
         },mounted(){
-            platformcss.sizeGroupings([480,440,400,360,320]);
+            platformcss.sizeGroupings([480,400,360,320]);
             console.log("디피아이" + platformModule.screen.mainScreen.widthDIPs)
             console.log("픽셀" + platformModule.screen.mainScreen.widthPixels)
             console.log(`screen.mainScreen.scale ${platformModule.screen.mainScreen.scale}`);
