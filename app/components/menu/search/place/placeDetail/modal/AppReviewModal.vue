@@ -72,6 +72,7 @@
  import PlaceGoLoginModal from './PlaceGoLoginModal'
  import PictureModal from "./PictureModal";
  import AppReviewList  from "../reviewComponents/AppReviewList";
+ import ReviewWrite from "../review/ReviewWrite";
  export default {
        name:"AppReviewModal",
        props:['reviewList'],
@@ -166,9 +167,10 @@
                              message: "리뷰가 삭제되었습니다.",
                              okButtonText: "확인"
                          }).then(() => {
+                             this.$modal.close()
                              console.log("Dialog closed22!");
                              AppReviewList.methods.getAppReviewList();
-                             this.$modal.close()
+
                              //this.appReviewMore();
                              //this.aaa()
                              //this.$navigateTo(Login);
@@ -180,6 +182,13 @@
 
                  }
              });
+         },updateReview(reviews){
+             console.log(reviews)
+             this.$navigateTo(ReviewWrite, {
+                 props: {
+                     itemList: reviews}
+             })
+             this.$modal.close();
          }
      }
     };
