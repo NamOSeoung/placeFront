@@ -57,7 +57,7 @@
 
      <StackLayout v-else height="100%">
       <ScrollView height="100%">
-       <StackLayout backgroundColor="#ffffff">
+       <StackLayout backgroundColor="#ffffff" width="90%">
         <StackLayout v-for="keyword in popularKeywordList">
          <StackLayout class="latelyKeywordHeaderWrap" orientation="horizontal" @tap="placeSearch(keyword.search_word)">
           <StackLayout class="latelyKeywordKeywordWrap">
